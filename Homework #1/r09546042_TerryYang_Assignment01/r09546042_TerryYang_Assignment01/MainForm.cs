@@ -77,7 +77,13 @@ namespace r09546042_TerryYang_Assignment01
 
         private void BTN_clear_Click(object sender, EventArgs e)
         {
-            Main_Chart.Series.Clear();
+            string Graph_Type = tabControl1.SelectedTab.Name;
+            string Type_char = Graph_Type.Substring(0, 1);
+
+            Series Existied_Series;
+            Existied_Series = Main_Chart.Series.FindByName(Type_char + "-series");
+            if (Existied_Series != null)
+                Main_Chart.Series.Remove(Existied_Series);
         }
     }
 }
