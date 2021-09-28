@@ -72,7 +72,7 @@ namespace r09546042_TerryYang_Assignment01
                     break;
             }        
             Main_Chart.ChartAreas[0].RecalculateAxesScale();
-            Main_Chart.Update();           
+            Main_Chart.Update();
         }
 
         private void BTN_clear_Click(object sender, EventArgs e)

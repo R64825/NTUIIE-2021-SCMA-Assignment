@@ -90,6 +90,7 @@ namespace r09546042_TerryYang_Assignment01
             // 
             // Main_Chart
             // 
+            chartArea1.AxisX2.MinorGrid.Interval = 1D;
             chartArea1.Name = "ChartArea1";
             this.Main_Chart.ChartAreas.Add(chartArea1);
             this.Main_Chart.Dock = System.Windows.Forms.DockStyle.Fill;
