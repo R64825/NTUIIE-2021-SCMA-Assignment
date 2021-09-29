@@ -18,13 +18,13 @@ namespace Fuzzy_Graph_Library
             B_series.BorderWidth = 2;
             B_series.Name = "B-series";
 
-            double Front_point = 0;
+            double Front_point = c;
             do
             {
                 Front_point--;
             } while (Distribution_Function(Front_point, a, b,c) >= 0.01);
 
-            double Back_point = 0;
+            double Back_point = c;
             do
             {
                 Back_point++;
