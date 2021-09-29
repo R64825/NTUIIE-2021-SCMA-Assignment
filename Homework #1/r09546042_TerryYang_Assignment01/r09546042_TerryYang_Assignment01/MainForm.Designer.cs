@@ -29,9 +29,9 @@ namespace r09546042_TerryYang_Assignment01
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.Main_Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.BTN_plot = new System.Windows.Forms.Button();
@@ -90,20 +90,22 @@ namespace r09546042_TerryYang_Assignment01
             // 
             // Main_Chart
             // 
-            chartArea1.AxisX2.MinorGrid.Interval = 1D;
-            chartArea1.Name = "ChartArea1";
-            this.Main_Chart.ChartAreas.Add(chartArea1);
+            chartArea2.AxisX.Title = "X";
+            chartArea2.AxisX2.MinorGrid.Interval = 1D;
+            chartArea2.AxisY.Title = "Y";
+            chartArea2.Name = "ChartArea1";
+            this.Main_Chart.ChartAreas.Add(chartArea2);
             this.Main_Chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Alignment = System.Drawing.StringAlignment.Center;
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend1.Name = "Legend1";
-            this.Main_Chart.Legends.Add(legend1);
+            legend2.Alignment = System.Drawing.StringAlignment.Center;
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend2.Name = "Legend1";
+            this.Main_Chart.Legends.Add(legend2);
             this.Main_Chart.Location = new System.Drawing.Point(0, 0);
             this.Main_Chart.Name = "Main_Chart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.Main_Chart.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.Main_Chart.Series.Add(series2);
             this.Main_Chart.Size = new System.Drawing.Size(530, 450);
             this.Main_Chart.TabIndex = 0;
             this.Main_Chart.Text = "chart1";
