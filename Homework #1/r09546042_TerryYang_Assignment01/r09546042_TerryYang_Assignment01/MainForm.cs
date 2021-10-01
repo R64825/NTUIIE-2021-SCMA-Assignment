@@ -56,7 +56,7 @@ namespace r09546042_TerryYang_Assignment01
                     }
                     else
                     {
-                        T_Graph T = new T_Graph(a, b, c);
+                        Triangular_function T = new Triangular_function(a, b, c);
                         T_series = T.Plot_Graph();
                         Main_Chart.Series.Add(T_series);
                     }
@@ -69,7 +69,7 @@ namespace r09546042_TerryYang_Assignment01
                     }
                     else
                     {
-                        G_Graph G = new G_Graph(mean, sigma, resolution);
+                        Gaussian_function G = new Gaussian_function(mean, sigma, resolution);
                         G_series = G.Plot_Graph();
                         Main_Chart.Series.Add(G_series);
                     }
@@ -87,7 +87,7 @@ namespace r09546042_TerryYang_Assignment01
                     }
                     else
                     {
-                        B_Graph B = new B_Graph(a_01, b_01, c_01, resolution_01);
+                        Bell_function B = new Bell_function(a_01, b_01, c_01, resolution_01);
                         B_series = B.Plot_Graph();
                         Main_Chart.Series.Add(B_series);
                     }

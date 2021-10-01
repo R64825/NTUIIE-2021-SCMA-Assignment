@@ -43,9 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="B_Graph.cs" />
-    <Compile Include="G_Graph.cs" />
-    <Compile Include="T_Graph.cs" />
+    <Compile Include="Bell_function.cs" />
+    <Compile Include="Gaussian_function.cs" />
+    <Compile Include="Triangular_function.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
