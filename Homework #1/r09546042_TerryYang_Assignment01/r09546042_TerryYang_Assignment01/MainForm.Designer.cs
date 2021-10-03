@@ -29,16 +29,16 @@ namespace r09546042_TerryYang_Assignment01
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.Main_Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.BTN_plot = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.T_graph = new System.Windows.Forms.TabPage();
+            this.TC_main = new System.Windows.Forms.TabControl();
+            this.Triangular_Series = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TB_c = new System.Windows.Forms.TextBox();
             this.TB_b = new System.Windows.Forms.TextBox();
@@ -46,7 +46,7 @@ namespace r09546042_TerryYang_Assignment01
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.G_graph = new System.Windows.Forms.TabPage();
+            this.Gaussian_Series = new System.Windows.Forms.TabPage();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.TB_res = new System.Windows.Forms.TextBox();
             this.TB_sigma = new System.Windows.Forms.TextBox();
@@ -54,7 +54,7 @@ namespace r09546042_TerryYang_Assignment01
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.B_graph = new System.Windows.Forms.TabPage();
+            this.Bell_Series = new System.Windows.Forms.TabPage();
             this.TB_res_01 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -66,6 +66,24 @@ namespace r09546042_TerryYang_Assignment01
             this.label9 = new System.Windows.Forms.Label();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.BTN_clear = new System.Windows.Forms.Button();
+            this.Sigmoidal_Series = new System.Windows.Forms.TabPage();
+            this.TB_sig_res = new System.Windows.Forms.TextBox();
+            this.TB_sig_c = new System.Windows.Forms.TextBox();
+            this.TB_sig_a = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.LeftRight_Series = new System.Windows.Forms.TabPage();
+            this.TB_lef_res = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.TB_lef_beta = new System.Windows.Forms.TextBox();
+            this.TB_lef_alpha = new System.Windows.Forms.TextBox();
+            this.TB_lef_c = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.TCB_main = new System.Windows.Forms.ToolStripComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.Main_Chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -75,39 +93,42 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.T_graph.SuspendLayout();
+            this.TC_main.SuspendLayout();
+            this.Triangular_Series.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.G_graph.SuspendLayout();
+            this.Gaussian_Series.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.B_graph.SuspendLayout();
+            this.Bell_Series.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            this.Sigmoidal_Series.SuspendLayout();
+            this.LeftRight_Series.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Main_Chart
             // 
             this.Main_Chart.BackColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisX.Title = "X";
-            chartArea2.AxisX2.MinorGrid.Interval = 1D;
-            chartArea2.AxisY.Title = "Y";
-            chartArea2.Name = "ChartArea1";
-            this.Main_Chart.ChartAreas.Add(chartArea2);
+            chartArea5.AxisX.Title = "X";
+            chartArea5.AxisX2.MinorGrid.Interval = 1D;
+            chartArea5.AxisY.Title = "Y";
+            chartArea5.Name = "ChartArea1";
+            this.Main_Chart.ChartAreas.Add(chartArea5);
             this.Main_Chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Alignment = System.Drawing.StringAlignment.Center;
-            legend2.BackColor = System.Drawing.Color.Transparent;
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend2.Name = "Legend1";
-            this.Main_Chart.Legends.Add(legend2);
+            legend5.Alignment = System.Drawing.StringAlignment.Center;
+            legend5.BackColor = System.Drawing.Color.Transparent;
+            legend5.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend5.Name = "Legend1";
+            this.Main_Chart.Legends.Add(legend5);
             this.Main_Chart.Location = new System.Drawing.Point(0, 0);
             this.Main_Chart.Name = "Main_Chart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.Main_Chart.Series.Add(series2);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.Main_Chart.Series.Add(series5);
             this.Main_Chart.Size = new System.Drawing.Size(530, 450);
             this.Main_Chart.TabIndex = 0;
             this.Main_Chart.Text = "chart1";
@@ -151,7 +172,8 @@ namespace r09546042_TerryYang_Assignment01
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.tabControl1);
+            this.splitContainer2.Panel1.Controls.Add(this.TC_main);
+            this.splitContainer2.Panel1.Controls.Add(this.menuStrip1);
             // 
             // splitContainer2.Panel2
             // 
@@ -160,34 +182,37 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer2.SplitterDistance = 376;
             this.splitContainer2.TabIndex = 3;
             // 
-            // tabControl1
+            // TC_main
             // 
-            this.tabControl1.Controls.Add(this.T_graph);
-            this.tabControl1.Controls.Add(this.G_graph);
-            this.tabControl1.Controls.Add(this.B_graph);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(266, 376);
-            this.tabControl1.TabIndex = 3;
+            this.TC_main.Controls.Add(this.Triangular_Series);
+            this.TC_main.Controls.Add(this.Gaussian_Series);
+            this.TC_main.Controls.Add(this.Bell_Series);
+            this.TC_main.Controls.Add(this.Sigmoidal_Series);
+            this.TC_main.Controls.Add(this.LeftRight_Series);
+            this.TC_main.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TC_main.Location = new System.Drawing.Point(0, 27);
+            this.TC_main.Name = "TC_main";
+            this.TC_main.SelectedIndex = 0;
+            this.TC_main.Size = new System.Drawing.Size(266, 349);
+            this.TC_main.TabIndex = 3;
+            this.TC_main.SelectedIndexChanged += new System.EventHandler(this.TC_main_SelectedIndexChanged);
             // 
-            // T_graph
+            // Triangular_Series
             // 
-            this.T_graph.Controls.Add(this.pictureBox1);
-            this.T_graph.Controls.Add(this.TB_c);
-            this.T_graph.Controls.Add(this.TB_b);
-            this.T_graph.Controls.Add(this.TB_a);
-            this.T_graph.Controls.Add(this.label3);
-            this.T_graph.Controls.Add(this.label2);
-            this.T_graph.Controls.Add(this.label1);
-            this.T_graph.Location = new System.Drawing.Point(4, 22);
-            this.T_graph.Name = "T_graph";
-            this.T_graph.Padding = new System.Windows.Forms.Padding(3);
-            this.T_graph.Size = new System.Drawing.Size(258, 350);
-            this.T_graph.TabIndex = 0;
-            this.T_graph.Text = "T_graph";
-            this.T_graph.UseVisualStyleBackColor = true;
+            this.Triangular_Series.Controls.Add(this.pictureBox1);
+            this.Triangular_Series.Controls.Add(this.TB_c);
+            this.Triangular_Series.Controls.Add(this.TB_b);
+            this.Triangular_Series.Controls.Add(this.TB_a);
+            this.Triangular_Series.Controls.Add(this.label3);
+            this.Triangular_Series.Controls.Add(this.label2);
+            this.Triangular_Series.Controls.Add(this.label1);
+            this.Triangular_Series.Location = new System.Drawing.Point(4, 22);
+            this.Triangular_Series.Name = "Triangular_Series";
+            this.Triangular_Series.Padding = new System.Windows.Forms.Padding(3);
+            this.Triangular_Series.Size = new System.Drawing.Size(258, 350);
+            this.Triangular_Series.TabIndex = 0;
+            this.Triangular_Series.Text = "Triangular_Series";
+            this.Triangular_Series.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -254,22 +279,22 @@ namespace r09546042_TerryYang_Assignment01
             this.label1.TabIndex = 0;
             this.label1.Text = "Left:";
             // 
-            // G_graph
+            // Gaussian_Series
             // 
-            this.G_graph.Controls.Add(this.pictureBox2);
-            this.G_graph.Controls.Add(this.TB_res);
-            this.G_graph.Controls.Add(this.TB_sigma);
-            this.G_graph.Controls.Add(this.TB_mean);
-            this.G_graph.Controls.Add(this.label4);
-            this.G_graph.Controls.Add(this.label5);
-            this.G_graph.Controls.Add(this.label6);
-            this.G_graph.Location = new System.Drawing.Point(4, 22);
-            this.G_graph.Name = "G_graph";
-            this.G_graph.Padding = new System.Windows.Forms.Padding(3);
-            this.G_graph.Size = new System.Drawing.Size(258, 350);
-            this.G_graph.TabIndex = 1;
-            this.G_graph.Text = "G_graph";
-            this.G_graph.UseVisualStyleBackColor = true;
+            this.Gaussian_Series.Controls.Add(this.pictureBox2);
+            this.Gaussian_Series.Controls.Add(this.TB_res);
+            this.Gaussian_Series.Controls.Add(this.TB_sigma);
+            this.Gaussian_Series.Controls.Add(this.TB_mean);
+            this.Gaussian_Series.Controls.Add(this.label4);
+            this.Gaussian_Series.Controls.Add(this.label5);
+            this.Gaussian_Series.Controls.Add(this.label6);
+            this.Gaussian_Series.Location = new System.Drawing.Point(4, 22);
+            this.Gaussian_Series.Name = "Gaussian_Series";
+            this.Gaussian_Series.Padding = new System.Windows.Forms.Padding(3);
+            this.Gaussian_Series.Size = new System.Drawing.Size(258, 350);
+            this.Gaussian_Series.TabIndex = 1;
+            this.Gaussian_Series.Text = "Gaussian_Series";
+            this.Gaussian_Series.UseVisualStyleBackColor = true;
             // 
             // pictureBox2
             // 
@@ -322,9 +347,9 @@ namespace r09546042_TerryYang_Assignment01
             this.label5.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(30, 70);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 21);
+            this.label5.Size = new System.Drawing.Size(64, 21);
             this.label5.TabIndex = 7;
-            this.label5.Text = "sigma:";
+            this.label5.Text = "Siigma:";
             // 
             // label6
             // 
@@ -332,27 +357,27 @@ namespace r09546042_TerryYang_Assignment01
             this.label6.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(30, 30);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 21);
+            this.label6.Size = new System.Drawing.Size(55, 21);
             this.label6.TabIndex = 6;
-            this.label6.Text = "mean:";
+            this.label6.Text = "Mean:";
             // 
-            // B_graph
+            // Bell_Series
             // 
-            this.B_graph.Controls.Add(this.TB_res_01);
-            this.B_graph.Controls.Add(this.label10);
-            this.B_graph.Controls.Add(this.pictureBox3);
-            this.B_graph.Controls.Add(this.TB_c_01);
-            this.B_graph.Controls.Add(this.TB_b_01);
-            this.B_graph.Controls.Add(this.TB_a_01);
-            this.B_graph.Controls.Add(this.label7);
-            this.B_graph.Controls.Add(this.label8);
-            this.B_graph.Controls.Add(this.label9);
-            this.B_graph.Location = new System.Drawing.Point(4, 22);
-            this.B_graph.Name = "B_graph";
-            this.B_graph.Size = new System.Drawing.Size(258, 350);
-            this.B_graph.TabIndex = 2;
-            this.B_graph.Text = "B_graph";
-            this.B_graph.UseVisualStyleBackColor = true;
+            this.Bell_Series.Controls.Add(this.TB_res_01);
+            this.Bell_Series.Controls.Add(this.label10);
+            this.Bell_Series.Controls.Add(this.pictureBox3);
+            this.Bell_Series.Controls.Add(this.TB_c_01);
+            this.Bell_Series.Controls.Add(this.TB_b_01);
+            this.Bell_Series.Controls.Add(this.TB_a_01);
+            this.Bell_Series.Controls.Add(this.label7);
+            this.Bell_Series.Controls.Add(this.label8);
+            this.Bell_Series.Controls.Add(this.label9);
+            this.Bell_Series.Location = new System.Drawing.Point(4, 22);
+            this.Bell_Series.Name = "Bell_Series";
+            this.Bell_Series.Size = new System.Drawing.Size(258, 323);
+            this.Bell_Series.TabIndex = 2;
+            this.Bell_Series.Text = "Bell-Series";
+            this.Bell_Series.UseVisualStyleBackColor = true;
             // 
             // TB_res_01
             // 
@@ -376,7 +401,7 @@ namespace r09546042_TerryYang_Assignment01
             // 
             this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(0, 201);
+            this.pictureBox3.Location = new System.Drawing.Point(0, 174);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(258, 149);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -413,9 +438,9 @@ namespace r09546042_TerryYang_Assignment01
             this.label7.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(30, 110);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(23, 21);
+            this.label7.Size = new System.Drawing.Size(63, 21);
             this.label7.TabIndex = 14;
-            this.label7.Text = "c:";
+            this.label7.Text = "Center:";
             // 
             // label8
             // 
@@ -423,9 +448,9 @@ namespace r09546042_TerryYang_Assignment01
             this.label8.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(30, 70);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(24, 21);
+            this.label8.Size = new System.Drawing.Size(75, 21);
             this.label8.TabIndex = 13;
-            this.label8.Text = "b:";
+            this.label8.Text = "Flatness:";
             // 
             // label9
             // 
@@ -433,9 +458,9 @@ namespace r09546042_TerryYang_Assignment01
             this.label9.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(30, 30);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(22, 21);
+            this.label9.Size = new System.Drawing.Size(79, 21);
             this.label9.TabIndex = 12;
-            this.label9.Text = "a:";
+            this.label9.Text = "Variation:";
             // 
             // splitContainer3
             // 
@@ -467,6 +492,187 @@ namespace r09546042_TerryYang_Assignment01
             this.BTN_clear.UseVisualStyleBackColor = true;
             this.BTN_clear.Click += new System.EventHandler(this.BTN_clear_Click);
             // 
+            // Sigmoidal_Series
+            // 
+            this.Sigmoidal_Series.Controls.Add(this.TB_sig_res);
+            this.Sigmoidal_Series.Controls.Add(this.TB_sig_c);
+            this.Sigmoidal_Series.Controls.Add(this.TB_sig_a);
+            this.Sigmoidal_Series.Controls.Add(this.label12);
+            this.Sigmoidal_Series.Controls.Add(this.label13);
+            this.Sigmoidal_Series.Controls.Add(this.label14);
+            this.Sigmoidal_Series.Location = new System.Drawing.Point(4, 22);
+            this.Sigmoidal_Series.Name = "Sigmoidal_Series";
+            this.Sigmoidal_Series.Size = new System.Drawing.Size(258, 323);
+            this.Sigmoidal_Series.TabIndex = 3;
+            this.Sigmoidal_Series.Text = "Sigmoidal_Series";
+            this.Sigmoidal_Series.UseVisualStyleBackColor = true;
+            // 
+            // TB_sig_res
+            // 
+            this.TB_sig_res.Location = new System.Drawing.Point(130, 110);
+            this.TB_sig_res.Name = "TB_sig_res";
+            this.TB_sig_res.Size = new System.Drawing.Size(80, 22);
+            this.TB_sig_res.TabIndex = 26;
+            this.TB_sig_res.Text = "100";
+            // 
+            // TB_sig_c
+            // 
+            this.TB_sig_c.Location = new System.Drawing.Point(130, 70);
+            this.TB_sig_c.Name = "TB_sig_c";
+            this.TB_sig_c.Size = new System.Drawing.Size(80, 22);
+            this.TB_sig_c.TabIndex = 25;
+            this.TB_sig_c.Text = "0";
+            // 
+            // TB_sig_a
+            // 
+            this.TB_sig_a.Location = new System.Drawing.Point(130, 30);
+            this.TB_sig_a.Name = "TB_sig_a";
+            this.TB_sig_a.Size = new System.Drawing.Size(80, 22);
+            this.TB_sig_a.TabIndex = 24;
+            this.TB_sig_a.Text = "1";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(30, 110);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(87, 21);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "resolution:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(30, 70);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(63, 21);
+            this.label13.TabIndex = 22;
+            this.label13.Text = "Center:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(30, 30);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(91, 21);
+            this.label14.TabIndex = 21;
+            this.label14.Text = "Sharpness:";
+            // 
+            // LeftRight_Series
+            // 
+            this.LeftRight_Series.Controls.Add(this.TB_lef_res);
+            this.LeftRight_Series.Controls.Add(this.label11);
+            this.LeftRight_Series.Controls.Add(this.TB_lef_beta);
+            this.LeftRight_Series.Controls.Add(this.TB_lef_alpha);
+            this.LeftRight_Series.Controls.Add(this.TB_lef_c);
+            this.LeftRight_Series.Controls.Add(this.label15);
+            this.LeftRight_Series.Controls.Add(this.label16);
+            this.LeftRight_Series.Controls.Add(this.label17);
+            this.LeftRight_Series.Location = new System.Drawing.Point(4, 22);
+            this.LeftRight_Series.Name = "LeftRight_Series";
+            this.LeftRight_Series.Size = new System.Drawing.Size(258, 323);
+            this.LeftRight_Series.TabIndex = 4;
+            this.LeftRight_Series.Text = "LeftRight_Series";
+            this.LeftRight_Series.UseVisualStyleBackColor = true;
+            // 
+            // TB_lef_res
+            // 
+            this.TB_lef_res.Location = new System.Drawing.Point(130, 150);
+            this.TB_lef_res.Name = "TB_lef_res";
+            this.TB_lef_res.Size = new System.Drawing.Size(80, 22);
+            this.TB_lef_res.TabIndex = 28;
+            this.TB_lef_res.Text = "100";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(30, 150);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(87, 21);
+            this.label11.TabIndex = 27;
+            this.label11.Text = "resolution:";
+            // 
+            // TB_lef_beta
+            // 
+            this.TB_lef_beta.Location = new System.Drawing.Point(130, 110);
+            this.TB_lef_beta.Name = "TB_lef_beta";
+            this.TB_lef_beta.Size = new System.Drawing.Size(80, 22);
+            this.TB_lef_beta.TabIndex = 26;
+            this.TB_lef_beta.Text = "1";
+            // 
+            // TB_lef_alpha
+            // 
+            this.TB_lef_alpha.Location = new System.Drawing.Point(130, 70);
+            this.TB_lef_alpha.Name = "TB_lef_alpha";
+            this.TB_lef_alpha.Size = new System.Drawing.Size(80, 22);
+            this.TB_lef_alpha.TabIndex = 25;
+            this.TB_lef_alpha.Text = "1";
+            // 
+            // TB_lef_c
+            // 
+            this.TB_lef_c.Location = new System.Drawing.Point(130, 30);
+            this.TB_lef_c.Name = "TB_lef_c";
+            this.TB_lef_c.Size = new System.Drawing.Size(80, 22);
+            this.TB_lef_c.TabIndex = 24;
+            this.TB_lef_c.Text = "0";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(30, 110);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(47, 21);
+            this.label15.TabIndex = 23;
+            this.label15.Text = "Beta:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(30, 70);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(58, 21);
+            this.label16.TabIndex = 22;
+            this.label16.Text = "Alpha:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(30, 30);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(63, 21);
+            this.label17.TabIndex = 21;
+            this.label17.Text = "Center:";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TCB_main});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(266, 27);
+            this.menuStrip1.TabIndex = 4;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // TCB_main
+            // 
+            this.TCB_main.Items.AddRange(new object[] {
+            "Triangular",
+            "Gaussian",
+            "Bell",
+            "Sigmoidal",
+            "LeftRight"});
+            this.TCB_main.Name = "TCB_main";
+            this.TCB_main.Size = new System.Drawing.Size(121, 23);
+            this.TCB_main.Text = "Triangular";
+            this.TCB_main.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBox1_SelectedIndexChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -482,23 +688,30 @@ namespace r09546042_TerryYang_Assignment01
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
-            this.T_graph.ResumeLayout(false);
-            this.T_graph.PerformLayout();
+            this.TC_main.ResumeLayout(false);
+            this.Triangular_Series.ResumeLayout(false);
+            this.Triangular_Series.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.G_graph.ResumeLayout(false);
-            this.G_graph.PerformLayout();
+            this.Gaussian_Series.ResumeLayout(false);
+            this.Gaussian_Series.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.B_graph.ResumeLayout(false);
-            this.B_graph.PerformLayout();
+            this.Bell_Series.ResumeLayout(false);
+            this.Bell_Series.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
+            this.Sigmoidal_Series.ResumeLayout(false);
+            this.Sigmoidal_Series.PerformLayout();
+            this.LeftRight_Series.ResumeLayout(false);
+            this.LeftRight_Series.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -509,10 +722,10 @@ namespace r09546042_TerryYang_Assignment01
         private System.Windows.Forms.Button BTN_plot;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage T_graph;
-        private System.Windows.Forms.TabPage G_graph;
-        private System.Windows.Forms.TabPage B_graph;
+        private System.Windows.Forms.TabControl TC_main;
+        private System.Windows.Forms.TabPage Triangular_Series;
+        private System.Windows.Forms.TabPage Gaussian_Series;
+        private System.Windows.Forms.TabPage Bell_Series;
         private System.Windows.Forms.TextBox TB_c;
         private System.Windows.Forms.TextBox TB_b;
         private System.Windows.Forms.TextBox TB_a;
@@ -538,6 +751,24 @@ namespace r09546042_TerryYang_Assignment01
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.Button BTN_clear;
+        private System.Windows.Forms.TabPage Sigmoidal_Series;
+        private System.Windows.Forms.TextBox TB_sig_res;
+        private System.Windows.Forms.TextBox TB_sig_c;
+        private System.Windows.Forms.TextBox TB_sig_a;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TabPage LeftRight_Series;
+        private System.Windows.Forms.TextBox TB_lef_res;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox TB_lef_beta;
+        private System.Windows.Forms.TextBox TB_lef_alpha;
+        private System.Windows.Forms.TextBox TB_lef_c;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripComboBox TCB_main;
     }
 }
 

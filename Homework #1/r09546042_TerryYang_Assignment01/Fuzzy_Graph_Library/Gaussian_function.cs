@@ -22,15 +22,15 @@ namespace Fuzzy_Graph_Library
             Gaussian_Series.ChartType = SeriesChartType.Line;
             Gaussian_Series.Color = Color.Red;
             Gaussian_Series.BorderWidth = 2;
-            Gaussian_Series.Name = "G-series";
+            Gaussian_Series.Name = "Gaussian_Series";
 
             double Front_point = Mean;
+            double Back_point = Mean;
             do
             {
                 Front_point--;
             } while (Get_Function_Value(Front_point) >= 0.01);
 
-            double Back_point = Mean;
             do
             {
                 Back_point++;

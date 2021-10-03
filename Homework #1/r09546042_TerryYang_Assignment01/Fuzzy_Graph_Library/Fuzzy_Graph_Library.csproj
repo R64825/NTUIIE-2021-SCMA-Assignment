@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Bell_function.cs" />
     <Compile Include="Gaussian_function.cs" />
+    <Compile Include="LeftRight_function.cs" />
+    <Compile Include="Sigmoidal_function.cs" />
     <Compile Include="Triangular_function.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -24,15 +24,16 @@ namespace Fuzzy_Graph_Library
             Bell_Series.ChartType = SeriesChartType.Line;
             Bell_Series.Color = Color.Blue;
             Bell_Series.BorderWidth = 2;
-            Bell_Series.Name = "B-series";
+            Bell_Series.Name = "Bell_Series";
 
             double Front_point = Center;
+            double Back_point = Center;
+
             do
             {
                 Front_point--;
             } while (Get_Function_Value(Front_point) >= 0.01);
-
-            double Back_point = Center;
+           
             do
             {
                 Back_point++;
