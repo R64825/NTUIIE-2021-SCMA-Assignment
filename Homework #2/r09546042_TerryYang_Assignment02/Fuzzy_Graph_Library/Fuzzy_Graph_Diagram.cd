@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Fuzzy_Graph_Library.Fuzzy_functions">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAABAAAAAAAAAAAAAAAAAAAAACAAAAAAACAAQA=</HashCode>
+      <FileName>Fuzzy_functions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Bell_function">
+    <Position X="3.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAABAAAAAAAAAAAAAAAAAAAAAABAAAAAAIIQAA=</HashCode>
+      <FileName>Bell_function.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Gaussian_function">
+    <Position X="6" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAACAAAAAAAAAAAAAAAEgAAAAAAAQAA=</HashCode>
+      <FileName>Gaussian_function.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.LeftRight_function">
+    <Position X="8" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAIEAAAEIAAQAA=</HashCode>
+      <FileName>LeftRight_function.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Sigmoidal_function">
+    <Position X="10" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAABAAAAAAAAAAAAAAAAAAAAACIAAAAAACAQAI=</HashCode>
+      <FileName>Sigmoidal_function.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Triangular_function">
+    <Position X="1.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAABAAAAAAAAAAAAAAAAAAAAAAACACAAACIQQA=</HashCode>
+      <FileName>Triangular_function.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft JhengHei UI" Size="9" />
+</ClassDiagram>

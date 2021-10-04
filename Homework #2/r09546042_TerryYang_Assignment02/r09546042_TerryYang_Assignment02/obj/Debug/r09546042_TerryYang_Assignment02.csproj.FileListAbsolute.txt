@@ -1,0 +1,13 @@
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #2\r09546042_TerryYang_Assignment02\r09546042_TerryYang_Assignment02\bin\Debug\r09546042_TerryYang_Assignment02.exe.config
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #2\r09546042_TerryYang_Assignment02\r09546042_TerryYang_Assignment02\bin\Debug\r09546042_TerryYang_Assignment02.exe
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #2\r09546042_TerryYang_Assignment02\r09546042_TerryYang_Assignment02\bin\Debug\r09546042_TerryYang_Assignment02.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #2\r09546042_TerryYang_Assignment02\r09546042_TerryYang_Assignment02\bin\Debug\Fuzzy_Graph_Library.dll
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #2\r09546042_TerryYang_Assignment02\r09546042_TerryYang_Assignment02\bin\Debug\Fuzzy_Graph_Library.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #2\r09546042_TerryYang_Assignment02\r09546042_TerryYang_Assignment02\obj\Debug\r09546042_TerryYang_Assignment02.csprojAssemblyReference.cache
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #2\r09546042_TerryYang_Assignment02\r09546042_TerryYang_Assignment02\obj\Debug\r09546042_TerryYang_Assignment01.MainForm.resources
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #2\r09546042_TerryYang_Assignment02\r09546042_TerryYang_Assignment02\obj\Debug\r09546042_TerryYang_Assignment02.Properties.Resources.resources
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #2\r09546042_TerryYang_Assignment02\r09546042_TerryYang_Assignment02\obj\Debug\r09546042_TerryYang_Assignment02.csproj.GenerateResource.cache
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #2\r09546042_TerryYang_Assignment02\r09546042_TerryYang_Assignment02\obj\Debug\r09546042_TerryYang_Assignment02.csproj.CoreCompileInputs.cache
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #2\r09546042_TerryYang_Assignment02\r09546042_TerryYang_Assignment02\obj\Debug\r09546042_TerryYang_Assignment02.csproj.CopyComplete
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #2\r09546042_TerryYang_Assignment02\r09546042_TerryYang_Assignment02\obj\Debug\r09546042_TerryYang_Assignment02.exe
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #2\r09546042_TerryYang_Assignment02\r09546042_TerryYang_Assignment02\obj\Debug\r09546042_TerryYang_Assignment02.pdb
