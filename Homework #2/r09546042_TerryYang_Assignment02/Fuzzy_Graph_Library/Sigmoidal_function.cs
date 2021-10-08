@@ -11,7 +11,7 @@ namespace Fuzzy_Graph_Library
     public class Sigmoidal_function : Fuzzy_functions
     {
         static public string[] parameter_Names = new string[] { "Sharpness", "Center", "resolution" };
-        static public double[] parameter_Suggestion = new double[] { 0.5, 0, 100 };
+        static public double[] parameter_Suggestion = new double[] { 1, 0, 100 };
         private double[] parameters;
         Series fuzzy_series = new Series();
 

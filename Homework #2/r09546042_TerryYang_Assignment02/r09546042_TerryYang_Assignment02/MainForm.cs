@@ -1,14 +1,8 @@
-﻿using System;
+﻿using Fuzzy_Graph_Library;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using Fuzzy_Graph_Library;
 
 
 namespace r09546042_TerryYang_Assignment01
@@ -20,64 +14,80 @@ namespace r09546042_TerryYang_Assignment01
         Series B_series;
         Series S_series;
         Series L_series;
+        List<TrackBar> TKB_paras = new List<TrackBar>();
+        List<NumericUpDown> NUM_paras = new List<NumericUpDown>();
+
         public MainForm()
         {
             InitializeComponent();
             Main_Chart.Series.Clear();
+
+            TKB_paras.Add(TKB_para_01);
+            TKB_paras.Add(TKB_para_02);
+            TKB_paras.Add(TKB_para_03);
+            TKB_paras.Add(TKB_para_04);
+
+            NUM_paras.Add(NUD_parameter_01);
+            NUM_paras.Add(NUD_parameter_02);
+            NUM_paras.Add(NUD_parameter_03);
+            NUM_paras.Add(NUD_parameter_04);
         }
 
-        
         public Series Get_Selected_Series_Name()
         {
             // return selected series in list box
             string Graph_Type = TCB_main.Text;
             string Graph_name = Graph_Type + "_Series";
-            Series Existied_Series=null;
+            Series Existied_Series = null;
             Existied_Series = Main_Chart.Series.FindByName(Graph_name);
             return Existied_Series;
         }
-       
+
         public void Arrange_UI_for_Input(string Graph_Type)
         {
             // hide or show Textbox, label, picture 
-            TB_parameter_01.Visible = true;
-            TB_parameter_02.Visible = true;
-            TB_parameter_03.Visible = true;
-            TB_parameter_04.Visible = true;
-
-            LB_parameter_01.Visible = true;
-            LB_parameter_02.Visible = true;
-            LB_parameter_03.Visible = true;
+            NUD_parameter_04.Visible = true;
             LB_parameter_04.Visible = true;
-
+            TKB_para_04.Visible = true;
+            NumericUpDown NUD_res = new NumericUpDown();
+            List<NumericUpDown> NUD_parameters = new List<NumericUpDown>();
             switch (Graph_Type)
             {
                 case "Triangular":// 3 inputs
-                    TB_parameter_04.Visible = false;
+                    NUD_parameter_04.Visible = false;
                     LB_parameter_04.Visible = false;
+                    TKB_para_04.Visible = false;
                     Triangular_function t = new Triangular_function();
                     LB_parameter_01.Text = t.Return_Parameters_Names()[0];
                     LB_parameter_02.Text = t.Return_Parameters_Names()[1];
                     LB_parameter_03.Text = t.Return_Parameters_Names()[2];
 
-                    TB_parameter_01.Text = t.Return_parameter_Suggestion()[0].ToString();
-                    TB_parameter_02.Text = t.Return_parameter_Suggestion()[1].ToString();
-                    TB_parameter_03.Text = t.Return_parameter_Suggestion()[2].ToString();
+                    NUD_parameter_01.Text = t.Return_parameter_Suggestion()[0].ToString();
+                    NUD_parameter_02.Text = t.Return_parameter_Suggestion()[1].ToString();
+                    NUD_parameter_03.Text = t.Return_parameter_Suggestion()[2].ToString();
+
+                    NUD_parameters.Add(NUD_parameter_01);
+                    NUD_parameters.Add(NUD_parameter_02);
+                    NUD_parameters.Add(NUD_parameter_03);
 
                     PB_function.Image = r09546042_TerryYang_Assignment02.Properties.Resources.Triangular_function;
                     break;
 
                 case "Gaussian":// 2+1 inputs
-                    TB_parameter_04.Visible = false;
+                    NUD_parameter_04.Visible = false;
                     LB_parameter_04.Visible = false;
+                    TKB_para_04.Visible = false;
                     Gaussian_function g = new Gaussian_function();
                     LB_parameter_01.Text = g.Return_Parameters_Names()[0];
                     LB_parameter_02.Text = g.Return_Parameters_Names()[1];
                     LB_parameter_03.Text = g.Return_Parameters_Names()[2];
 
-                    TB_parameter_01.Text = g.Return_parameter_Suggestion()[0].ToString();
-                    TB_parameter_02.Text = g.Return_parameter_Suggestion()[1].ToString();
-                    TB_parameter_03.Text = g.Return_parameter_Suggestion()[2].ToString();
+                    NUD_parameter_01.Text = g.Return_parameter_Suggestion()[0].ToString();
+                    NUD_parameter_02.Text = g.Return_parameter_Suggestion()[1].ToString();
+                    NUD_parameter_03.Text = g.Return_parameter_Suggestion()[2].ToString();
+                    NUD_parameters.Add(NUD_parameter_01);
+                    NUD_parameters.Add(NUD_parameter_02);
+                    NUD_res = NUD_parameter_03;
 
                     PB_function.Image = r09546042_TerryYang_Assignment02.Properties.Resources.Gaussian_function;
                     break;
@@ -89,25 +99,33 @@ namespace r09546042_TerryYang_Assignment01
                     LB_parameter_03.Text = b.Return_Parameters_Names()[2];
                     LB_parameter_04.Text = b.Return_Parameters_Names()[3];
 
-                    TB_parameter_01.Text = b.Return_parameter_Suggestion()[0].ToString();
-                    TB_parameter_02.Text = b.Return_parameter_Suggestion()[1].ToString();
-                    TB_parameter_03.Text = b.Return_parameter_Suggestion()[2].ToString();
-                    TB_parameter_04.Text = b.Return_parameter_Suggestion()[3].ToString();
+                    NUD_parameter_02.Text = b.Return_parameter_Suggestion()[1].ToString();
+                    NUD_parameter_01.Text = b.Return_parameter_Suggestion()[0].ToString();                   
+                    NUD_parameter_03.Text = b.Return_parameter_Suggestion()[2].ToString();
+                    NUD_parameter_04.Text = b.Return_parameter_Suggestion()[3].ToString();
+                    NUD_parameters.Add(NUD_parameter_01);
+                    NUD_parameters.Add(NUD_parameter_02);
+                    NUD_parameters.Add(NUD_parameter_03);
+                    NUD_res = NUD_parameter_04;
 
                     PB_function.Image = r09546042_TerryYang_Assignment02.Properties.Resources.Bell_function;
                     break;
 
                 case "Sigmoidal"://2+1
-                    TB_parameter_04.Visible = false;
+                    NUD_parameter_04.Visible = false;
                     LB_parameter_04.Visible = false;
+                    TKB_para_04.Visible = false;
                     Sigmoidal_function s = new Sigmoidal_function();
                     LB_parameter_01.Text = s.Return_Parameters_Names()[0];
                     LB_parameter_02.Text = s.Return_Parameters_Names()[1];
                     LB_parameter_03.Text = s.Return_Parameters_Names()[2];
 
-                    TB_parameter_01.Text = s.Return_parameter_Suggestion()[0].ToString();
-                    TB_parameter_02.Text = s.Return_parameter_Suggestion()[1].ToString();
-                    TB_parameter_03.Text = s.Return_parameter_Suggestion()[2].ToString();
+                    NUD_parameter_02.Text = s.Return_parameter_Suggestion()[1].ToString();
+                    NUD_parameter_01.Text = s.Return_parameter_Suggestion()[0].ToString();                   
+                    NUD_parameter_03.Text = s.Return_parameter_Suggestion()[2].ToString();
+                    NUD_parameters.Add(NUD_parameter_01);
+                    NUD_parameters.Add(NUD_parameter_02);
+                    NUD_res = NUD_parameter_03;
                     PB_function.Image = r09546042_TerryYang_Assignment02.Properties.Resources.Sigmoidal_function;
                     break;
 
@@ -118,32 +136,151 @@ namespace r09546042_TerryYang_Assignment01
                     LB_parameter_03.Text = l.Return_Parameters_Names()[2];
                     LB_parameter_04.Text = l.Return_Parameters_Names()[3];
 
-                    TB_parameter_01.Text = l.Return_parameter_Suggestion()[0].ToString();
-                    TB_parameter_02.Text = l.Return_parameter_Suggestion()[1].ToString();
-                    TB_parameter_03.Text = l.Return_parameter_Suggestion()[2].ToString();
-                    TB_parameter_04.Text = l.Return_parameter_Suggestion()[3].ToString();
+                    NUD_parameter_01.Text = l.Return_parameter_Suggestion()[0].ToString();
+                    NUD_parameter_02.Text = l.Return_parameter_Suggestion()[1].ToString();
+                    NUD_parameter_03.Text = l.Return_parameter_Suggestion()[2].ToString();
+                    NUD_parameter_04.Text = l.Return_parameter_Suggestion()[3].ToString();
+                    NUD_parameters.Add(NUD_parameter_01);
+                    NUD_parameters.Add(NUD_parameter_02);
+                    NUD_parameters.Add(NUD_parameter_03);
+                    NUD_res = NUD_parameter_04;
                     PB_function.Image = r09546042_TerryYang_Assignment02.Properties.Resources.LeftRight_function;
                     break;
 
                 default:
-                    //New_series = null;
+                    break;
+            }
+            NUD_res.DecimalPlaces = 0;
+            NUD_res.Minimum = 10;
+            NUD_res.Maximum = 500;
+            for (int i = 0; i < NUD_parameters.Count; i++)
+            {
+                NUD_parameters[i].DecimalPlaces = 2;
+                NUD_parameters[i].Minimum = -100;
+                NUD_parameters[i].Maximum = 100;
+            }
+            Input_Check(Graph_Type);
+        }
+
+
+        private void BTN_Plot_Click(object sender, EventArgs e)
+        {
+            // plot fuzzy graph manually
+            string Graph_Type = TCB_main.Text;           
+            Plot_Series(Graph_Type);
+            Input_Check(Graph_Type);
+        }
+
+        private void BTN_clear_Click(object sender, EventArgs e)
+        {
+            //clear selected series in chart
+            if (Get_Selected_Series_Name() != null)
+                Main_Chart.Series.Remove(Get_Selected_Series_Name());
+        }
+
+        private void TCB_main_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //sync listbox and combobox selection
+            LSB_Graph_Type.SelectedIndex = TCB_main.SelectedIndex;
+            After_LSB_or_TCB_Change();
+        }
+
+
+        private void LSB_Graph_Type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //sync listbox and combobox selection
+            TCB_main.SelectedIndex = LSB_Graph_Type.SelectedIndex;
+            After_LSB_or_TCB_Change();
+        }
+        public void After_LSB_or_TCB_Change()
+        {
+            //high light selected series
+            for (int i = 0; i < Main_Chart.Series.Count; i++)
+                Main_Chart.Series[i].MarkerStyle = MarkerStyle.None;
+
+            if (Get_Selected_Series_Name() != null)
+                Get_Selected_Series_Name().MarkerStyle = MarkerStyle.Cross;
+
+            String Graph_Type = TCB_main.Text;
+            Arrange_UI_for_Input(Graph_Type);
+            Input_Check(Graph_Type);
+            //for (int i = 0; i < TKB_paras.Count; i++)
+            //{
+            //    TKB_paras[i].Minimum = Convert.ToInt32(NUM_paras[i].Minimum);
+            //    TKB_paras[i].Maximum = Convert.ToInt32(NUM_paras[i].Maximum);
+            //    TKB_paras[i].Value = Convert.ToInt32(NUM_paras[i].Value);
+            //}
+            if (Get_Selected_Series_Name() != null)
+                Plot_Series(Graph_Type);
+        }
+        private void TKB_paras_Scroll(object sender, EventArgs e)
+        {
+            string Graph_Type = TCB_main.Text;
+            Input_Check(Graph_Type);
+            for (int i = 0; i < TKB_paras.Count; i++)
+            {
+                NUM_paras[i].Value = TKB_paras[i].Value;
+            }
+            Plot_Series(Graph_Type);
+        }
+
+        private void NUD_paras_ValueChanged(object sender, EventArgs e)
+        {
+            string Graph_Type = TCB_main.Text;
+            Input_Check(Graph_Type);
+            //After_LSB_or_TCB_Change();
+            for (int i = 0; i < TKB_paras.Count; i++)
+            {
+                TKB_paras[i].Minimum = Convert.ToInt32(NUM_paras[i].Minimum);
+                TKB_paras[i].Maximum = Convert.ToInt32(NUM_paras[i].Maximum);
+                TKB_paras[i].Value = Convert.ToInt32(NUM_paras[i].Value);
+            }
+            Plot_Series(Graph_Type);
+        }
+
+        public void Input_Check(string Graph_Type)
+        {
+            //constrain inputs
+            switch (Graph_Type)
+            {
+                case "Triangular":// 3 inputs
+                    NUD_parameter_01.Maximum = NUD_parameter_02.Value;
+                    NUD_parameter_02.Maximum = NUD_parameter_03.Value;
+                    break;
+
+                case "Gaussian":// 2+1 inputs
+                    NUD_parameter_02.Minimum = 0;
+                    break;
+
+                case "Bell":// 3+1
+                    NUD_parameter_01.Minimum = 0;
+                    NUD_parameter_02.Minimum = 1;
+                    break;
+
+                case "Sigmoidal"://2+1
+                     NUD_parameter_01.Minimum = 1;
+                     break;
+
+                case "LeftRight"://3+1
+                    NUD_parameter_02.Minimum = 0;
+                    break;
+
+                default:
                     break;
             }
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
+        public void Plot_Series(string Graph_Type)
         {
-            double parameter_01 = Convert.ToDouble( TB_parameter_01.Text);
-            double parameter_02 = Convert.ToDouble(TB_parameter_02.Text);
-            double parameter_03 = Convert.ToDouble(TB_parameter_03.Text);
-            double parameter_04 = Convert.ToDouble(TB_parameter_04.Text);
-
+            //show selected series in chart
+            double parameter_01 = Convert.ToDouble(NUD_parameter_01.Value);
+            double parameter_02 = Convert.ToDouble(NUD_parameter_02.Value);
+            double parameter_03 = Convert.ToDouble(NUD_parameter_03.Value);
+            double parameter_04 = Convert.ToDouble(NUD_parameter_04.Value);
 
             if (Get_Selected_Series_Name() != null)
                 Main_Chart.Series.Remove(Get_Selected_Series_Name());
 
-            string Graph_Type = TCB_main.Text;
             switch (Graph_Type)
             {
                 case "Triangular":
@@ -180,42 +317,10 @@ namespace r09546042_TerryYang_Assignment01
                     //New_series = null;
                     break;
             }
-            Main_Chart.Series[Main_Chart.Series.Count-1].MarkerStyle = MarkerStyle.Cross;
+            Main_Chart.Series[Main_Chart.Series.Count - 1].MarkerStyle = MarkerStyle.Cross;
             Main_Chart.ChartAreas[0].RecalculateAxesScale();
-            Main_Chart.Update();
-        }
-
-        private void BTN_clear_Click(object sender, EventArgs e)
-        {
-            if (Get_Selected_Series_Name() != null)
-                Main_Chart.Series.Remove(Get_Selected_Series_Name());
-        }
-
-        private void toolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LSB_Graph_Type.SelectedIndex = TCB_main.SelectedIndex;
-
-            for (int i = 0; i < Main_Chart.Series.Count; i++)
-                Main_Chart.Series[i].MarkerStyle = MarkerStyle.None;
-
-            if (Get_Selected_Series_Name() != null)
-                Get_Selected_Series_Name().MarkerStyle = MarkerStyle.Cross;
-
-            Arrange_UI_for_Input(TCB_main.Text);
-        }
-
-
-        private void LSB_Graph_Type_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            TCB_main.SelectedIndex = LSB_Graph_Type.SelectedIndex;
-
-            for (int i = 0; i < Main_Chart.Series.Count; i++)
-                Main_Chart.Series[i].MarkerStyle = MarkerStyle.None;
-
-            if (Get_Selected_Series_Name() != null)
-                Get_Selected_Series_Name().MarkerStyle = MarkerStyle.Cross;
-
-            Arrange_UI_for_Input(TCB_main.Text);
+            Main_Chart.ChartAreas[0].AxisX.LabelStyle.Format = "{n2}";
+            //Main_Chart.Update();
         }
     }
 }

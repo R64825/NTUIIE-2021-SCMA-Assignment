@@ -29,29 +29,25 @@ namespace Fuzzy_Graph_Library
             this.Center = Center;
             this.Right = Right;
 
-            parameters = new double[3];
-            parameters[0] = Left;
-            parameters[1] = Center;
-            parameters[2] = Right;
+            Parameters = new double[3];
+            Parameters[0] = Left;
+            Parameters[1] = Center;
+            Parameters[2] = Right;
 
             fuzzy_series.ChartType = SeriesChartType.Line;
             fuzzy_series.Color = Color.Green;
             fuzzy_series.BorderWidth = 2;
             fuzzy_series.Name = "Triangular_Series";
 
-            //double Front_point = Left;
-            //double Back_point = Right;
-            //double res = 1000;
-
-            //for (int i = 0; i < res+1; i++)
-            //{
-            //    double x = Left + Math.Abs(Right - Left)*i / res;
-            //    Triangular_Series.Points.AddXY(x, Get_Function_Value(x));
-            //}
             fuzzy_series.Points.AddXY(Left, 0);
             fuzzy_series.Points.AddXY(Center, 1);
             fuzzy_series.Points.AddXY(Right, 0);
         }
+
+        public double[] Parameters
+        { get => parameters; 
+            set => parameters = value; }
+
         public double Get_Function_Value(double x)
         {
             double p;

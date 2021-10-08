@@ -37,26 +37,30 @@ namespace r09546042_TerryYang_Assignment01
             this.BTN_plot = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.BTN_clear = new System.Windows.Forms.Button();
-            this.LSB_Graph_Type = new System.Windows.Forms.ListBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer6 = new System.Windows.Forms.SplitContainer();
-            this.LB_parameter_04 = new System.Windows.Forms.Label();
-            this.TB_parameter_04 = new System.Windows.Forms.TextBox();
-            this.LB_parameter_01 = new System.Windows.Forms.Label();
-            this.LB_parameter_02 = new System.Windows.Forms.Label();
-            this.TB_parameter_03 = new System.Windows.Forms.TextBox();
-            this.LB_parameter_03 = new System.Windows.Forms.Label();
-            this.TB_parameter_02 = new System.Windows.Forms.TextBox();
-            this.TB_parameter_01 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.LSB_Graph_Type = new System.Windows.Forms.ListBox();
+            this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.label2 = new System.Windows.Forms.Label();
+            this.splitContainer7 = new System.Windows.Forms.SplitContainer();
+            this.TKB_para_04 = new System.Windows.Forms.TrackBar();
+            this.TKB_para_03 = new System.Windows.Forms.TrackBar();
+            this.TKB_para_02 = new System.Windows.Forms.TrackBar();
+            this.TKB_para_01 = new System.Windows.Forms.TrackBar();
+            this.NUD_parameter_04 = new System.Windows.Forms.NumericUpDown();
+            this.NUD_parameter_03 = new System.Windows.Forms.NumericUpDown();
+            this.NUD_parameter_02 = new System.Windows.Forms.NumericUpDown();
+            this.NUD_parameter_01 = new System.Windows.Forms.NumericUpDown();
+            this.LB_parameter_01 = new System.Windows.Forms.Label();
+            this.LB_parameter_04 = new System.Windows.Forms.Label();
+            this.LB_parameter_03 = new System.Windows.Forms.Label();
+            this.LB_parameter_02 = new System.Windows.Forms.Label();
+            this.PB_function = new System.Windows.Forms.PictureBox();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.BTN_clear = new System.Windows.Forms.Button();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.TCB_main = new System.Windows.Forms.ToolStripComboBox();
-            this.PB_function = new System.Windows.Forms.PictureBox();
-            this.splitContainer7 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.Main_Chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -66,10 +70,6 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
-            this.splitContainer3.Panel1.SuspendLayout();
-            this.splitContainer3.Panel2.SuspendLayout();
-            this.splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
@@ -82,12 +82,24 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer6.Panel1.SuspendLayout();
             this.splitContainer6.Panel2.SuspendLayout();
             this.splitContainer6.SuspendLayout();
-            this.menuStrip2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PB_function)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).BeginInit();
             this.splitContainer7.Panel1.SuspendLayout();
             this.splitContainer7.Panel2.SuspendLayout();
             this.splitContainer7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TKB_para_04)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TKB_para_03)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TKB_para_02)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TKB_para_01)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_parameter_04)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_parameter_03)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_parameter_02)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_parameter_01)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_function)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // Main_Chart
@@ -95,6 +107,7 @@ namespace r09546042_TerryYang_Assignment01
             this.Main_Chart.BackColor = System.Drawing.Color.Transparent;
             chartArea1.AxisX.Title = "X";
             chartArea1.AxisX2.MinorGrid.Interval = 1D;
+            chartArea1.AxisY.Maximum = 1.2D;
             chartArea1.AxisY.Title = "Y";
             chartArea1.Name = "ChartArea1";
             this.Main_Chart.ChartAreas.Add(chartArea1);
@@ -125,7 +138,7 @@ namespace r09546042_TerryYang_Assignment01
             this.BTN_plot.TabIndex = 1;
             this.BTN_plot.Text = "Plot Graph";
             this.BTN_plot.UseVisualStyleBackColor = true;
-            this.BTN_plot.Click += new System.EventHandler(this.button1_Click);
+            this.BTN_plot.Click += new System.EventHandler(this.BTN_Plot_Click);
             // 
             // splitContainer1
             // 
@@ -163,54 +176,6 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer2.SplitterDistance = 538;
             this.splitContainer2.TabIndex = 3;
             // 
-            // splitContainer3
-            // 
-            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer3.Name = "splitContainer3";
-            // 
-            // splitContainer3.Panel1
-            // 
-            this.splitContainer3.Panel1.Controls.Add(this.BTN_plot);
-            // 
-            // splitContainer3.Panel2
-            // 
-            this.splitContainer3.Panel2.Controls.Add(this.BTN_clear);
-            this.splitContainer3.Size = new System.Drawing.Size(308, 62);
-            this.splitContainer3.SplitterDistance = 188;
-            this.splitContainer3.TabIndex = 2;
-            // 
-            // BTN_clear
-            // 
-            this.BTN_clear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BTN_clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BTN_clear.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTN_clear.Location = new System.Drawing.Point(0, 0);
-            this.BTN_clear.Name = "BTN_clear";
-            this.BTN_clear.Size = new System.Drawing.Size(116, 62);
-            this.BTN_clear.TabIndex = 2;
-            this.BTN_clear.Text = "Clear";
-            this.BTN_clear.UseVisualStyleBackColor = true;
-            this.BTN_clear.Click += new System.EventHandler(this.BTN_clear_Click);
-            // 
-            // LSB_Graph_Type
-            // 
-            this.LSB_Graph_Type.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LSB_Graph_Type.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.LSB_Graph_Type.FormattingEnabled = true;
-            this.LSB_Graph_Type.ItemHeight = 21;
-            this.LSB_Graph_Type.Items.AddRange(new object[] {
-            "Triangular",
-            "Gaussian",
-            "Bell",
-            "Sigmoidal",
-            "LeftRight"});
-            this.LSB_Graph_Type.Location = new System.Drawing.Point(0, 0);
-            this.LSB_Graph_Type.Name = "LSB_Graph_Type";
-            this.LSB_Graph_Type.Size = new System.Drawing.Size(308, 117);
-            this.LSB_Graph_Type.TabIndex = 29;
-            this.LSB_Graph_Type.SelectedIndexChanged += new System.EventHandler(this.LSB_Graph_Type_SelectedIndexChanged);
-            // 
             // splitContainer4
             // 
             this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -247,6 +212,36 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer5.SplitterDistance = 40;
             this.splitContainer5.TabIndex = 30;
             // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.PeachPuff;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(308, 40);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Graph Type:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LSB_Graph_Type
+            // 
+            this.LSB_Graph_Type.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LSB_Graph_Type.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.LSB_Graph_Type.FormattingEnabled = true;
+            this.LSB_Graph_Type.ItemHeight = 21;
+            this.LSB_Graph_Type.Items.AddRange(new object[] {
+            "Triangular",
+            "Gaussian",
+            "Bell",
+            "Sigmoidal",
+            "LeftRight"});
+            this.LSB_Graph_Type.Location = new System.Drawing.Point(0, 0);
+            this.LSB_Graph_Type.Name = "LSB_Graph_Type";
+            this.LSB_Graph_Type.Size = new System.Drawing.Size(308, 117);
+            this.LSB_Graph_Type.TabIndex = 29;
+            this.LSB_Graph_Type.SelectedIndexChanged += new System.EventHandler(this.LSB_Graph_Type_SelectedIndexChanged);
+            // 
             // splitContainer6
             // 
             this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -265,92 +260,6 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer6.SplitterDistance = 59;
             this.splitContainer6.TabIndex = 0;
             // 
-            // LB_parameter_04
-            // 
-            this.LB_parameter_04.AutoSize = true;
-            this.LB_parameter_04.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_parameter_04.Location = new System.Drawing.Point(18, 131);
-            this.LB_parameter_04.Name = "LB_parameter_04";
-            this.LB_parameter_04.Size = new System.Drawing.Size(87, 21);
-            this.LB_parameter_04.TabIndex = 35;
-            this.LB_parameter_04.Text = "resolution:";
-            this.LB_parameter_04.Visible = false;
-            // 
-            // TB_parameter_04
-            // 
-            this.TB_parameter_04.Location = new System.Drawing.Point(118, 131);
-            this.TB_parameter_04.Name = "TB_parameter_04";
-            this.TB_parameter_04.Size = new System.Drawing.Size(80, 22);
-            this.TB_parameter_04.TabIndex = 36;
-            this.TB_parameter_04.Text = "100";
-            this.TB_parameter_04.Visible = false;
-            // 
-            // LB_parameter_01
-            // 
-            this.LB_parameter_01.AutoSize = true;
-            this.LB_parameter_01.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_parameter_01.Location = new System.Drawing.Point(18, 11);
-            this.LB_parameter_01.Name = "LB_parameter_01";
-            this.LB_parameter_01.Size = new System.Drawing.Size(44, 21);
-            this.LB_parameter_01.TabIndex = 29;
-            this.LB_parameter_01.Text = "Left:";
-            // 
-            // LB_parameter_02
-            // 
-            this.LB_parameter_02.AutoSize = true;
-            this.LB_parameter_02.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_parameter_02.Location = new System.Drawing.Point(18, 51);
-            this.LB_parameter_02.Name = "LB_parameter_02";
-            this.LB_parameter_02.Size = new System.Drawing.Size(63, 21);
-            this.LB_parameter_02.TabIndex = 30;
-            this.LB_parameter_02.Text = "Center:";
-            // 
-            // TB_parameter_03
-            // 
-            this.TB_parameter_03.Location = new System.Drawing.Point(118, 91);
-            this.TB_parameter_03.Name = "TB_parameter_03";
-            this.TB_parameter_03.Size = new System.Drawing.Size(80, 22);
-            this.TB_parameter_03.TabIndex = 34;
-            this.TB_parameter_03.Text = "5";
-            // 
-            // LB_parameter_03
-            // 
-            this.LB_parameter_03.AutoSize = true;
-            this.LB_parameter_03.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_parameter_03.Location = new System.Drawing.Point(18, 91);
-            this.LB_parameter_03.Name = "LB_parameter_03";
-            this.LB_parameter_03.Size = new System.Drawing.Size(54, 21);
-            this.LB_parameter_03.TabIndex = 31;
-            this.LB_parameter_03.Text = "Right:";
-            // 
-            // TB_parameter_02
-            // 
-            this.TB_parameter_02.Location = new System.Drawing.Point(118, 51);
-            this.TB_parameter_02.Name = "TB_parameter_02";
-            this.TB_parameter_02.Size = new System.Drawing.Size(80, 22);
-            this.TB_parameter_02.TabIndex = 33;
-            this.TB_parameter_02.Text = "0";
-            // 
-            // TB_parameter_01
-            // 
-            this.TB_parameter_01.Location = new System.Drawing.Point(118, 11);
-            this.TB_parameter_01.Name = "TB_parameter_01";
-            this.TB_parameter_01.Size = new System.Drawing.Size(80, 22);
-            this.TB_parameter_01.TabIndex = 32;
-            this.TB_parameter_01.Text = "-5";
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.PeachPuff;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(308, 40);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Graph Type:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.DarkSeaGreen;
@@ -362,6 +271,225 @@ namespace r09546042_TerryYang_Assignment01
             this.label2.TabIndex = 0;
             this.label2.Text = "Parameters:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // splitContainer7
+            // 
+            this.splitContainer7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer7.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer7.Name = "splitContainer7";
+            this.splitContainer7.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer7.Panel1
+            // 
+            this.splitContainer7.Panel1.Controls.Add(this.TKB_para_04);
+            this.splitContainer7.Panel1.Controls.Add(this.TKB_para_03);
+            this.splitContainer7.Panel1.Controls.Add(this.TKB_para_02);
+            this.splitContainer7.Panel1.Controls.Add(this.TKB_para_01);
+            this.splitContainer7.Panel1.Controls.Add(this.NUD_parameter_04);
+            this.splitContainer7.Panel1.Controls.Add(this.NUD_parameter_03);
+            this.splitContainer7.Panel1.Controls.Add(this.NUD_parameter_02);
+            this.splitContainer7.Panel1.Controls.Add(this.NUD_parameter_01);
+            this.splitContainer7.Panel1.Controls.Add(this.LB_parameter_01);
+            this.splitContainer7.Panel1.Controls.Add(this.LB_parameter_04);
+            this.splitContainer7.Panel1.Controls.Add(this.LB_parameter_03);
+            this.splitContainer7.Panel1.Controls.Add(this.LB_parameter_02);
+            // 
+            // splitContainer7.Panel2
+            // 
+            this.splitContainer7.Panel2.Controls.Add(this.PB_function);
+            this.splitContainer7.Size = new System.Drawing.Size(308, 310);
+            this.splitContainer7.SplitterDistance = 165;
+            this.splitContainer7.TabIndex = 38;
+            // 
+            // TKB_para_04
+            // 
+            this.TKB_para_04.Location = new System.Drawing.Point(201, 131);
+            this.TKB_para_04.Name = "TKB_para_04";
+            this.TKB_para_04.Size = new System.Drawing.Size(104, 45);
+            this.TKB_para_04.TabIndex = 44;
+            this.TKB_para_04.Visible = false;
+            this.TKB_para_04.Scroll += new System.EventHandler(this.TKB_paras_Scroll);
+            // 
+            // TKB_para_03
+            // 
+            this.TKB_para_03.Location = new System.Drawing.Point(201, 92);
+            this.TKB_para_03.Name = "TKB_para_03";
+            this.TKB_para_03.Size = new System.Drawing.Size(104, 45);
+            this.TKB_para_03.TabIndex = 43;
+            this.TKB_para_03.Scroll += new System.EventHandler(this.TKB_paras_Scroll);
+            // 
+            // TKB_para_02
+            // 
+            this.TKB_para_02.Location = new System.Drawing.Point(201, 51);
+            this.TKB_para_02.Name = "TKB_para_02";
+            this.TKB_para_02.Size = new System.Drawing.Size(104, 45);
+            this.TKB_para_02.TabIndex = 42;
+            this.TKB_para_02.Scroll += new System.EventHandler(this.TKB_paras_Scroll);
+            // 
+            // TKB_para_01
+            // 
+            this.TKB_para_01.Location = new System.Drawing.Point(201, 12);
+            this.TKB_para_01.Name = "TKB_para_01";
+            this.TKB_para_01.Size = new System.Drawing.Size(104, 45);
+            this.TKB_para_01.TabIndex = 41;
+            this.TKB_para_01.Scroll += new System.EventHandler(this.TKB_paras_Scroll);
+            // 
+            // NUD_parameter_04
+            // 
+            this.NUD_parameter_04.Location = new System.Drawing.Point(115, 131);
+            this.NUD_parameter_04.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.NUD_parameter_04.Name = "NUD_parameter_04";
+            this.NUD_parameter_04.Size = new System.Drawing.Size(80, 22);
+            this.NUD_parameter_04.TabIndex = 40;
+            this.NUD_parameter_04.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.NUD_parameter_04.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.NUD_parameter_04.Visible = false;
+            this.NUD_parameter_04.ValueChanged += new System.EventHandler(this.NUD_paras_ValueChanged);
+            // 
+            // NUD_parameter_03
+            // 
+            this.NUD_parameter_03.DecimalPlaces = 1;
+            this.NUD_parameter_03.Location = new System.Drawing.Point(115, 93);
+            this.NUD_parameter_03.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.NUD_parameter_03.Name = "NUD_parameter_03";
+            this.NUD_parameter_03.Size = new System.Drawing.Size(80, 22);
+            this.NUD_parameter_03.TabIndex = 39;
+            this.NUD_parameter_03.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.NUD_parameter_03.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.NUD_parameter_03.ValueChanged += new System.EventHandler(this.NUD_paras_ValueChanged);
+            // 
+            // NUD_parameter_02
+            // 
+            this.NUD_parameter_02.DecimalPlaces = 1;
+            this.NUD_parameter_02.Location = new System.Drawing.Point(115, 51);
+            this.NUD_parameter_02.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.NUD_parameter_02.Name = "NUD_parameter_02";
+            this.NUD_parameter_02.Size = new System.Drawing.Size(80, 22);
+            this.NUD_parameter_02.TabIndex = 38;
+            this.NUD_parameter_02.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.NUD_parameter_02.ValueChanged += new System.EventHandler(this.NUD_paras_ValueChanged);
+            // 
+            // NUD_parameter_01
+            // 
+            this.NUD_parameter_01.DecimalPlaces = 1;
+            this.NUD_parameter_01.Location = new System.Drawing.Point(115, 13);
+            this.NUD_parameter_01.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.NUD_parameter_01.Name = "NUD_parameter_01";
+            this.NUD_parameter_01.Size = new System.Drawing.Size(80, 22);
+            this.NUD_parameter_01.TabIndex = 37;
+            this.NUD_parameter_01.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.NUD_parameter_01.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
+            this.NUD_parameter_01.ValueChanged += new System.EventHandler(this.NUD_paras_ValueChanged);
+            // 
+            // LB_parameter_01
+            // 
+            this.LB_parameter_01.AutoSize = true;
+            this.LB_parameter_01.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LB_parameter_01.Location = new System.Drawing.Point(18, 12);
+            this.LB_parameter_01.Name = "LB_parameter_01";
+            this.LB_parameter_01.Size = new System.Drawing.Size(44, 21);
+            this.LB_parameter_01.TabIndex = 29;
+            this.LB_parameter_01.Text = "Left:";
+            // 
+            // LB_parameter_04
+            // 
+            this.LB_parameter_04.AutoSize = true;
+            this.LB_parameter_04.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LB_parameter_04.Location = new System.Drawing.Point(18, 132);
+            this.LB_parameter_04.Name = "LB_parameter_04";
+            this.LB_parameter_04.Size = new System.Drawing.Size(87, 21);
+            this.LB_parameter_04.TabIndex = 35;
+            this.LB_parameter_04.Text = "resolution:";
+            this.LB_parameter_04.Visible = false;
+            // 
+            // LB_parameter_03
+            // 
+            this.LB_parameter_03.AutoSize = true;
+            this.LB_parameter_03.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LB_parameter_03.Location = new System.Drawing.Point(18, 92);
+            this.LB_parameter_03.Name = "LB_parameter_03";
+            this.LB_parameter_03.Size = new System.Drawing.Size(54, 21);
+            this.LB_parameter_03.TabIndex = 31;
+            this.LB_parameter_03.Text = "Right:";
+            // 
+            // LB_parameter_02
+            // 
+            this.LB_parameter_02.AutoSize = true;
+            this.LB_parameter_02.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LB_parameter_02.Location = new System.Drawing.Point(18, 52);
+            this.LB_parameter_02.Name = "LB_parameter_02";
+            this.LB_parameter_02.Size = new System.Drawing.Size(63, 21);
+            this.LB_parameter_02.TabIndex = 30;
+            this.LB_parameter_02.Text = "Center:";
+            // 
+            // PB_function
+            // 
+            this.PB_function.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PB_function.Image = global::r09546042_TerryYang_Assignment02.Properties.Resources.Triangular_function;
+            this.PB_function.Location = new System.Drawing.Point(0, 0);
+            this.PB_function.Name = "PB_function";
+            this.PB_function.Size = new System.Drawing.Size(308, 141);
+            this.PB_function.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PB_function.TabIndex = 37;
+            this.PB_function.TabStop = false;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.BTN_plot);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.BTN_clear);
+            this.splitContainer3.Size = new System.Drawing.Size(308, 62);
+            this.splitContainer3.SplitterDistance = 188;
+            this.splitContainer3.TabIndex = 2;
+            // 
+            // BTN_clear
+            // 
+            this.BTN_clear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BTN_clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BTN_clear.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_clear.Location = new System.Drawing.Point(0, 0);
+            this.BTN_clear.Name = "BTN_clear";
+            this.BTN_clear.Size = new System.Drawing.Size(116, 62);
+            this.BTN_clear.TabIndex = 2;
+            this.BTN_clear.Text = "Clear";
+            this.BTN_clear.UseVisualStyleBackColor = true;
+            this.BTN_clear.Click += new System.EventHandler(this.BTN_clear_Click);
             // 
             // menuStrip2
             // 
@@ -384,43 +512,7 @@ namespace r09546042_TerryYang_Assignment01
             this.TCB_main.Name = "TCB_main";
             this.TCB_main.Size = new System.Drawing.Size(121, 23);
             this.TCB_main.Text = "Triangular";
-            this.TCB_main.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBox1_SelectedIndexChanged);
-            // 
-            // PB_function
-            // 
-            this.PB_function.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PB_function.Image = global::r09546042_TerryYang_Assignment02.Properties.Resources.Triangular_function;
-            this.PB_function.Location = new System.Drawing.Point(0, 0);
-            this.PB_function.Name = "PB_function";
-            this.PB_function.Size = new System.Drawing.Size(308, 141);
-            this.PB_function.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PB_function.TabIndex = 37;
-            this.PB_function.TabStop = false;
-            // 
-            // splitContainer7
-            // 
-            this.splitContainer7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer7.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer7.Name = "splitContainer7";
-            this.splitContainer7.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer7.Panel1
-            // 
-            this.splitContainer7.Panel1.Controls.Add(this.LB_parameter_01);
-            this.splitContainer7.Panel1.Controls.Add(this.LB_parameter_04);
-            this.splitContainer7.Panel1.Controls.Add(this.TB_parameter_01);
-            this.splitContainer7.Panel1.Controls.Add(this.TB_parameter_04);
-            this.splitContainer7.Panel1.Controls.Add(this.TB_parameter_02);
-            this.splitContainer7.Panel1.Controls.Add(this.LB_parameter_03);
-            this.splitContainer7.Panel1.Controls.Add(this.LB_parameter_02);
-            this.splitContainer7.Panel1.Controls.Add(this.TB_parameter_03);
-            // 
-            // splitContainer7.Panel2
-            // 
-            this.splitContainer7.Panel2.Controls.Add(this.PB_function);
-            this.splitContainer7.Size = new System.Drawing.Size(308, 310);
-            this.splitContainer7.SplitterDistance = 165;
-            this.splitContainer7.TabIndex = 38;
+            this.TCB_main.SelectedIndexChanged += new System.EventHandler(this.TCB_main_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -442,10 +534,6 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.splitContainer3.Panel1.ResumeLayout(false);
-            this.splitContainer3.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
-            this.splitContainer3.ResumeLayout(false);
             this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
@@ -458,14 +546,26 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer6.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
             this.splitContainer6.ResumeLayout(false);
-            this.menuStrip2.ResumeLayout(false);
-            this.menuStrip2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PB_function)).EndInit();
             this.splitContainer7.Panel1.ResumeLayout(false);
             this.splitContainer7.Panel1.PerformLayout();
             this.splitContainer7.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).EndInit();
             this.splitContainer7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TKB_para_04)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TKB_para_03)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TKB_para_02)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TKB_para_01)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_parameter_04)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_parameter_03)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_parameter_02)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_parameter_01)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_function)).EndInit();
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            this.menuStrip2.ResumeLayout(false);
+            this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -483,19 +583,23 @@ namespace r09546042_TerryYang_Assignment01
         private System.Windows.Forms.ListBox LSB_Graph_Type;
         private System.Windows.Forms.SplitContainer splitContainer6;
         private System.Windows.Forms.Label LB_parameter_04;
-        private System.Windows.Forms.TextBox TB_parameter_04;
         private System.Windows.Forms.Label LB_parameter_01;
         private System.Windows.Forms.Label LB_parameter_02;
-        private System.Windows.Forms.TextBox TB_parameter_03;
         private System.Windows.Forms.Label LB_parameter_03;
-        private System.Windows.Forms.TextBox TB_parameter_02;
-        private System.Windows.Forms.TextBox TB_parameter_01;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripComboBox TCB_main;
         private System.Windows.Forms.PictureBox PB_function;
         private System.Windows.Forms.SplitContainer splitContainer7;
+        private System.Windows.Forms.NumericUpDown NUD_parameter_04;
+        private System.Windows.Forms.NumericUpDown NUD_parameter_03;
+        private System.Windows.Forms.NumericUpDown NUD_parameter_02;
+        private System.Windows.Forms.NumericUpDown NUD_parameter_01;
+        private System.Windows.Forms.TrackBar TKB_para_01;
+        private System.Windows.Forms.TrackBar TKB_para_04;
+        private System.Windows.Forms.TrackBar TKB_para_03;
+        private System.Windows.Forms.TrackBar TKB_para_02;
     }
 }
 
