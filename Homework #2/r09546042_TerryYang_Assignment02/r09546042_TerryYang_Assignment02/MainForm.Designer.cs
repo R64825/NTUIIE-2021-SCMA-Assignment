@@ -32,6 +32,7 @@ namespace r09546042_TerryYang_Assignment01
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.Main_Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.BTN_plot = new System.Windows.Forms.Button();
@@ -61,6 +62,7 @@ namespace r09546042_TerryYang_Assignment01
             this.BTN_clear = new System.Windows.Forms.Button();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.TCB_main = new System.Windows.Forms.ToolStripComboBox();
+            this.CB_Plot_graph = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.Main_Chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -126,18 +128,20 @@ namespace r09546042_TerryYang_Assignment01
             this.Main_Chart.Size = new System.Drawing.Size(617, 577);
             this.Main_Chart.TabIndex = 0;
             this.Main_Chart.Text = "chart1";
+            title1.Name = "Fuzzy membership function";
+            this.Main_Chart.Titles.Add(title1);
             // 
             // BTN_plot
             // 
-            this.BTN_plot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BTN_plot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BTN_plot.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTN_plot.Location = new System.Drawing.Point(0, 0);
+            this.BTN_plot.Location = new System.Drawing.Point(2, 542);
             this.BTN_plot.Name = "BTN_plot";
-            this.BTN_plot.Size = new System.Drawing.Size(188, 62);
+            this.BTN_plot.Size = new System.Drawing.Size(128, 59);
             this.BTN_plot.TabIndex = 1;
             this.BTN_plot.Text = "Plot Graph";
             this.BTN_plot.UseVisualStyleBackColor = true;
+            this.BTN_plot.Visible = false;
             this.BTN_plot.Click += new System.EventHandler(this.BTN_Plot_Click);
             // 
             // splitContainer1
@@ -152,6 +156,7 @@ namespace r09546042_TerryYang_Assignment01
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.BTN_plot);
             this.splitContainer1.Panel2.Controls.Add(this.Main_Chart);
             this.splitContainer1.Panel2.Controls.Add(this.menuStrip2);
             this.splitContainer1.Size = new System.Drawing.Size(929, 604);
@@ -469,7 +474,7 @@ namespace r09546042_TerryYang_Assignment01
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.BTN_plot);
+            this.splitContainer3.Panel1.Controls.Add(this.CB_Plot_graph);
             // 
             // splitContainer3.Panel2
             // 
@@ -481,7 +486,7 @@ namespace r09546042_TerryYang_Assignment01
             // BTN_clear
             // 
             this.BTN_clear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BTN_clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BTN_clear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BTN_clear.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTN_clear.Location = new System.Drawing.Point(0, 0);
             this.BTN_clear.Name = "BTN_clear";
@@ -513,6 +518,21 @@ namespace r09546042_TerryYang_Assignment01
             this.TCB_main.Size = new System.Drawing.Size(121, 23);
             this.TCB_main.Text = "Triangular";
             this.TCB_main.SelectedIndexChanged += new System.EventHandler(this.TCB_main_SelectedIndexChanged);
+            // 
+            // CB_Plot_graph
+            // 
+            this.CB_Plot_graph.AutoSize = true;
+            this.CB_Plot_graph.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CB_Plot_graph.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.CB_Plot_graph.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.CB_Plot_graph.Location = new System.Drawing.Point(0, 0);
+            this.CB_Plot_graph.Name = "CB_Plot_graph";
+            this.CB_Plot_graph.Size = new System.Drawing.Size(188, 62);
+            this.CB_Plot_graph.TabIndex = 2;
+            this.CB_Plot_graph.Text = "Plot Graph";
+            this.CB_Plot_graph.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CB_Plot_graph.UseVisualStyleBackColor = true;
+            this.CB_Plot_graph.Click += new System.EventHandler(this.BTN_Plot_Click);
             // 
             // MainForm
             // 
@@ -561,6 +581,7 @@ namespace r09546042_TerryYang_Assignment01
             ((System.ComponentModel.ISupportInitialize)(this.NUD_parameter_01)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PB_function)).EndInit();
             this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel1.PerformLayout();
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
@@ -600,6 +621,7 @@ namespace r09546042_TerryYang_Assignment01
         private System.Windows.Forms.TrackBar TKB_para_04;
         private System.Windows.Forms.TrackBar TKB_para_03;
         private System.Windows.Forms.TrackBar TKB_para_02;
+        private System.Windows.Forms.CheckBox CB_Plot_graph;
     }
 }
 

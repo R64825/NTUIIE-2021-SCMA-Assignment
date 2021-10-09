@@ -14,13 +14,20 @@ namespace r09546042_TerryYang_Assignment01
         Series B_series;
         Series S_series;
         Series L_series;
-        List<TrackBar> TKB_paras = new List<TrackBar>();
-        List<NumericUpDown> NUM_paras = new List<NumericUpDown>();
+        List<TrackBar> TKB_paras;
+        List<NumericUpDown> NUM_paras;
 
         public MainForm()
         {
             InitializeComponent();
             Main_Chart.Series.Clear();
+            Setup_UI();
+        }
+        public void Setup_UI()
+        {
+            // group up track_bar & Numerical_Up_Down
+            TKB_paras = new List<TrackBar>();
+            NUM_paras = new List<NumericUpDown>();
 
             TKB_paras.Add(TKB_para_01);
             TKB_paras.Add(TKB_para_02);
@@ -31,11 +38,16 @@ namespace r09546042_TerryYang_Assignment01
             NUM_paras.Add(NUD_parameter_02);
             NUM_paras.Add(NUD_parameter_03);
             NUM_paras.Add(NUD_parameter_04);
-        }
 
+            // setup checkbox as button 
+            CB_Plot_graph.Appearance = Appearance.Button;
+
+            LSB_Graph_Type.SelectedIndex = 1;
+            LSB_Graph_Type.SelectedIndex = 0;
+        }
         public Series Get_Selected_Series_Name()
         {
-            // return selected series in list box
+            // return selected series in Tool combo box
             string Graph_Type = TCB_main.Text;
             string Graph_name = Graph_Type + "_Series";
             Series Existied_Series = null;
@@ -45,7 +57,7 @@ namespace r09546042_TerryYang_Assignment01
 
         public void Arrange_UI_for_Input(string Graph_Type)
         {
-            // hide or show Textbox, label, picture 
+            // hide or show Textbox, label, picture            
             NUD_parameter_04.Visible = true;
             LB_parameter_04.Visible = true;
             TKB_para_04.Visible = true;
@@ -165,7 +177,7 @@ namespace r09546042_TerryYang_Assignment01
 
         private void BTN_Plot_Click(object sender, EventArgs e)
         {
-            // plot fuzzy graph manually
+            // on click BTN_Plot
             string Graph_Type = TCB_main.Text;           
             Plot_Series(Graph_Type);
             Input_Check(Graph_Type);
@@ -173,7 +185,7 @@ namespace r09546042_TerryYang_Assignment01
 
         private void BTN_clear_Click(object sender, EventArgs e)
         {
-            //clear selected series in chart
+            // clear selected series in combo box
             if (Get_Selected_Series_Name() != null)
                 Main_Chart.Series.Remove(Get_Selected_Series_Name());
         }
@@ -195,6 +207,8 @@ namespace r09546042_TerryYang_Assignment01
         public void After_LSB_or_TCB_Change()
         {
             //high light selected series
+            CB_Plot_graph.Checked = false;
+
             for (int i = 0; i < Main_Chart.Series.Count; i++)
                 Main_Chart.Series[i].MarkerStyle = MarkerStyle.None;
 
@@ -204,12 +218,6 @@ namespace r09546042_TerryYang_Assignment01
             String Graph_Type = TCB_main.Text;
             Arrange_UI_for_Input(Graph_Type);
             Input_Check(Graph_Type);
-            //for (int i = 0; i < TKB_paras.Count; i++)
-            //{
-            //    TKB_paras[i].Minimum = Convert.ToInt32(NUM_paras[i].Minimum);
-            //    TKB_paras[i].Maximum = Convert.ToInt32(NUM_paras[i].Maximum);
-            //    TKB_paras[i].Value = Convert.ToInt32(NUM_paras[i].Value);
-            //}
             if (Get_Selected_Series_Name() != null)
                 Plot_Series(Graph_Type);
         }
@@ -228,7 +236,6 @@ namespace r09546042_TerryYang_Assignment01
         {
             string Graph_Type = TCB_main.Text;
             Input_Check(Graph_Type);
-            //After_LSB_or_TCB_Change();
             for (int i = 0; i < TKB_paras.Count; i++)
             {
                 TKB_paras[i].Minimum = Convert.ToInt32(NUM_paras[i].Minimum);
@@ -240,7 +247,7 @@ namespace r09546042_TerryYang_Assignment01
 
         public void Input_Check(string Graph_Type)
         {
-            //constrain inputs
+            // Constrain inputs
             switch (Graph_Type)
             {
                 case "Triangular":// 3 inputs
@@ -258,7 +265,7 @@ namespace r09546042_TerryYang_Assignment01
                     break;
 
                 case "Sigmoidal"://2+1
-                     NUD_parameter_01.Minimum = 1;
+                     NUD_parameter_01.Minimum = 0M;
                      break;
 
                 case "LeftRight"://3+1
@@ -272,55 +279,59 @@ namespace r09546042_TerryYang_Assignment01
 
         public void Plot_Series(string Graph_Type)
         {
-            //show selected series in chart
-            double parameter_01 = Convert.ToDouble(NUD_parameter_01.Value);
-            double parameter_02 = Convert.ToDouble(NUD_parameter_02.Value);
-            double parameter_03 = Convert.ToDouble(NUD_parameter_03.Value);
-            double parameter_04 = Convert.ToDouble(NUD_parameter_04.Value);
-
-            if (Get_Selected_Series_Name() != null)
-                Main_Chart.Series.Remove(Get_Selected_Series_Name());
-
-            switch (Graph_Type)
+            // if BTN_Plot on clik, plot graph
+            if (CB_Plot_graph.Checked)
             {
-                case "Triangular":
-                    Triangular_function T = new Triangular_function(parameter_01, parameter_02, parameter_03);
-                    T_series = T.Plot_Graph();
-                    Main_Chart.Series.Add(T_series);
-                    break;
+                double parameter_01 = Convert.ToDouble(NUD_parameter_01.Value);
+                double parameter_02 = Convert.ToDouble(NUD_parameter_02.Value);
+                double parameter_03 = Convert.ToDouble(NUD_parameter_03.Value);
+                double parameter_04 = Convert.ToDouble(NUD_parameter_04.Value);
 
-                case "Gaussian":
-                    Gaussian_function G = new Gaussian_function(parameter_01, parameter_02, parameter_03);
-                    G_series = G.Plot_Graph();
-                    Main_Chart.Series.Add(G_series);
-                    break;
+                if (Get_Selected_Series_Name() != null)
+                    Main_Chart.Series.Remove(Get_Selected_Series_Name());
 
-                case "Bell":
-                    Bell_function B = new Bell_function(parameter_01, parameter_02, parameter_03, parameter_04);
-                    B_series = B.Plot_Graph();
-                    Main_Chart.Series.Add(B_series);
-                    break;
+                switch (Graph_Type)
+                {
+                    case "Triangular":
+                        Triangular_function T = new Triangular_function(parameter_01, parameter_02, parameter_03);
+                        T_series = T.Plot_Graph();
+                        Main_Chart.Series.Add(T_series);
+                        break;
 
-                case "Sigmoidal":
-                    Sigmoidal_function S = new Sigmoidal_function(parameter_01, parameter_02, parameter_03);
-                    S_series = S.Plot_Graph();
-                    Main_Chart.Series.Add(S_series);
-                    break;
+                    case "Gaussian":
+                        Gaussian_function G = new Gaussian_function(parameter_01, parameter_02, parameter_03);
+                        G_series = G.Plot_Graph();
+                        Main_Chart.Series.Add(G_series);
+                        break;
 
-                case "LeftRight":
-                    LeftRight_function L = new LeftRight_function(parameter_01, parameter_02, parameter_03, parameter_04);
-                    L_series = L.Plot_Graph();
-                    Main_Chart.Series.Add(L_series);
-                    break;
+                    case "Bell":
+                        Bell_function B = new Bell_function(parameter_01, parameter_02, parameter_03, parameter_04);
+                        B_series = B.Plot_Graph();
+                        Main_Chart.Series.Add(B_series);
+                        break;
 
-                default:
-                    //New_series = null;
-                    break;
+                    case "Sigmoidal":
+                        Sigmoidal_function S = new Sigmoidal_function(parameter_01, parameter_02, parameter_03);
+                        S_series = S.Plot_Graph();
+                        Main_Chart.Series.Add(S_series);
+                        break;
+
+                    case "LeftRight":
+                        LeftRight_function L = new LeftRight_function(parameter_01, parameter_02, parameter_03, parameter_04);
+                        L_series = L.Plot_Graph();
+                        Main_Chart.Series.Add(L_series);
+                        break;
+
+                    default:
+                        //New_series = null;
+                        break;
+                }
+                Main_Chart.Series[Main_Chart.Series.Count - 1].MarkerStyle = MarkerStyle.Cross;
+                Main_Chart.ChartAreas[0].RecalculateAxesScale();
+                Main_Chart.ChartAreas[0].AxisX.LabelStyle.Format = "{n2}";
+                //Main_Chart.Update();
             }
-            Main_Chart.Series[Main_Chart.Series.Count - 1].MarkerStyle = MarkerStyle.Cross;
-            Main_Chart.ChartAreas[0].RecalculateAxesScale();
-            Main_Chart.ChartAreas[0].AxisX.LabelStyle.Format = "{n2}";
-            //Main_Chart.Update();
+
         }
     }
 }
