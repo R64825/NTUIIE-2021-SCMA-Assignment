@@ -1,6 +1,8 @@
 ﻿using Fuzzy_Graph_Library;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Media;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -22,6 +24,8 @@ namespace r09546042_TerryYang_Assignment01
             InitializeComponent();
             Main_Chart.Series.Clear();
             Setup_UI();
+
+
         }
         public void Setup_UI()
         {
@@ -44,6 +48,15 @@ namespace r09546042_TerryYang_Assignment01
 
             LSB_Graph_Type.SelectedIndex = 1;
             LSB_Graph_Type.SelectedIndex = 0;
+
+            //Stream str = r09546042_TerryYang_Assignment02.Properties.Resources.Rick_roll;
+            //RecordPlayer rp = new RecordPlayer();
+            //rp.Open(new WaveReader(str));
+            //rp.Play();
+
+            SoundPlayer audio = new SoundPlayer(r09546042_TerryYang_Assignment02.Properties.Resources.Rick_roll); // here WindowsFormsApplication1 is the namespace and Connect is the audio file name
+            audio.Load();
+            audio.Play();
         }
         public Series Get_Selected_Series_Name()
         {
@@ -265,7 +278,7 @@ namespace r09546042_TerryYang_Assignment01
                     break;
 
                 case "Sigmoidal"://2+1
-                     NUD_parameter_01.Minimum = 0M;
+                     NUD_parameter_01.Minimum = 1;
                      break;
 
                 case "LeftRight"://3+1

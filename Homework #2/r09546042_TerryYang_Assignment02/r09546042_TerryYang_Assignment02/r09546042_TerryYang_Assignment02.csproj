@@ -92,11 +92,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="azreg-t1val-001.ico" />
-    <Content Include="Resources\LeftRight_function.png" />
-    <None Include="Resources\Triangular_function.png" />
-    <None Include="Resources\Sigmoidal_function.png" />
-    <None Include="Resources\Bell_function.png" />
-    <None Include="Resources\Gaussian_function.png" />
+    <EmbeddedResource Include="Resources\LeftRight_function.png" />
+    <EmbeddedResource Include="Resources\Rick_roll.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Triangular_function.png" />
+    <EmbeddedResource Include="Resources\Sigmoidal_function.png" />
+    <EmbeddedResource Include="Resources\Bell_function.png" />
+    <EmbeddedResource Include="Resources\Gaussian_function.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
