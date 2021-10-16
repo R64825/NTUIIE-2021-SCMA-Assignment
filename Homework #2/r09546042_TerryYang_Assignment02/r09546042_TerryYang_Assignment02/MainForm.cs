@@ -54,9 +54,9 @@ namespace r09546042_TerryYang_Assignment01
             //rp.Open(new WaveReader(str));
             //rp.Play();
 
-            SoundPlayer audio = new SoundPlayer(r09546042_TerryYang_Assignment02.Properties.Resources.Rick_roll); // here WindowsFormsApplication1 is the namespace and Connect is the audio file name
-            audio.Load();
-            audio.Play();
+            //SoundPlayer audio = new SoundPlayer(r09546042_TerryYang_Assignment02.Properties.Resources.Rick_roll); // here WindowsFormsApplication1 is the namespace and Connect is the audio file name
+            //audio.Load();
+            //audio.Play();
         }
         public Series Get_Selected_Series_Name()
         {
