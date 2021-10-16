@@ -8,29 +8,28 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Fuzzy_Graph_Library
 {
-    public class Sigmoidal_function : Fuzzy_functions
+    public class Sigmoidal_function : Fuzzy_functions_collections
     {
-        static public string[] parameter_Names = new string[] { "Sharpness", "Center", "resolution" };
-        static public double[] parameter_Suggestion = new double[] { 1, 0, 100 };
-        private double[] parameters;
-        Series fuzzy_series = new Series();
+        static int count_Index = 1;       
+        public string[] parameter_Names = new string[] { "Sharpness", "Center", "resolution" };
+        public double[] parameter_Suggestion = new double[] { 1, 0, 100 };
+        double[] parameters;
 
-        double para_a;
-        double para_c;
+        double para_a = 1;
+        double para_c = 0;
 
-        public Sigmoidal_function()
+        public Sigmoidal_function() : base()
         {
 
         }
-        public Sigmoidal_function(double para_a, double para_c, double resolution)
+        public Sigmoidal_function(Fuzzy_display_area FDA, double resolution) : base(FDA)
         {
-            this.para_a = para_a;
-            this.para_c = para_c;
+            //this.para_a = para_a;
+            //this.para_c = para_c;
 
-            fuzzy_series.ChartType = SeriesChartType.Line;
             fuzzy_series.Color = Color.Magenta;
-            fuzzy_series.BorderWidth = 2;
-            fuzzy_series.Name = "Sigmoidal_Series";
+            fuzzy_series.Name = $"Sigmoidal_Series_{count_Index++}";
+            this.Name = fuzzy_series.Name;
 
             double Front_point = para_c;
             double Back_point = para_c;
@@ -58,14 +57,6 @@ namespace Fuzzy_Graph_Library
             double p;
             p = 1 / (1 + Math.Exp(-para_a * (x - para_c)));
             return p;
-        }
-        public Series Plot_Graph()
-        {
-            return fuzzy_series;
-        }
-        public string[] Return_Parameters_Names()
-        {
-            return parameter_Names;
         }
 
         public double[] Return_parameter_Suggestion()

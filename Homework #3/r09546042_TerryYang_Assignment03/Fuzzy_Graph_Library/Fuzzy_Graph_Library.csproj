@@ -34,6 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,7 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bell_function.cs" />
-    <Compile Include="Fuzzy_functions.cs" />
+    <Compile Include="Fuzzy_display_area.cs" />
+    <Compile Include="Fuzzy_functions_collections.cs" />
     <Compile Include="Gaussian_function.cs" />
     <Compile Include="LeftRight_function.cs" />
     <Compile Include="Sigmoidal_function.cs" />

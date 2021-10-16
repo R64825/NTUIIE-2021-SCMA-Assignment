@@ -8,31 +8,63 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Fuzzy_Graph_Library
 {
-    public class Gaussian_function : Fuzzy_functions
+    public class Gaussian_function : Fuzzy_functions_collections
     {
-        static public string[] parameter_Names = new string[] { "Mean", "Variance", "resolution" };
-        static public double[] parameter_Suggestion = new double[] { 0, 5, 100 };
-        private double[] parameters;
-        Series fuzzy_series = new Series();
+        static int count_Index = 1;
+        public string[] parameter_Names = new string[] { "Mean", "Variance", "resolution" };
+        public double[] parameter_Suggestion = new double[] { 0, 5, 100 };
+        public double[] parameters;
+        //private double[] parameters;
 
-        double Mean;
-        double Variance;
-        public Gaussian_function()
+        double mean = 0;
+        double variance = 5;
+
+        #region Parameters
+        public double Mean 
+        { 
+            get => mean;
+            set 
+            {
+                mean = value;
+                Parameter_Change();
+            }
+        }
+        public double Variance 
+        { 
+            get => variance;
+            set
+            {
+                if (value>0)
+                {
+                    variance = value;
+                }
+                Parameter_Change();
+            } 
+        }
+        #endregion
+
+
+        public Gaussian_function():base()
         {
 
         }
-        public Gaussian_function(double Mean, double Variance, double resolution)
+        public Gaussian_function(Fuzzy_display_area FDA,double resolution) : base(FDA)
         {
-            this.Mean = Mean;
-            this.Variance = Variance;
+            parameters = new double[2];
+            parameters[0] = 0;
+            parameters[1] = 5;
 
-            fuzzy_series.ChartType = SeriesChartType.Line;
             fuzzy_series.Color = Color.Red;
-            fuzzy_series.BorderWidth = 2;
-            fuzzy_series.Name = "Gaussian_Series";
+            fuzzy_series.Name = $"Gaussian_Series_{count_Index++}";
+            this.Name = fuzzy_series.Name;
 
-            double Front_point = Mean;
-            double Back_point = Mean;
+            Generate_Series( resolution);
+        }
+
+        public void Generate_Series(double resolution) 
+        {
+            double Front_point = mean;
+            double Back_point = mean;
             do
             {
                 Front_point--;
@@ -54,17 +86,8 @@ namespace Fuzzy_Graph_Library
         public double Get_Function_Value(double x)
         {
             double p;
-            p = Math.Exp(-(Math.Pow((x - Mean), 2) / (2 * Math.Pow(Variance, 2))));
+            p = Math.Exp(-(Math.Pow((x - mean), 2) / (2 * Math.Pow(variance, 2))));
             return p;
-        }
-        public Series Plot_Graph()
-        {
-            return fuzzy_series;
-        }
-
-        public string[] Return_Parameters_Names()
-        {
-            return parameter_Names;
         }
 
         public double[] Return_parameter_Suggestion()

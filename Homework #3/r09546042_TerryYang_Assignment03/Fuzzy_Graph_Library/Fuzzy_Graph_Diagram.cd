@@ -1,44 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Fuzzy_Graph_Library.Fuzzy_functions">
+  <Class Name="Fuzzy_Graph_Library.Fuzzy_functions_collections">
     <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgAAAAABAAAAAAAAAAAAAAAAAAAAACAAAAAAACAAQA=</HashCode>
-      <FileName>Fuzzy_functions.cs</FileName>
+      <FileName>Fuzzy_functions_collections.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Fuzzy_Graph_Library.Bell_function">
     <Position X="3.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACAABAAAAAAAAAAAAAAAAAAAAAABAAAAAAIIQAA=</HashCode>
+      <HashCode>AAgAACAABAAAAAAAAAAAAAEAAAAAAACBAAAAAADIQQA=</HashCode>
       <FileName>Bell_function.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Fuzzy_Graph_Library.Gaussian_function">
     <Position X="6" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAABAAAAAACAAAAAAAAAAAAAAAEgAAAAAAAQAA=</HashCode>
+      <HashCode>AAgAAAAABAAAAAAAAAAAAAEAAAAAAACEgAAAAADAQQA=</HashCode>
       <FileName>Gaussian_function.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Fuzzy_Graph_Library.LeftRight_function">
     <Position X="8" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAIEAAAEIAAQAA=</HashCode>
+      <HashCode>AAgAAAAABAAAAAAAAAAAAAEAAAAAAACIAAAAEIDAQQA=</HashCode>
       <FileName>LeftRight_function.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Fuzzy_Graph_Library.Sigmoidal_function">
     <Position X="10" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAABAAAAAAAAAAAAAAAAAAAAACIAAAAAACAQAI=</HashCode>
+      <HashCode>AAgAAAAABAAAAAAAAAAAAAEAAAAAAACIAAAAAADAQQA=</HashCode>
       <FileName>Sigmoidal_function.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Fuzzy_Graph_Library.Triangular_function">
     <Position X="1.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAABAAAAAAAAAAAAAAAAAAAAAAACACAAACIQQA=</HashCode>
+      <HashCode>AAgAAAAABAAAAAAAAAAAAAEAAAAAAACACICAAADIQQA=</HashCode>
       <FileName>Triangular_function.cs</FileName>
     </TypeIdentifier>
   </Class>

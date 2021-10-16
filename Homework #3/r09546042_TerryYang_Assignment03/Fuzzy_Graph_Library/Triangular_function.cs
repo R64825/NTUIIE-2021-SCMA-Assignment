@@ -8,36 +8,29 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Fuzzy_Graph_Library
 {
-    public class Triangular_function : Fuzzy_functions
+    public class Triangular_function : Fuzzy_functions_collections
     {
         //data fields
-        static public string[] parameter_Names = new string[] { "Left", "Center", "Right" };
-        static public double[] parameter_Suggestion = new double[] { -5, 0, 5 };
-        private double[] parameters;
-        Series fuzzy_series = new Series();
+        static int count_Index = 1;
+        public string[] parameter_Names = new string[] { "Left", "Center", "Right" };
+        public double[] parameter_Suggestion = new double[] { -5, 0, 5 };
+        double[] parameters;
 
-        double Left;
-        double Center;
-        double Right;
-        public Triangular_function()
-        {
-            //null construction function
-        }
-        public Triangular_function(double Left, double Center, double Right)
-        {
-            this.Left = Left;
-            this.Center = Center;
-            this.Right = Right;
+        double Left =-5;
+        double Center = 0;
+        double Right = 5;
 
+        public Triangular_function(Fuzzy_display_area FDA) : base(FDA)
+        {
             Parameters = new double[3];
             Parameters[0] = Left;
             Parameters[1] = Center;
             Parameters[2] = Right;
 
-            fuzzy_series.ChartType = SeriesChartType.Line;
             fuzzy_series.Color = Color.Green;
-            fuzzy_series.BorderWidth = 2;
-            fuzzy_series.Name = "Triangular_Series";
+            fuzzy_series.Name = $"Triangular_Series_{count_Index++}";
+
+            this.Name = fuzzy_series.Name;
 
             fuzzy_series.Points.AddXY(Left, 0);
             fuzzy_series.Points.AddXY(Center, 1);
@@ -67,10 +60,6 @@ namespace Fuzzy_Graph_Library
             return p;
         }
 
-        public Series Plot_Graph()
-        {
-            return fuzzy_series;
-        }
         public string[] Return_Parameters_Names()
         {
             return parameter_Names;
