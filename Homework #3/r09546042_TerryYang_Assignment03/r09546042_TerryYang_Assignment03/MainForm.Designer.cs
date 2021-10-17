@@ -52,13 +52,13 @@ namespace r09546042_TerryYang_Assignment01
             this.label3 = new System.Windows.Forms.Label();
             this.splitContainer10 = new System.Windows.Forms.SplitContainer();
             this.CB_fuzzy_type = new System.Windows.Forms.ComboBox();
+            this.splitContainer11 = new System.Windows.Forms.SplitContainer();
+            this.LSB_fuzzy_type = new System.Windows.Forms.ListBox();
             this.BTN_add_function = new System.Windows.Forms.Button();
             this.PB_function = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.PPGV_parameters = new System.Windows.Forms.PropertyGrid();
-            this.splitContainer11 = new System.Windows.Forms.SplitContainer();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.LSB_fuzzy_type = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.Main_Chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -100,11 +100,11 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer10.Panel1.SuspendLayout();
             this.splitContainer10.Panel2.SuspendLayout();
             this.splitContainer10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PB_function)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer11)).BeginInit();
             this.splitContainer11.Panel1.SuspendLayout();
             this.splitContainer11.Panel2.SuspendLayout();
             this.splitContainer11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_function)).BeginInit();
             this.SuspendLayout();
             // 
             // Main_Chart
@@ -386,6 +386,40 @@ namespace r09546042_TerryYang_Assignment01
             this.CB_fuzzy_type.Text = "Triangular";
             this.CB_fuzzy_type.SelectedIndexChanged += new System.EventHandler(this.CB_fuzzy_type_SelectedIndexChanged);
             // 
+            // splitContainer11
+            // 
+            this.splitContainer11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer11.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer11.Name = "splitContainer11";
+            // 
+            // splitContainer11.Panel1
+            // 
+            this.splitContainer11.Panel1.Controls.Add(this.LSB_fuzzy_type);
+            // 
+            // splitContainer11.Panel2
+            // 
+            this.splitContainer11.Panel2.Controls.Add(this.BTN_add_function);
+            this.splitContainer11.Size = new System.Drawing.Size(286, 41);
+            this.splitContainer11.SplitterDistance = 150;
+            this.splitContainer11.TabIndex = 0;
+            // 
+            // LSB_fuzzy_type
+            // 
+            this.LSB_fuzzy_type.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LSB_fuzzy_type.FormattingEnabled = true;
+            this.LSB_fuzzy_type.ItemHeight = 12;
+            this.LSB_fuzzy_type.Items.AddRange(new object[] {
+            "Triangular",
+            "Bell",
+            "Gaussian",
+            "Sigmoidal",
+            "LeftRight"});
+            this.LSB_fuzzy_type.Location = new System.Drawing.Point(0, 0);
+            this.LSB_fuzzy_type.Name = "LSB_fuzzy_type";
+            this.LSB_fuzzy_type.Size = new System.Drawing.Size(150, 41);
+            this.LSB_fuzzy_type.TabIndex = 0;
+            this.LSB_fuzzy_type.SelectedIndexChanged += new System.EventHandler(this.LSB_fuzzy_type_SelectedIndexChanged);
+            // 
             // BTN_add_function
             // 
             this.BTN_add_function.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -429,44 +463,10 @@ namespace r09546042_TerryYang_Assignment01
             this.PPGV_parameters.TabIndex = 0;
             this.PPGV_parameters.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.PPGV_parameters_PropertyValueChanged);
             // 
-            // splitContainer11
-            // 
-            this.splitContainer11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer11.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer11.Name = "splitContainer11";
-            // 
-            // splitContainer11.Panel1
-            // 
-            this.splitContainer11.Panel1.Controls.Add(this.LSB_fuzzy_type);
-            // 
-            // splitContainer11.Panel2
-            // 
-            this.splitContainer11.Panel2.Controls.Add(this.BTN_add_function);
-            this.splitContainer11.Size = new System.Drawing.Size(286, 41);
-            this.splitContainer11.SplitterDistance = 150;
-            this.splitContainer11.TabIndex = 0;
-            // 
             // notifyIcon1
             // 
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
-            // 
-            // LSB_fuzzy_type
-            // 
-            this.LSB_fuzzy_type.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LSB_fuzzy_type.FormattingEnabled = true;
-            this.LSB_fuzzy_type.ItemHeight = 12;
-            this.LSB_fuzzy_type.Items.AddRange(new object[] {
-            "Triangular",
-            "Bell",
-            "Gaussian",
-            "Sigmoidal",
-            "LeftRight"});
-            this.LSB_fuzzy_type.Location = new System.Drawing.Point(0, 0);
-            this.LSB_fuzzy_type.Name = "LSB_fuzzy_type";
-            this.LSB_fuzzy_type.Size = new System.Drawing.Size(150, 41);
-            this.LSB_fuzzy_type.TabIndex = 0;
-            this.LSB_fuzzy_type.SelectedIndexChanged += new System.EventHandler(this.LSB_fuzzy_type_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -518,11 +518,11 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer10.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer10)).EndInit();
             this.splitContainer10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PB_function)).EndInit();
             this.splitContainer11.Panel1.ResumeLayout(false);
             this.splitContainer11.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer11)).EndInit();
             this.splitContainer11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PB_function)).EndInit();
             this.ResumeLayout(false);
 
         }

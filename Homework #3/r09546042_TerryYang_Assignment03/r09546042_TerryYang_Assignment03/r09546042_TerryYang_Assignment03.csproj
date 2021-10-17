@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>azreg-t1val-001.ico</ApplicationIcon>
+    <ApplicationIcon>a2vi7-uvwwt-001.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -91,6 +91,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="a2vi7-uvwwt-001.ico" />
     <Content Include="azreg-t1val-001.ico" />
     <EmbeddedResource Include="Resources\LeftRight_function.png" />
     <EmbeddedResource Include="Resources\Rick_roll.wav" />
