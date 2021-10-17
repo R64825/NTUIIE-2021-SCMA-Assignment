@@ -11,7 +11,7 @@ namespace Fuzzy_Graph_Library
     public class Fuzzy_display_area
     {
         static int current_Index = 1;
-        string name = "Area_NO.";
+        string name = "Area_";
         int resolution = 100;
         TreeNode parent_Node;
         ChartArea this_Chart_Area;
@@ -27,8 +27,9 @@ namespace Fuzzy_Graph_Library
                 if (value != "")
                 {
                     name = value;
+                    this_Chart_Area.Name = value;
                     this_Chart_Area.AxisX.Title = value;
-                    parent_Node.Text = value;
+                    parent_Node.Text = value;                   
                 }
                     
             }
@@ -46,13 +47,12 @@ namespace Fuzzy_Graph_Library
 
         public Fuzzy_display_area(Chart CT)
         {           
-            name = name + current_Index.ToString();
+            name = name + String.Format("{0:00}", current_Index++);
             this_Chart_Area = new ChartArea(name);
             this_Chart_Area.AxisX.Enabled = AxisEnabled.True;
             this_Chart_Area.AxisX.Title = name;
 
             CT.ChartAreas.Add(this_Chart_Area);
-            current_Index++;
         }
 
         public void Set_Tree_Node(TreeNode tn)

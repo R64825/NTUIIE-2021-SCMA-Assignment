@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,21 +16,69 @@ namespace Fuzzy_Graph_Library
         public double[] parameter_Suggestion = new double[] { 10, 10,0, 100 };
         double[] parameters;
 
-        double para_alpah = 10;
-        double para_beta = 10;
-        double para_c = 0;
-        public LeftRight_function() : base()
-        {
+        double alpha = 10;
+        double beta = 10;
+        double center = 0;
+        double resolution;
 
+        #region Parameters
+        [Category("Parameters")]
+        public double Alpha
+        {
+            get => alpha;
+            set
+            {
+                alpha = value;
+                Generate_Series(resolution);
+                Parameter_Change();
+            }
         }
+        [Category("Parameters")]
+        public double Beta
+        {
+            get => beta;
+            set
+            {
+                if (value >= 0)
+                {
+                    beta = value;
+                }
+                Generate_Series(resolution);
+                Parameter_Change();
+            }
+        }
+        [Category("Parameters")]
+        public double Center
+        {
+            get => center;
+            set
+            {
+                center = value;
+                Generate_Series(resolution);
+                Parameter_Change();
+            }
+        }
+        #endregion Parameters
         public LeftRight_function(Fuzzy_display_area FDA, double resolution) : base(FDA)
         {
             fuzzy_series.Color = Color.Orange;
-            fuzzy_series.Name = $"LeftRight_Series_{count_Index++}";
-            this.Name = fuzzy_series.Name;
+            //fuzzy_series.Name = $"LeftRight_Series_{count_Index++}";
+            fuzzy_series.Name = "LeftRight_Series_" + String.Format("{0:00}", count_Index++);
+            Series_color = fuzzy_series.Color;
 
-            double Front_point = para_c;
-            double Back_point = para_c;
+            this.Name = fuzzy_series.Name;
+            this.resolution = resolution;
+
+            Generate_Series(resolution);
+        }
+
+        public void Generate_Series(double resolution)
+        {
+            // generate points to series
+            fuzzy_series.Points.Clear();
+
+            double Front_point = center;
+            double Back_point = center;
 
             do
             {
@@ -48,17 +97,16 @@ namespace Fuzzy_Graph_Library
                 fuzzy_series.Points.AddXY(x, p);
             }
         }
-
         public double Get_Function_Value(double x)
         {
             double p;
-            if (x >= para_c)
+            if (x >= center)
             {
-                p = Math.Exp(-1.0 * Math.Pow((x - para_c) / para_beta, 3));
+                p = Math.Exp(-1.0 * Math.Pow((x - center) / beta, 3));
             }
             else
             {
-                p = Math.Sqrt(Math.Max(0, 1 - Math.Pow((x - para_c) / para_alpah, 2)));
+                p = Math.Sqrt(Math.Max(0, 1 - Math.Pow((x - center) / alpha, 2)));
             }
             return p;
         }

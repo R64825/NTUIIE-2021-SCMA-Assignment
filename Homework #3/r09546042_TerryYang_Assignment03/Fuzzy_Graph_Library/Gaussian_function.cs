@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,20 +16,23 @@ namespace Fuzzy_Graph_Library
         public double[] parameter_Suggestion = new double[] { 0, 5, 100 };
         public double[] parameters;
         //private double[] parameters;
-
+        double resolution;
         double mean = 0;
         double variance = 5;
 
         #region Parameters
+        [Category("Parameters")]
         public double Mean 
         { 
             get => mean;
             set 
             {
                 mean = value;
+                Generate_Series(resolution);
                 Parameter_Change();
             }
         }
+        [Category("Parameters")]
         public double Variance 
         { 
             get => variance;
@@ -38,24 +42,24 @@ namespace Fuzzy_Graph_Library
                 {
                     variance = value;
                 }
+                Generate_Series(resolution);
                 Parameter_Change();
             } 
         }
-        #endregion
+        #endregion Parameters
 
-
-        public Gaussian_function():base()
-        {
-
-        }
         public Gaussian_function(Fuzzy_display_area FDA,double resolution) : base(FDA)
         {
             parameters = new double[2];
             parameters[0] = 0;
             parameters[1] = 5;
+            this.resolution = resolution;
 
             fuzzy_series.Color = Color.Red;
-            fuzzy_series.Name = $"Gaussian_Series_{count_Index++}";
+            //fuzzy_series.Name = $"Gaussian_Series_{count_Index++}";
+            fuzzy_series.Name = "Gaussian_Series_" + String.Format("{0:00}", count_Index++);
+            Series_color = fuzzy_series.Color;
+
             this.Name = fuzzy_series.Name;
 
             Generate_Series( resolution);
@@ -63,6 +67,9 @@ namespace Fuzzy_Graph_Library
 
         public void Generate_Series(double resolution) 
         {
+            // generate points to series
+            fuzzy_series.Points.Clear();
+
             double Front_point = mean;
             double Back_point = mean;
             do

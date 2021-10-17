@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,10 +16,51 @@ namespace Fuzzy_Graph_Library
         public double[] parameter_Suggestion = new double[] { 2,1, 0, 100 };
         double[] parameters;
 
-        double Variation = 2;
-        double Flatness = 1;
-        double Center = 0;
-
+        double variation = 2;
+        double flatness = 1;
+        double center = 0;
+        double resolution;
+        #region Parameters
+        [Category("Parameters")]
+        public double Center
+        {
+            get => center;
+            set
+            {
+                center = value;
+                Generate_Series(resolution);
+                Parameter_Change();
+            }
+        }
+        [Category("Parameters")]
+        public double Variation
+        {
+            get => variation;
+            set
+            {
+                if (value > 0)
+                {
+                    variation = value;
+                }
+                Generate_Series(resolution);
+                Parameter_Change();
+            }
+        }
+        [Category("Parameters")]
+        public double Flatness
+        {
+            get => flatness;
+            set
+            {
+                if (value > 0)
+                {
+                    flatness = value;
+                }
+                Generate_Series(resolution);
+                Parameter_Change();
+            }
+        }
+        #endregion Parameters
         public Bell_function() : base()
         {
 
@@ -27,11 +69,19 @@ namespace Fuzzy_Graph_Library
         {
 
             fuzzy_series.Color = Color.Blue;
-            fuzzy_series.Name = $"Bell_Series_{count_Index++}";
+            fuzzy_series.Name = "Bell_Series_" + String.Format("{0:00}", count_Index++);
+            //fuzzy_series.Name = $"Bell_Series_{count_Index++}";
+            Series_color = fuzzy_series.Color;
             this.Name = fuzzy_series.Name;
+            this.resolution = resolution;
 
-            double Front_point = Center;
-            double Back_point = Center;
+            Generate_Series( resolution);
+        }
+        public void Generate_Series(double resolution)
+        {
+            fuzzy_series.Points.Clear();
+            double Front_point = center;
+            double Back_point = center;
 
             do
             {
@@ -50,11 +100,10 @@ namespace Fuzzy_Graph_Library
                 fuzzy_series.Points.AddXY(x, p);
             }
         }
-
-        public double Get_Function_Value(double x)
+            public double Get_Function_Value(double x)
         {
             double p;
-            p = 1.0 / (1 + Math.Pow(Math.Abs((x - Center) / Variation), 2.0 * Flatness));
+            p = 1.0 / (1 + Math.Pow(Math.Abs((x - center) / variation), 2.0 * flatness));
             return p;
         }
 

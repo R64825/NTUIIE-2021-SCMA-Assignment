@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,42 +17,90 @@ namespace Fuzzy_Graph_Library
         public double[] parameter_Suggestion = new double[] { -5, 0, 5 };
         double[] parameters;
 
-        double Left =-5;
-        double Center = 0;
-        double Right = 5;
+        double left =-5;
+        double center = 0;
+        double right = 5;
+
+        #region Parameters
+        [Category("Parameters")]
+        public double Left
+        {
+            get => left;
+            set
+            {
+                if (value <= center)
+                {
+                    left = value;
+                }
+                Generate_Series();
+                Parameter_Change();
+            }
+        }
+        [Category("Parameters")]
+        public double Center
+        {
+            get => center;
+            set
+            {
+                if (value >=left && value<=right)
+                {
+                    center = value;
+                }
+                Generate_Series();
+                Parameter_Change();
+            }
+        }
+        [Category("Parameters")]
+        public double Right
+        {
+            get => right;
+            set
+            {
+                if (value >= center)
+                {
+                    right = value;
+                }
+                Generate_Series();
+                Parameter_Change();
+            }
+        }
+        #endregion Parameters
 
         public Triangular_function(Fuzzy_display_area FDA) : base(FDA)
         {
-            Parameters = new double[3];
-            Parameters[0] = Left;
-            Parameters[1] = Center;
-            Parameters[2] = Right;
+            parameters = new double[3];
+            parameters[0] = left;
+            parameters[1] = center;
+            parameters[2] = right;
 
+            
             fuzzy_series.Color = Color.Green;
-            fuzzy_series.Name = $"Triangular_Series_{count_Index++}";
+            fuzzy_series.Name = "Triangular_Series_"+String.Format("{0:00}", count_Index++) ;
+            Series_color = fuzzy_series.Color;
 
             this.Name = fuzzy_series.Name;
 
-            fuzzy_series.Points.AddXY(Left, 0);
-            fuzzy_series.Points.AddXY(Center, 1);
-            fuzzy_series.Points.AddXY(Right, 0);
+            Generate_Series();
         }
 
-        public double[] Parameters
-        { get => parameters; 
-            set => parameters = value; }
-
+        public void Generate_Series()
+        {
+            fuzzy_series.Points.Clear();
+            fuzzy_series.Points.AddXY(left, 0);
+            fuzzy_series.Points.AddXY(center, 1);
+            fuzzy_series.Points.AddXY(right, 0);
+        }
         public double Get_Function_Value(double x)
         {
             double p;
 
-            if (Center <= x && x <= Right)
+            if (center <= x && x <= right)
             {
-                p = Math.Abs(x - Right) / Math.Abs(Center - Right);
+                p = Math.Abs(x - right) / Math.Abs(center - right);
             }
-            else if (Left <= x && x <= Center)
+            else if (left <= x && x <= center)
             {
-                p = Math.Abs(Left - x) / Math.Abs(Left - Center);
+                p = Math.Abs(left - x) / Math.Abs(left - center);
             }
             else
             {

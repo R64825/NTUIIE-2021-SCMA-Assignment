@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +14,12 @@ namespace Fuzzy_Graph_Library
     {
         #region Data Fields
         protected string[] parameter_Names;
-        protected double[] parameter;
-        protected Series fuzzy_series;
+        protected double[] parameter;      
         protected Fuzzy_display_area FDA;
         protected TreeNode parent_Node;
+        protected Color series_color;
+        protected Series fuzzy_series;
+        private int series_width=2;
         private string name;
 
         public string Name 
@@ -23,10 +27,42 @@ namespace Fuzzy_Graph_Library
             get => name;
             set 
             {
-                if (fuzzy_series!= null)
+                if (fuzzy_series != null)
                 {
-                    name = fuzzy_series.Name;
+                    if (value != "")
+                    {
+                        name = value;
+                        fuzzy_series.Name = value;
+                        if (parent_Node!=null)
+                        {
+                            parent_Node.Text = value;
+                        }
+
+                    }
                 }
+            }
+        }
+        [Category("Series")]
+        public Color Series_color 
+        { 
+            get => series_color;
+            set
+            {
+                    series_color = value;
+                    fuzzy_series.Color = value;
+            }
+        }
+        [Category("Series")]
+        public int Series_width 
+        { 
+            get => series_width;
+            set 
+            {
+                if (value>=0)
+                {
+                    series_width = value;
+                    fuzzy_series.BorderWidth = value;
+                }              
             }
         }
 
@@ -39,7 +75,7 @@ namespace Fuzzy_Graph_Library
             fuzzy_series = new Series();
             fuzzy_series.ChartType = SeriesChartType.Line;
             fuzzy_series.BorderWidth = 2;
-            
+            //fuzzy_series.Color = series_color;
         }
 
         public Fuzzy_functions_collections()
@@ -73,6 +109,11 @@ namespace Fuzzy_Graph_Library
                 Plot_Graph();
             }
         }
+
+        //public void Generate_Series()
+        //{
+            
+        //}
         #endregion
 
     }

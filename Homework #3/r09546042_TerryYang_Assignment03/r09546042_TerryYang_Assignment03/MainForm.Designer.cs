@@ -29,6 +29,7 @@ namespace r09546042_TerryYang_Assignment01
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -51,12 +52,13 @@ namespace r09546042_TerryYang_Assignment01
             this.label3 = new System.Windows.Forms.Label();
             this.splitContainer10 = new System.Windows.Forms.SplitContainer();
             this.CB_fuzzy_type = new System.Windows.Forms.ComboBox();
-            this.splitContainer11 = new System.Windows.Forms.SplitContainer();
             this.BTN_add_function = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.PB_function = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.PPGV_parameters = new System.Windows.Forms.PropertyGrid();
+            this.splitContainer11 = new System.Windows.Forms.SplitContainer();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.LSB_fuzzy_type = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.Main_Chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -98,11 +100,11 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer10.Panel1.SuspendLayout();
             this.splitContainer10.Panel2.SuspendLayout();
             this.splitContainer10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_function)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer11)).BeginInit();
             this.splitContainer11.Panel1.SuspendLayout();
             this.splitContainer11.Panel2.SuspendLayout();
             this.splitContainer11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PB_function)).BeginInit();
             this.SuspendLayout();
             // 
             // Main_Chart
@@ -112,6 +114,7 @@ namespace r09546042_TerryYang_Assignment01
             chartArea1.AxisX2.MinorGrid.Interval = 1D;
             chartArea1.AxisY.Maximum = 1.2D;
             chartArea1.AxisY.Title = "Y";
+            chartArea1.BackColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "ChartArea1";
             this.Main_Chart.ChartAreas.Add(chartArea1);
             this.Main_Chart.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -314,7 +317,7 @@ namespace r09546042_TerryYang_Assignment01
             // 
             this.splitContainer8.Panel2.Controls.Add(this.PB_function);
             this.splitContainer8.Size = new System.Drawing.Size(368, 247);
-            this.splitContainer8.SplitterDistance = 135;
+            this.splitContainer8.SplitterDistance = 90;
             this.splitContainer8.TabIndex = 0;
             // 
             // splitContainer9
@@ -331,8 +334,8 @@ namespace r09546042_TerryYang_Assignment01
             // splitContainer9.Panel2
             // 
             this.splitContainer9.Panel2.Controls.Add(this.splitContainer10);
-            this.splitContainer9.Size = new System.Drawing.Size(368, 135);
-            this.splitContainer9.SplitterDistance = 68;
+            this.splitContainer9.Size = new System.Drawing.Size(368, 90);
+            this.splitContainer9.SplitterDistance = 45;
             this.splitContainer9.TabIndex = 0;
             // 
             // label3
@@ -342,7 +345,7 @@ namespace r09546042_TerryYang_Assignment01
             this.label3.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(368, 68);
+            this.label3.Size = new System.Drawing.Size(368, 45);
             this.label3.TabIndex = 1;
             this.label3.Text = "Fuzzy function:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -360,14 +363,16 @@ namespace r09546042_TerryYang_Assignment01
             // splitContainer10.Panel2
             // 
             this.splitContainer10.Panel2.Controls.Add(this.splitContainer11);
-            this.splitContainer10.Size = new System.Drawing.Size(368, 63);
-            this.splitContainer10.SplitterDistance = 154;
+            this.splitContainer10.Size = new System.Drawing.Size(368, 41);
+            this.splitContainer10.SplitterDistance = 78;
             this.splitContainer10.TabIndex = 0;
             // 
             // CB_fuzzy_type
             // 
             this.CB_fuzzy_type.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CB_fuzzy_type.DropDownHeight = 110;
             this.CB_fuzzy_type.FormattingEnabled = true;
+            this.CB_fuzzy_type.IntegralHeight = false;
             this.CB_fuzzy_type.Items.AddRange(new object[] {
             "Triangular",
             "Bell",
@@ -376,47 +381,21 @@ namespace r09546042_TerryYang_Assignment01
             "LeftRight"});
             this.CB_fuzzy_type.Location = new System.Drawing.Point(0, 0);
             this.CB_fuzzy_type.Name = "CB_fuzzy_type";
-            this.CB_fuzzy_type.Size = new System.Drawing.Size(154, 20);
+            this.CB_fuzzy_type.Size = new System.Drawing.Size(78, 20);
             this.CB_fuzzy_type.TabIndex = 0;
             this.CB_fuzzy_type.Text = "Triangular";
-            // 
-            // splitContainer11
-            // 
-            this.splitContainer11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer11.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer11.Name = "splitContainer11";
-            // 
-            // splitContainer11.Panel1
-            // 
-            this.splitContainer11.Panel1.Controls.Add(this.BTN_add_function);
-            // 
-            // splitContainer11.Panel2
-            // 
-            this.splitContainer11.Panel2.Controls.Add(this.button4);
-            this.splitContainer11.Size = new System.Drawing.Size(210, 63);
-            this.splitContainer11.SplitterDistance = 127;
-            this.splitContainer11.TabIndex = 0;
+            this.CB_fuzzy_type.SelectedIndexChanged += new System.EventHandler(this.CB_fuzzy_type_SelectedIndexChanged);
             // 
             // BTN_add_function
             // 
             this.BTN_add_function.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BTN_add_function.Location = new System.Drawing.Point(0, 0);
             this.BTN_add_function.Name = "BTN_add_function";
-            this.BTN_add_function.Size = new System.Drawing.Size(127, 63);
+            this.BTN_add_function.Size = new System.Drawing.Size(132, 41);
             this.BTN_add_function.TabIndex = 1;
             this.BTN_add_function.Text = "Add fucntion";
             this.BTN_add_function.UseVisualStyleBackColor = true;
             this.BTN_add_function.Click += new System.EventHandler(this.BTN_add_function_Click);
-            // 
-            // button4
-            // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.Location = new System.Drawing.Point(0, 0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(79, 63);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "Delete";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // PB_function
             // 
@@ -424,7 +403,7 @@ namespace r09546042_TerryYang_Assignment01
             this.PB_function.Image = global::r09546042_TerryYang_Assignment03.Properties.Resources.Triangular_function;
             this.PB_function.Location = new System.Drawing.Point(0, 0);
             this.PB_function.Name = "PB_function";
-            this.PB_function.Size = new System.Drawing.Size(368, 108);
+            this.PB_function.Size = new System.Drawing.Size(368, 153);
             this.PB_function.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PB_function.TabIndex = 37;
             this.PB_function.TabStop = false;
@@ -449,6 +428,45 @@ namespace r09546042_TerryYang_Assignment01
             this.PPGV_parameters.Size = new System.Drawing.Size(368, 277);
             this.PPGV_parameters.TabIndex = 0;
             this.PPGV_parameters.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.PPGV_parameters_PropertyValueChanged);
+            // 
+            // splitContainer11
+            // 
+            this.splitContainer11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer11.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer11.Name = "splitContainer11";
+            // 
+            // splitContainer11.Panel1
+            // 
+            this.splitContainer11.Panel1.Controls.Add(this.LSB_fuzzy_type);
+            // 
+            // splitContainer11.Panel2
+            // 
+            this.splitContainer11.Panel2.Controls.Add(this.BTN_add_function);
+            this.splitContainer11.Size = new System.Drawing.Size(286, 41);
+            this.splitContainer11.SplitterDistance = 150;
+            this.splitContainer11.TabIndex = 0;
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            // 
+            // LSB_fuzzy_type
+            // 
+            this.LSB_fuzzy_type.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LSB_fuzzy_type.FormattingEnabled = true;
+            this.LSB_fuzzy_type.ItemHeight = 12;
+            this.LSB_fuzzy_type.Items.AddRange(new object[] {
+            "Triangular",
+            "Bell",
+            "Gaussian",
+            "Sigmoidal",
+            "LeftRight"});
+            this.LSB_fuzzy_type.Location = new System.Drawing.Point(0, 0);
+            this.LSB_fuzzy_type.Name = "LSB_fuzzy_type";
+            this.LSB_fuzzy_type.Size = new System.Drawing.Size(150, 41);
+            this.LSB_fuzzy_type.TabIndex = 0;
+            this.LSB_fuzzy_type.SelectedIndexChanged += new System.EventHandler(this.LSB_fuzzy_type_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -500,11 +518,11 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer10.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer10)).EndInit();
             this.splitContainer10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PB_function)).EndInit();
             this.splitContainer11.Panel1.ResumeLayout(false);
             this.splitContainer11.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer11)).EndInit();
             this.splitContainer11.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PB_function)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -531,9 +549,10 @@ namespace r09546042_TerryYang_Assignment01
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.SplitContainer splitContainer10;
         private System.Windows.Forms.ComboBox CB_fuzzy_type;
-        private System.Windows.Forms.SplitContainer splitContainer11;
         private System.Windows.Forms.Button BTN_add_function;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.SplitContainer splitContainer11;
+        private System.Windows.Forms.ListBox LSB_fuzzy_type;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 
