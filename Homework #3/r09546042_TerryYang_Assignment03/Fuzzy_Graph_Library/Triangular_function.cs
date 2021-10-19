@@ -17,12 +17,12 @@ namespace Fuzzy_Graph_Library
         public double[] parameter_Suggestion = new double[] { -5, 0, 5 };
         double[] parameters;
 
-        double left =-5;
-        double center = 0;
-        double right = 5;
+        double left =-5 + 5 * (count_Index - 1);
+        double center = 0 + 5*(count_Index - 1);
+        double right = 5 + 5 * (count_Index - 1);
 
         #region Parameters
-        [Category("Parameters")]
+        [Category("Parameters"), Description("Left point of the function")]
         public double Left
         {
             get => left;
@@ -36,7 +36,7 @@ namespace Fuzzy_Graph_Library
                 Parameter_Change();
             }
         }
-        [Category("Parameters")]
+        [Category("Parameters"), Description("Center point of the function")]
         public double Center
         {
             get => center;
@@ -50,7 +50,7 @@ namespace Fuzzy_Graph_Library
                 Parameter_Change();
             }
         }
-        [Category("Parameters")]
+        [Category("Parameters"), Description("Right point of the function")]
         public double Right
         {
             get => right;

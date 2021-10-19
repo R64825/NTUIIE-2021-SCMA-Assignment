@@ -17,10 +17,10 @@ namespace Fuzzy_Graph_Library
         double[] parameters;
 
         double sharpness = 1;
-        double center = 0;
+        double center = 0+ 5 * (count_Index-1);
         double resolution;
         #region Parameters
-        [Category("Parameters")]
+        [Category("Parameters"), Description("Center point of the function")]
         public double Center
         {
             get => center;
@@ -31,17 +31,13 @@ namespace Fuzzy_Graph_Library
                 Parameter_Change();
             }
         }
-        [Category("Parameters")]
+        [Category("Parameters"), Description("Sharpness of the function")]
         public double Sharpness
         {
             get => sharpness;
             set
             {
-                //if (value > 0)
-                //{
-                //    sharpness = value;
-                //}
-                sharpness = value;
+                sharpness = value;  
                 Generate_Series(resolution);
                 Parameter_Change();
             }
@@ -50,11 +46,7 @@ namespace Fuzzy_Graph_Library
 
         public Sigmoidal_function(Fuzzy_display_area FDA, double resolution) : base(FDA)
         {
-            //this.para_a = para_a;
-            //this.para_c = para_c;
-
             fuzzy_series.Color = Color.Magenta;
-            //fuzzy_series.Name = $"Sigmoidal_Series_{count_Index++}";
             fuzzy_series.Name = "Sigmoidal_Series_" + String.Format("{0:00}", count_Index++);
             Series_color = fuzzy_series.Color;
 

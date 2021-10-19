@@ -14,14 +14,17 @@ namespace Fuzzy_Graph_Library
     {
         #region Data Fields
         protected string[] parameter_Names;
-        protected double[] parameter;      
+        protected double[] parameter;
         protected Fuzzy_display_area FDA;
         protected TreeNode parent_Node;
         protected Color series_color;
         protected Series fuzzy_series;
-        private int series_width=2;
+        protected double minimum;
+        protected double maximum;
+        private int series_border_width = 2;
         private string name;
 
+        [Category("Identification"),Description("Name of the function")]
         public string Name 
         { 
             get => name;
@@ -42,7 +45,7 @@ namespace Fuzzy_Graph_Library
                 }
             }
         }
-        [Category("Series")]
+        [Category("Series"), Description("Color of the series")]
         public Color Series_color 
         { 
             get => series_color;
@@ -52,15 +55,15 @@ namespace Fuzzy_Graph_Library
                     fuzzy_series.Color = value;
             }
         }
-        [Category("Series")]
-        public int Series_width 
+        [Category("Series"), Description("Border width of the series")]
+        public int Series_border_width 
         { 
-            get => series_width;
+            get => series_border_width;
             set 
             {
                 if (value>=0)
                 {
-                    series_width = value;
+                    series_border_width = value;
                     fuzzy_series.BorderWidth = value;
                 }              
             }
@@ -75,13 +78,11 @@ namespace Fuzzy_Graph_Library
             fuzzy_series = new Series();
             fuzzy_series.ChartType = SeriesChartType.Line;
             fuzzy_series.BorderWidth = 2;
+            maximum = FDA.Maximum;
+            minimum = FDA.Minimum;
             //fuzzy_series.Color = series_color;
         }
 
-        public Fuzzy_functions_collections()
-        {
-            
-        }
         #endregion
 
 

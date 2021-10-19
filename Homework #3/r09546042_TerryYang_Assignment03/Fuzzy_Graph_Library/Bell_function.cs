@@ -18,10 +18,10 @@ namespace Fuzzy_Graph_Library
 
         double variation = 2;
         double flatness = 1;
-        double center = 0;
+        double center = 0 + 5 * (count_Index - 1);
         double resolution;
         #region Parameters
-        [Category("Parameters")]
+        [Category("Parameters"), Description("Center of the function")]
         public double Center
         {
             get => center;
@@ -32,7 +32,7 @@ namespace Fuzzy_Graph_Library
                 Parameter_Change();
             }
         }
-        [Category("Parameters")]
+        [Category("Parameters"), Description("Variance of the function")]
         public double Variation
         {
             get => variation;
@@ -46,7 +46,7 @@ namespace Fuzzy_Graph_Library
                 Parameter_Change();
             }
         }
-        [Category("Parameters")]
+        [Category("Parameters"), Description("Flatness of the function")]
         public double Flatness
         {
             get => flatness;
@@ -61,10 +61,6 @@ namespace Fuzzy_Graph_Library
             }
         }
         #endregion Parameters
-        public Bell_function() : base()
-        {
-
-        }
         public Bell_function(Fuzzy_display_area FDA, double resolution) : base(FDA)
         {
 

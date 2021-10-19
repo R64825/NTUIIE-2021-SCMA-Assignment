@@ -17,11 +17,11 @@ namespace Fuzzy_Graph_Library
         public double[] parameters;
         //private double[] parameters;
         double resolution;
-        double mean = 0;
+        double mean = 0 + 5*(count_Index - 1);
         double variance = 5;
 
         #region Parameters
-        [Category("Parameters")]
+        [Category("Parameters"), Description("Center of the function")]
         public double Mean 
         { 
             get => mean;
@@ -32,7 +32,7 @@ namespace Fuzzy_Graph_Library
                 Parameter_Change();
             }
         }
-        [Category("Parameters")]
+        [Category("Parameters"), Description("Variance of the function")]
         public double Variance 
         { 
             get => variance;

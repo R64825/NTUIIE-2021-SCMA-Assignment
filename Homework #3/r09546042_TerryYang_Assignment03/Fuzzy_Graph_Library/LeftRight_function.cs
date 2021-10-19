@@ -18,11 +18,11 @@ namespace Fuzzy_Graph_Library
 
         double alpha = 10;
         double beta = 10;
-        double center = 0;
+        double center = 0 + 5 * (count_Index - 1);
         double resolution;
 
         #region Parameters
-        [Category("Parameters")]
+        [Category("Parameters"), Description("Left part of the function")]
         public double Alpha
         {
             get => alpha;
@@ -33,7 +33,7 @@ namespace Fuzzy_Graph_Library
                 Parameter_Change();
             }
         }
-        [Category("Parameters")]
+        [Category("Parameters"), Description("Right part of the function")]
         public double Beta
         {
             get => beta;
@@ -47,7 +47,7 @@ namespace Fuzzy_Graph_Library
                 Parameter_Change();
             }
         }
-        [Category("Parameters")]
+        [Category("Parameters"), Description("Center of the function")]
         public double Center
         {
             get => center;

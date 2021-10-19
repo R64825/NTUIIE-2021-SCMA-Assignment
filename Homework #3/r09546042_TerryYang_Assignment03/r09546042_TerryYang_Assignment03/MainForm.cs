@@ -108,8 +108,6 @@ namespace r09546042_TerryYang_Assignment01
             FDA.Get_Chart_Area().RecalculateAxesScale();
             FDA.Get_Chart_Area().AxisX.LabelStyle.Format = "{n2}";
             Main_Chart.Update();
-            
-
         }
 
         private void BTN_add_area_Click(object sender, EventArgs e)
