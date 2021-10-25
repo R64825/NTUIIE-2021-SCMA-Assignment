@@ -1,0 +1,595 @@
+﻿
+namespace r09546042_TerryYang_Assignment01
+{
+    partial class MainForm
+    {
+        /// <summary>
+        /// 設計工具所需的變數。
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// 清除任何使用中的資源。
+        /// </summary>
+        /// <param name="disposing">如果應該處置受控資源則為 true，否則為 false。</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form 設計工具產生的程式碼
+
+        /// <summary>
+        /// 此為設計工具支援所需的方法 - 請勿使用程式碼編輯器修改
+        /// 這個方法的內容。
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.Main_Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer5 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.TV_Display = new System.Windows.Forms.TreeView();
+            this.BTN_add_area = new System.Windows.Forms.Button();
+            this.PPGV_parameters = new System.Windows.Forms.PropertyGrid();
+            this.LB_indecator = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.GB_BO = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.CB_Binary_type = new System.Windows.Forms.ComboBox();
+            this.BTN_add_Binary_function = new System.Windows.Forms.Button();
+            this.GB_UO = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.CB_Unary_type = new System.Windows.Forms.ComboBox();
+            this.BTN_add_Unary_function = new System.Windows.Forms.Button();
+            this.GB_PFS = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.CB_fuzzy_type = new System.Windows.Forms.ComboBox();
+            this.BTN_add_Pri_function = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.BTN_assign_fs_01 = new System.Windows.Forms.Button();
+            this.BTN_assign_fs_02 = new System.Windows.Forms.Button();
+            this.BTN_delete = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.BTN_cancel_selection = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.Main_Chart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
+            this.splitContainer5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.GB_BO.SuspendLayout();
+            this.GB_UO.SuspendLayout();
+            this.GB_PFS.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // Main_Chart
+            // 
+            this.Main_Chart.BackColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisX.Title = "X";
+            chartArea1.AxisX2.MinorGrid.Interval = 1D;
+            chartArea1.AxisY.Maximum = 1.2D;
+            chartArea1.AxisY.Title = "Y";
+            chartArea1.BackColor = System.Drawing.Color.Transparent;
+            chartArea1.Name = "ChartArea1";
+            this.Main_Chart.ChartAreas.Add(chartArea1);
+            this.Main_Chart.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Alignment = System.Drawing.StringAlignment.Center;
+            legend1.BackColor = System.Drawing.Color.Transparent;
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend1.Name = "Legend1";
+            this.Main_Chart.Legends.Add(legend1);
+            this.Main_Chart.Location = new System.Drawing.Point(0, 0);
+            this.Main_Chart.Name = "Main_Chart";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.Main_Chart.Series.Add(series1);
+            this.Main_Chart.Size = new System.Drawing.Size(692, 780);
+            this.Main_Chart.TabIndex = 0;
+            this.Main_Chart.Text = "chart1";
+            title1.Name = "Fuzzy membership function";
+            this.Main_Chart.Titles.Add(title1);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.Main_Chart);
+            this.splitContainer1.Size = new System.Drawing.Size(1112, 780);
+            this.splitContainer1.SplitterDistance = 416;
+            this.splitContainer1.TabIndex = 3;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.splitContainer4);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.tabControl1);
+            this.splitContainer2.Size = new System.Drawing.Size(416, 780);
+            this.splitContainer2.SplitterDistance = 481;
+            this.splitContainer2.TabIndex = 3;
+            // 
+            // splitContainer4
+            // 
+            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer4.Name = "splitContainer4";
+            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.splitContainer5);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.splitContainer3);
+            this.splitContainer4.Size = new System.Drawing.Size(416, 481);
+            this.splitContainer4.SplitterDistance = 118;
+            this.splitContainer4.TabIndex = 30;
+            // 
+            // splitContainer5
+            // 
+            this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer5.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer5.Name = "splitContainer5";
+            this.splitContainer5.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitContainer5.Size = new System.Drawing.Size(416, 118);
+            this.splitContainer5.SplitterDistance = 59;
+            this.splitContainer5.TabIndex = 30;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.BTN_delete);
+            this.splitContainer3.Panel1.Controls.Add(this.TV_Display);
+            this.splitContainer3.Panel1.Controls.Add(this.BTN_add_area);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.PPGV_parameters);
+            this.splitContainer3.Panel2.Controls.Add(this.LB_indecator);
+            this.splitContainer3.Size = new System.Drawing.Size(416, 359);
+            this.splitContainer3.SplitterDistance = 202;
+            this.splitContainer3.TabIndex = 0;
+            // 
+            // TV_Display
+            // 
+            this.TV_Display.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TV_Display.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TV_Display.Location = new System.Drawing.Point(0, 39);
+            this.TV_Display.Name = "TV_Display";
+            this.TV_Display.Size = new System.Drawing.Size(202, 320);
+            this.TV_Display.TabIndex = 0;
+            this.TV_Display.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TV_Display_AfterSelect);
+            this.TV_Display.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TV_Display_KeyPress);
+            // 
+            // BTN_add_area
+            // 
+            this.BTN_add_area.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_add_area.Location = new System.Drawing.Point(0, 0);
+            this.BTN_add_area.Name = "BTN_add_area";
+            this.BTN_add_area.Size = new System.Drawing.Size(126, 35);
+            this.BTN_add_area.TabIndex = 0;
+            this.BTN_add_area.Text = "Add area";
+            this.BTN_add_area.UseVisualStyleBackColor = true;
+            this.BTN_add_area.Click += new System.EventHandler(this.BTN_add_area_Click);
+            // 
+            // PPGV_parameters
+            // 
+            this.PPGV_parameters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PPGV_parameters.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PPGV_parameters.Location = new System.Drawing.Point(0, 39);
+            this.PPGV_parameters.Name = "PPGV_parameters";
+            this.PPGV_parameters.Size = new System.Drawing.Size(210, 320);
+            this.PPGV_parameters.TabIndex = 0;
+            this.PPGV_parameters.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.PPGV_parameters_PropertyValueChanged);
+            // 
+            // LB_indecator
+            // 
+            this.LB_indecator.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.LB_indecator.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LB_indecator.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LB_indecator.Location = new System.Drawing.Point(0, 0);
+            this.LB_indecator.Name = "LB_indecator";
+            this.LB_indecator.Size = new System.Drawing.Size(210, 35);
+            this.LB_indecator.TabIndex = 0;
+            this.LB_indecator.Text = "label1";
+            this.LB_indecator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(416, 295);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.GB_BO);
+            this.tabPage1.Controls.Add(this.GB_UO);
+            this.tabPage1.Controls.Add(this.GB_PFS);
+            this.tabPage1.Location = new System.Drawing.Point(4, 23);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(408, 268);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // GB_BO
+            // 
+            this.GB_BO.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GB_BO.Controls.Add(this.BTN_cancel_selection);
+            this.GB_BO.Controls.Add(this.label4);
+            this.GB_BO.Controls.Add(this.BTN_assign_fs_02);
+            this.GB_BO.Controls.Add(this.BTN_assign_fs_01);
+            this.GB_BO.Controls.Add(this.label3);
+            this.GB_BO.Controls.Add(this.CB_Binary_type);
+            this.GB_BO.Controls.Add(this.BTN_add_Binary_function);
+            this.GB_BO.Enabled = false;
+            this.GB_BO.Location = new System.Drawing.Point(6, 152);
+            this.GB_BO.Name = "GB_BO";
+            this.GB_BO.Size = new System.Drawing.Size(396, 99);
+            this.GB_BO.TabIndex = 4;
+            this.GB_BO.TabStop = false;
+            this.GB_BO.Text = "Binary operator";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 18);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(126, 14);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Type of operator:";
+            // 
+            // CB_Binary_type
+            // 
+            this.CB_Binary_type.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_Binary_type.DropDownHeight = 110;
+            this.CB_Binary_type.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CB_Binary_type.FormattingEnabled = true;
+            this.CB_Binary_type.IntegralHeight = false;
+            this.CB_Binary_type.Items.AddRange(new object[] {
+            "Intersection",
+            "Union",
+            "Subtraction"});
+            this.CB_Binary_type.Location = new System.Drawing.Point(6, 36);
+            this.CB_Binary_type.Name = "CB_Binary_type";
+            this.CB_Binary_type.Size = new System.Drawing.Size(260, 22);
+            this.CB_Binary_type.TabIndex = 0;
+            this.CB_Binary_type.Text = "Intersection";
+            // 
+            // BTN_add_Binary_function
+            // 
+            this.BTN_add_Binary_function.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_add_Binary_function.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_add_Binary_function.Location = new System.Drawing.Point(272, 32);
+            this.BTN_add_Binary_function.Name = "BTN_add_Binary_function";
+            this.BTN_add_Binary_function.Size = new System.Drawing.Size(118, 29);
+            this.BTN_add_Binary_function.TabIndex = 1;
+            this.BTN_add_Binary_function.Text = "Binary operate";
+            this.BTN_add_Binary_function.UseVisualStyleBackColor = true;
+            this.BTN_add_Binary_function.Click += new System.EventHandler(this.BTN_add_Binary_function_Click);
+            // 
+            // GB_UO
+            // 
+            this.GB_UO.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GB_UO.Controls.Add(this.label2);
+            this.GB_UO.Controls.Add(this.CB_Unary_type);
+            this.GB_UO.Controls.Add(this.BTN_add_Unary_function);
+            this.GB_UO.Enabled = false;
+            this.GB_UO.Location = new System.Drawing.Point(6, 79);
+            this.GB_UO.Name = "GB_UO";
+            this.GB_UO.Size = new System.Drawing.Size(396, 67);
+            this.GB_UO.TabIndex = 3;
+            this.GB_UO.TabStop = false;
+            this.GB_UO.Text = "Unary operator";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(126, 14);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Type of operator:";
+            // 
+            // CB_Unary_type
+            // 
+            this.CB_Unary_type.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_Unary_type.DropDownHeight = 110;
+            this.CB_Unary_type.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CB_Unary_type.FormattingEnabled = true;
+            this.CB_Unary_type.IntegralHeight = false;
+            this.CB_Unary_type.Items.AddRange(new object[] {
+            "Negate",
+            "Very",
+            "Extremely",
+            "More_or_less",
+            "Intensification"});
+            this.CB_Unary_type.Location = new System.Drawing.Point(6, 36);
+            this.CB_Unary_type.Name = "CB_Unary_type";
+            this.CB_Unary_type.Size = new System.Drawing.Size(260, 22);
+            this.CB_Unary_type.TabIndex = 0;
+            this.CB_Unary_type.Text = "Negate";
+            // 
+            // BTN_add_Unary_function
+            // 
+            this.BTN_add_Unary_function.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_add_Unary_function.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_add_Unary_function.Location = new System.Drawing.Point(272, 32);
+            this.BTN_add_Unary_function.Name = "BTN_add_Unary_function";
+            this.BTN_add_Unary_function.Size = new System.Drawing.Size(118, 29);
+            this.BTN_add_Unary_function.TabIndex = 1;
+            this.BTN_add_Unary_function.Text = "Unary operate";
+            this.BTN_add_Unary_function.UseVisualStyleBackColor = true;
+            this.BTN_add_Unary_function.Click += new System.EventHandler(this.BTN_add_Unary_function_Click);
+            // 
+            // GB_PFS
+            // 
+            this.GB_PFS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GB_PFS.Controls.Add(this.label1);
+            this.GB_PFS.Controls.Add(this.CB_fuzzy_type);
+            this.GB_PFS.Controls.Add(this.BTN_add_Pri_function);
+            this.GB_PFS.Enabled = false;
+            this.GB_PFS.Location = new System.Drawing.Point(6, 6);
+            this.GB_PFS.Name = "GB_PFS";
+            this.GB_PFS.Size = new System.Drawing.Size(396, 67);
+            this.GB_PFS.TabIndex = 2;
+            this.GB_PFS.TabStop = false;
+            this.GB_PFS.Text = "Primary_fuzzy_set";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(133, 14);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Type of fuzzy set:";
+            // 
+            // CB_fuzzy_type
+            // 
+            this.CB_fuzzy_type.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_fuzzy_type.DropDownHeight = 110;
+            this.CB_fuzzy_type.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CB_fuzzy_type.FormattingEnabled = true;
+            this.CB_fuzzy_type.IntegralHeight = false;
+            this.CB_fuzzy_type.Items.AddRange(new object[] {
+            "Triangular",
+            "Bell",
+            "Gaussian",
+            "Sigmoidal",
+            "LeftRight",
+            "S-shape",
+            "Z-shape"});
+            this.CB_fuzzy_type.Location = new System.Drawing.Point(6, 36);
+            this.CB_fuzzy_type.Name = "CB_fuzzy_type";
+            this.CB_fuzzy_type.Size = new System.Drawing.Size(260, 22);
+            this.CB_fuzzy_type.TabIndex = 0;
+            this.CB_fuzzy_type.Text = "Triangular";
+            // 
+            // BTN_add_Pri_function
+            // 
+            this.BTN_add_Pri_function.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_add_Pri_function.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_add_Pri_function.Location = new System.Drawing.Point(272, 32);
+            this.BTN_add_Pri_function.Name = "BTN_add_Pri_function";
+            this.BTN_add_Pri_function.Size = new System.Drawing.Size(118, 29);
+            this.BTN_add_Pri_function.TabIndex = 1;
+            this.BTN_add_Pri_function.Text = "Add fuzzy set";
+            this.BTN_add_Pri_function.UseVisualStyleBackColor = true;
+            this.BTN_add_Pri_function.Click += new System.EventHandler(this.BTN_add_function_Click);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 23);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(408, 250);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutoPopDelay = 5000;
+            this.toolTip1.InitialDelay = 200;
+            this.toolTip1.ReshowDelay = 100;
+            // 
+            // BTN_assign_fs_01
+            // 
+            this.BTN_assign_fs_01.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BTN_assign_fs_01.Location = new System.Drawing.Point(69, 70);
+            this.BTN_assign_fs_01.Name = "BTN_assign_fs_01";
+            this.BTN_assign_fs_01.Size = new System.Drawing.Size(130, 23);
+            this.BTN_assign_fs_01.TabIndex = 3;
+            this.BTN_assign_fs_01.Text = "Series_01";
+            this.BTN_assign_fs_01.UseVisualStyleBackColor = true;
+            this.BTN_assign_fs_01.Click += new System.EventHandler(this.BTN_assign_fs_01_Click);
+            // 
+            // BTN_assign_fs_02
+            // 
+            this.BTN_assign_fs_02.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BTN_assign_fs_02.Location = new System.Drawing.Point(205, 70);
+            this.BTN_assign_fs_02.Name = "BTN_assign_fs_02";
+            this.BTN_assign_fs_02.Size = new System.Drawing.Size(130, 23);
+            this.BTN_assign_fs_02.TabIndex = 4;
+            this.BTN_assign_fs_02.Text = "Series_02";
+            this.BTN_assign_fs_02.UseVisualStyleBackColor = true;
+            this.BTN_assign_fs_02.Click += new System.EventHandler(this.BTN_assign_fs_02_Click);
+            // 
+            // BTN_delete
+            // 
+            this.BTN_delete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_delete.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_delete.Location = new System.Drawing.Point(132, 0);
+            this.BTN_delete.Name = "BTN_delete";
+            this.BTN_delete.Size = new System.Drawing.Size(67, 35);
+            this.BTN_delete.TabIndex = 1;
+            this.BTN_delete.Text = "Delete";
+            this.BTN_delete.UseVisualStyleBackColor = true;
+            this.BTN_delete.Click += new System.EventHandler(this.BTN_delete_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 73);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 14);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Series:";
+            // 
+            // BTN_cancel_selection
+            // 
+            this.BTN_cancel_selection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_cancel_selection.Location = new System.Drawing.Point(341, 69);
+            this.BTN_cancel_selection.Name = "BTN_cancel_selection";
+            this.BTN_cancel_selection.Size = new System.Drawing.Size(49, 23);
+            this.BTN_cancel_selection.TabIndex = 6;
+            this.BTN_cancel_selection.Text = "X";
+            this.BTN_cancel_selection.UseVisualStyleBackColor = true;
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1112, 780);
+            this.Controls.Add(this.splitContainer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "MainForm";
+            this.Text = "Fuzzy Graph Plotting";
+            ((System.ComponentModel.ISupportInitialize)(this.Main_Chart)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
+            this.splitContainer5.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.GB_BO.ResumeLayout(false);
+            this.GB_BO.PerformLayout();
+            this.GB_UO.ResumeLayout(false);
+            this.GB_UO.PerformLayout();
+            this.GB_PFS.ResumeLayout(false);
+            this.GB_PFS.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.DataVisualization.Charting.Chart Main_Chart;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.SplitContainer splitContainer5;
+        private System.Windows.Forms.TreeView TV_Display;
+        private System.Windows.Forms.PropertyGrid PPGV_parameters;
+        private System.Windows.Forms.Button BTN_add_area;
+        private System.Windows.Forms.ComboBox CB_fuzzy_type;
+        private System.Windows.Forms.Button BTN_add_Pri_function;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.Label LB_indecator;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.GroupBox GB_UO;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox CB_Unary_type;
+        private System.Windows.Forms.Button BTN_add_Unary_function;
+        private System.Windows.Forms.GroupBox GB_PFS;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox GB_BO;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox CB_Binary_type;
+        private System.Windows.Forms.Button BTN_add_Binary_function;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button BTN_assign_fs_02;
+        private System.Windows.Forms.Button BTN_assign_fs_01;
+        private System.Windows.Forms.Button BTN_delete;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button BTN_cancel_selection;
+    }
+}
+
