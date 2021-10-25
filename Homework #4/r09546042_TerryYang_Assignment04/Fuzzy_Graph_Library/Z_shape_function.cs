@@ -48,7 +48,6 @@ namespace Fuzzy_Graph_Library
         #endregion Parameters
         public Z_shape_function(Fuzzy_display_area FDA) : base(FDA)
         {
-
             fuzzy_series.Color = Color.Black;
             fuzzy_series.Name = "Z-sharp_" + String.Format("{0:00}", count_Index++);
             Color = fuzzy_series.Color;
