@@ -14,10 +14,17 @@ namespace Fuzzy_Graph_Library
         {
             this.the_Operator = the_Operator;
             this.the_Fuzzy_Set = the_Fuzzy_Set;
-
+            the_Fuzzy_Set.FFC_Parameter_Changed += Upper_FFC_Parameter_Change;
             Name = the_Operator.Name+"_" + String.Format("{0:00}", count_Index++)+$"({the_Fuzzy_Set.Name})";
         }
-
+        protected void Upper_FFC_Parameter_Change(object sender, EventArgs e)
+        {
+            Name = the_Operator.Name + "_" + String.Format("{0:00}", count_Index++) + $"({the_Fuzzy_Set.Name})";
+            if (fuzzy_series.Name != "")
+            {
+                Generate_Series();
+            }
+        }
         public override double Get_Function_Value(double x)
         {
             // return operator result

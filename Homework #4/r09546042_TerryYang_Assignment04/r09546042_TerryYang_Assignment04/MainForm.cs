@@ -42,7 +42,6 @@ namespace r09546042_TerryYang_Assignment01
             tn.Name = FDA.Name;
             tn.Tag = FDA;
             FDA.Set_Tree_Node(tn);
-
             TV_Display.Nodes.Add(tn);
         }
 

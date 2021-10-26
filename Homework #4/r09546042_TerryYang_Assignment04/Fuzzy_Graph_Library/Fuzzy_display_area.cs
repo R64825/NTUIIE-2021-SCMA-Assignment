@@ -18,7 +18,7 @@ namespace Fuzzy_Graph_Library
         double maximum = 10;
         TreeNode parent_Node;
         ChartArea this_Chart_Area;
-
+        public event EventHandler Parameter_Changed;
         public string Name
         {
             get 
@@ -32,7 +32,9 @@ namespace Fuzzy_Graph_Library
                     name = value;
                     this_Chart_Area.Name = value;
                     this_Chart_Area.AxisX.Title = value;
-                    parent_Node.Text = value;                   
+                    parent_Node.Text = value;
+                    if (Parameter_Changed != null)
+                        Parameter_Changed(this, null);
                 }
                     
             }
@@ -44,7 +46,9 @@ namespace Fuzzy_Graph_Library
             set 
             {
                 if(resolution>=10 && resolution<=10000)
-                 resolution = value;
+                    resolution = value;
+                if (Parameter_Changed != null)
+                    Parameter_Changed(this, null);
             } 
         }
         [Category("Parameters"), Description("Left point of the function")]
@@ -57,6 +61,8 @@ namespace Fuzzy_Graph_Library
                 { 
                     minimum = value;
                     this_Chart_Area.AxisX.Minimum = value;
+                    if (Parameter_Changed != null)
+                        Parameter_Changed(this, null);
                 }
             }
         }
@@ -70,6 +76,8 @@ namespace Fuzzy_Graph_Library
                 { 
                     maximum = value;
                     this_Chart_Area.AxisX.Maximum = value;
+                    if (Parameter_Changed != null)
+                        Parameter_Changed(this, null);
                 }
             }
         }
@@ -86,7 +94,10 @@ namespace Fuzzy_Graph_Library
             this_Chart_Area.AxisX.Minimum = minimum;
 
             CT.ChartAreas.Add(this_Chart_Area);
+            
         }
+
+
 
         public void Set_Tree_Node(TreeNode tn)
         {

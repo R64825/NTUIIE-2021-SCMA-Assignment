@@ -25,7 +25,8 @@ namespace Fuzzy_Graph_Library
         private bool show_series = true;
         private int series_border_width = 2;
         private string name;
-
+        public event EventHandler FFC_Parameter_Changed;
+        //public event EventHandler Parameter_Changed;
         [Category("Identification"),Description("Name of the function")]
         public string Name 
         { 
@@ -42,7 +43,7 @@ namespace Fuzzy_Graph_Library
                         {
                             parent_Node.Text = value;
                         }
-
+                        Parameter_Change();
                     }
                 }
             }
@@ -53,8 +54,9 @@ namespace Fuzzy_Graph_Library
             get => series_color;
             set
             {
-                    series_color = value;
-                    fuzzy_series.Color = value;
+                series_color = value;
+                fuzzy_series.Color = value;
+                Parameter_Change();
             }
         }
         [Category("Series"), Description("Border width of the series")]
@@ -67,6 +69,7 @@ namespace Fuzzy_Graph_Library
                 {
                     series_border_width = value;
                     fuzzy_series.BorderWidth = value;
+                    Parameter_Change();
                 }              
             }
         }
@@ -79,26 +82,13 @@ namespace Fuzzy_Graph_Library
             {
                 show_series = value;
                 fuzzy_series.Enabled = value;
+                Parameter_Change();
             } 
         }
 
         [Browsable(false)]
         public Fuzzy_display_area Fda { get => fda; set => fda = value; }
         
-
-        //protected Fuzzy_display_area FDA 
-        //{ get => fDA;
-        //    set
-        //    {
-        //        if (fDA != null)
-        //        {
-        //            Plot_Graph();
-        //            Generate_Series();
-        //        }
-        //        fDA = value;
-        //    }
-        //}
-
         #endregion
 
         #region Constructor
@@ -111,7 +101,7 @@ namespace Fuzzy_Graph_Library
             maximum = FDA.Maximum;
             minimum = FDA.Minimum;
             resolution = FDA.Resolution;
-            //fuzzy_series.Color = series_color;
+            FDA.Parameter_Changed += FDA_Parameter_Change;           
         }
 
         #endregion
@@ -124,6 +114,15 @@ namespace Fuzzy_Graph_Library
             return fuzzy_series;
         }
 
+        protected void FDA_Parameter_Change(object sender, EventArgs e)
+        {
+            if (fuzzy_series.Name != "")
+            {
+                Generate_Series();
+            }
+        }
+
+
         public string[] Return_Parameters_Names()
         {
             return parameter_Names;
@@ -133,19 +132,23 @@ namespace Fuzzy_Graph_Library
             parent_Node = tn;
         }
 
-        protected void Parameter_Change()
+        protected virtual void Parameter_Change()
         {
             if (fuzzy_series!=null)
             {
                 //Plot_Graph().ChartArea = FDA.Get_Chart_Area().ToString();
+                Generate_Series();
                 Plot_Graph();
             }
+            if (FFC_Parameter_Changed != null)
+                FFC_Parameter_Changed(this, null);
         }
         public virtual void Generate_Series()
         {
             fuzzy_series.Points.Clear();
             double Min = fda.Minimum;
             double Max = fda.Maximum;
+            double resolution = fda.Resolution;
             double Interval = (Max - Min) / resolution;
             for (double i = Min; i < Max + 1; i = i + Interval)
             {
