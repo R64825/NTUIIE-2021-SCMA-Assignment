@@ -121,6 +121,15 @@
   <data name="Bell_function" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Bell_function.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Binary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Binary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Chart_Area" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Chart_Area.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Fuzzy_Set" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fuzzy_Set.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Gaussian_function" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Gaussian_function.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -135,5 +144,8 @@
   </data>
   <data name="Triangular_function" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Triangular_function.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Unary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

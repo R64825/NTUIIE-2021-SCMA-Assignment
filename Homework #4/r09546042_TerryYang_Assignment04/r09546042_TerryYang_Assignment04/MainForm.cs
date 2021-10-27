@@ -12,9 +12,8 @@ namespace r09546042_TerryYang_Assignment01
 {
     public partial class MainForm : Form
     {
-        Fuzzy_functions_collections fs1;
-        Fuzzy_functions_collections fs2;
 
+        
         public MainForm()
         {
             InitializeComponent();
@@ -27,11 +26,23 @@ namespace r09546042_TerryYang_Assignment01
 
             toolTip1.SetToolTip(TV_Display, "Press enter to delete");
             toolTip1.SetToolTip(BTN_add_area, "Add chartarea");
+            toolTip1.SetToolTip(BTN_delete, "Delete chartarea");
             toolTip1.SetToolTip(BTN_add_Pri_function, "Add primary fuzzy set");
             toolTip1.SetToolTip(BTN_add_Unary_function, "Add Unary operated fuzzy set");
             toolTip1.SetToolTip(BTN_add_Binary_function, "Add Binary operated fuzzy set");
+            toolTip1.SetToolTip(BTN_assign_fs_01, "Select current fuzzy set");
+            toolTip1.SetToolTip(BTN_assign_fs_02, "Select current fuzzy set");
+            toolTip1.SetToolTip(BTN_cancel_selection, "Cancel Selection");
+            toolTip1.SetToolTip(PPGV_parameters, "Selection Property");
             toolTip1.ToolTipIcon = ToolTipIcon.Info;
             toolTip1.ToolTipTitle = "提示訊息";
+
+            ImageList ImageList_for_TV = new ImageList();
+            ImageList_for_TV.Images.Add("CA", r09546042_TerryYang_Assignment04.Properties.Resources.Chart_Area);
+            ImageList_for_TV.Images.Add("FS", r09546042_TerryYang_Assignment04.Properties.Resources.Fuzzy_Set);
+            ImageList_for_TV.Images.Add("UN", r09546042_TerryYang_Assignment04.Properties.Resources.Unary);
+            ImageList_for_TV.Images.Add("BN", r09546042_TerryYang_Assignment04.Properties.Resources.Binary);
+            TV_Display.ImageList = ImageList_for_TV;
         }      
 
         private void BTN_add_area_Click(object sender, EventArgs e)
@@ -39,6 +50,10 @@ namespace r09546042_TerryYang_Assignment01
             // add new FDA to tree view, and chart area to main chart
             Fuzzy_display_area FDA = new Fuzzy_display_area(Main_Chart);
             TreeNode tn = new TreeNode(FDA.Name);
+
+            tn.ImageKey = "CA";
+            tn.SelectedImageKey = "CA";
+
             tn.Name = FDA.Name;
             tn.Tag = FDA;
             FDA.Set_Tree_Node(tn);
@@ -121,6 +136,8 @@ namespace r09546042_TerryYang_Assignment01
             if (FDA == null)
                 return;
             TreeNode TN = new TreeNode();
+            TN.ImageKey = "FS";
+            TN.SelectedImageKey = "FS";
             Fuzzy_functions_collections FFC = new Fuzzy_functions_collections(FDA);
             string Graph_Type = CB_fuzzy_type.Text;
             switch (Graph_Type)
@@ -179,8 +196,8 @@ namespace r09546042_TerryYang_Assignment01
             Fuzzy_functions_collections fs = TV_Display.SelectedNode.Tag as Fuzzy_functions_collections;
             if (fs == null)
                 return;
-            TreeNode TN = new TreeNode();
-            Unary_Operaor uo = new Unary_Operaor() ;
+
+            Unary_Opertor uo = new Unary_Opertor() ;
             string Unary_type = CB_Unary_type.Text;
             switch (Unary_type)
             {
@@ -200,19 +217,29 @@ namespace r09546042_TerryYang_Assignment01
                 case "Intensification":
                     uo = new Intensification_Operator();
                     break;
+                case "Value Cut":
+                    uo = new ValueCut_Operator();
+                    break;
+                case "Value Scale":
+                    uo = new ValueScale_Operator();
+                    break;
                 default:
                     //New_series = null;
                     break;
             }
             Unary_Operated_fuzzy_set uofs = new Unary_Operated_fuzzy_set(uo, fs);
             uofs.Generate_Series();
+            if (Main_Chart.Series.FindByName(uofs.Plot_Graph().Name)!=null)
+                Main_Chart.Series.Remove(Main_Chart.Series.FindByName((uofs.Plot_Graph().Name)));
             Main_Chart.Series.Add(uofs.Plot_Graph());
             //negated_fs.Plot_Graph();
-            TreeNode tn = new TreeNode(uofs.Name);
-            tn.Name = uofs.Name;
-            tn.Tag = uofs;
-            uofs.Set_Tree_Node(tn);
-            fs.Fda.Parent_Node.Nodes.Add(tn);
+            TreeNode TN = new TreeNode(uofs.Name);
+            TN.ImageKey = "UN";
+            TN.SelectedImageKey = "UN";
+            TN.Name = uofs.Name;
+            TN.Tag = uofs;
+            uofs.Set_Tree_Node(TN);
+            fs.Fda.Parent_Node.Nodes.Add(TN);
 
             fs.Fda.Get_Chart_Area().RecalculateAxesScale();
             fs.Fda.Get_Chart_Area().AxisX.LabelStyle.Format = "{n2}";
@@ -245,9 +272,17 @@ namespace r09546042_TerryYang_Assignment01
 
         private void BTN_add_Binary_function_Click(object sender, EventArgs e)
         {
+
+            Fuzzy_functions_collections fs1 = BTN_assign_fs_01.Tag as Fuzzy_functions_collections;
+            Fuzzy_functions_collections fs2 = BTN_assign_fs_02.Tag as Fuzzy_functions_collections;
+
+            if (fs1.Fda!=fs2.Fda)
+            {
+                MessageBox.Show("Please selecte 2 fuzzy sets that in the same chart area!");
+                return;
+            }
             if (fs1 == null || fs2 == null)
                 return;
-            //Fuzzy_display_area FDA = TV_Display.SelectedNode.Tag as Fuzzy_display_area;
             TreeNode TN = new TreeNode();
             Binary_Operaor bo = new Binary_Operaor();
             string Binary_type = CB_Binary_type.Text;
@@ -264,16 +299,47 @@ namespace r09546042_TerryYang_Assignment01
                 case "Subtraction":
                     bo = new Subtraction_Operator();
                     break;
+                case "Bounded Sum":
+                    bo = new BoundedSum_Operator();
+                    break;
+                case "Logical Sum":
+                    bo = new LogicalSum_Operator();
+                    break;
+                case "Algebraic Sum":
+                    bo = new AlgebraicSum_Operator();
+                    break;
+                case "Drastic Sum":
+                    bo = new DrasticSum_Operator();
+                    break;
+                case "Bounded Product":
+                    bo = new BoundedProduct_Operator();
+                    break;
+                case "Logical Product":
+                    bo = new LogicalProduct_Operator();
+                    break;
+                case "Algebraic Product":
+                    bo = new AlgebraicProduct_Operator();
+                    break;
+                case "Drastic Product":
+                    bo = new DrasticProduct_Operator();
+                    break;
+                case "Hamacher TNorm":
+                    bo = new HamacherTNorm();
+                    break;
+                case "Hamacher SNorm":
+                    bo = new HamacherSNorm();
+                    break;
                 default:
-                    
                     //New_series = null;
                     break;
             }
-            Binary_Operated_fuzzy_set bofs = new Binary_Operated_fuzzy_set(bo, fs1,fs2);
+            Binary_Operated_fuzzy_set bofs = new Binary_Operated_fuzzy_set(bo, fs1, fs2);
             bofs.Generate_Series();
             Main_Chart.Series.Add(bofs.Plot_Graph());
             //negated_fs.Plot_Graph();
             TreeNode tn = new TreeNode(bofs.Name);
+            tn.ImageKey = "BN";
+            tn.SelectedImageKey = "BN";
             tn.Name = bofs.Name;
             tn.Tag = bofs;
             bofs.Set_Tree_Node(tn);
@@ -283,25 +349,44 @@ namespace r09546042_TerryYang_Assignment01
             fs1.Fda.Get_Chart_Area().AxisX.LabelStyle.Format = "{n2}";
             Main_Chart.Update();
 
-            BTN_assign_fs_01.Text = "Series_01";
-            BTN_assign_fs_02.Text = "Series_02";
-            BTN_assign_fs_01.Enabled = true;
-            BTN_add_Binary_function.Enabled = false;
+            //BTN_assign_fs_01.Text = "Series_01";
+            //BTN_assign_fs_02.Text = "Series_02";
+            //BTN_assign_fs_01.Enabled = true;
+            //BTN_assign_fs_02.Enabled = true;
+            //BTN_add_Binary_function.Enabled = false;
         }
 
         private void BTN_assign_fs_01_Click(object sender, EventArgs e)
         {
-            fs1 = TV_Display.SelectedNode.Tag as Fuzzy_functions_collections;
-            BTN_assign_fs_01.Text = fs1.Name;
+            TreeNode selected_node = TV_Display.SelectedNode;
+            BTN_assign_fs_01.Tag = selected_node.Tag as Fuzzy_functions_collections;
+            BTN_assign_fs_01.Text = selected_node.Text;
             BTN_assign_fs_01.Enabled = false;
-        }
 
+            if (BTN_assign_fs_01.Tag != null && BTN_assign_fs_02.Tag != null)
+                BTN_add_Binary_function.Enabled = true;
+        }
         private void BTN_assign_fs_02_Click(object sender, EventArgs e)
         {
-            fs2 = TV_Display.SelectedNode.Tag as Fuzzy_functions_collections;
-            BTN_assign_fs_02.Text = fs2.Name;
+            TreeNode selected_node = TV_Display.SelectedNode;
+            BTN_assign_fs_02.Tag = selected_node.Tag as Fuzzy_functions_collections;
+            BTN_assign_fs_02.Text = selected_node.Text;
             BTN_assign_fs_02.Enabled = false;
-            BTN_add_Binary_function.Enabled = true;
+
+            if (BTN_assign_fs_01.Tag != null && BTN_assign_fs_02.Tag != null)
+                BTN_add_Binary_function.Enabled = true;
+        }
+        private void BTN_cancel_selection_Click(object sender, EventArgs e)
+        {
+            BTN_assign_fs_01.Tag = null;
+            BTN_assign_fs_02.Tag = null;
+            BTN_assign_fs_01.Enabled = true;
+            BTN_assign_fs_02.Enabled = true;
+
+            BTN_assign_fs_01.Text = "Series_01";
+            BTN_assign_fs_02.Text = "Series_02";
+
+            BTN_add_Binary_function.Enabled = false;
         }
 
         private void BTN_delete_Click(object sender, EventArgs e)
@@ -323,5 +408,7 @@ namespace r09546042_TerryYang_Assignment01
                 GB_UO.Enabled = false;
             }
         }
+
+
     }
 }

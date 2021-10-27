@@ -44,28 +44,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlgebraicProduct_Operator.cs" />
+    <Compile Include="AlgebraicSum_Operator.cs" />
     <Compile Include="Bell_function.cs" />
     <Compile Include="BInary_Operaor.cs" />
     <Compile Include="Binary_Operated_fuzzy_set.cs" />
+    <Compile Include="BoundedProduct_Operator.cs" />
+    <Compile Include="BoundedSum_Operator.cs" />
     <Compile Include="Concentration_Operator.cs" />
     <Compile Include="Dilation_Operator.cs" />
+    <Compile Include="Diminish_Operator.cs" />
+    <Compile Include="DrasticProduct_Operator.cs" />
+    <Compile Include="DrasticSum_Operator.cs" />
     <Compile Include="Extremely_Operator.cs" />
     <Compile Include="Fuzzy_display_area.cs" />
     <Compile Include="Fuzzy_functions_collections.cs" />
     <Compile Include="Gaussian_function.cs" />
+    <Compile Include="HamacherSNorm.cs" />
+    <Compile Include="HamacherTNorm.cs" />
     <Compile Include="Intensification.cs" />
     <Compile Include="Intersection.cs" />
     <Compile Include="Intersection_Operator.cs" />
     <Compile Include="LeftRight_function.cs" />
+    <Compile Include="LogicalProduct_Operator.cs" />
+    <Compile Include="LogicalSum_Operator.cs" />
     <Compile Include="Negate_Operator.cs" />
     <Compile Include="Sigmoidal_function.cs" />
     <Compile Include="Subtraction_Operator.cs" />
     <Compile Include="S_shape_function.cs" />
     <Compile Include="Triangular_function.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Unary_Operaor.cs" />
+    <Compile Include="Unary_Opertor.cs" />
     <Compile Include="Unary_Operated_fuzzy_set.cs" />
     <Compile Include="Union_Operator.cs" />
+    <Compile Include="ValueCut_Operator.cs" />
+    <Compile Include="ValueScale_Operator.cs" />
     <Compile Include="Z_shape_function.cs" />
   </ItemGroup>
   <ItemGroup>

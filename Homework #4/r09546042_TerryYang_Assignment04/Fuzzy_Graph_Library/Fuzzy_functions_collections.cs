@@ -98,6 +98,7 @@ namespace Fuzzy_Graph_Library
             fuzzy_series = new Series();
             fuzzy_series.ChartType = SeriesChartType.Line;
             fuzzy_series.BorderWidth = 2;
+            fuzzy_series.Legend = fda.Get_Legend().Name;
             maximum = FDA.Maximum;
             minimum = FDA.Minimum;
             resolution = FDA.Resolution;

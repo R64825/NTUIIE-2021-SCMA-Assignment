@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Fuzzy_Graph_Library
 {
-    public class Intensification_Operator : Unary_Operaor
+    public class Intensification_Operator : Unary_Opertor
     {
         public Intensification_Operator()
         {
-            Name = "Very";
+            Name = "Intensification";
         }
         public override double Calculate_Value(double x)
         {

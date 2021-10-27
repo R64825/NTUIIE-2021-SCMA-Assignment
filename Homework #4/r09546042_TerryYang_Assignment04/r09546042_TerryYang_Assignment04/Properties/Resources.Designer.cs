@@ -73,6 +73,36 @@ namespace r09546042_TerryYang_Assignment04.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap Binary {
+            get {
+                object obj = ResourceManager.GetObject("Binary", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Chart_Area {
+            get {
+                object obj = ResourceManager.GetObject("Chart_Area", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Fuzzy_Set {
+            get {
+                object obj = ResourceManager.GetObject("Fuzzy_Set", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap Gaussian_function {
             get {
                 object obj = ResourceManager.GetObject("Gaussian_function", resourceCulture);
@@ -115,6 +145,16 @@ namespace r09546042_TerryYang_Assignment04.Properties {
         internal static System.Drawing.Bitmap Triangular_function {
             get {
                 object obj = ResourceManager.GetObject("Triangular_function", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Unary {
+            get {
+                object obj = ResourceManager.GetObject("Unary", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

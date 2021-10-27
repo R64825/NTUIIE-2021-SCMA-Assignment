@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Fuzzy_Graph_Library
 {
-    public class Dilation_Operator : Unary_Operaor
+    public class Dilation_Operator : Unary_Opertor
     {
         public Dilation_Operator()
         {
-            Name = "Less";
+            Name = "Dilation";
         }
         public override double Calculate_Value(double x)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,8 @@ namespace Fuzzy_Graph_Library
         double maximum = 10;
         TreeNode parent_Node;
         ChartArea this_Chart_Area;
-        public event EventHandler Parameter_Changed;
+        Legend this_Legend;
+        public virtual event EventHandler Parameter_Changed;
         public string Name
         {
             get 
@@ -92,8 +94,17 @@ namespace Fuzzy_Graph_Library
             this_Chart_Area.AxisX.Title = name;
             this_Chart_Area.AxisX.Maximum = maximum;
             this_Chart_Area.AxisX.Minimum = minimum;
-
+            this_Chart_Area.AxisY.Minimum = 0;
+            this_Chart_Area.AxisY.Maximum = 1.2;
             CT.ChartAreas.Add(this_Chart_Area);
+
+            this_Legend = new Legend(name);
+            this_Legend.Docking = Docking.Top;
+            this_Legend.DockedToChartArea=CT.ChartAreas.Last().Name; 
+            this_Legend.Alignment = System.Drawing.StringAlignment.Far;
+            //this_Legend.IsDockedInsideChartArea = false;
+            this_Legend.BackColor = Color.Transparent;
+            CT.Legends.Add(this_Legend);
             
         }
 
@@ -106,6 +117,10 @@ namespace Fuzzy_Graph_Library
         public ChartArea Get_Chart_Area()
         {
             return this_Chart_Area;
+        }
+        public Legend Get_Legend()
+        {
+            return this_Legend;
         }
     }
 }

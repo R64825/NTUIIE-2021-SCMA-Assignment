@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Fuzzy_Graph_Library
 {
-    public class Concentration_Operator : Unary_Operaor
+    public class Concentration_Operator : Unary_Opertor
     {
         public Concentration_Operator()
         {

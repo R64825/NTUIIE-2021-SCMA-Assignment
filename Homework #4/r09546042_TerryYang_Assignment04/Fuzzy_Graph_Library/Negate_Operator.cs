@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Fuzzy_Graph_Library
 {
-    public class Negate_Operator : Unary_Operaor
+    public class Negate_Operator : Unary_Opertor
     {
         public Negate_Operator()
         {

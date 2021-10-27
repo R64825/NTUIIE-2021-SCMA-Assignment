@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Fuzzy_Graph_Library
 {
-    public class Extremely_Operator : Unary_Operaor
+    public class Extremely_Operator : Unary_Opertor
     {
         public Extremely_Operator()
         {
