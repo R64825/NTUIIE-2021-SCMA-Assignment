@@ -15,8 +15,8 @@ namespace Fuzzy_Graph_Library
         public string[] parameter_Names = new string[] { "Mean", "Variance", "resolution" };
         public double[] parameter_Suggestion = new double[] { 0, 5, 100 };
         public double[] parameters;
-        double mean = 0 + 5*(count_Index - 1);
-        double variance = 5;
+        double mean;
+        double variance;
 
         #region Parameters
         [Category("Parameters"), Description("Center of the function")]
@@ -51,8 +51,9 @@ namespace Fuzzy_Graph_Library
             parameters = new double[2];
             parameters[0] = 0;
             parameters[1] = 5;
-
-            fuzzy_series.Color = Color.Red;
+            mean = 0 + rnd.Next(-2, 2);
+            variance = 5 + rnd.Next(0, 3);
+            //fuzzy_series.Color = Color.Red;
             fuzzy_series.Name = "Gaussian_" + String.Format("{0:00}", count_Index++);
             Color = fuzzy_series.Color;
 

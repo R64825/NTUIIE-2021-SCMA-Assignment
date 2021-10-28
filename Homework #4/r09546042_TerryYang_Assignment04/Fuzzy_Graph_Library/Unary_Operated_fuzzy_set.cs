@@ -12,9 +12,9 @@ namespace Fuzzy_Graph_Library
         Fuzzy_functions_collections the_Fuzzy_Set;
         static int count_Index = 1;
         private int the_Index;
-        public virtual event EventHandler Parameter_Changed;
+        //public virtual event EventHandler Parameter_Changed;
         //[Category("Operator")]
-        [CategoryAttribute("SubInfo")]
+        [CategoryAttribute("Opertor Info")]
         [TypeConverter(typeof(ExpandableObjectConverter))]
         public Unary_Opertor The_Operator { get => the_Operator; set => the_Operator = value; }
 

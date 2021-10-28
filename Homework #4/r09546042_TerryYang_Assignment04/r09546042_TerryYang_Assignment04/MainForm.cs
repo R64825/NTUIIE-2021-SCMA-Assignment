@@ -217,6 +217,9 @@ namespace r09546042_TerryYang_Assignment01
                 case "Intensification":
                     uo = new Intensification_Operator();
                     break;
+                case "Diminish":
+                    uo = new Diminish_Operator();
+                    break;                  
                 case "Value Cut":
                     uo = new ValueCut_Operator();
                     break;
@@ -311,6 +314,9 @@ namespace r09546042_TerryYang_Assignment01
                 case "Drastic Sum":
                     bo = new DrasticSum_Operator();
                     break;
+                case "Einstein Sum":
+                    bo = new EinsteinSum_Operator();
+                    break;
                 case "Bounded Product":
                     bo = new BoundedProduct_Operator();
                     break;
@@ -323,12 +329,18 @@ namespace r09546042_TerryYang_Assignment01
                 case "Drastic Product":
                     bo = new DrasticProduct_Operator();
                     break;
+                case "Einstein Product":
+                    bo = new EinsteinProduct_Operator();
+                    break;
                 case "Hamacher TNorm":
                     bo = new HamacherTNorm();
                     break;
                 case "Hamacher SNorm":
                     bo = new HamacherSNorm();
                     break;
+                case "Dombi TNorm":
+                    bo = new DombiTNorm_Operator();
+                    break;                  
                 default:
                     //New_series = null;
                     break;

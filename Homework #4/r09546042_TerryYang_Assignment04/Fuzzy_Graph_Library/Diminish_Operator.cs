@@ -13,11 +13,15 @@ namespace Fuzzy_Graph_Library
         }
         public override double Calculate_Value(double x)
         {
-            // return Concentration operator
+            double p;
             if (0 <= x && x <= 0.5)
-                return 1 - 2 * (Math.Pow((1 - x), 2));
+            {
+                return Math.Pow(x*0.5,0.5);
+            }
             else
-                return 2 * (Math.Pow(x, 2));
+            {              
+                return 1-Math.Pow((1-x)/2,0.5);
+            }               
         }
     }
 }

@@ -10,12 +10,18 @@ namespace Fuzzy_Graph_Library
         double[] parameters;
         public event EventHandler Parameter_Changed;
         private string name;
-        public string Name 
+        public string Name
         { get => name;
-          set => name = value; 
+            set => name = value;
         }
 
-        public virtual double Calculate_Value(double x)
+        protected void Send_Parameter_Changed_Event()
+        {
+            if (Parameter_Changed!= null)
+                Parameter_Changed(this, null);
+            
+        }
+    public virtual double Calculate_Value(double x)
         {
             throw new Exception();
         }

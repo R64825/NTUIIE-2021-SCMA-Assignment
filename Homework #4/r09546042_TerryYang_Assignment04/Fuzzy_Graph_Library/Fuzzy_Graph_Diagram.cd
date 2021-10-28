@@ -52,7 +52,7 @@
   <Class Name="Fuzzy_Graph_Library.Unary_Opertor">
     <Position X="17.75" Y="1" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIAAAAAAAAAAAAAQAEAAEAAAAAAAAAACAAAA=</HashCode>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAQAEAAEAAAIAAAAAACAAAA=</HashCode>
       <FileName>Unary_Opertor.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -64,7 +64,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Fuzzy_Graph_Library.Unary_Operated_fuzzy_set">
-    <Position X="9.75" Y="3.75" Width="2.25" />
+    <Position X="9.75" Y="4" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAAAAAAgAAAkAAAAAAAQAACAAAAQAA=</HashCode>
       <FileName>Unary_Operated_fuzzy_set.cs</FileName>
@@ -92,9 +92,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Fuzzy_Graph_Library.Binary_Operaor">
-    <Position X="26" Y="1.5" Width="2.5" />
+    <Position X="26" Y="1" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIAAAAAAAAAAAAAQAAAAEAAAAAAAAAACAAAA=</HashCode>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAQAEAAEAAAIAAAAAACAAAA=</HashCode>
       <FileName>BInary_Operaor.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -122,7 +122,7 @@
   <Class Name="Fuzzy_Graph_Library.Binary_Operated_fuzzy_set">
     <Position X="9.75" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAMAAAAAAAAAAgAAAEAAAAAAAQAACAAAAQAA=</HashCode>
+      <HashCode>AAAAAEAAAMAAAAAAAAAAgAAAEAAAAAAAQAACAAAAQAA=</HashCode>
       <FileName>Binary_Operated_fuzzy_set.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -236,6 +236,34 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Diminish_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.DombiTNorm_Operator">
+    <Position X="26.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAABgAAAAAAAAAA=</HashCode>
+      <FileName>DombiTNorm_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.DombiSNorm_Operator">
+    <Position X="26.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DombiSNorm_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.EinsteinProduct_Operator">
+    <Position X="31.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EinsteinProduct_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.EinsteinSum_Operator">
+    <Position X="31.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EinsteinSum_Operator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft JhengHei UI" Size="9" />

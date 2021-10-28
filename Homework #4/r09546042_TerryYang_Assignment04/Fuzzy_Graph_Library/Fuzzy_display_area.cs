@@ -83,7 +83,7 @@ namespace Fuzzy_Graph_Library
                 }
             }
         }
-
+        [Browsable(false)]
         public TreeNode Parent_Node { get => parent_Node; set => parent_Node = value; }
 
         public Fuzzy_display_area(Chart CT)

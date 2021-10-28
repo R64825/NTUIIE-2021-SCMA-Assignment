@@ -18,7 +18,12 @@ namespace Fuzzy_Graph_Library
             get => cut_Value;
             set 
             {
-                cut_Value = value;
+                if (value>=0 && value<=1)
+                {
+                    cut_Value = value;
+                    Send_Parameter_Changed_Event();
+                }
+
             }
         }
 

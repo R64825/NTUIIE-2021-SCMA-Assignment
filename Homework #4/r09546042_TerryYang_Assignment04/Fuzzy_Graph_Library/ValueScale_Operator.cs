@@ -18,13 +18,17 @@ namespace Fuzzy_Graph_Library
             get => scale_Value;
             set
             {
-                scale_Value = value;
+                if (scale_Value >0)
+                {
+                    scale_Value = value;
+                    Send_Parameter_Changed_Event();
+                }
             }
         }
 
         public override double Calculate_Value(double x)
         {
-            return Math.Pow( x,scale_Value);
+            return Math.Pow(x,1.0/scale_Value);
         }
     }
 }

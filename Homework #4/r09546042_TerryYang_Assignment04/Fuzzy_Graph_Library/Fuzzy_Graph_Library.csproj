@@ -54,8 +54,12 @@
     <Compile Include="Concentration_Operator.cs" />
     <Compile Include="Dilation_Operator.cs" />
     <Compile Include="Diminish_Operator.cs" />
+    <Compile Include="DombiSNorm_Operator.cs" />
+    <Compile Include="DombiTNorm_Operator.cs" />
     <Compile Include="DrasticProduct_Operator.cs" />
     <Compile Include="DrasticSum_Operator.cs" />
+    <Compile Include="EinsteinProduct_Operator.cs" />
+    <Compile Include="EinsteinSum_Operator.cs" />
     <Compile Include="Extremely_Operator.cs" />
     <Compile Include="Fuzzy_display_area.cs" />
     <Compile Include="Fuzzy_functions_collections.cs" />

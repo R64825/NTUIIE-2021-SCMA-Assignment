@@ -17,9 +17,9 @@ namespace Fuzzy_Graph_Library
         public double[] parameter_Suggestion = new double[] { -5, 0, 5 };
         double[] parameters;
 
-        double left =-5 + 5 * (count_Index - 1);
-        double center = 0 + 5*(count_Index - 1);
-        double right = 5 + 5 * (count_Index - 1);
+        double left;
+        double center;
+        double right;
 
         #region Parameters
         [Category("Parameters"), Description("Left point of the function")]
@@ -69,11 +69,15 @@ namespace Fuzzy_Graph_Library
         public Triangular_function(Fuzzy_display_area FDA) : base(FDA)
         {
             parameters = new double[3];
-            parameters[0] = left;
-            parameters[1] = center;
-            parameters[2] = right;
-            
-            fuzzy_series.Color = Color.Green;
+            //parameters[0] = left;
+            //parameters[1] = center;
+            //parameters[2] = right;
+
+            left = -5 + rnd.Next(-1,1);
+            center = 0 + rnd.Next(-1, 1);
+            right = 5 + rnd.Next(-1, 1);
+
+            //fuzzy_series.Color = Color.Green;
             fuzzy_series.Name = "Triangular_"+String.Format("{0:00}", count_Index++) ;
             Color = fuzzy_series.Color;
 
@@ -82,24 +86,6 @@ namespace Fuzzy_Graph_Library
             Generate_Series();
         }
 
-        //public void Generate_Series()
-        //{
-        //    double Min = FDA.Minimum;
-        //    double Max = FDA.Maximum;
-        //    double Interval = (Max - Min) / resolution;
-        //    //fuzzy_series.Points.Clear();
-        //    //fuzzy_series.Points.AddXY(FDA.Minimum, 0);
-        //    //fuzzy_series.Points.AddXY(left, 0);
-        //    //fuzzy_series.Points.AddXY(center, 1);
-        //    //fuzzy_series.Points.AddXY(right, 0);
-        //    //fuzzy_series.Points.AddXY(FDA.Maximum, 0);
-
-        //    for (double i = Min; i < Max + 1; i = i + Interval)
-        //    {
-        //        double p = Get_Function_Value(i);
-        //        fuzzy_series.Points.AddXY(i, p);
-        //    }
-        //}
         public override double Get_Function_Value(double x)
         {
             double p;

@@ -362,8 +362,11 @@ namespace r09546042_TerryYang_Assignment01
             "Logical Product",
             "Drastic Sum",
             "Drastic Product",
+            "Einstein Sum",
+            "Einstein Product",
             "Hamacher TNorm",
-            "Hamacher SNorm"});
+            "Hamacher SNorm",
+            "Dombi TNorm"});
             this.CB_Binary_type.Location = new System.Drawing.Point(6, 36);
             this.CB_Binary_type.Name = "CB_Binary_type";
             this.CB_Binary_type.Size = new System.Drawing.Size(293, 22);
@@ -421,6 +424,7 @@ namespace r09546042_TerryYang_Assignment01
             "Extremely",
             "More_or_less",
             "Intensification",
+            "Diminish",
             "Value Cut",
             "Value Scale"});
             this.CB_Unary_type.Location = new System.Drawing.Point(6, 36);

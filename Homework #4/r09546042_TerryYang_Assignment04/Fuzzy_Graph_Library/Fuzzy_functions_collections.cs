@@ -14,8 +14,9 @@ namespace Fuzzy_Graph_Library
     {
         #region Data Fields
         protected string[] parameter_Names;
-        protected double[] parameter;
+        protected double[] parameter;       
         private Fuzzy_display_area fda;
+        protected Random rnd = new Random();
         protected TreeNode parent_Node;
         protected Color series_color;
         protected Series fuzzy_series;
@@ -51,7 +52,7 @@ namespace Fuzzy_Graph_Library
         [Category("Series"), Description("Color of the series")]
         public Color Color 
         { 
-            get => series_color;
+            get => fuzzy_series.Color;
             set
             {
                 series_color = value;

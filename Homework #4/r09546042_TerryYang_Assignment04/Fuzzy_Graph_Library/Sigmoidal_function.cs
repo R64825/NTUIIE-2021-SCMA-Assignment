@@ -15,8 +15,8 @@ namespace Fuzzy_Graph_Library
         public string[] parameter_Names = new string[] { "Sharpness", "Center", "resolution" };
         public double[] parameter_Suggestion = new double[] { 1, 0, 100 };
 
-        double sharpness = 1;
-        double center = 0+ 5 * (count_Index-1);
+        double sharpness;
+        double center;
         #region Parameters
         [Category("Parameters"), Description("Center point of the function")]
         public double Center
@@ -44,7 +44,9 @@ namespace Fuzzy_Graph_Library
 
         public Sigmoidal_function(Fuzzy_display_area FDA) : base(FDA)
         {
-            fuzzy_series.Color = Color.Magenta;
+             sharpness =1+rnd.Next(0,3);
+             center = 0 + rnd.Next(-5, 5); 
+            //fuzzy_series.Color = Color.Magenta;
             fuzzy_series.Name = "Sigmoidal_" + String.Format("{0:00}", count_Index++);
             Color = fuzzy_series.Color;
 

@@ -16,9 +16,9 @@ namespace Fuzzy_Graph_Library
         public double[] parameter_Suggestion = new double[] { 2,1, 0, 100 };
         double[] parameters;
 
-        double variation = 2;
-        double flatness = 1;
-        double center = 0 + 5 * (count_Index - 1);
+        double variation;
+        double flatness;
+        double center;
         #region Parameters
         [Category("Parameters"), Description("Center of the function")]
         public double Center
@@ -62,37 +62,16 @@ namespace Fuzzy_Graph_Library
         #endregion Parameters
         public Bell_function(Fuzzy_display_area FDA) : base(FDA)
         {
-
-            fuzzy_series.Color = Color.Blue;
+            variation = 2 + rnd.Next(0, 5); 
+            flatness = 1 + rnd.Next(0, 5); 
+            center = 0 + rnd.Next(-2, 2); 
+            //fuzzy_series.Color = Color.Blue;
             fuzzy_series.Name = "Bell_" + String.Format("{0:00}", count_Index++);
             //fuzzy_series.Name = $"Bell_Series_{count_Index++}";
             Color = fuzzy_series.Color;
             this.Name = fuzzy_series.Name;
             Generate_Series();
-        }
-        //public void Generate_Series(double resolution)
-        //{
-        //    fuzzy_series.Points.Clear();
-        //    double Front_point = center;
-        //    double Back_point = center;
-
-        //    do
-        //    {
-        //        Front_point--;
-        //    } while (Get_Function_Value(Front_point) >= 0.01);
-
-        //    do
-        //    {
-        //        Back_point++;
-        //    } while (Get_Function_Value(Back_point) >= 0.01);
-
-        //    for (double i = 0; i < resolution + 1; i++)
-        //    {
-        //        double x = Front_point + i * ((Back_point - Front_point) / resolution);
-        //        double p = Get_Function_Value(x);
-        //        fuzzy_series.Points.AddXY(x, p);
-        //    }
-        //}
+        }       
         public override double Get_Function_Value(double x)
         {
             double p;

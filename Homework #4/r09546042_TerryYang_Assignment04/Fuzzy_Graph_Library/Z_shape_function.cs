@@ -14,8 +14,8 @@ namespace Fuzzy_Graph_Library
         public double[] parameter_Suggestion = new double[] { 2, 1, 0, 100 };
         double[] parameters;
 
-        double l = 2;
-        double r = 1;
+        double l;
+        double r;
 
         #region Parameters
         [Category("Parameters"), Description("Center of the function")]
@@ -48,7 +48,9 @@ namespace Fuzzy_Graph_Library
         #endregion Parameters
         public Z_shape_function(Fuzzy_display_area FDA) : base(FDA)
         {
-            fuzzy_series.Color = Color.Black;
+            l = 2 + rnd.Next(-1, 5);
+            r = 1 + rnd.Next(0, 5);
+            //fuzzy_series.Color = Color.Black;
             fuzzy_series.Name = "Z-sharp_" + String.Format("{0:00}", count_Index++);
             Color = fuzzy_series.Color;
             this.Name = fuzzy_series.Name;
