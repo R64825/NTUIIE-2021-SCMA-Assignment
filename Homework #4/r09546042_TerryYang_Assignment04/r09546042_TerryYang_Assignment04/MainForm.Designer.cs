@@ -230,9 +230,9 @@ namespace r09546042_TerryYang_Assignment01
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PPGV_parameters.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PPGV_parameters.Location = new System.Drawing.Point(0, 39);
+            this.PPGV_parameters.Location = new System.Drawing.Point(0, 64);
             this.PPGV_parameters.Name = "PPGV_parameters";
-            this.PPGV_parameters.Size = new System.Drawing.Size(227, 396);
+            this.PPGV_parameters.Size = new System.Drawing.Size(227, 371);
             this.PPGV_parameters.TabIndex = 0;
             this.PPGV_parameters.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.PPGV_parameters_PropertyValueChanged);
             // 
@@ -240,11 +240,11 @@ namespace r09546042_TerryYang_Assignment01
             // 
             this.LB_indecator.BackColor = System.Drawing.Color.DimGray;
             this.LB_indecator.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LB_indecator.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LB_indecator.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LB_indecator.ForeColor = System.Drawing.Color.White;
             this.LB_indecator.Location = new System.Drawing.Point(0, 0);
             this.LB_indecator.Name = "LB_indecator";
-            this.LB_indecator.Size = new System.Drawing.Size(227, 35);
+            this.LB_indecator.Size = new System.Drawing.Size(227, 61);
             this.LB_indecator.TabIndex = 0;
             this.LB_indecator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
