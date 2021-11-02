@@ -92,6 +92,7 @@ namespace Fuzzy_Graph_Library
             this_Chart_Area = new ChartArea(name);
             this_Chart_Area.AxisX.Enabled = AxisEnabled.True;
             this_Chart_Area.AxisX.Title = name;
+            this_Chart_Area.AxisY.Title = "Degree";
             this_Chart_Area.AxisX.Maximum = maximum;
             this_Chart_Area.AxisX.Minimum = minimum;
             this_Chart_Area.AxisY.Minimum = 0;

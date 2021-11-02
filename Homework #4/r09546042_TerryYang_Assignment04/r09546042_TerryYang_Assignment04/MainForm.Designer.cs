@@ -111,7 +111,7 @@ namespace r09546042_TerryYang_Assignment01
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.Main_Chart.Series.Add(series1);
-            this.Main_Chart.Size = new System.Drawing.Size(659, 780);
+            this.Main_Chart.Size = new System.Drawing.Size(659, 910);
             this.Main_Chart.TabIndex = 0;
             this.Main_Chart.Text = "chart1";
             title1.Name = "Fuzzy membership function";
@@ -130,7 +130,7 @@ namespace r09546042_TerryYang_Assignment01
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.Main_Chart);
-            this.splitContainer1.Size = new System.Drawing.Size(1112, 780);
+            this.splitContainer1.Size = new System.Drawing.Size(1112, 910);
             this.splitContainer1.SplitterDistance = 449;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -148,8 +148,9 @@ namespace r09546042_TerryYang_Assignment01
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer2.Size = new System.Drawing.Size(449, 780);
-            this.splitContainer2.SplitterDistance = 481;
+            this.splitContainer2.Size = new System.Drawing.Size(449, 910);
+            this.splitContainer2.SplitterDistance = 561;
+            this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 3;
             // 
             // splitContainer4
@@ -162,8 +163,9 @@ namespace r09546042_TerryYang_Assignment01
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer4.Size = new System.Drawing.Size(449, 481);
-            this.splitContainer4.SplitterDistance = 42;
+            this.splitContainer4.Size = new System.Drawing.Size(449, 561);
+            this.splitContainer4.SplitterDistance = 48;
+            this.splitContainer4.SplitterWidth = 5;
             this.splitContainer4.TabIndex = 30;
             // 
             // splitContainer3
@@ -182,17 +184,17 @@ namespace r09546042_TerryYang_Assignment01
             // 
             this.splitContainer3.Panel2.Controls.Add(this.PPGV_parameters);
             this.splitContainer3.Panel2.Controls.Add(this.LB_indecator);
-            this.splitContainer3.Size = new System.Drawing.Size(449, 435);
+            this.splitContainer3.Size = new System.Drawing.Size(449, 508);
             this.splitContainer3.SplitterDistance = 218;
             this.splitContainer3.TabIndex = 0;
             // 
             // BTN_delete
             // 
             this.BTN_delete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_delete.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_delete.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTN_delete.Location = new System.Drawing.Point(149, 0);
             this.BTN_delete.Name = "BTN_delete";
-            this.BTN_delete.Size = new System.Drawing.Size(66, 35);
+            this.BTN_delete.Size = new System.Drawing.Size(66, 41);
             this.BTN_delete.TabIndex = 1;
             this.BTN_delete.Text = "Delete";
             this.BTN_delete.UseVisualStyleBackColor = true;
@@ -204,9 +206,9 @@ namespace r09546042_TerryYang_Assignment01
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TV_Display.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TV_Display.Location = new System.Drawing.Point(0, 39);
+            this.TV_Display.Location = new System.Drawing.Point(0, 45);
             this.TV_Display.Name = "TV_Display";
-            this.TV_Display.Size = new System.Drawing.Size(218, 396);
+            this.TV_Display.Size = new System.Drawing.Size(218, 462);
             this.TV_Display.TabIndex = 0;
             this.TV_Display.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TV_Display_AfterSelect);
             this.TV_Display.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TV_Display_KeyPress);
@@ -215,10 +217,10 @@ namespace r09546042_TerryYang_Assignment01
             // 
             this.BTN_add_area.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_add_area.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_add_area.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTN_add_area.Location = new System.Drawing.Point(0, 0);
             this.BTN_add_area.Name = "BTN_add_area";
-            this.BTN_add_area.Size = new System.Drawing.Size(143, 35);
+            this.BTN_add_area.Size = new System.Drawing.Size(143, 41);
             this.BTN_add_area.TabIndex = 0;
             this.BTN_add_area.Text = "Add area";
             this.BTN_add_area.UseVisualStyleBackColor = true;
@@ -230,9 +232,9 @@ namespace r09546042_TerryYang_Assignment01
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PPGV_parameters.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PPGV_parameters.Location = new System.Drawing.Point(0, 64);
+            this.PPGV_parameters.Location = new System.Drawing.Point(0, 75);
             this.PPGV_parameters.Name = "PPGV_parameters";
-            this.PPGV_parameters.Size = new System.Drawing.Size(227, 371);
+            this.PPGV_parameters.Size = new System.Drawing.Size(227, 434);
             this.PPGV_parameters.TabIndex = 0;
             this.PPGV_parameters.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.PPGV_parameters_PropertyValueChanged);
             // 
@@ -244,7 +246,7 @@ namespace r09546042_TerryYang_Assignment01
             this.LB_indecator.ForeColor = System.Drawing.Color.White;
             this.LB_indecator.Location = new System.Drawing.Point(0, 0);
             this.LB_indecator.Name = "LB_indecator";
-            this.LB_indecator.Size = new System.Drawing.Size(227, 61);
+            this.LB_indecator.Size = new System.Drawing.Size(227, 71);
             this.LB_indecator.TabIndex = 0;
             this.LB_indecator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -252,11 +254,11 @@ namespace r09546042_TerryYang_Assignment01
             // 
             this.tabControl1.Controls.Add(this.TP_Fuzzy_set);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(449, 295);
+            this.tabControl1.Size = new System.Drawing.Size(449, 344);
             this.tabControl1.TabIndex = 0;
             // 
             // TP_Fuzzy_set
@@ -267,7 +269,7 @@ namespace r09546042_TerryYang_Assignment01
             this.TP_Fuzzy_set.Location = new System.Drawing.Point(4, 23);
             this.TP_Fuzzy_set.Name = "TP_Fuzzy_set";
             this.TP_Fuzzy_set.Padding = new System.Windows.Forms.Padding(3);
-            this.TP_Fuzzy_set.Size = new System.Drawing.Size(441, 268);
+            this.TP_Fuzzy_set.Size = new System.Drawing.Size(441, 317);
             this.TP_Fuzzy_set.TabIndex = 0;
             this.TP_Fuzzy_set.Text = "Fuzzy_set";
             this.TP_Fuzzy_set.UseVisualStyleBackColor = true;
@@ -284,9 +286,9 @@ namespace r09546042_TerryYang_Assignment01
             this.GB_BO.Controls.Add(this.CB_Binary_type);
             this.GB_BO.Controls.Add(this.BTN_add_Binary_function);
             this.GB_BO.Enabled = false;
-            this.GB_BO.Location = new System.Drawing.Point(6, 152);
+            this.GB_BO.Location = new System.Drawing.Point(6, 177);
             this.GB_BO.Name = "GB_BO";
-            this.GB_BO.Size = new System.Drawing.Size(429, 99);
+            this.GB_BO.Size = new System.Drawing.Size(429, 115);
             this.GB_BO.TabIndex = 4;
             this.GB_BO.TabStop = false;
             this.GB_BO.Text = "Binary operator";
@@ -294,9 +296,10 @@ namespace r09546042_TerryYang_Assignment01
             // BTN_cancel_selection
             // 
             this.BTN_cancel_selection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_cancel_selection.Location = new System.Drawing.Point(374, 69);
+            this.BTN_cancel_selection.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_cancel_selection.Location = new System.Drawing.Point(374, 80);
             this.BTN_cancel_selection.Name = "BTN_cancel_selection";
-            this.BTN_cancel_selection.Size = new System.Drawing.Size(49, 23);
+            this.BTN_cancel_selection.Size = new System.Drawing.Size(49, 27);
             this.BTN_cancel_selection.TabIndex = 6;
             this.BTN_cancel_selection.Text = "X";
             this.BTN_cancel_selection.UseVisualStyleBackColor = true;
@@ -305,18 +308,19 @@ namespace r09546042_TerryYang_Assignment01
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 73);
+            this.label4.Location = new System.Drawing.Point(7, 85);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 14);
+            this.label4.Size = new System.Drawing.Size(44, 14);
             this.label4.TabIndex = 5;
             this.label4.Text = "Series:";
             // 
             // BTN_assign_fs_02
             // 
             this.BTN_assign_fs_02.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BTN_assign_fs_02.Location = new System.Drawing.Point(205, 70);
+            this.BTN_assign_fs_02.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_assign_fs_02.Location = new System.Drawing.Point(205, 82);
             this.BTN_assign_fs_02.Name = "BTN_assign_fs_02";
-            this.BTN_assign_fs_02.Size = new System.Drawing.Size(130, 23);
+            this.BTN_assign_fs_02.Size = new System.Drawing.Size(130, 27);
             this.BTN_assign_fs_02.TabIndex = 4;
             this.BTN_assign_fs_02.Text = "Series_02";
             this.BTN_assign_fs_02.UseVisualStyleBackColor = true;
@@ -325,9 +329,10 @@ namespace r09546042_TerryYang_Assignment01
             // BTN_assign_fs_01
             // 
             this.BTN_assign_fs_01.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BTN_assign_fs_01.Location = new System.Drawing.Point(69, 70);
+            this.BTN_assign_fs_01.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_assign_fs_01.Location = new System.Drawing.Point(69, 82);
             this.BTN_assign_fs_01.Name = "BTN_assign_fs_01";
-            this.BTN_assign_fs_01.Size = new System.Drawing.Size(130, 23);
+            this.BTN_assign_fs_01.Size = new System.Drawing.Size(130, 27);
             this.BTN_assign_fs_01.TabIndex = 3;
             this.BTN_assign_fs_01.Text = "Series_01";
             this.BTN_assign_fs_01.UseVisualStyleBackColor = true;
@@ -336,9 +341,9 @@ namespace r09546042_TerryYang_Assignment01
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 18);
+            this.label3.Location = new System.Drawing.Point(7, 21);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(126, 14);
+            this.label3.Size = new System.Drawing.Size(98, 14);
             this.label3.TabIndex = 2;
             this.label3.Text = "Type of operator:";
             // 
@@ -367,7 +372,7 @@ namespace r09546042_TerryYang_Assignment01
             "Hamacher TNorm",
             "Hamacher SNorm",
             "Dombi TNorm"});
-            this.CB_Binary_type.Location = new System.Drawing.Point(6, 36);
+            this.CB_Binary_type.Location = new System.Drawing.Point(6, 42);
             this.CB_Binary_type.Name = "CB_Binary_type";
             this.CB_Binary_type.Size = new System.Drawing.Size(293, 22);
             this.CB_Binary_type.TabIndex = 0;
@@ -377,10 +382,10 @@ namespace r09546042_TerryYang_Assignment01
             // 
             this.BTN_add_Binary_function.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BTN_add_Binary_function.Enabled = false;
-            this.BTN_add_Binary_function.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTN_add_Binary_function.Location = new System.Drawing.Point(305, 32);
+            this.BTN_add_Binary_function.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_add_Binary_function.Location = new System.Drawing.Point(305, 37);
             this.BTN_add_Binary_function.Name = "BTN_add_Binary_function";
-            this.BTN_add_Binary_function.Size = new System.Drawing.Size(118, 29);
+            this.BTN_add_Binary_function.Size = new System.Drawing.Size(118, 34);
             this.BTN_add_Binary_function.TabIndex = 1;
             this.BTN_add_Binary_function.Text = "Binary operate";
             this.BTN_add_Binary_function.UseVisualStyleBackColor = true;
@@ -394,9 +399,9 @@ namespace r09546042_TerryYang_Assignment01
             this.GB_UO.Controls.Add(this.CB_Unary_type);
             this.GB_UO.Controls.Add(this.BTN_add_Unary_function);
             this.GB_UO.Enabled = false;
-            this.GB_UO.Location = new System.Drawing.Point(6, 79);
+            this.GB_UO.Location = new System.Drawing.Point(6, 92);
             this.GB_UO.Name = "GB_UO";
-            this.GB_UO.Size = new System.Drawing.Size(429, 67);
+            this.GB_UO.Size = new System.Drawing.Size(429, 78);
             this.GB_UO.TabIndex = 3;
             this.GB_UO.TabStop = false;
             this.GB_UO.Text = "Unary operator";
@@ -404,9 +409,9 @@ namespace r09546042_TerryYang_Assignment01
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 18);
+            this.label2.Location = new System.Drawing.Point(7, 21);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 14);
+            this.label2.Size = new System.Drawing.Size(98, 14);
             this.label2.TabIndex = 2;
             this.label2.Text = "Type of operator:";
             // 
@@ -427,7 +432,7 @@ namespace r09546042_TerryYang_Assignment01
             "Diminish",
             "Value Cut",
             "Value Scale"});
-            this.CB_Unary_type.Location = new System.Drawing.Point(6, 36);
+            this.CB_Unary_type.Location = new System.Drawing.Point(6, 42);
             this.CB_Unary_type.Name = "CB_Unary_type";
             this.CB_Unary_type.Size = new System.Drawing.Size(293, 22);
             this.CB_Unary_type.TabIndex = 0;
@@ -436,10 +441,10 @@ namespace r09546042_TerryYang_Assignment01
             // BTN_add_Unary_function
             // 
             this.BTN_add_Unary_function.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_add_Unary_function.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTN_add_Unary_function.Location = new System.Drawing.Point(305, 32);
+            this.BTN_add_Unary_function.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_add_Unary_function.Location = new System.Drawing.Point(305, 37);
             this.BTN_add_Unary_function.Name = "BTN_add_Unary_function";
-            this.BTN_add_Unary_function.Size = new System.Drawing.Size(118, 29);
+            this.BTN_add_Unary_function.Size = new System.Drawing.Size(118, 34);
             this.BTN_add_Unary_function.TabIndex = 1;
             this.BTN_add_Unary_function.Text = "Unary operate";
             this.BTN_add_Unary_function.UseVisualStyleBackColor = true;
@@ -453,9 +458,9 @@ namespace r09546042_TerryYang_Assignment01
             this.GB_PFS.Controls.Add(this.CB_fuzzy_type);
             this.GB_PFS.Controls.Add(this.BTN_add_Pri_function);
             this.GB_PFS.Enabled = false;
-            this.GB_PFS.Location = new System.Drawing.Point(6, 6);
+            this.GB_PFS.Location = new System.Drawing.Point(6, 7);
             this.GB_PFS.Name = "GB_PFS";
-            this.GB_PFS.Size = new System.Drawing.Size(429, 67);
+            this.GB_PFS.Size = new System.Drawing.Size(429, 78);
             this.GB_PFS.TabIndex = 2;
             this.GB_PFS.TabStop = false;
             this.GB_PFS.Text = "Primary_fuzzy_set";
@@ -463,9 +468,9 @@ namespace r09546042_TerryYang_Assignment01
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 18);
+            this.label1.Location = new System.Drawing.Point(7, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 14);
+            this.label1.Size = new System.Drawing.Size(97, 14);
             this.label1.TabIndex = 2;
             this.label1.Text = "Type of fuzzy set:";
             // 
@@ -485,7 +490,7 @@ namespace r09546042_TerryYang_Assignment01
             "LeftRight",
             "S-shape",
             "Z-shape"});
-            this.CB_fuzzy_type.Location = new System.Drawing.Point(6, 36);
+            this.CB_fuzzy_type.Location = new System.Drawing.Point(6, 42);
             this.CB_fuzzy_type.Name = "CB_fuzzy_type";
             this.CB_fuzzy_type.Size = new System.Drawing.Size(293, 22);
             this.CB_fuzzy_type.TabIndex = 0;
@@ -494,10 +499,10 @@ namespace r09546042_TerryYang_Assignment01
             // BTN_add_Pri_function
             // 
             this.BTN_add_Pri_function.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_add_Pri_function.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTN_add_Pri_function.Location = new System.Drawing.Point(305, 32);
+            this.BTN_add_Pri_function.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_add_Pri_function.Location = new System.Drawing.Point(305, 37);
             this.BTN_add_Pri_function.Name = "BTN_add_Pri_function";
-            this.BTN_add_Pri_function.Size = new System.Drawing.Size(118, 29);
+            this.BTN_add_Pri_function.Size = new System.Drawing.Size(118, 34);
             this.BTN_add_Pri_function.TabIndex = 1;
             this.BTN_add_Pri_function.Text = "Add fuzzy set";
             this.BTN_add_Pri_function.UseVisualStyleBackColor = true;
@@ -511,13 +516,14 @@ namespace r09546042_TerryYang_Assignment01
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1112, 780);
+            this.ClientSize = new System.Drawing.Size(1112, 910);
             this.Controls.Add(this.splitContainer1);
+            this.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "Fuzzy Graph Plotting";
+            this.Text = "Fuzzy Inference System Modeler and Execution system";
             ((System.ComponentModel.ISupportInitialize)(this.Main_Chart)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

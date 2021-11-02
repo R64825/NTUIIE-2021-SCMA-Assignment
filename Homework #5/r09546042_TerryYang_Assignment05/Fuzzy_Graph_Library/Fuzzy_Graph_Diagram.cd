@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Fuzzy_Graph_Library.Bell_function">
+    <Position X="3.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAgAACAAAAAAAAAAAAAAAAEAEAAAAAABAAAAAQDIQAA=</HashCode>
+      <FileName>Bell_function.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Gaussian_function">
+    <Position X="5.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAEAEAQAAAAEgAAAAIDAQAA=</HashCode>
+      <FileName>Gaussian_function.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.LeftRight_function">
+    <Position X="7.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAABAEAEAQAABAAAAAQAABIQAA=</HashCode>
+      <FileName>LeftRight_function.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Sigmoidal_function">
+    <Position X="9.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAACAAAAAgAAAAAEAEAAAAAAAAAAAAABIQAA=</HashCode>
+      <FileName>Sigmoidal_function.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Triangular_function">
+    <Position X="1" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAEAEAAIAACACACAAADIwAA=</HashCode>
+      <FileName>Triangular_function.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Fuzzy_display_area">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAABAICAAAAIiAAAAAABEiQAEAgkAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Fuzzy_display_area.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Unary_Opertor">
+    <Position X="17.75" Y="1" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAQAEAAEAAAIAAAAAACAAAA=</HashCode>
+      <FileName>Unary_Opertor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Negate_Operator">
+    <Position X="16.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Negate_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Unary_Operated_fuzzy_set">
+    <Position X="9.75" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAACgAAAkAAAAAAAQAACAAAAQAA=</HashCode>
+      <FileName>Unary_Operated_fuzzy_set.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Concentration_Operator">
+    <Position X="18.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concentration_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.S_shape_function">
+    <Position X="11.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAEAAAAAAABAABAATAQQA=</HashCode>
+      <FileName>S_shape_function.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Z_shape_function">
+    <Position X="13.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAEAAAAAAABAABAATAQQA=</HashCode>
+      <FileName>Z_shape_function.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Binary_Operaor">
+    <Position X="26" Y="1" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAQAEAAEAAAIAAAAAACAAAA=</HashCode>
+      <FileName>BInary_Operaor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Intersection_Operator">
+    <Position X="24.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Intersection_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Union_Operator">
+    <Position X="26.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Union_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Subtraction_Operator">
+    <Position X="28.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Subtraction_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Binary_Operated_fuzzy_set">
+    <Position X="9.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAMAAAAAAAAACgAAAEAAAAAAAQAACAAAAQAA=</HashCode>
+      <FileName>Binary_Operated_fuzzy_set.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Extremely_Operator">
+    <Position X="20" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extremely_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Dilation_Operator">
+    <Position X="21.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dilation_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Intensification_Operator">
+    <Position X="14.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Intensification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.ValueCut_Operator">
+    <Position X="20" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValueCut_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.ValueScale_Operator">
+    <Position X="21.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAQAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValueScale_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.AlgebraicSum_Operator">
+    <Position X="24.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AlgebraicSum_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.BoundedSum_Operator">
+    <Position X="26.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BoundedSum_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.LogicalSum_Operator">
+    <Position X="28.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LogicalSum_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.DrasticSum_Operator">
+    <Position X="30" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DrasticSum_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.AlgebraicProduct_Operator">
+    <Position X="24.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AlgebraicProduct_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.BoundedProduct_Operator">
+    <Position X="26.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BoundedProduct_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.LogicalProduct_Operator">
+    <Position X="28.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LogicalProduct_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.DrasticProduct_Operator">
+    <Position X="30" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DrasticProduct_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.HamacherTNorm">
+    <Position X="24.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HamacherTNorm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.HamacherSNorm">
+    <Position X="24.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HamacherSNorm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Diminish_Operator">
+    <Position X="14.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Diminish_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.DombiTNorm_Operator">
+    <Position X="26.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAABgAAAAAAAAAA=</HashCode>
+      <FileName>DombiTNorm_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.DombiSNorm_Operator">
+    <Position X="26.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DombiSNorm_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.EinsteinProduct_Operator">
+    <Position X="31.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EinsteinProduct_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.EinsteinSum_Operator">
+    <Position X="31.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EinsteinSum_Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Mandani_Fuzzy_System">
+    <Position X="2.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mandani_Fuzzy_System.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.Fuzzy_functions_collections">
+    <Position X="6.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>gQkEAIEABAAIkAIAAIEDAqQAAAAEAJCCEAAAgAABQQA=</HashCode>
+      <FileName>Fuzzy_functions_collections.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuzzy_Graph_Library.If_Then_Fuzzy_Rule">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAEIAAAAAAAAAAA=</HashCode>
+      <FileName>If_Then_Fuzzy_Rule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Fuzzy_Graph_Library.Defuzzification">
+    <Position X="4.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAA8AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Defuzzification.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft JhengHei UI" Size="9" />
+</ClassDiagram>
