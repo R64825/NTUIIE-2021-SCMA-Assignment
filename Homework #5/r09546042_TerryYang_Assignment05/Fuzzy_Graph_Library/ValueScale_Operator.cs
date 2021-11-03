@@ -8,8 +8,9 @@ namespace Fuzzy_Graph_Library
     public class ValueScale_Operator : Unary_Opertor
     {
         private double scale_Value = 0.5;
-        public ValueScale_Operator()
+        public ValueScale_Operator(double scale_Value)
         {
+            this.scale_Value = scale_Value;
             Name = "Value Scale";
         }
 
@@ -28,7 +29,7 @@ namespace Fuzzy_Graph_Library
 
         public override double Calculate_Value(double x)
         {
-            return Math.Pow(x,1.0/scale_Value);
+            return x*scale_Value;
         }
     }
 }

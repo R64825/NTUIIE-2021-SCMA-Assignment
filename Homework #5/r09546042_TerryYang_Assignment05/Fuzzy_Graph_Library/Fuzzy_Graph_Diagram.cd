@@ -269,14 +269,14 @@
   <Class Name="Fuzzy_Graph_Library.Fuzzy_functions_collections">
     <Position X="6.25" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>gQkEAIEABAAIkAIAAIEDAqQAAAAEAJCCEAAAgAABQQA=</HashCode>
+      <HashCode>gQkEAIEABAAIkAIEAIUDAqQAAAAEAJCCEAAAgAABQQA=</HashCode>
       <FileName>Fuzzy_functions_collections.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Fuzzy_Graph_Library.If_Then_Fuzzy_Rule">
-    <Position X="2.25" Y="2.5" Width="1.5" />
+    <Position X="12.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAEIAAAAAAAAAAA=</HashCode>
+      <HashCode>AABIAAAAAAAAAAAABAAEAAAAAAAAAAEMAAAAAAAAAAA=</HashCode>
       <FileName>If_Then_Fuzzy_Rule.cs</FileName>
     </TypeIdentifier>
   </Class>

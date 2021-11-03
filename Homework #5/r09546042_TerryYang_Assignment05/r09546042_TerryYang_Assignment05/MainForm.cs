@@ -12,8 +12,7 @@ namespace r09546042_TerryYang_Assignment01
 {
     public partial class MainForm : Form
     {
-
-        
+        DataGridViewColumn last_Column;
         public MainForm()
         {
             InitializeComponent();
@@ -34,15 +33,28 @@ namespace r09546042_TerryYang_Assignment01
             toolTip1.SetToolTip(BTN_assign_fs_02, "Select current fuzzy set");
             toolTip1.SetToolTip(BTN_cancel_selection, "Cancel Selection");
             toolTip1.SetToolTip(PPGV_parameters, "Selection Property");
+            toolTip1.SetToolTip(DGV_Rules, "Setting inference rules");
+            toolTip1.SetToolTip(DGV_Conditions, "Setting inference conditions");
+            toolTip1.SetToolTip(BTN_Inference, "Generate inference area");
+            toolTip1.SetToolTip(BTN_Add_Rules, "Add inference rule");
+            toolTip1.SetToolTip(BTN_Delete_Rules, "Delete inference rule");
             toolTip1.ToolTipIcon = ToolTipIcon.Info;
             toolTip1.ToolTipTitle = "提示訊息";
 
             ImageList ImageList_for_TV = new ImageList();
+            ImageList_for_TV.Images.Add("IN", r09546042_TerryYang_Assignment05.Properties.Resources.input);
+            ImageList_for_TV.Images.Add("OU", r09546042_TerryYang_Assignment05.Properties.Resources.output);
             ImageList_for_TV.Images.Add("CA", r09546042_TerryYang_Assignment05.Properties.Resources.Chart_Area);
             ImageList_for_TV.Images.Add("FS", r09546042_TerryYang_Assignment05.Properties.Resources.Fuzzy_Set);
             ImageList_for_TV.Images.Add("UN", r09546042_TerryYang_Assignment05.Properties.Resources.Unary);
             ImageList_for_TV.Images.Add("BN", r09546042_TerryYang_Assignment05.Properties.Resources.Binary);
             TV_Display.ImageList = ImageList_for_TV;
+
+            TV_Display.Nodes[0].ImageKey = "IN";
+            TV_Display.Nodes[0].SelectedImageKey = "IN";
+
+            TV_Display.Nodes[1].ImageKey = "OU";
+            TV_Display.Nodes[1].SelectedImageKey = "OU";
         }      
 
         private void BTN_add_area_Click(object sender, EventArgs e)
@@ -59,17 +71,48 @@ namespace r09546042_TerryYang_Assignment01
             FDA.Set_Tree_Node(tn);
             TV_Display.SelectedNode.Nodes.Add(tn);
 
-            // data gird view
-                       
-            DGV_Rules.Columns.Add(FDA.Name, FDA.Name);
-            DGV_Rules.Columns[DGV_Rules.Columns.Count - 1].Tag = FDA;
+            // data gird view                      
             if (TV_Display.SelectedNode.Index == 0)
             {
+                // select on input universe
+                DGV_Rules.Columns.Add(FDA.Name, FDA.Name);
+                DGV_Rules.Columns[DGV_Rules.Columns.Count - 1].Tag = FDA;
+
                 DGV_Conditions.Columns.Add(FDA.Name, FDA.Name);
+                DGV_Conditions.Columns[DGV_Conditions.Columns.Count - 1].Tag = FDA;
                 if (DGV_Conditions.RowCount == 0) DGV_Conditions.Rows.Add();
+
+                if(last_Column!=null) last_Column.DisplayIndex = DGV_Rules.ColumnCount - 1;
+            }
+            if (TV_Display.SelectedNode.Index == 1)
+            {
+                // select on output universe
+                DGV_Rules.Columns.Add(FDA.Name, FDA.Name);
+                DGV_Rules.Columns[DGV_Rules.Columns.Count - 1].Tag = FDA;
+                DGV_Rules.Columns[DGV_Rules.Columns.Count - 1].DefaultCellStyle.BackColor = Color.LightGreen;
+
+                last_Column = new DataGridViewColumn();
+                last_Column = DGV_Rules.Columns[DGV_Rules.Columns.Count - 1];
             }
             DGV_Rules.Columns[DGV_Rules.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            //DGV_Conditions.Columns[DGV_Rules.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            GB_Rules.Enabled = true;
+            GB_Conditions.Enabled = true;
+
+            if (TV_Display.SelectedNode.Level == 0)
+            {
+                // select input output universe
+                BTN_add_area.Enabled = true;
+                BTN_delete.Enabled = false;
+                if (TV_Display.SelectedNode.Index == 1 && TV_Display.SelectedNode.Nodes.Count != 0)
+                {
+                    //select output universe
+                    //ban
+                    BTN_add_area.Enabled = false;
+                    BTN_delete.Enabled = false;
+                }
+                //return;
+            }
         }
 
         public ChartArea Get_Chart_Area_by_Xaxis_Title(string title)
@@ -93,16 +136,26 @@ namespace r09546042_TerryYang_Assignment01
             return selected_Series;
         }
 
+        
         private void TV_Display_AfterSelect(object sender, TreeViewEventArgs e)
         {
             Fuzzy_display_area fda = (TV_Display.SelectedNode.Tag as Fuzzy_display_area);
-            //MessageBox.Show(TV_Display.SelectedNode.Level.ToString() );
+            //MessageBox.Show(TV_Display.SelectedNode.Index.ToString());
             if (TV_Display.SelectedNode.Level == 0)
             {
                 // select input output universe
                 BTN_add_area.Enabled = true;
                 BTN_delete.Enabled = false;
-                return;
+
+                
+                if (TV_Display.SelectedNode.Index == 1 && TV_Display.SelectedNode.Nodes.Count!=0)
+                {
+                    //select output universe
+                    //ban
+                    BTN_add_area.Enabled = false;
+                    BTN_delete.Enabled = false;
+                }
+                //return;
             }             
             else if (TV_Display.SelectedNode.Level == 1)
             {
@@ -122,6 +175,7 @@ namespace r09546042_TerryYang_Assignment01
                 BTN_add_area.Enabled = false;
                 BTN_delete.Enabled = true;
             }
+
 
 
             // SNAC Tree view and property gird view
@@ -223,16 +277,15 @@ namespace r09546042_TerryYang_Assignment01
             if (fs == null)
                 return;
             Unary_Operated_fuzzy_set uofs = null;
-            Unary_Opertor uo = new Unary_Opertor() ;
+            Unary_Opertor uo = null;
             string Unary_type = CB_Unary_type.Text;
             switch (Unary_type)
             {
                 case "Negate":
-                    uo = new Negate_Operator();
+                    uofs = !fs;
                     break;
                 case "Very":
                     uofs =  ~ fs;
-                    uo = new Concentration_Operator();
                     break;
                 case "Extremely":
                     uo = new Extremely_Operator();
@@ -248,18 +301,18 @@ namespace r09546042_TerryYang_Assignment01
                     break;                  
                 case "Value Cut":
                     uofs =  0.5-fs;
-                    uo = new ValueCut_Operator(0.5);
                     break;
                 case "Value Scale":
-                    uo = new ValueScale_Operator();
+                    uofs = 0.5*fs;
                     break;
                 default:
                     //New_series = null;
                     break;
             }
-            //Unary_Operated_fuzzy_set uofs = new Unary_Operated_fuzzy_set(uo, fs);
             if (uofs == null)
-                return;
+                uofs = new Unary_Operated_fuzzy_set(uo, fs);
+            //if (uofs == null)
+            //    return;
             uofs.Generate_Series();
             if (Main_Chart.Series.FindByName(uofs.Plot_Graph().Name)!=null)
                 Main_Chart.Series.Remove(Main_Chart.Series.FindByName((uofs.Plot_Graph().Name)));
@@ -309,29 +362,28 @@ namespace r09546042_TerryYang_Assignment01
             if (fs1 == null || fs2 == null)
                 return;
             TreeNode TN = new TreeNode();
-            Binary_Operaor bo = new Binary_Operaor();
+            Binary_Operated_fuzzy_set bofs = null;
+            Binary_Operaor bo = null;
             string Binary_type = CB_Binary_type.Text;
             switch (Binary_type)
             {
                 case "Intersection":
-                    bo = new Intersection_Operator();
+                    bofs = fs1 & fs2;
                     break;
-
                 case "Union":
-                    bo = new Union_Operator();
+                    bofs = fs1 | fs2;
                     break;
-
                 case "Subtraction":
-                    bo = new Subtraction_Operator();
+                    bofs = fs1 / fs2;
                     break;
                 case "Bounded Sum":
-                    bo = new BoundedSum_Operator();
+                    bofs = fs1 ^ fs2; 
                     break;
                 case "Logical Sum":
                     bo = new LogicalSum_Operator();
                     break;
                 case "Algebraic Sum":
-                    bo = new AlgebraicSum_Operator();
+                    bofs = fs1 < fs2;
                     break;
                 case "Drastic Sum":
                     bo = new DrasticSum_Operator();
@@ -340,13 +392,13 @@ namespace r09546042_TerryYang_Assignment01
                     bo = new EinsteinSum_Operator();
                     break;
                 case "Bounded Product":
-                    bo = new BoundedProduct_Operator();
+                    bofs = fs1 % fs2;
                     break;
                 case "Logical Product":
                     bo = new LogicalProduct_Operator();
                     break;
                 case "Algebraic Product":
-                    bo = new AlgebraicProduct_Operator();
+                    bofs = fs1 > fs2;
                     break;
                 case "Drastic Product":
                     bo = new DrasticProduct_Operator();
@@ -361,13 +413,14 @@ namespace r09546042_TerryYang_Assignment01
                     bo = new HamacherSNorm();
                     break;
                 case "Dombi TNorm":
-                    bo = new DombiTNorm_Operator();
+                    bofs = fs1 + fs2;
                     break;                  
                 default:
                     //New_series = null;
                     break;
             }
-            Binary_Operated_fuzzy_set bofs = new Binary_Operated_fuzzy_set(bo, fs1, fs2);
+            if (bofs == null)
+                bofs = new Binary_Operated_fuzzy_set(bo, fs1, fs2);           
             bofs.Generate_Series();
             Main_Chart.Series.Add(bofs.Plot_Graph());
             //negated_fs.Plot_Graph();
@@ -444,16 +497,31 @@ namespace r09546042_TerryYang_Assignment01
             if (seleted_Node != null)
             {
                 TV_Display.Nodes.Remove(seleted_Node);
-                Main_Chart.ChartAreas.Remove(Get_Chart_Area_by_Xaxis_Title(seleted_Node.Text));
-                Main_Chart.Series.Remove(Get_Series_by_name(seleted_Node.Text));
+                if (seleted_Node.Level ==0)
+                {
+                    // area
+                    Main_Chart.ChartAreas.Remove(Get_Chart_Area_by_Xaxis_Title(seleted_Node.Text));
+                    // fuzzy set
+                    Main_Chart.Series.Remove(Get_Series_by_name(seleted_Node.Text));
+
+
+                    // grid view
+                    if (DGV_Rules.Columns[seleted_Node.Text] != null)
+                        DGV_Rules.Columns.Remove(seleted_Node.Text);
+                    if (DGV_Conditions.Columns[seleted_Node.Text]!=null)
+                        DGV_Conditions.Columns.Remove(seleted_Node.Text);
+                }          
             }
 
-            if (TV_Display.Nodes.Count == 0)
+            if (TV_Display.Nodes[0].Nodes.Count==0 || TV_Display.Nodes[1].Nodes.Count == 0)
             {
                 // disable GB
                 GB_PFS.Enabled = false;
                 GB_BO.Enabled = false;
                 GB_UO.Enabled = false;
+
+                //GB_Rules.Enabled = false;
+                //GB_Conditions.Enabled = false;
             }
         }
 
@@ -468,14 +536,69 @@ namespace r09546042_TerryYang_Assignment01
             if (target == null) return;
 
             // check column fda
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
             if (DGV_Rules.Columns[e.ColumnIndex].Tag != target.Fda) return;
-            DGV_Rules.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = target.Name;
+            DGV_Rules.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = target;
         }
 
+        private void DGV_Conditions_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Fuzzy_functions_collections target = TV_Display.SelectedNode.Tag as Fuzzy_functions_collections;
+            if (target == null) return;
+
+            // check column fda
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            if (DGV_Conditions.Columns[e.ColumnIndex].Tag != target.Fda) return;
+            DGV_Conditions.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = target;
+        }
         private void BTN_Inference_Click(object sender, EventArgs e)
         {
-            List<Fuzzy_functions_collections> antecedent = new List<Fuzzy_functions_collections>();
-            If_Then_Fuzzy_Rule a_Rule = new If_Then_Fuzzy_Rule(antecedent, );
+            List<Fuzzy_functions_collections> antecedent;
+            List<Fuzzy_functions_collections> coditions;
+            Fuzzy_functions_collections conclusion_FS = null;
+            int con_index = last_Column.Index;
+
+            for (int i = 0; i < DGV_Rules.RowCount; i++)
+            {
+                // for every row
+                antecedent = new List<Fuzzy_functions_collections>();
+                coditions = new List<Fuzzy_functions_collections>();
+                conclusion_FS = (Fuzzy_functions_collections)DGV_Rules.Rows[i].Cells[con_index].Value;
+                //conclusion_FS = (Fuzzy_functions_collections) DGV_Rules.Rows[i].Cells[DGV_Rules.ColumnCount - 1].Value;
+                //conclusion_FS = (Fuzzy_functions_collections) DGV_Rules[last_Column.DisplayIndex, i].Value;
+                for (int j = 0; j < DGV_Rules.ColumnCount ; j++)
+                {
+                    // read antecedent
+                    antecedent.Add(DGV_Rules.Rows[i].Cells[j].Value as Fuzzy_functions_collections);                   
+                }
+                for (int j = 0; j < DGV_Conditions.ColumnCount; j++)
+                {
+                    // read condition
+                    coditions.Add(DGV_Conditions.Rows[0].Cells[j].Value as Fuzzy_functions_collections);
+                }               
+                antecedent.RemoveAt(con_index);
+                If_Then_Fuzzy_Rule a_Rule = new If_Then_Fuzzy_Rule(antecedent, conclusion_FS);
+                Fuzzy_functions_collections result = a_Rule.Fuzzy_In_Fuzzy_Out_Inferencing(coditions, RDB_Cut.Checked);
+
+                result.Generate_Series();
+                Main_Chart.Series.Add(result.Plot_Graph());
+                //result.Generate_Series();
+                //Series s = result.Plot_Graph();
+                //s.Name = "Inference";
+                //s.ChartType = SeriesChartType.Area;
+                //s.Color = Color.FromArgb(128, Color.Gray);
+                //if (Main_Chart.Series.FindByName(s.Name) != null)
+                //    Main_Chart.Series.Remove(Main_Chart.Series.FindByName(s.Name));
+                //Main_Chart.Series.Add(s);
+            }
+        }
+
+        private void BTN_Delete_Rules_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow item in this.DGV_Rules.SelectedRows)
+            {
+                DGV_Rules.Rows.RemoveAt(item.Index);
+            }
         }
     }
 }

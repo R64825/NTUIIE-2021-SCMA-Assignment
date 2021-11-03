@@ -48,9 +48,6 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TeeChart">
-      <HintPath>..\Used_Dll\TeeChart.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainForm.cs">
@@ -96,6 +93,8 @@
   <ItemGroup>
     <Content Include="a2vi7-uvwwt-001.ico" />
     <Content Include="azreg-t1val-001.ico" />
+    <None Include="Resources\output.png" />
+    <None Include="Resources\input.png" />
     <None Include="Resources\Unary.png" />
     <None Include="Resources\Binary.png" />
     <None Include="Resources\Fuzzy_Set.png" />

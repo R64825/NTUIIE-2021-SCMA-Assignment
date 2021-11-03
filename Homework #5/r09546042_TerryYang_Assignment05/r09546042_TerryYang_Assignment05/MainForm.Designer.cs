@@ -66,14 +66,18 @@ namespace r09546042_TerryYang_Assignment01
             this.CB_fuzzy_type = new System.Windows.Forms.ComboBox();
             this.BTN_add_Pri_function = new System.Windows.Forms.Button();
             this.TB_If_Than_Rules = new System.Windows.Forms.TabPage();
+            this.splitContainer6 = new System.Windows.Forms.SplitContainer();
+            this.GB_Rules = new System.Windows.Forms.GroupBox();
+            this.BTN_Delete_Rules = new System.Windows.Forms.Button();
+            this.BTN_Add_Rules = new System.Windows.Forms.Button();
             this.DGV_Rules = new System.Windows.Forms.DataGridView();
+            this.GB_Conditions = new System.Windows.Forms.GroupBox();
+            this.BTN_Inference = new System.Windows.Forms.Button();
+            this.DGV_Conditions = new System.Windows.Forms.DataGridView();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.BTN_Add_Rules = new System.Windows.Forms.Button();
-            this.splitContainer6 = new System.Windows.Forms.SplitContainer();
-            this.BTN_Delete_Rules = new System.Windows.Forms.Button();
-            this.DGV_Conditions = new System.Windows.Forms.DataGridView();
-            this.BTN_Inference = new System.Windows.Forms.Button();
+            this.RDB_Cut = new System.Windows.Forms.RadioButton();
+            this.RDB_Scale = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.Main_Chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -96,15 +100,17 @@ namespace r09546042_TerryYang_Assignment01
             this.GB_UO.SuspendLayout();
             this.GB_PFS.SuspendLayout();
             this.TB_If_Than_Rules.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_Rules)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
-            this.splitContainer5.Panel1.SuspendLayout();
-            this.splitContainer5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).BeginInit();
             this.splitContainer6.Panel1.SuspendLayout();
             this.splitContainer6.Panel2.SuspendLayout();
             this.splitContainer6.SuspendLayout();
+            this.GB_Rules.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_Rules)).BeginInit();
+            this.GB_Conditions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Conditions)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
+            this.splitContainer5.Panel1.SuspendLayout();
+            this.splitContainer5.SuspendLayout();
             this.SuspendLayout();
             // 
             // Main_Chart
@@ -323,7 +329,7 @@ namespace r09546042_TerryYang_Assignment01
             this.GB_BO.Size = new System.Drawing.Size(523, 115);
             this.GB_BO.TabIndex = 4;
             this.GB_BO.TabStop = false;
-            this.GB_BO.Text = "Binary operator";
+            this.GB_BO.Text = "Add binary operated fuzzy set";
             // 
             // BTN_cancel_selection
             // 
@@ -436,7 +442,7 @@ namespace r09546042_TerryYang_Assignment01
             this.GB_UO.Size = new System.Drawing.Size(523, 78);
             this.GB_UO.TabIndex = 3;
             this.GB_UO.TabStop = false;
-            this.GB_UO.Text = "Unary operator";
+            this.GB_UO.Text = "Add unary operated fuzzy set";
             // 
             // label2
             // 
@@ -495,7 +501,7 @@ namespace r09546042_TerryYang_Assignment01
             this.GB_PFS.Size = new System.Drawing.Size(523, 78);
             this.GB_PFS.TabIndex = 2;
             this.GB_PFS.TabStop = false;
-            this.GB_PFS.Text = "Primary fuzzy set";
+            this.GB_PFS.Text = "Add primary fuzzy set";
             // 
             // label1
             // 
@@ -547,19 +553,116 @@ namespace r09546042_TerryYang_Assignment01
             this.TB_If_Than_Rules.Name = "TB_If_Than_Rules";
             this.TB_If_Than_Rules.Size = new System.Drawing.Size(535, 313);
             this.TB_If_Than_Rules.TabIndex = 1;
-            this.TB_If_Than_Rules.Text = "If than rules";
+            this.TB_If_Than_Rules.Text = "If then rules";
             this.TB_If_Than_Rules.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer6
+            // 
+            this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer6.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer6.Name = "splitContainer6";
+            this.splitContainer6.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer6.Panel1
+            // 
+            this.splitContainer6.Panel1.Controls.Add(this.GB_Rules);
+            this.splitContainer6.Panel1.Controls.Add(this.DGV_Rules);
+            // 
+            // splitContainer6.Panel2
+            // 
+            this.splitContainer6.Panel2.Controls.Add(this.GB_Conditions);
+            this.splitContainer6.Panel2.Controls.Add(this.DGV_Conditions);
+            this.splitContainer6.Size = new System.Drawing.Size(535, 313);
+            this.splitContainer6.SplitterDistance = 162;
+            this.splitContainer6.TabIndex = 0;
+            // 
+            // GB_Rules
+            // 
+            this.GB_Rules.Controls.Add(this.BTN_Delete_Rules);
+            this.GB_Rules.Controls.Add(this.BTN_Add_Rules);
+            this.GB_Rules.Dock = System.Windows.Forms.DockStyle.Top;
+            this.GB_Rules.Enabled = false;
+            this.GB_Rules.Location = new System.Drawing.Point(0, 0);
+            this.GB_Rules.Name = "GB_Rules";
+            this.GB_Rules.Size = new System.Drawing.Size(535, 47);
+            this.GB_Rules.TabIndex = 3;
+            this.GB_Rules.TabStop = false;
+            this.GB_Rules.Text = "Rules:";
+            // 
+            // BTN_Delete_Rules
+            // 
+            this.BTN_Delete_Rules.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Delete_Rules.Location = new System.Drawing.Point(439, 11);
+            this.BTN_Delete_Rules.Name = "BTN_Delete_Rules";
+            this.BTN_Delete_Rules.Size = new System.Drawing.Size(90, 29);
+            this.BTN_Delete_Rules.TabIndex = 2;
+            this.BTN_Delete_Rules.Text = "Delete Rule";
+            this.BTN_Delete_Rules.UseVisualStyleBackColor = true;
+            this.BTN_Delete_Rules.Click += new System.EventHandler(this.BTN_Delete_Rules_Click);
+            // 
+            // BTN_Add_Rules
+            // 
+            this.BTN_Add_Rules.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Add_Rules.Location = new System.Drawing.Point(343, 11);
+            this.BTN_Add_Rules.Name = "BTN_Add_Rules";
+            this.BTN_Add_Rules.Size = new System.Drawing.Size(90, 29);
+            this.BTN_Add_Rules.TabIndex = 1;
+            this.BTN_Add_Rules.Text = "Add Rule";
+            this.BTN_Add_Rules.UseVisualStyleBackColor = true;
+            this.BTN_Add_Rules.Click += new System.EventHandler(this.BTN_Add_Rules_Click);
             // 
             // DGV_Rules
             // 
+            this.DGV_Rules.AllowUserToAddRows = false;
+            this.DGV_Rules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DGV_Rules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGV_Rules.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.DGV_Rules.Location = new System.Drawing.Point(0, 53);
+            this.DGV_Rules.Location = new System.Drawing.Point(0, 46);
             this.DGV_Rules.Name = "DGV_Rules";
             this.DGV_Rules.RowTemplate.Height = 24;
-            this.DGV_Rules.Size = new System.Drawing.Size(535, 125);
+            this.DGV_Rules.Size = new System.Drawing.Size(535, 116);
             this.DGV_Rules.TabIndex = 0;
             this.DGV_Rules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_Rules_CellClick);
+            // 
+            // GB_Conditions
+            // 
+            this.GB_Conditions.Controls.Add(this.RDB_Scale);
+            this.GB_Conditions.Controls.Add(this.RDB_Cut);
+            this.GB_Conditions.Controls.Add(this.BTN_Inference);
+            this.GB_Conditions.Dock = System.Windows.Forms.DockStyle.Top;
+            this.GB_Conditions.Enabled = false;
+            this.GB_Conditions.Location = new System.Drawing.Point(0, 0);
+            this.GB_Conditions.Name = "GB_Conditions";
+            this.GB_Conditions.Size = new System.Drawing.Size(535, 44);
+            this.GB_Conditions.TabIndex = 3;
+            this.GB_Conditions.TabStop = false;
+            this.GB_Conditions.Text = "Conditions:";
+            // 
+            // BTN_Inference
+            // 
+            this.BTN_Inference.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Inference.Location = new System.Drawing.Point(439, 9);
+            this.BTN_Inference.Name = "BTN_Inference";
+            this.BTN_Inference.Size = new System.Drawing.Size(90, 29);
+            this.BTN_Inference.TabIndex = 2;
+            this.BTN_Inference.Text = "Inference";
+            this.BTN_Inference.UseVisualStyleBackColor = true;
+            this.BTN_Inference.Click += new System.EventHandler(this.BTN_Inference_Click);
+            // 
+            // DGV_Conditions
+            // 
+            this.DGV_Conditions.AllowUserToAddRows = false;
+            this.DGV_Conditions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGV_Conditions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV_Conditions.Location = new System.Drawing.Point(0, 53);
+            this.DGV_Conditions.Name = "DGV_Conditions";
+            this.DGV_Conditions.RowTemplate.Height = 24;
+            this.DGV_Conditions.Size = new System.Drawing.Size(535, 103);
+            this.DGV_Conditions.TabIndex = 1;
+            this.DGV_Conditions.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_Conditions_CellClick);
             // 
             // splitContainer5
             // 
@@ -581,67 +684,29 @@ namespace r09546042_TerryYang_Assignment01
             this.toolTip1.InitialDelay = 200;
             this.toolTip1.ReshowDelay = 100;
             // 
-            // BTN_Add_Rules
+            // RDB_Cut
             // 
-            this.BTN_Add_Rules.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_Add_Rules.Location = new System.Drawing.Point(346, 3);
-            this.BTN_Add_Rules.Name = "BTN_Add_Rules";
-            this.BTN_Add_Rules.Size = new System.Drawing.Size(90, 41);
-            this.BTN_Add_Rules.TabIndex = 1;
-            this.BTN_Add_Rules.Text = "Add Rule";
-            this.BTN_Add_Rules.UseVisualStyleBackColor = true;
-            this.BTN_Add_Rules.Click += new System.EventHandler(this.BTN_Add_Rules_Click);
+            this.RDB_Cut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RDB_Cut.AutoSize = true;
+            this.RDB_Cut.Checked = true;
+            this.RDB_Cut.Location = new System.Drawing.Point(391, 14);
+            this.RDB_Cut.Name = "RDB_Cut";
+            this.RDB_Cut.Size = new System.Drawing.Size(42, 18);
+            this.RDB_Cut.TabIndex = 3;
+            this.RDB_Cut.TabStop = true;
+            this.RDB_Cut.Text = "Cut";
+            this.RDB_Cut.UseVisualStyleBackColor = true;
             // 
-            // splitContainer6
+            // RDB_Scale
             // 
-            this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer6.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer6.Name = "splitContainer6";
-            this.splitContainer6.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer6.Panel1
-            // 
-            this.splitContainer6.Panel1.Controls.Add(this.BTN_Delete_Rules);
-            this.splitContainer6.Panel1.Controls.Add(this.DGV_Rules);
-            this.splitContainer6.Panel1.Controls.Add(this.BTN_Add_Rules);
-            // 
-            // splitContainer6.Panel2
-            // 
-            this.splitContainer6.Panel2.Controls.Add(this.BTN_Inference);
-            this.splitContainer6.Panel2.Controls.Add(this.DGV_Conditions);
-            this.splitContainer6.Size = new System.Drawing.Size(535, 313);
-            this.splitContainer6.SplitterDistance = 178;
-            this.splitContainer6.TabIndex = 0;
-            // 
-            // BTN_Delete_Rules
-            // 
-            this.BTN_Delete_Rules.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_Delete_Rules.Location = new System.Drawing.Point(442, 3);
-            this.BTN_Delete_Rules.Name = "BTN_Delete_Rules";
-            this.BTN_Delete_Rules.Size = new System.Drawing.Size(90, 41);
-            this.BTN_Delete_Rules.TabIndex = 2;
-            this.BTN_Delete_Rules.Text = "Delete Rule";
-            this.BTN_Delete_Rules.UseVisualStyleBackColor = true;
-            // 
-            // DGV_Conditions
-            // 
-            this.DGV_Conditions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGV_Conditions.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.DGV_Conditions.Location = new System.Drawing.Point(0, 53);
-            this.DGV_Conditions.Name = "DGV_Conditions";
-            this.DGV_Conditions.RowTemplate.Height = 24;
-            this.DGV_Conditions.Size = new System.Drawing.Size(535, 78);
-            this.DGV_Conditions.TabIndex = 1;
-            // 
-            // BTN_Inference
-            // 
-            this.BTN_Inference.Location = new System.Drawing.Point(442, 3);
-            this.BTN_Inference.Name = "BTN_Inference";
-            this.BTN_Inference.Size = new System.Drawing.Size(90, 44);
-            this.BTN_Inference.TabIndex = 2;
-            this.BTN_Inference.Text = "Inference";
-            this.BTN_Inference.UseVisualStyleBackColor = true;
-            this.BTN_Inference.Click += new System.EventHandler(this.BTN_Inference_Click);
+            this.RDB_Scale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RDB_Scale.AutoSize = true;
+            this.RDB_Scale.Location = new System.Drawing.Point(331, 14);
+            this.RDB_Scale.Name = "RDB_Scale";
+            this.RDB_Scale.Size = new System.Drawing.Size(54, 18);
+            this.RDB_Scale.TabIndex = 4;
+            this.RDB_Scale.Text = "Scale";
+            this.RDB_Scale.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -678,15 +743,18 @@ namespace r09546042_TerryYang_Assignment01
             this.GB_PFS.ResumeLayout(false);
             this.GB_PFS.PerformLayout();
             this.TB_If_Than_Rules.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_Rules)).EndInit();
-            this.splitContainer5.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
-            this.splitContainer5.ResumeLayout(false);
             this.splitContainer6.Panel1.ResumeLayout(false);
             this.splitContainer6.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
             this.splitContainer6.ResumeLayout(false);
+            this.GB_Rules.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_Rules)).EndInit();
+            this.GB_Conditions.ResumeLayout(false);
+            this.GB_Conditions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Conditions)).EndInit();
+            this.splitContainer5.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
+            this.splitContainer5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -730,6 +798,10 @@ namespace r09546042_TerryYang_Assignment01
         private System.Windows.Forms.Button BTN_Add_Rules;
         private System.Windows.Forms.DataGridView DGV_Conditions;
         private System.Windows.Forms.Button BTN_Inference;
+        private System.Windows.Forms.GroupBox GB_Rules;
+        private System.Windows.Forms.GroupBox GB_Conditions;
+        private System.Windows.Forms.RadioButton RDB_Scale;
+        private System.Windows.Forms.RadioButton RDB_Cut;
     }
 }
 

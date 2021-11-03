@@ -103,9 +103,10 @@ namespace Fuzzy_Graph_Library
         #endregion
 
         #region Operator Overloaded
-        // Unary
+        // Unary Operator
         public static Unary_Operated_fuzzy_set operator ~(Fuzzy_functions_collections operand)
         {
+            // concentration
             Unary_Operated_fuzzy_set result = null;
             Unary_Opertor op = new Concentration_Operator();
             result = new Unary_Operated_fuzzy_set(op, operand);
@@ -113,14 +114,34 @@ namespace Fuzzy_Graph_Library
         }
         public static Unary_Operated_fuzzy_set operator -(double cutvalue, Fuzzy_functions_collections operand)
         {
+            // cut
             Unary_Operated_fuzzy_set result = null;
             Unary_Opertor op = new ValueCut_Operator(cutvalue);
             result = new Unary_Operated_fuzzy_set(op, operand);
             return result;
         }
-        // Binary
+        public static Unary_Operated_fuzzy_set operator *(double scalevalue, Fuzzy_functions_collections operand)
+        {
+            // cut
+            Unary_Operated_fuzzy_set result = null;
+            Unary_Opertor op = new ValueScale_Operator(scalevalue);
+            result = new Unary_Operated_fuzzy_set(op, operand);
+            return result;
+        }
+        public static Unary_Operated_fuzzy_set operator !(Fuzzy_functions_collections operand)
+        {
+            // negate
+            Unary_Operated_fuzzy_set result = null;
+            Unary_Opertor op = new Negate_Operator();
+            result = new Unary_Operated_fuzzy_set(op, operand);
+            return result;
+        }
+        
+
+        // Binary Operator
         public static Binary_Operated_fuzzy_set operator &(Fuzzy_functions_collections operand_01, Fuzzy_functions_collections operand_02)
         {
+            // intersection
             Binary_Operated_fuzzy_set result = null;
             Binary_Operaor op = new Intersection_Operator();
             result = new Binary_Operated_fuzzy_set(op, operand_01, operand_02);
@@ -131,6 +152,49 @@ namespace Fuzzy_Graph_Library
         {
             Binary_Operated_fuzzy_set result = null;
             Binary_Operaor op = new Union_Operator();
+            result = new Binary_Operated_fuzzy_set(op, operand_01, operand_02);
+            return result;
+        }
+        public static Binary_Operated_fuzzy_set operator <(Fuzzy_functions_collections operand_01, Fuzzy_functions_collections operand_02)
+        {
+            Binary_Operated_fuzzy_set result = null;
+            Binary_Operaor op = new AlgebraicSum_Operator();
+            result = new Binary_Operated_fuzzy_set(op, operand_01, operand_02);
+            return result;
+        }
+        public static Binary_Operated_fuzzy_set operator >(Fuzzy_functions_collections operand_01, Fuzzy_functions_collections operand_02)
+        {
+            Binary_Operated_fuzzy_set result = null;
+            Binary_Operaor op = new AlgebraicProduct_Operator();
+            result = new Binary_Operated_fuzzy_set(op, operand_01, operand_02);
+            return result;
+        }
+        public static Binary_Operated_fuzzy_set operator +(Fuzzy_functions_collections operand_01, Fuzzy_functions_collections operand_02)
+        {
+            Binary_Operated_fuzzy_set result = null;
+            Binary_Operaor op = new DombiTNorm_Operator();
+            result = new Binary_Operated_fuzzy_set(op, operand_01, operand_02);
+            return result;
+        }
+
+        public static Binary_Operated_fuzzy_set operator %(Fuzzy_functions_collections operand_01, Fuzzy_functions_collections operand_02)
+        {
+            Binary_Operated_fuzzy_set result = null;
+            Binary_Operaor op = new BoundedProduct_Operator();
+            result = new Binary_Operated_fuzzy_set(op, operand_01, operand_02);
+            return result;
+        }
+        public static Binary_Operated_fuzzy_set operator ^(Fuzzy_functions_collections operand_01, Fuzzy_functions_collections operand_02)
+        {
+            Binary_Operated_fuzzy_set result = null;
+            Binary_Operaor op = new BoundedSum_Operator();
+            result = new Binary_Operated_fuzzy_set(op, operand_01, operand_02);
+            return result;
+        }
+        public static Binary_Operated_fuzzy_set operator /(Fuzzy_functions_collections operand_01, Fuzzy_functions_collections operand_02)
+        {
+            Binary_Operated_fuzzy_set result = null;
+            Binary_Operaor op = new Subtraction_Operator();
             result = new Binary_Operated_fuzzy_set(op, operand_01, operand_02);
             return result;
         }
@@ -174,7 +238,11 @@ namespace Fuzzy_Graph_Library
             fuzzy_series.ChartArea = fda.Name;  
             return fuzzy_series;
         }
-
+        public void Set_Series(Color c, SeriesChartType t)
+        {
+            fuzzy_series.Color = c;
+            fuzzy_series.ChartType = t;
+        }
         protected void FDA_Parameter_Change(object sender, EventArgs e)
         {
             if (fuzzy_series.Name != "")
@@ -235,6 +303,11 @@ namespace Fuzzy_Graph_Library
             }
             return max;
         }
+
+        public override string ToString()
+        {
+            return name;
+        }       
         #endregion
 
     }
