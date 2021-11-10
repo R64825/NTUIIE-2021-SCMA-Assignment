@@ -79,9 +79,13 @@
     <Compile Include="Sigmoidal_function.cs" />
     <Compile Include="Subtraction_Operator.cs" />
     <Compile Include="Sugeno_If_Then_Rule.cs" />
+    <Compile Include="Sugeon_Fuzzy_System.cs" />
     <Compile Include="S_shape_function.cs" />
+    <Compile Include="Trapzoidal_function.cs" />
     <Compile Include="Triangular_function.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tsukamoto_Fuzzy_System.cs" />
+    <Compile Include="Tsukamoto_If_Then_Fuzzy_Rule.cs" />
     <Compile Include="Unary_Opertor.cs" />
     <Compile Include="Unary_Operated_fuzzy_set.cs" />
     <Compile Include="Union_Operator.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -236,6 +237,11 @@ namespace Fuzzy_Graph_Library
             }
         }
 
+        public virtual double Get_Universe_Value_for_a_Degree(double degree)
+        {
+            // loop though the range of universe to find the  
+            return 0;
+        }
         #region Functions
         public Series Plot_Graph()
         {
@@ -311,7 +317,35 @@ namespace Fuzzy_Graph_Library
         public override string ToString()
         {
             return name;
-        }       
+        }
+         
+        public void Read_Model(StreamReader sr)
+        {
+            string str = sr.ReadLine().Trim() ;
+            name = str.Substring(str.IndexOf(':') + 1);
+
+            str = sr.ReadLine().Trim();
+            int number_Of_Parameters = int.Parse( str.Substring(str.IndexOf(':') + 1));
+
+            parameter = new double[number_Of_Parameters];
+            for (int i = 0; i < number_Of_Parameters; i++)
+            {
+                //double v;
+                str = sr.ReadLine().Trim();
+                parameter[i] = double.Parse(str.Substring(str.IndexOf(':') + 1));
+            }
+            str = sr.ReadLine().Trim();
+            show_series =  bool.Parse( str.Substring(str.IndexOf(':') + 1));
+        }
+
+        public void Save_Model(StreamWriter sw)
+        {
+            sw.WriteLine($"Name:{name}");
+            sw.WriteLine($"NumberOfParameters:{parameter.Length}");
+            foreach (double p in parameter)
+                sw.WriteLine($"ParValue:{p}");
+            sw.WriteLine($"ShowFunction{show_series}");
+        }
         #endregion
 
     }

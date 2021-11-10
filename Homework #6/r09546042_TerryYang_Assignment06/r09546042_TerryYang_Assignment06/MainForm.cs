@@ -14,7 +14,9 @@ namespace r09546042_TerryYang_Assignment01
     {
         DataGridViewColumn last_Column;
 
-        Mandani_Fuzzy_System MFS ;
+        Mandani_Fuzzy_System MFS = new Mandani_Fuzzy_System();
+        Sugeon_Fuzzy_System SFS;
+        Tsukamoto_Fuzzy_System TFS;
         public MainForm()
         {
             InitializeComponent();
@@ -59,63 +61,7 @@ namespace r09546042_TerryYang_Assignment01
             TV_Display.Nodes[1].SelectedImageKey = "OU";
         }      
 
-        private void BTN_add_area_Click(object sender, EventArgs e)
-        {
-            // add new FDA to tree view, and chart area to main chart
-            Fuzzy_display_area FDA = new Fuzzy_display_area(Main_Chart);
-            TreeNode tn = new TreeNode(FDA.Name);
-
-            tn.ImageKey = "CA";
-            tn.SelectedImageKey = "CA";
-
-            tn.Name = FDA.Name;
-            tn.Tag = FDA;
-            FDA.Set_Tree_Node(tn);
-            TV_Display.SelectedNode.Nodes.Add(tn);
-
-            // data gird view                      
-            if (TV_Display.SelectedNode.Index == 0)
-            {
-                // select on input universe
-                DGV_Rules.Columns.Add(FDA.Name, FDA.Name);
-                DGV_Rules.Columns[DGV_Rules.Columns.Count - 1].Tag = FDA;
-
-                DGV_Conditions.Columns.Add(FDA.Name, FDA.Name);
-                DGV_Conditions.Columns[DGV_Conditions.Columns.Count - 1].Tag = FDA;
-                if (DGV_Conditions.RowCount == 0) DGV_Conditions.Rows.Add();
-
-                if(last_Column!=null) last_Column.DisplayIndex = DGV_Rules.ColumnCount - 1;
-            }
-            if (TV_Display.SelectedNode.Index == 1)
-            {
-                // select on output universe
-                DGV_Rules.Columns.Add(FDA.Name, FDA.Name);
-                DGV_Rules.Columns[DGV_Rules.Columns.Count - 1].Tag = FDA;
-                DGV_Rules.Columns[DGV_Rules.Columns.Count - 1].DefaultCellStyle.BackColor = Color.LightGreen;
-
-                last_Column = new DataGridViewColumn();
-                last_Column = DGV_Rules.Columns[DGV_Rules.Columns.Count - 1];
-            }
-            DGV_Rules.Columns[DGV_Rules.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            GB_Rules.Enabled = true;
-            GB_Conditions.Enabled = true;
-
-            if (TV_Display.SelectedNode.Level == 0)
-            {
-                // select input output universe
-                BTN_add_area.Enabled = true;
-                BTN_delete.Enabled = false;
-                if (TV_Display.SelectedNode.Index == 1 && TV_Display.SelectedNode.Nodes.Count != 0)
-                {
-                    //select output universe
-                    //ban
-                    BTN_add_area.Enabled = false;
-                    BTN_delete.Enabled = false;
-                }
-                //return;
-            }
-        }
+       
 
         public ChartArea Get_Chart_Area_by_Xaxis_Title(string title)
         {
@@ -209,59 +155,7 @@ namespace r09546042_TerryYang_Assignment01
                      
         }
 
-        private void BTN_add_function_Click(object sender, EventArgs e)
-        {
-            // add function button click, than plot series
-            if (TV_Display.SelectedNode == null)
-                return;
-            Fuzzy_display_area FDA = TV_Display.SelectedNode.Tag as Fuzzy_display_area;
-            if (FDA == null)
-                return;
-            TreeNode TN = new TreeNode();
-            TN.ImageKey = "FS";
-            TN.SelectedImageKey = "FS";
-            Fuzzy_functions_collections FFC = new Fuzzy_functions_collections(FDA);
-            string Graph_Type = CB_fuzzy_type.Text;
-            switch (Graph_Type)
-            {
-                case "Triangular":
-                    FFC = new Triangular_function(FDA);
-                    break;
-
-                case "Gaussian":
-                    FFC = new Gaussian_function(FDA);
-                    break;
-
-                case "Bell":
-                    FFC = new Bell_function(FDA);
-                    break;
-
-                case "Sigmoidal":
-                    FFC = new Sigmoidal_function(FDA);
-                    break;
-                case "LeftRight":
-                    FFC = new LeftRight_function(FDA);
-                    break;
-                case "S-shape":
-                    FFC = new S_shape_function(FDA);
-                    break;
-                case "Z-shape":
-                    FFC = new Z_shape_function(FDA);
-                    break;
-                default:
-                    //New_series = null;
-                    break;
-            }
-            Main_Chart.Series.Add(FFC.Plot_Graph());
-            TN.Tag = FFC;
-            FFC.Set_Tree_Node(TN);
-            TN.Text = FFC.Name;
-            TV_Display.SelectedNode.Nodes.Add(TN);
-
-            FDA.Get_Chart_Area().RecalculateAxesScale();
-            FDA.Get_Chart_Area().AxisX.LabelStyle.Format = "{n2}";
-            Main_Chart.Update();
-        }
+       
 
 
         private void PPGV_parameters_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
@@ -269,70 +163,6 @@ namespace r09546042_TerryYang_Assignment01
             //Delete_Exist_Series();
             //Plot_Series();
         }
-
-        private void BTN_add_Unary_function_Click(object sender, EventArgs e)
-        {
-            if (TV_Display.SelectedNode == null)
-                return;
-            //Fuzzy_display_area FDA = TV_Display.SelectedNode.Tag as Fuzzy_display_area;
-            Fuzzy_functions_collections fs = TV_Display.SelectedNode.Tag as Fuzzy_functions_collections;
-            if (fs == null)
-                return;
-            Unary_Operated_fuzzy_set uofs = null;
-            Unary_Opertor uo = null;
-            string Unary_type = CB_Unary_type.Text;
-            switch (Unary_type)
-            {
-                case "Negate":
-                    uofs = !fs;
-                    break;
-                case "Very":
-                    uofs =  ~ fs;
-                    break;
-                case "Extremely":
-                    uo = new Extremely_Operator();
-                    break;
-                case "More_or_less":
-                    uo = new Dilation_Operator();
-                    break;
-                case "Intensification":
-                    uo = new Intensification_Operator();
-                    break;
-                case "Diminish":
-                    uo = new Diminish_Operator();
-                    break;                  
-                case "Value Cut":
-                    uofs =  0.5-fs;
-                    break;
-                case "Value Scale":
-                    uofs = 0.5*fs;
-                    break;
-                default:
-                    //New_series = null;
-                    break;
-            }
-            if (uofs == null)
-                uofs = new Unary_Operated_fuzzy_set(uo, fs);
-            //if (uofs == null)
-            //    return;
-            uofs.Generate_Series();
-            if (Main_Chart.Series.FindByName(uofs.Plot_Graph().Name)!=null)
-                Main_Chart.Series.Remove(Main_Chart.Series.FindByName((uofs.Plot_Graph().Name)));
-            Main_Chart.Series.Add(uofs.Plot_Graph());
-            //negated_fs.Plot_Graph();
-            TreeNode TN = new TreeNode(uofs.Name);
-            TN.ImageKey = "UN";
-            TN.SelectedImageKey = "UN";
-            TN.Name = uofs.Name;
-            TN.Tag = uofs;
-            uofs.Set_Tree_Node(TN);
-            fs.Fda.Parent_Node.Nodes.Add(TN);
-
-            fs.Fda.Get_Chart_Area().RecalculateAxesScale();
-            fs.Fda.Get_Chart_Area().AxisX.LabelStyle.Format = "{n2}";
-            Main_Chart.Update();
-        }
-
         private void TV_Display_KeyPress(object sender, KeyPressEventArgs e)
         {
             //MessageBox.Show(e.KeyChar.ToString());
@@ -356,11 +186,210 @@ namespace r09546042_TerryYang_Assignment01
                 }
             }
         }
+       
 
+        private void DGV_Rules_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Fuzzy_functions_collections target = TV_Display.SelectedNode.Tag as Fuzzy_functions_collections;
+            if (target == null) return;
+
+            // check column fda
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            if (DGV_Rules.Columns[e.ColumnIndex].Tag != target.Fda) return;
+            DGV_Rules.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = target;
+        }
+
+        private void DGV_Conditions_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Fuzzy_functions_collections target = TV_Display.SelectedNode.Tag as Fuzzy_functions_collections;
+            if (target == null) return;
+
+            // check column fda
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            if (DGV_Conditions.Columns[e.ColumnIndex].Tag != target.Fda) return;
+            DGV_Conditions.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = target;
+        }
+
+
+        #region BTN
+        private void BTN_Inference_Click(object sender, EventArgs e)
+        {
+            List<Fuzzy_functions_collections> antecedent = new List<Fuzzy_functions_collections>(); 
+            List<Fuzzy_functions_collections> coditions = new List<Fuzzy_functions_collections>();
+            Fuzzy_functions_collections conclusion_FS = null;
+            Mandani_If_Then_Fuzzy_Rule a_Rule = null;
+            Fuzzy_functions_collections result = null;
+            int con_index = last_Column.Index;
+
+            for (int i = 0; i < DGV_Rules.RowCount; i++)
+            {
+                // for every row
+                antecedent.Clear();
+                coditions.Clear();
+                conclusion_FS = (Fuzzy_functions_collections)DGV_Rules.Rows[i].Cells[con_index].Value;
+                for (int j = 0; j < DGV_Rules.ColumnCount ; j++)
+                {
+                    // read antecedent
+                    antecedent.Add(DGV_Rules.Rows[i].Cells[j].Value as Fuzzy_functions_collections);                   
+                }
+                for (int j = 0; j < DGV_Conditions.ColumnCount; j++)
+                {
+                    // read condition
+                    coditions.Add(DGV_Conditions.Rows[0].Cells[j].Value as Fuzzy_functions_collections);
+                }               
+                antecedent.RemoveAt(con_index);
+                a_Rule = new Mandani_If_Then_Fuzzy_Rule(antecedent, conclusion_FS);
+                result = a_Rule.Fuzzy_In_Fuzzy_Out_Inferencing(coditions, RDB_Cut.Checked);
+
+                result.Generate_Series();
+                Main_Chart.Series.Add(result.Plot_Graph());
+
+            }
+        }
+
+        private void BTN_Delete_Rules_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow item in this.DGV_Rules.SelectedRows)
+            {
+                DGV_Rules.Rows.RemoveAt(item.Index);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<Mandani_If_Then_Fuzzy_Rule> all_Rules = new List<Mandani_If_Then_Fuzzy_Rule>();
+            List<Fuzzy_functions_collections> antecedent = new List<Fuzzy_functions_collections>();
+            List<Fuzzy_functions_collections> coditions = new List<Fuzzy_functions_collections>();
+            Fuzzy_functions_collections conclusion_FS = null;
+            Mandani_If_Then_Fuzzy_Rule a_Rule = null;
+            int con_index = last_Column.Index;
+
+            // read all rules
+            for (int i = 0; i < DGV_Rules.RowCount; i++)
+            {
+                // for every row
+                antecedent.Clear();
+                coditions.Clear();
+                conclusion_FS = (Fuzzy_functions_collections)DGV_Rules.Rows[i].Cells[con_index].Value;
+                for (int j = 0; j < DGV_Rules.ColumnCount; j++)
+                {
+                    // read antecedent
+                    antecedent.Add(DGV_Rules.Rows[i].Cells[j].Value as Fuzzy_functions_collections);
+                }
+                for (int j = 0; j < DGV_Conditions.ColumnCount; j++)
+                {
+                    // read condition
+                    coditions.Add(DGV_Conditions.Rows[0].Cells[j].Value as Fuzzy_functions_collections);
+                }
+                antecedent.RemoveAt(con_index);
+                a_Rule = new Mandani_If_Then_Fuzzy_Rule(antecedent, conclusion_FS);
+                all_Rules.Add(a_Rule);
+            }
+
+            MFS.Update_Rule_Sets(all_Rules);
+
+
+
+            int d1 = 30, d2 = 40;
+            surface1.Clear();
+            surface1.NumXValues = d1;
+            surface1.NumZValues = d2;
+            double[] inputs = new double[2];
+
+            for (double x = -10.0; x < 10.0; x = x +0.1)
+            {
+                inputs[0] = x;
+                for (double z = -5.0; z < 5.0; z = z + 0.05)
+                {
+                    inputs[1] = z;
+                    double y = MFS.Crisp_In_Crisp_Out_Inferencing(inputs);
+                    MFS.Defuzzy_Type = Defuzzification.BOA;
+                    surface1.Add(x,y,z);
+                }
+            }
+        }
+        private void BTN_Add_Rules_Click(object sender, EventArgs e)
+        {
+            DGV_Rules.Rows.Add();
+        }
+        private void BTN_add_equation_Click(object sender, EventArgs e)
+        {
+            int equation_ID = listBox1.SelectedIndex;
+
+            TreeNode TN = new TreeNode($"equation {equation_ID}");
+            TN.ImageKey = "FS";
+            TN.SelectedImageKey = "FS";
+
+            TN.Tag = equation_ID;
+            TN.Text = listBox1.Items[equation_ID].ToString();
+            TV_Display.SelectedNode.Nodes.Add(TN);
+        }
+        private void BTN_add_Unary_function_Click(object sender, EventArgs e)
+        {
+            if (TV_Display.SelectedNode == null)
+                return;
+            //Fuzzy_display_area FDA = TV_Display.SelectedNode.Tag as Fuzzy_display_area;
+            Fuzzy_functions_collections fs = TV_Display.SelectedNode.Tag as Fuzzy_functions_collections;
+            if (fs == null)
+                return;
+            Unary_Operated_fuzzy_set uofs = null;
+            Unary_Opertor uo = null;
+            string Unary_type = CB_Unary_type.Text;
+            switch (Unary_type)
+            {
+                case "Negate":
+                    uofs = !fs;
+                    break;
+                case "Very":
+                    uofs = ~fs;
+                    break;
+                case "Extremely":
+                    uo = new Extremely_Operator();
+                    break;
+                case "More_or_less":
+                    uo = new Dilation_Operator();
+                    break;
+                case "Intensification":
+                    uo = new Intensification_Operator();
+                    break;
+                case "Diminish":
+                    uo = new Diminish_Operator();
+                    break;
+                case "Value Cut":
+                    uofs = 0.5 - fs;
+                    break;
+                case "Value Scale":
+                    uofs = 0.5 * fs;
+                    break;
+                default:
+                    //New_series = null;
+                    break;
+            }
+            if (uofs == null)
+                uofs = new Unary_Operated_fuzzy_set(uo, fs);
+            //if (uofs == null)
+            //    return;
+            uofs.Generate_Series();
+            if (Main_Chart.Series.FindByName(uofs.Plot_Graph().Name) != null)
+                Main_Chart.Series.Remove(Main_Chart.Series.FindByName((uofs.Plot_Graph().Name)));
+            Main_Chart.Series.Add(uofs.Plot_Graph());
+            //negated_fs.Plot_Graph();
+            TreeNode TN = new TreeNode(uofs.Name);
+            TN.ImageKey = "UN";
+            TN.SelectedImageKey = "UN";
+            TN.Name = uofs.Name;
+            TN.Tag = uofs;
+            uofs.Set_Tree_Node(TN);
+            fs.Fda.Parent_Node.Nodes.Add(TN);
+
+            fs.Fda.Get_Chart_Area().RecalculateAxesScale();
+            fs.Fda.Get_Chart_Area().AxisX.LabelStyle.Format = "{n2}";
+            Main_Chart.Update();
+        }
         private void BTN_add_Binary_function_Click(object sender, EventArgs e)
         {
             Fuzzy_functions_collections fs1 = BTN_assign_fs_01.Tag as Fuzzy_functions_collections;
-            Fuzzy_functions_collections fs2 = BTN_assign_fs_02.Tag as Fuzzy_functions_collections;   
+            Fuzzy_functions_collections fs2 = BTN_assign_fs_02.Tag as Fuzzy_functions_collections;
             if (fs1 == null || fs2 == null)
                 return;
             TreeNode TN = new TreeNode();
@@ -379,7 +408,7 @@ namespace r09546042_TerryYang_Assignment01
                     bofs = fs1 / fs2;
                     break;
                 case "Bounded Sum":
-                    bofs = fs1 ^ fs2; 
+                    bofs = fs1 ^ fs2;
                     break;
                 case "Logical Sum":
                     bo = new LogicalSum_Operator();
@@ -416,13 +445,13 @@ namespace r09546042_TerryYang_Assignment01
                     break;
                 case "Dombi TNorm":
                     bofs = fs1 + fs2;
-                    break;                  
+                    break;
                 default:
                     //New_series = null;
                     break;
             }
             if (bofs == null)
-                bofs = new Binary_Operated_fuzzy_set(bo, fs1, fs2);           
+                bofs = new Binary_Operated_fuzzy_set(bo, fs1, fs2);
             bofs.Generate_Series();
             Main_Chart.Series.Add(bofs.Plot_Graph());
             //negated_fs.Plot_Graph();
@@ -477,7 +506,7 @@ namespace r09546042_TerryYang_Assignment01
                     return;
                 }
                 BTN_add_Binary_function.Enabled = true;
-            }         
+            }
         }
         private void BTN_cancel_selection_Click(object sender, EventArgs e)
         {
@@ -499,7 +528,7 @@ namespace r09546042_TerryYang_Assignment01
             if (seleted_Node != null)
             {
                 TV_Display.Nodes.Remove(seleted_Node);
-                if (seleted_Node.Level ==0)
+                if (seleted_Node.Level == 0)
                 {
                     // area
                     Main_Chart.ChartAreas.Remove(Get_Chart_Area_by_Xaxis_Title(seleted_Node.Text));
@@ -510,12 +539,12 @@ namespace r09546042_TerryYang_Assignment01
                     // grid view
                     if (DGV_Rules.Columns[seleted_Node.Text] != null)
                         DGV_Rules.Columns.Remove(seleted_Node.Text);
-                    if (DGV_Conditions.Columns[seleted_Node.Text]!=null)
+                    if (DGV_Conditions.Columns[seleted_Node.Text] != null)
                         DGV_Conditions.Columns.Remove(seleted_Node.Text);
-                }          
+                }
             }
 
-            if (TV_Display.Nodes[0].Nodes.Count==0 || TV_Display.Nodes[1].Nodes.Count == 0)
+            if (TV_Display.Nodes[0].Nodes.Count == 0 || TV_Display.Nodes[1].Nodes.Count == 0)
             {
                 // disable GB
                 GB_PFS.Enabled = false;
@@ -527,126 +556,234 @@ namespace r09546042_TerryYang_Assignment01
             }
         }
 
-        private void BTN_Add_Rules_Click(object sender, EventArgs e)
+
+        private void BTN_add_function_Click(object sender, EventArgs e)
         {
-            DGV_Rules.Rows.Add(); 
-        }
-
-        private void DGV_Rules_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            Fuzzy_functions_collections target = TV_Display.SelectedNode.Tag as Fuzzy_functions_collections;
-            if (target == null) return;
-
-            // check column fda
-            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-            if (DGV_Rules.Columns[e.ColumnIndex].Tag != target.Fda) return;
-            DGV_Rules.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = target;
-        }
-
-        private void DGV_Conditions_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            Fuzzy_functions_collections target = TV_Display.SelectedNode.Tag as Fuzzy_functions_collections;
-            if (target == null) return;
-
-            // check column fda
-            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-            if (DGV_Conditions.Columns[e.ColumnIndex].Tag != target.Fda) return;
-            DGV_Conditions.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = target;
-        }
-        private void BTN_Inference_Click(object sender, EventArgs e)
-        {
-            List<Fuzzy_functions_collections> antecedent = new List<Fuzzy_functions_collections>(); 
-            List<Fuzzy_functions_collections> coditions = new List<Fuzzy_functions_collections>();
-            Fuzzy_functions_collections conclusion_FS = null;
-            If_Then_Fuzzy_Rule a_Rule = null;
-            Fuzzy_functions_collections result = null;
-            int con_index = last_Column.Index;
-
-            for (int i = 0; i < DGV_Rules.RowCount; i++)
+            // add function button click, than plot series
+            if (TV_Display.SelectedNode == null)
+                return;
+            Fuzzy_display_area FDA = TV_Display.SelectedNode.Tag as Fuzzy_display_area;
+            if (FDA == null)
+                return;
+            TreeNode TN = new TreeNode();
+            TN.ImageKey = "FS";
+            TN.SelectedImageKey = "FS";
+            Fuzzy_functions_collections FFC = new Fuzzy_functions_collections(FDA);
+            string Graph_Type = CB_fuzzy_type.Text;
+            switch (Graph_Type)
             {
-                // for every row
-                antecedent.Clear();
-                coditions.Clear();
-                conclusion_FS = (Fuzzy_functions_collections)DGV_Rules.Rows[i].Cells[con_index].Value;
-                for (int j = 0; j < DGV_Rules.ColumnCount ; j++)
+                case "Triangular":
+                    FFC = new Triangular_function(FDA);
+                    break;
+
+                case "Gaussian":
+                    FFC = new Gaussian_function(FDA);
+                    break;
+
+                case "Bell":
+                    FFC = new Bell_function(FDA);
+                    break;
+
+                case "Sigmoidal":
+                    FFC = new Sigmoidal_function(FDA);
+                    break;
+                case "LeftRight":
+                    FFC = new LeftRight_function(FDA);
+                    break;
+                case "S-shape":
+                    FFC = new S_shape_function(FDA);
+                    break;
+                case "Z-shape":
+                    FFC = new Z_shape_function(FDA);
+                    break;
+                case "Trapzoidal":
+                    FFC = new Trapzoidal_function(FDA);
+                    break;
+                default:
+                    //New_series = null;
+                    break;
+            }
+            Main_Chart.Series.Add(FFC.Plot_Graph());
+            TN.Tag = FFC;
+            FFC.Set_Tree_Node(TN);
+            TN.Text = FFC.Name;
+            TV_Display.SelectedNode.Nodes.Add(TN);
+
+            FDA.Get_Chart_Area().RecalculateAxesScale();
+            FDA.Get_Chart_Area().AxisX.LabelStyle.Format = "{n2}";
+            Main_Chart.Update();
+        }
+
+        private void BTN_add_area_Click(object sender, EventArgs e)
+        {
+            // add new FDA to tree view, and chart area to main chart
+            Fuzzy_display_area FDA = new Fuzzy_display_area(Main_Chart);
+            TreeNode tn = new TreeNode(FDA.Name);
+
+            tn.ImageKey = "CA";
+            tn.SelectedImageKey = "CA";
+
+            tn.Name = FDA.Name;
+            tn.Tag = FDA;
+            FDA.Set_Tree_Node(tn);
+            TV_Display.SelectedNode.Nodes.Add(tn);
+
+            // data gird view                      
+            if (TV_Display.SelectedNode.Index == 0)
+            {
+                // select on input universe
+                DGV_Rules.Columns.Add(FDA.Name, FDA.Name);
+                DGV_Rules.Columns[DGV_Rules.Columns.Count - 1].Tag = FDA;
+
+                DGV_Conditions.Columns.Add(FDA.Name, FDA.Name);
+                DGV_Conditions.Columns[DGV_Conditions.Columns.Count - 1].Tag = FDA;
+                if (DGV_Conditions.RowCount == 0) DGV_Conditions.Rows.Add();
+
+                if (last_Column != null) last_Column.DisplayIndex = DGV_Rules.ColumnCount - 1;
+            }
+            if (TV_Display.SelectedNode.Index == 1)
+            {
+                // select on output universe
+                DGV_Rules.Columns.Add(FDA.Name, FDA.Name);
+                DGV_Rules.Columns[DGV_Rules.Columns.Count - 1].Tag = FDA;
+                DGV_Rules.Columns[DGV_Rules.Columns.Count - 1].DefaultCellStyle.BackColor = Color.LightGreen;
+
+                last_Column = new DataGridViewColumn();
+                last_Column = DGV_Rules.Columns[DGV_Rules.Columns.Count - 1];
+            }
+            DGV_Rules.Columns[DGV_Rules.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            GB_Rules.Enabled = true;
+            GB_Conditions.Enabled = true;
+
+            if (TV_Display.SelectedNode.Level == 0)
+            {
+                // select input output universe
+                BTN_add_area.Enabled = true;
+                BTN_delete.Enabled = false;
+                if (TV_Display.SelectedNode.Index == 1 && TV_Display.SelectedNode.Nodes.Count != 0)
                 {
-                    // read antecedent
-                    antecedent.Add(DGV_Rules.Rows[i].Cells[j].Value as Fuzzy_functions_collections);                   
+                    //select output universe
+                    //ban
+                    BTN_add_area.Enabled = false;
+                    BTN_delete.Enabled = false;
                 }
-                for (int j = 0; j < DGV_Conditions.ColumnCount; j++)
-                {
-                    // read condition
-                    coditions.Add(DGV_Conditions.Rows[0].Cells[j].Value as Fuzzy_functions_collections);
-                }               
-                antecedent.RemoveAt(con_index);
-                a_Rule = new If_Then_Fuzzy_Rule(antecedent, conclusion_FS);
-                result = a_Rule.Fuzzy_In_Fuzzy_Out_Inferencing(coditions, RDB_Cut.Checked);
-
-                result.Generate_Series();
-                Main_Chart.Series.Add(result.Plot_Graph());
-
+                //return;
             }
         }
-
-        private void BTN_Delete_Rules_Click(object sender, EventArgs e)
+        
+        private void BTN_save_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow item in this.DGV_Rules.SelectedRows)
-            {
-                DGV_Rules.Rows.RemoveAt(item.Index);
-            }
+            SaveFileDialog dlg = new SaveFileDialog();
+            if (dlg.ShowDialog() != DialogResult.OK) return;
+            Save_Model(dlg.FileName);
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void BTN_Open_Click(object sender, EventArgs e)
         {
-            List<If_Then_Fuzzy_Rule> all_Rules = new List<If_Then_Fuzzy_Rule>();
-            List<Fuzzy_functions_collections> antecedent = new List<Fuzzy_functions_collections>();
-            List<Fuzzy_functions_collections> coditions = new List<Fuzzy_functions_collections>();
-            Fuzzy_functions_collections conclusion_FS = null;
-            If_Then_Fuzzy_Rule a_Rule = null;
-            int con_index = last_Column.Index;
-
-            // read all rules
-            for (int i = 0; i < DGV_Rules.RowCount; i++)
-            {
-                // for every row
-                antecedent.Clear();
-                coditions.Clear();
-                conclusion_FS = (Fuzzy_functions_collections)DGV_Rules.Rows[i].Cells[con_index].Value;
-                for (int j = 0; j < DGV_Rules.ColumnCount; j++)
-                {
-                    // read antecedent
-                    antecedent.Add(DGV_Rules.Rows[i].Cells[j].Value as Fuzzy_functions_collections);
-                }
-                for (int j = 0; j < DGV_Conditions.ColumnCount; j++)
-                {
-                    // read condition
-                    coditions.Add(DGV_Conditions.Rows[0].Cells[j].Value as Fuzzy_functions_collections);
-                }
-                antecedent.RemoveAt(con_index);
-                a_Rule = new If_Then_Fuzzy_Rule(antecedent, conclusion_FS);
-                all_Rules.Add(a_Rule);
-            }
-
-            MFS = new Mandani_Fuzzy_System(all_Rules);
-
-
-
-            int d1 = 30, d2 = 40;
-            surface1.Clear();
-            surface1.NumXValues = d1;
-            surface1.NumZValues = d2;
-            double[] inputs = new double[2];
-
-            for (double x = -10.0; x < 10.0; x = x +0.1)
-            {
-                inputs[0] = x;
-                for (double z = -5.0; z < 5.0; z = z + 0.05)
-                {
-                    inputs[1] = z;
-                    double y = MFS.Crisp_In_Crisp_Out_Ingerencing(inputs, Defuzzification.COA);
-                    surface1.Add(x,y,z);
-                }
-            }
+            OpenFileDialog dlg = new OpenFileDialog();
+            if (dlg.ShowDialog() != DialogResult.OK) return;
+            Open_Model(dlg.FileName);
         }
+        #endregion
+
+
+        #region Model Save and Read
+        public void Save_Model(string file_path)
+        {
+            StreamWriter sw = new StreamWriter(file_path);
+            if (RB_MFS.Checked)
+                sw.WriteLine($"Model:Mandani");
+            else if(RB_SFS.Checked)
+                sw.WriteLine($"Model:Sugeon");
+            else
+                sw.WriteLine($"Model:Tsukamoto");
+
+            // store universe and  FS via treeview
+            int Input_Uni_number = TV_Display.Nodes[0].Nodes.Count;
+            sw.WriteLine($"NumberOfInputUniverse:{Input_Uni_number}");
+            Fuzzy_display_area FDA;
+            for (int i = 0; i < Input_Uni_number; i++)
+            {
+                FDA = TV_Display.Nodes[0].Nodes[i].Tag as Fuzzy_display_area;
+                FDA.Save_Model(sw);
+
+                int FS_number = TV_Display.Nodes[0].Nodes[i].Nodes.Count;
+                sw.WriteLine($"NumberOfFuzzySets:{FS_number}");
+                for (int j = 0; j < FS_number; j++)
+                {
+                    Fuzzy_functions_collections ffc = TV_Display.Nodes[0].Nodes[i].Nodes[j].Tag as Fuzzy_functions_collections;
+                    Type type_Of_FFC = ffc.GetType();
+                    sw.WriteLine($"FSTypeName:{type_Of_FFC}");
+
+                    ffc.Save_Model(sw);
+                }
+            }
+
+
+            sw.Close();
+        }
+        public void Open_Model(string file_path)
+        {
+            StreamReader sr = new StreamReader(file_path);
+            string str;
+            string model_Type;
+            str=sr.ReadLine().Trim();
+            model_Type=str.Substring(str.IndexOf(':')+1);
+
+            switch (model_Type)
+            {
+                case "Mandani":
+                    RB_MFS.Checked = true;
+                    break;
+                case "Sugeon":
+                    RB_SFS.Checked = true;
+                    break;
+                case "Tsukamoto":
+                    RB_TFS.Checked = true;
+                    break;
+                default:
+                    break;
+            }
+            int Input_Uni_number;
+            str = sr.ReadLine().Trim();
+            Input_Uni_number = int.Parse(str.Substring(str.IndexOf(':') + 1));
+            TV_Display.Nodes[0].Nodes.Clear();
+            Fuzzy_display_area FDA;
+            for (int i = 0; i < Input_Uni_number; i++)
+            {
+                FDA = new Fuzzy_display_area(Main_Chart);
+                TreeNode tn = new TreeNode("");
+                FDA.Set_Tree_Node(tn);
+                TV_Display.Nodes[0].Nodes.Add(tn);
+
+                FDA.Read_Model(sr);
+                //tn.Text = FDA.Name;
+
+                str = sr.ReadLine().Trim();
+                int FS_number = int.Parse(str.Substring(str.IndexOf(':') + 1));
+                for (int j = 0; j < FS_number; j++)
+                {
+                    str = sr.ReadLine().Trim();
+                    str = str.Substring(str.IndexOf(':') + 1); // fs type name
+                    // instance a particular type of FS
+                    Type type_Of_FFC = Type.GetType(str);
+                    Fuzzy_functions_collections ffc = (Fuzzy_functions_collections) Activator.CreateInstance(type_Of_FFC, FDA);
+                    // create tree node
+                    TreeNode a_Node = new TreeNode(ffc.Name);
+                    TV_Display.Nodes[0].Nodes[i].Nodes.Add(a_Node);
+                    ffc.Set_Tree_Node(a_Node);
+
+
+                    ffc.Read_Model(sr);
+                }
+
+            }
+
+
+            sr.Close();
+        }
+        #endregion
+
+        
     }
 }

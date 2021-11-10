@@ -7,7 +7,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Fuzzy_Graph_Library
 {
-    public class If_Then_Fuzzy_Rule
+    public class Mandani_If_Then_Fuzzy_Rule
     {
         List<Fuzzy_functions_collections> antecedent = new List<Fuzzy_functions_collections>();
         Fuzzy_functions_collections conclusion_FS;
@@ -17,7 +17,7 @@ namespace Fuzzy_Graph_Library
         double mininum;
 
         //Series inferencing_Result;
-        public If_Then_Fuzzy_Rule(List<Fuzzy_functions_collections> antecedent, Fuzzy_functions_collections conclusion_FS)
+        public Mandani_If_Then_Fuzzy_Rule(List<Fuzzy_functions_collections> antecedent, Fuzzy_functions_collections conclusion_FS)
         {
             // antecedent = 因, conclusion_FS = 果
             this.antecedent = antecedent;
@@ -59,6 +59,12 @@ namespace Fuzzy_Graph_Library
             
             result.Set_Series(Color.FromArgb(128, Color.Gray), SeriesChartType.Area);
             return result;
+        }
+
+        public Unary_Operated_fuzzy_set Cripy_In_Fuzzy_Out_Inferencing(double [] conditions, bool cut_or_not)
+        {
+            //antecedent[]
+            return null;
         }
     }
 }

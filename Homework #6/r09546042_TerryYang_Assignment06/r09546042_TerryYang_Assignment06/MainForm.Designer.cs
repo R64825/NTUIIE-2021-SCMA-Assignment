@@ -41,6 +41,15 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.RB_TFS = new System.Windows.Forms.RadioButton();
+            this.RB_SFS = new System.Windows.Forms.RadioButton();
+            this.RB_MFS = new System.Windows.Forms.RadioButton();
+            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BTN_save = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.BTN_delete = new System.Windows.Forms.Button();
             this.TV_Display = new System.Windows.Forms.TreeView();
@@ -76,14 +85,16 @@ namespace r09546042_TerryYang_Assignment01
             this.RDB_Cut = new System.Windows.Forms.RadioButton();
             this.BTN_Inference = new System.Windows.Forms.Button();
             this.DGV_Conditions = new System.Windows.Forms.DataGridView();
+            this.TP_Sugeon_Conclusion = new System.Windows.Forms.TabPage();
+            this.BTN_add_equation = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.button1 = new System.Windows.Forms.Button();
             this.chartController1 = new Steema.TeeChart.ChartController();
             this.tChart1 = new Steema.TeeChart.TChart();
             this.surface1 = new Steema.TeeChart.Styles.Surface();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.TP_Sugeon_Conclusion = new System.Windows.Forms.TabPage();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.BTN_Open = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.Main_Chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -94,8 +105,11 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
@@ -114,11 +128,11 @@ namespace r09546042_TerryYang_Assignment01
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Rules)).BeginInit();
             this.GB_Conditions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Conditions)).BeginInit();
+            this.TP_Sugeon_Conclusion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
             this.splitContainer5.Panel1.SuspendLayout();
             this.splitContainer5.Panel2.SuspendLayout();
             this.splitContainer5.SuspendLayout();
-            this.TP_Sugeon_Conclusion.SuspendLayout();
             this.SuspendLayout();
             // 
             // Main_Chart
@@ -195,13 +209,104 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer4.Name = "splitContainer4";
             this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.groupBox1);
+            this.splitContainer4.Panel1.Controls.Add(this.propertyGrid1);
+            this.splitContainer4.Panel1.Controls.Add(this.menuStrip1);
+            // 
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer4.Size = new System.Drawing.Size(543, 413);
-            this.splitContainer4.SplitterDistance = 35;
+            this.splitContainer4.SplitterDistance = 145;
             this.splitContainer4.SplitterWidth = 5;
             this.splitContainer4.TabIndex = 30;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.RB_TFS);
+            this.groupBox1.Controls.Add(this.RB_SFS);
+            this.groupBox1.Controls.Add(this.RB_MFS);
+            this.groupBox1.Location = new System.Drawing.Point(12, 27);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(248, 115);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "GB_fuzzy_system";
+            // 
+            // RB_TFS
+            // 
+            this.RB_TFS.AutoSize = true;
+            this.RB_TFS.Location = new System.Drawing.Point(6, 69);
+            this.RB_TFS.Name = "RB_TFS";
+            this.RB_TFS.Size = new System.Drawing.Size(84, 18);
+            this.RB_TFS.TabIndex = 2;
+            this.RB_TFS.TabStop = true;
+            this.RB_TFS.Text = "Tsukamoto";
+            this.RB_TFS.UseVisualStyleBackColor = true;
+            // 
+            // RB_SFS
+            // 
+            this.RB_SFS.AutoSize = true;
+            this.RB_SFS.Location = new System.Drawing.Point(6, 45);
+            this.RB_SFS.Name = "RB_SFS";
+            this.RB_SFS.Size = new System.Drawing.Size(65, 18);
+            this.RB_SFS.TabIndex = 1;
+            this.RB_SFS.TabStop = true;
+            this.RB_SFS.Text = "Sugeon";
+            this.RB_SFS.UseVisualStyleBackColor = true;
+            // 
+            // RB_MFS
+            // 
+            this.RB_MFS.AutoSize = true;
+            this.RB_MFS.Location = new System.Drawing.Point(6, 21);
+            this.RB_MFS.Name = "RB_MFS";
+            this.RB_MFS.Size = new System.Drawing.Size(74, 18);
+            this.RB_MFS.TabIndex = 0;
+            this.RB_MFS.TabStop = true;
+            this.RB_MFS.Text = "Mandani";
+            this.RB_MFS.UseVisualStyleBackColor = true;
+            // 
+            // propertyGrid1
+            // 
+            this.propertyGrid1.Location = new System.Drawing.Point(267, 35);
+            this.propertyGrid1.Name = "propertyGrid1";
+            this.propertyGrid1.Size = new System.Drawing.Size(272, 107);
+            this.propertyGrid1.TabIndex = 0;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.toolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(543, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BTN_save,
+            this.BTN_Open});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // BTN_save
+            // 
+            this.BTN_save.Name = "BTN_save";
+            this.BTN_save.Size = new System.Drawing.Size(180, 22);
+            this.BTN_save.Text = "Save";
+            this.BTN_save.Click += new System.EventHandler(this.BTN_save_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(22, 20);
+            this.toolStripMenuItem1.Text = " ";
             // 
             // splitContainer3
             // 
@@ -219,7 +324,7 @@ namespace r09546042_TerryYang_Assignment01
             // 
             this.splitContainer3.Panel2.Controls.Add(this.PPGV_parameters);
             this.splitContainer3.Panel2.Controls.Add(this.LB_indecator);
-            this.splitContainer3.Size = new System.Drawing.Size(543, 373);
+            this.splitContainer3.Size = new System.Drawing.Size(543, 263);
             this.splitContainer3.SplitterDistance = 263;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -252,7 +357,7 @@ namespace r09546042_TerryYang_Assignment01
             this.TV_Display.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2});
-            this.TV_Display.Size = new System.Drawing.Size(263, 327);
+            this.TV_Display.Size = new System.Drawing.Size(263, 217);
             this.TV_Display.TabIndex = 0;
             this.TV_Display.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TV_Display_AfterSelect);
             this.TV_Display.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TV_Display_KeyPress);
@@ -279,7 +384,7 @@ namespace r09546042_TerryYang_Assignment01
             this.PPGV_parameters.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PPGV_parameters.Location = new System.Drawing.Point(0, 75);
             this.PPGV_parameters.Name = "PPGV_parameters";
-            this.PPGV_parameters.Size = new System.Drawing.Size(276, 299);
+            this.PPGV_parameters.Size = new System.Drawing.Size(276, 189);
             this.PPGV_parameters.TabIndex = 0;
             this.PPGV_parameters.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.PPGV_parameters_PropertyValueChanged);
             // 
@@ -333,6 +438,7 @@ namespace r09546042_TerryYang_Assignment01
             this.GB_BO.Controls.Add(this.CB_Binary_type);
             this.GB_BO.Controls.Add(this.BTN_add_Binary_function);
             this.GB_BO.Enabled = false;
+            this.GB_BO.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GB_BO.Location = new System.Drawing.Point(6, 177);
             this.GB_BO.Name = "GB_BO";
             this.GB_BO.Size = new System.Drawing.Size(523, 115);
@@ -355,9 +461,10 @@ namespace r09546042_TerryYang_Assignment01
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(7, 85);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(64, 14);
+            this.label4.Size = new System.Drawing.Size(64, 15);
             this.label4.TabIndex = 5;
             this.label4.Text = "Fuzzy Sets:";
             // 
@@ -365,7 +472,7 @@ namespace r09546042_TerryYang_Assignment01
             // 
             this.BTN_assign_fs_02.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BTN_assign_fs_02.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTN_assign_fs_02.Location = new System.Drawing.Point(216, 80);
+            this.BTN_assign_fs_02.Location = new System.Drawing.Point(227, 83);
             this.BTN_assign_fs_02.Name = "BTN_assign_fs_02";
             this.BTN_assign_fs_02.Size = new System.Drawing.Size(130, 27);
             this.BTN_assign_fs_02.TabIndex = 4;
@@ -377,7 +484,7 @@ namespace r09546042_TerryYang_Assignment01
             // 
             this.BTN_assign_fs_01.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BTN_assign_fs_01.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTN_assign_fs_01.Location = new System.Drawing.Point(80, 80);
+            this.BTN_assign_fs_01.Location = new System.Drawing.Point(91, 83);
             this.BTN_assign_fs_01.Name = "BTN_assign_fs_01";
             this.BTN_assign_fs_01.Size = new System.Drawing.Size(130, 27);
             this.BTN_assign_fs_01.TabIndex = 3;
@@ -388,9 +495,10 @@ namespace r09546042_TerryYang_Assignment01
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(7, 21);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 14);
+            this.label3.Size = new System.Drawing.Size(99, 15);
             this.label3.TabIndex = 2;
             this.label3.Text = "Type of operator:";
             // 
@@ -446,6 +554,7 @@ namespace r09546042_TerryYang_Assignment01
             this.GB_UO.Controls.Add(this.CB_Unary_type);
             this.GB_UO.Controls.Add(this.BTN_add_Unary_function);
             this.GB_UO.Enabled = false;
+            this.GB_UO.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GB_UO.Location = new System.Drawing.Point(6, 92);
             this.GB_UO.Name = "GB_UO";
             this.GB_UO.Size = new System.Drawing.Size(523, 78);
@@ -456,9 +565,10 @@ namespace r09546042_TerryYang_Assignment01
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(7, 21);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 14);
+            this.label2.Size = new System.Drawing.Size(99, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "Type of operator:";
             // 
@@ -505,6 +615,7 @@ namespace r09546042_TerryYang_Assignment01
             this.GB_PFS.Controls.Add(this.CB_fuzzy_type);
             this.GB_PFS.Controls.Add(this.BTN_add_Pri_function);
             this.GB_PFS.Enabled = false;
+            this.GB_PFS.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GB_PFS.Location = new System.Drawing.Point(6, 7);
             this.GB_PFS.Name = "GB_PFS";
             this.GB_PFS.Size = new System.Drawing.Size(523, 78);
@@ -515,9 +626,10 @@ namespace r09546042_TerryYang_Assignment01
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(7, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 14);
+            this.label1.Size = new System.Drawing.Size(97, 15);
             this.label1.TabIndex = 2;
             this.label1.Text = "Type of fuzzy set:";
             // 
@@ -536,7 +648,8 @@ namespace r09546042_TerryYang_Assignment01
             "Sigmoidal",
             "LeftRight",
             "S-shape",
-            "Z-shape"});
+            "Z-shape",
+            "Trapzoidal"});
             this.CB_fuzzy_type.Location = new System.Drawing.Point(6, 42);
             this.CB_fuzzy_type.Name = "CB_fuzzy_type";
             this.CB_fuzzy_type.Size = new System.Drawing.Size(387, 22);
@@ -591,6 +704,7 @@ namespace r09546042_TerryYang_Assignment01
             this.GB_Rules.Controls.Add(this.BTN_Add_Rules);
             this.GB_Rules.Dock = System.Windows.Forms.DockStyle.Top;
             this.GB_Rules.Enabled = false;
+            this.GB_Rules.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GB_Rules.Location = new System.Drawing.Point(0, 0);
             this.GB_Rules.Name = "GB_Rules";
             this.GB_Rules.Size = new System.Drawing.Size(535, 47);
@@ -601,7 +715,8 @@ namespace r09546042_TerryYang_Assignment01
             // BTN_Delete_Rules
             // 
             this.BTN_Delete_Rules.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_Delete_Rules.Location = new System.Drawing.Point(439, 11);
+            this.BTN_Delete_Rules.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_Delete_Rules.Location = new System.Drawing.Point(440, 14);
             this.BTN_Delete_Rules.Name = "BTN_Delete_Rules";
             this.BTN_Delete_Rules.Size = new System.Drawing.Size(90, 29);
             this.BTN_Delete_Rules.TabIndex = 2;
@@ -612,7 +727,8 @@ namespace r09546042_TerryYang_Assignment01
             // BTN_Add_Rules
             // 
             this.BTN_Add_Rules.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_Add_Rules.Location = new System.Drawing.Point(343, 11);
+            this.BTN_Add_Rules.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_Add_Rules.Location = new System.Drawing.Point(344, 14);
             this.BTN_Add_Rules.Name = "BTN_Add_Rules";
             this.BTN_Add_Rules.Size = new System.Drawing.Size(90, 29);
             this.BTN_Add_Rules.TabIndex = 1;
@@ -641,6 +757,7 @@ namespace r09546042_TerryYang_Assignment01
             this.GB_Conditions.Controls.Add(this.BTN_Inference);
             this.GB_Conditions.Dock = System.Windows.Forms.DockStyle.Top;
             this.GB_Conditions.Enabled = false;
+            this.GB_Conditions.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GB_Conditions.Location = new System.Drawing.Point(0, 0);
             this.GB_Conditions.Name = "GB_Conditions";
             this.GB_Conditions.Size = new System.Drawing.Size(535, 44);
@@ -652,9 +769,10 @@ namespace r09546042_TerryYang_Assignment01
             // 
             this.RDB_Scale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.RDB_Scale.AutoSize = true;
+            this.RDB_Scale.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RDB_Scale.Location = new System.Drawing.Point(331, 14);
             this.RDB_Scale.Name = "RDB_Scale";
-            this.RDB_Scale.Size = new System.Drawing.Size(54, 18);
+            this.RDB_Scale.Size = new System.Drawing.Size(54, 19);
             this.RDB_Scale.TabIndex = 4;
             this.RDB_Scale.Text = "Scale";
             this.RDB_Scale.UseVisualStyleBackColor = true;
@@ -664,9 +782,10 @@ namespace r09546042_TerryYang_Assignment01
             this.RDB_Cut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.RDB_Cut.AutoSize = true;
             this.RDB_Cut.Checked = true;
-            this.RDB_Cut.Location = new System.Drawing.Point(391, 14);
+            this.RDB_Cut.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RDB_Cut.Location = new System.Drawing.Point(390, 14);
             this.RDB_Cut.Name = "RDB_Cut";
-            this.RDB_Cut.Size = new System.Drawing.Size(42, 18);
+            this.RDB_Cut.Size = new System.Drawing.Size(43, 19);
             this.RDB_Cut.TabIndex = 3;
             this.RDB_Cut.TabStop = true;
             this.RDB_Cut.Text = "Cut";
@@ -675,7 +794,8 @@ namespace r09546042_TerryYang_Assignment01
             // BTN_Inference
             // 
             this.BTN_Inference.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_Inference.Location = new System.Drawing.Point(439, 9);
+            this.BTN_Inference.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_Inference.Location = new System.Drawing.Point(439, 11);
             this.BTN_Inference.Name = "BTN_Inference";
             this.BTN_Inference.Size = new System.Drawing.Size(90, 29);
             this.BTN_Inference.TabIndex = 2;
@@ -697,6 +817,36 @@ namespace r09546042_TerryYang_Assignment01
             this.DGV_Conditions.TabIndex = 1;
             this.DGV_Conditions.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_Conditions_CellClick);
             // 
+            // TP_Sugeon_Conclusion
+            // 
+            this.TP_Sugeon_Conclusion.Controls.Add(this.BTN_add_equation);
+            this.TP_Sugeon_Conclusion.Controls.Add(this.listBox1);
+            this.TP_Sugeon_Conclusion.Location = new System.Drawing.Point(4, 23);
+            this.TP_Sugeon_Conclusion.Name = "TP_Sugeon_Conclusion";
+            this.TP_Sugeon_Conclusion.Size = new System.Drawing.Size(535, 313);
+            this.TP_Sugeon_Conclusion.TabIndex = 2;
+            this.TP_Sugeon_Conclusion.Text = "Sugeon Conclusion Equation";
+            this.TP_Sugeon_Conclusion.UseVisualStyleBackColor = true;
+            // 
+            // BTN_add_equation
+            // 
+            this.BTN_add_equation.Location = new System.Drawing.Point(333, 9);
+            this.BTN_add_equation.Name = "BTN_add_equation";
+            this.BTN_add_equation.Size = new System.Drawing.Size(121, 93);
+            this.BTN_add_equation.TabIndex = 1;
+            this.BTN_add_equation.Text = "button2";
+            this.BTN_add_equation.UseVisualStyleBackColor = true;
+            this.BTN_add_equation.Click += new System.EventHandler(this.BTN_add_equation_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 14;
+            this.listBox1.Location = new System.Drawing.Point(8, 9);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(310, 284);
+            this.listBox1.TabIndex = 0;
+            // 
             // splitContainer5
             // 
             this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -706,11 +856,11 @@ namespace r09546042_TerryYang_Assignment01
             // 
             // splitContainer5.Panel1
             // 
-            this.splitContainer5.Panel1.Controls.Add(this.button1);
             this.splitContainer5.Panel1.Controls.Add(this.Main_Chart);
             // 
             // splitContainer5.Panel2
             // 
+            this.splitContainer5.Panel2.Controls.Add(this.button1);
             this.splitContainer5.Panel2.Controls.Add(this.chartController1);
             this.splitContainer5.Panel2.Controls.Add(this.tChart1);
             this.splitContainer5.Size = new System.Drawing.Size(798, 758);
@@ -719,9 +869,9 @@ namespace r09546042_TerryYang_Assignment01
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(4, 388);
+            this.button1.Location = new System.Drawing.Point(3, 28);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(131, 93);
             this.button1.TabIndex = 1;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -775,10 +925,10 @@ namespace r09546042_TerryYang_Assignment01
             this.tChart1.Axes.Left.Title.Caption = "Output Universe";
             this.tChart1.Axes.Left.Title.Lines = new string[] {
         "Output Universe"};
-            this.tChart1.Location = new System.Drawing.Point(3, 28);
+            this.tChart1.Location = new System.Drawing.Point(140, 28);
             this.tChart1.Name = "tChart1";
             this.tChart1.Series.Add(this.surface1);
-            this.tChart1.Size = new System.Drawing.Size(783, 304);
+            this.tChart1.Size = new System.Drawing.Size(646, 304);
             this.tChart1.TabIndex = 0;
             // 
             // surface1
@@ -812,24 +962,12 @@ namespace r09546042_TerryYang_Assignment01
             this.toolTip1.InitialDelay = 200;
             this.toolTip1.ReshowDelay = 100;
             // 
-            // TP_Sugeon_Conclusion
+            // BTN_Open
             // 
-            this.TP_Sugeon_Conclusion.Controls.Add(this.listBox1);
-            this.TP_Sugeon_Conclusion.Location = new System.Drawing.Point(4, 23);
-            this.TP_Sugeon_Conclusion.Name = "TP_Sugeon_Conclusion";
-            this.TP_Sugeon_Conclusion.Size = new System.Drawing.Size(535, 313);
-            this.TP_Sugeon_Conclusion.TabIndex = 2;
-            this.TP_Sugeon_Conclusion.Text = "Sugeon Conclusion Equation";
-            this.TP_Sugeon_Conclusion.UseVisualStyleBackColor = true;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 14;
-            this.listBox1.Location = new System.Drawing.Point(8, 9);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(514, 284);
-            this.listBox1.TabIndex = 0;
+            this.BTN_Open.Name = "BTN_Open";
+            this.BTN_Open.Size = new System.Drawing.Size(180, 22);
+            this.BTN_Open.Text = "Open";
+            this.BTN_Open.Click += new System.EventHandler(this.BTN_Open_Click);
             // 
             // MainForm
             // 
@@ -839,6 +977,7 @@ namespace r09546042_TerryYang_Assignment01
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Fuzzy Inference System Modeler and Execution system";
             ((System.ComponentModel.ISupportInitialize)(this.Main_Chart)).EndInit();
@@ -850,9 +989,15 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel1.PerformLayout();
             this.splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
@@ -875,12 +1020,12 @@ namespace r09546042_TerryYang_Assignment01
             this.GB_Conditions.ResumeLayout(false);
             this.GB_Conditions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Conditions)).EndInit();
+            this.TP_Sugeon_Conclusion.ResumeLayout(false);
             this.splitContainer5.Panel1.ResumeLayout(false);
             this.splitContainer5.Panel2.ResumeLayout(false);
             this.splitContainer5.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
             this.splitContainer5.ResumeLayout(false);
-            this.TP_Sugeon_Conclusion.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -934,6 +1079,17 @@ namespace r09546042_TerryYang_Assignment01
         private Steema.TeeChart.Styles.Surface surface1;
         private System.Windows.Forms.TabPage TP_Sugeon_Conclusion;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button BTN_add_equation;
+        private System.Windows.Forms.PropertyGrid propertyGrid1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton RB_TFS;
+        private System.Windows.Forms.RadioButton RB_SFS;
+        private System.Windows.Forms.RadioButton RB_MFS;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem BTN_save;
+        private System.Windows.Forms.ToolStripMenuItem BTN_Open;
     }
 }
 

@@ -34,3 +34,9 @@ C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #5\r09546
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #5\r09546042_TerryYang_Assignment05\Fuzzy_Graph_Library\obj\Debug\Fuzzy_Graph_Library.pdb
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #5\r09546042_TerryYang_Assignment05\Fuzzy_Graph_Library\bin\Debug\Fuzzy_Graph_Library.dll
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #5\r09546042_TerryYang_Assignment05\Fuzzy_Graph_Library\bin\Debug\Fuzzy_Graph_Library.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #6\r09546042_TerryYang_Assignment06\Fuzzy_Graph_Library\obj\Debug\Fuzzy_Graph_Library.csprojAssemblyReference.cache
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #6\r09546042_TerryYang_Assignment06\Fuzzy_Graph_Library\obj\Debug\Fuzzy_Graph_Library.csproj.CoreCompileInputs.cache
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #6\r09546042_TerryYang_Assignment06\Fuzzy_Graph_Library\obj\Debug\Fuzzy_Graph_Library.dll
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #6\r09546042_TerryYang_Assignment06\Fuzzy_Graph_Library\obj\Debug\Fuzzy_Graph_Library.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #6\r09546042_TerryYang_Assignment06\Fuzzy_Graph_Library\bin\Debug\Fuzzy_Graph_Library.dll
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #6\r09546042_TerryYang_Assignment06\Fuzzy_Graph_Library\bin\Debug\Fuzzy_Graph_Library.pdb

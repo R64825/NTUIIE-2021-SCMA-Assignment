@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -122,6 +123,27 @@ namespace Fuzzy_Graph_Library
         public Legend Get_Legend()
         {
             return this_Legend;
+        }
+
+        public void Save_Model(StreamWriter sw)
+        {
+            sw.WriteLine($"Name:{name}");
+            sw.WriteLine($"LowBound:{minimum}");
+            sw.WriteLine($"LowBound:{maximum}");
+            sw.WriteLine($"Resolution:{resolution}");
+        }
+
+        public void Read_Model(StreamReader sr)
+        {
+            string str;
+            str = sr.ReadLine().Trim();
+            name = str.Substring(str.IndexOf(':')+1);
+            str = sr.ReadLine().Trim();
+            minimum =Convert.ToInt32( str.Substring(str.IndexOf(':') + 1));
+            str = sr.ReadLine().Trim();
+            maximum = Convert.ToInt32(str.Substring(str.IndexOf(':') + 1));
+            str = sr.ReadLine().Trim();
+            resolution = Convert.ToInt32(str.Substring(str.IndexOf(':') + 1));
         }
     }
 }

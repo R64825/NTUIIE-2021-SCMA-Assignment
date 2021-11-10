@@ -15,7 +15,6 @@ namespace Fuzzy_Graph_Library
         static int count_Index = 1;
         public string[] parameter_Names = new string[] { "Left", "Center", "Right" };
         public double[] parameter_Suggestion = new double[] { -5, 0, 5 };
-        double[] parameters;
 
         double left;
         double center;
@@ -68,11 +67,6 @@ namespace Fuzzy_Graph_Library
 
         public Triangular_function(Fuzzy_display_area FDA) : base(FDA)
         {
-            parameters = new double[3];
-            //parameters[0] = left;
-            //parameters[1] = center;
-            //parameters[2] = right;
-
             left = -5 + rnd.Next(-1,1);
             center = 0 + rnd.Next(-1, 1);
             right = 5 + rnd.Next(-1, 1);

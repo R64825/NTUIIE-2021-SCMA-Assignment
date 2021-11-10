@@ -5,12 +5,12 @@ using System.Text;
 
 namespace Fuzzy_Graph_Library
 {
-    public class Sugeno_If_Then_Rule
+    public class Sugeno_If_Then_Fuzzy_Rule
     {
         List<Fuzzy_functions_collections> antecedent = new List<Fuzzy_functions_collections>();
         int conclusion_Equation_ID;
 
-        public static double GetOutputValue(List<int> inputs, int equationID)
+        public static double GetOutputValue(double[] inputs, int equationID)
         {
             switch (equationID)
             {
@@ -29,9 +29,14 @@ namespace Fuzzy_Graph_Library
             return 0;
         }
 
-        public double Crispy_In_Crispy_Out_Inferencing(List<int> conditions)
+        public double Crispy_In_Crispy_Out_Inferencing(double [] conditions, out double strength)
         {
-            return GetOutputValue(conditions, conclusion_Equation_ID);
+            double weighted_Result = 0;
+            strength = 0;
+
+            double output_Value =  GetOutputValue(conditions, conclusion_Equation_ID);
+
+            return weighted_Result;
         }
     }
 }
