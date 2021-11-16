@@ -36,6 +36,8 @@ namespace r09546042_TerryYang_Assignment01
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Input Universe");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Output Universe");
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.Main_Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -45,10 +47,11 @@ namespace r09546042_TerryYang_Assignment01
             this.RB_TFS = new System.Windows.Forms.RadioButton();
             this.RB_SFS = new System.Windows.Forms.RadioButton();
             this.RB_MFS = new System.Windows.Forms.RadioButton();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.PPGV_System = new System.Windows.Forms.PropertyGrid();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BTN_save = new System.Windows.Forms.ToolStripMenuItem();
+            this.BTN_Open = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.BTN_delete = new System.Windows.Forms.Button();
@@ -89,12 +92,19 @@ namespace r09546042_TerryYang_Assignment01
             this.BTN_add_equation = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
-            this.button1 = new System.Windows.Forms.Button();
-            this.chartController1 = new Steema.TeeChart.ChartController();
-            this.tChart1 = new Steema.TeeChart.TChart();
+            this.TBC_Defuzzy = new System.Windows.Forms.TabControl();
+            this.TB_2D = new System.Windows.Forms.TabPage();
+            this.splitContainer8 = new System.Windows.Forms.SplitContainer();
+            this.BTN_Two_D_Defuzzy = new System.Windows.Forms.Button();
+            this.TChart = new Steema.TeeChart.TChart();
             this.surface1 = new Steema.TeeChart.Styles.Surface();
+            this.chartController1 = new Steema.TeeChart.ChartController();
+            this.TB_1D = new System.Windows.Forms.TabPage();
+            this.splitContainer7 = new System.Windows.Forms.SplitContainer();
+            this.BTN_One_D_Defuzzy = new System.Windows.Forms.Button();
+            this.Chart_Defuzzy = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.BTN_Open = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer9 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.Main_Chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -133,6 +143,22 @@ namespace r09546042_TerryYang_Assignment01
             this.splitContainer5.Panel1.SuspendLayout();
             this.splitContainer5.Panel2.SuspendLayout();
             this.splitContainer5.SuspendLayout();
+            this.TBC_Defuzzy.SuspendLayout();
+            this.TB_2D.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).BeginInit();
+            this.splitContainer8.Panel1.SuspendLayout();
+            this.splitContainer8.Panel2.SuspendLayout();
+            this.splitContainer8.SuspendLayout();
+            this.TB_1D.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).BeginInit();
+            this.splitContainer7.Panel1.SuspendLayout();
+            this.splitContainer7.Panel2.SuspendLayout();
+            this.splitContainer7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Chart_Defuzzy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer9)).BeginInit();
+            this.splitContainer9.Panel1.SuspendLayout();
+            this.splitContainer9.Panel2.SuspendLayout();
+            this.splitContainer9.SuspendLayout();
             this.SuspendLayout();
             // 
             // Main_Chart
@@ -212,7 +238,7 @@ namespace r09546042_TerryYang_Assignment01
             // splitContainer4.Panel1
             // 
             this.splitContainer4.Panel1.Controls.Add(this.groupBox1);
-            this.splitContainer4.Panel1.Controls.Add(this.propertyGrid1);
+            this.splitContainer4.Panel1.Controls.Add(this.PPGV_System);
             this.splitContainer4.Panel1.Controls.Add(this.menuStrip1);
             // 
             // splitContainer4.Panel2
@@ -225,6 +251,9 @@ namespace r09546042_TerryYang_Assignment01
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.RB_TFS);
             this.groupBox1.Controls.Add(this.RB_SFS);
             this.groupBox1.Controls.Add(this.RB_MFS);
@@ -242,9 +271,9 @@ namespace r09546042_TerryYang_Assignment01
             this.RB_TFS.Name = "RB_TFS";
             this.RB_TFS.Size = new System.Drawing.Size(84, 18);
             this.RB_TFS.TabIndex = 2;
-            this.RB_TFS.TabStop = true;
             this.RB_TFS.Text = "Tsukamoto";
             this.RB_TFS.UseVisualStyleBackColor = true;
+            this.RB_TFS.CheckedChanged += new System.EventHandler(this.RB_TFS_CheckedChanged);
             // 
             // RB_SFS
             // 
@@ -253,13 +282,14 @@ namespace r09546042_TerryYang_Assignment01
             this.RB_SFS.Name = "RB_SFS";
             this.RB_SFS.Size = new System.Drawing.Size(65, 18);
             this.RB_SFS.TabIndex = 1;
-            this.RB_SFS.TabStop = true;
             this.RB_SFS.Text = "Sugeon";
             this.RB_SFS.UseVisualStyleBackColor = true;
+            this.RB_SFS.CheckedChanged += new System.EventHandler(this.RB_SFS_CheckedChanged);
             // 
             // RB_MFS
             // 
             this.RB_MFS.AutoSize = true;
+            this.RB_MFS.Checked = true;
             this.RB_MFS.Location = new System.Drawing.Point(6, 21);
             this.RB_MFS.Name = "RB_MFS";
             this.RB_MFS.Size = new System.Drawing.Size(74, 18);
@@ -267,13 +297,15 @@ namespace r09546042_TerryYang_Assignment01
             this.RB_MFS.TabStop = true;
             this.RB_MFS.Text = "Mandani";
             this.RB_MFS.UseVisualStyleBackColor = true;
+            this.RB_MFS.CheckedChanged += new System.EventHandler(this.RB_MFS_CheckedChanged);
             // 
-            // propertyGrid1
+            // PPGV_System
             // 
-            this.propertyGrid1.Location = new System.Drawing.Point(267, 35);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(272, 107);
-            this.propertyGrid1.TabIndex = 0;
+            this.PPGV_System.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PPGV_System.Location = new System.Drawing.Point(271, 24);
+            this.PPGV_System.Name = "PPGV_System";
+            this.PPGV_System.Size = new System.Drawing.Size(272, 121);
+            this.PPGV_System.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -298,9 +330,16 @@ namespace r09546042_TerryYang_Assignment01
             // BTN_save
             // 
             this.BTN_save.Name = "BTN_save";
-            this.BTN_save.Size = new System.Drawing.Size(180, 22);
+            this.BTN_save.Size = new System.Drawing.Size(106, 22);
             this.BTN_save.Text = "Save";
             this.BTN_save.Click += new System.EventHandler(this.BTN_save_Click);
+            // 
+            // BTN_Open
+            // 
+            this.BTN_Open.Name = "BTN_Open";
+            this.BTN_Open.Size = new System.Drawing.Size(106, 22);
+            this.BTN_Open.Text = "Open";
+            this.BTN_Open.Click += new System.EventHandler(this.BTN_Open_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -819,8 +858,7 @@ namespace r09546042_TerryYang_Assignment01
             // 
             // TP_Sugeon_Conclusion
             // 
-            this.TP_Sugeon_Conclusion.Controls.Add(this.BTN_add_equation);
-            this.TP_Sugeon_Conclusion.Controls.Add(this.listBox1);
+            this.TP_Sugeon_Conclusion.Controls.Add(this.splitContainer9);
             this.TP_Sugeon_Conclusion.Location = new System.Drawing.Point(4, 23);
             this.TP_Sugeon_Conclusion.Name = "TP_Sugeon_Conclusion";
             this.TP_Sugeon_Conclusion.Size = new System.Drawing.Size(535, 313);
@@ -830,21 +868,33 @@ namespace r09546042_TerryYang_Assignment01
             // 
             // BTN_add_equation
             // 
-            this.BTN_add_equation.Location = new System.Drawing.Point(333, 9);
+            this.BTN_add_equation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BTN_add_equation.Enabled = false;
+            this.BTN_add_equation.Location = new System.Drawing.Point(0, 0);
             this.BTN_add_equation.Name = "BTN_add_equation";
-            this.BTN_add_equation.Size = new System.Drawing.Size(121, 93);
+            this.BTN_add_equation.Size = new System.Drawing.Size(535, 72);
             this.BTN_add_equation.TabIndex = 1;
-            this.BTN_add_equation.Text = "button2";
+            this.BTN_add_equation.Text = "Add rule set";
             this.BTN_add_equation.UseVisualStyleBackColor = true;
             this.BTN_add_equation.Click += new System.EventHandler(this.BTN_add_equation_Click);
             // 
             // listBox1
             // 
+            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBox1.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 14;
-            this.listBox1.Location = new System.Drawing.Point(8, 9);
+            this.listBox1.ItemHeight = 19;
+            this.listBox1.Items.AddRange(new object[] {
+            "0: Y=0.1x+6.4",
+            "1: Y=0.5x+4",
+            "2: Y=x-2",
+            "3: Z=-x+y+1",
+            "4: Z=-y+3",
+            "5: Z=-x+3",
+            "6: Z=x+y+2"});
+            this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(310, 284);
+            this.listBox1.Size = new System.Drawing.Size(535, 237);
             this.listBox1.TabIndex = 0;
             // 
             // splitContainer5
@@ -860,42 +910,70 @@ namespace r09546042_TerryYang_Assignment01
             // 
             // splitContainer5.Panel2
             // 
-            this.splitContainer5.Panel2.Controls.Add(this.button1);
-            this.splitContainer5.Panel2.Controls.Add(this.chartController1);
-            this.splitContainer5.Panel2.Controls.Add(this.tChart1);
+            this.splitContainer5.Panel2.Controls.Add(this.TBC_Defuzzy);
             this.splitContainer5.Size = new System.Drawing.Size(798, 758);
             this.splitContainer5.SplitterDistance = 418;
             this.splitContainer5.TabIndex = 1;
             // 
-            // button1
+            // TBC_Defuzzy
             // 
-            this.button1.Location = new System.Drawing.Point(3, 28);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 93);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.TBC_Defuzzy.Controls.Add(this.TB_2D);
+            this.TBC_Defuzzy.Controls.Add(this.TB_1D);
+            this.TBC_Defuzzy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TBC_Defuzzy.Location = new System.Drawing.Point(0, 0);
+            this.TBC_Defuzzy.Name = "TBC_Defuzzy";
+            this.TBC_Defuzzy.SelectedIndex = 0;
+            this.TBC_Defuzzy.Size = new System.Drawing.Size(798, 336);
+            this.TBC_Defuzzy.TabIndex = 2;
             // 
-            // chartController1
+            // TB_2D
             // 
-            this.chartController1.ButtonSize = Steema.TeeChart.ControllerButtonSize.x16;
-            this.chartController1.LabelValues = true;
-            this.chartController1.Location = new System.Drawing.Point(0, 0);
-            this.chartController1.Name = "chartController1";
-            this.chartController1.Size = new System.Drawing.Size(798, 25);
-            this.chartController1.TabIndex = 1;
-            this.chartController1.Text = "chartController1";
+            this.TB_2D.Controls.Add(this.splitContainer8);
+            this.TB_2D.Controls.Add(this.chartController1);
+            this.TB_2D.Location = new System.Drawing.Point(4, 23);
+            this.TB_2D.Name = "TB_2D";
+            this.TB_2D.Padding = new System.Windows.Forms.Padding(3);
+            this.TB_2D.Size = new System.Drawing.Size(790, 309);
+            this.TB_2D.TabIndex = 0;
+            this.TB_2D.Text = "2D output map";
             // 
-            // tChart1
+            // splitContainer8
+            // 
+            this.splitContainer8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer8.Location = new System.Drawing.Point(3, 28);
+            this.splitContainer8.Name = "splitContainer8";
+            // 
+            // splitContainer8.Panel1
+            // 
+            this.splitContainer8.Panel1.Controls.Add(this.BTN_Two_D_Defuzzy);
+            // 
+            // splitContainer8.Panel2
+            // 
+            this.splitContainer8.Panel2.Controls.Add(this.TChart);
+            this.splitContainer8.Size = new System.Drawing.Size(784, 278);
+            this.splitContainer8.SplitterDistance = 91;
+            this.splitContainer8.TabIndex = 2;
+            // 
+            // BTN_Two_D_Defuzzy
+            // 
+            this.BTN_Two_D_Defuzzy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BTN_Two_D_Defuzzy.Location = new System.Drawing.Point(0, 0);
+            this.BTN_Two_D_Defuzzy.Name = "BTN_Two_D_Defuzzy";
+            this.BTN_Two_D_Defuzzy.Size = new System.Drawing.Size(91, 278);
+            this.BTN_Two_D_Defuzzy.TabIndex = 1;
+            this.BTN_Two_D_Defuzzy.Text = "Inference Crisp All Input";
+            this.BTN_Two_D_Defuzzy.UseVisualStyleBackColor = true;
+            this.BTN_Two_D_Defuzzy.Click += new System.EventHandler(this.BTN_Two_D_Defuzzy_Click);
+            // 
+            // TChart
             // 
             // 
             // 
             // 
-            this.tChart1.Aspect.Chart3DPercent = 85;
-            this.tChart1.Aspect.Orthogonal = false;
-            this.tChart1.Aspect.Zoom = 70;
-            this.tChart1.Aspect.ZoomFloat = 70D;
+            this.TChart.Aspect.Chart3DPercent = 85;
+            this.TChart.Aspect.Orthogonal = false;
+            this.TChart.Aspect.Zoom = 70;
+            this.TChart.Aspect.ZoomFloat = 70D;
             // 
             // 
             // 
@@ -905,31 +983,32 @@ namespace r09546042_TerryYang_Assignment01
             // 
             // 
             // 
-            this.tChart1.Axes.Bottom.Title.Caption = "Input Universe";
-            this.tChart1.Axes.Bottom.Title.Lines = new string[] {
+            this.TChart.Axes.Bottom.Title.Caption = "Input Universe";
+            this.TChart.Axes.Bottom.Title.Lines = new string[] {
         "Input Universe"};
             // 
             // 
             // 
-            this.tChart1.Axes.Depth.LabelsAsSeriesTitles = true;
+            this.TChart.Axes.Depth.LabelsAsSeriesTitles = true;
             // 
             // 
             // 
-            this.tChart1.Axes.DepthTop.LabelsAsSeriesTitles = true;
+            this.TChart.Axes.DepthTop.LabelsAsSeriesTitles = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.tChart1.Axes.Left.Title.Caption = "Output Universe";
-            this.tChart1.Axes.Left.Title.Lines = new string[] {
+            this.TChart.Axes.Left.Title.Caption = "Output Universe";
+            this.TChart.Axes.Left.Title.Lines = new string[] {
         "Output Universe"};
-            this.tChart1.Location = new System.Drawing.Point(140, 28);
-            this.tChart1.Name = "tChart1";
-            this.tChart1.Series.Add(this.surface1);
-            this.tChart1.Size = new System.Drawing.Size(646, 304);
-            this.tChart1.TabIndex = 0;
+            this.TChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TChart.Location = new System.Drawing.Point(0, 0);
+            this.TChart.Name = "TChart";
+            this.TChart.Series.Add(this.surface1);
+            this.TChart.Size = new System.Drawing.Size(689, 278);
+            this.TChart.TabIndex = 0;
             // 
             // surface1
             // 
@@ -956,18 +1035,94 @@ namespace r09546042_TerryYang_Assignment01
             // 
             this.surface1.ZValues.DataMember = "Z";
             // 
+            // chartController1
+            // 
+            this.chartController1.ButtonSize = Steema.TeeChart.ControllerButtonSize.x16;
+            this.chartController1.Chart = this.TChart;
+            this.chartController1.LabelValues = true;
+            this.chartController1.Location = new System.Drawing.Point(3, 3);
+            this.chartController1.Name = "chartController1";
+            this.chartController1.Size = new System.Drawing.Size(784, 25);
+            this.chartController1.TabIndex = 1;
+            this.chartController1.Text = "chartController1";
+            // 
+            // TB_1D
+            // 
+            this.TB_1D.Controls.Add(this.splitContainer7);
+            this.TB_1D.Location = new System.Drawing.Point(4, 23);
+            this.TB_1D.Name = "TB_1D";
+            this.TB_1D.Padding = new System.Windows.Forms.Padding(3);
+            this.TB_1D.Size = new System.Drawing.Size(790, 309);
+            this.TB_1D.TabIndex = 1;
+            this.TB_1D.Text = "1D output map";
+            this.TB_1D.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer7
+            // 
+            this.splitContainer7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer7.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer7.Name = "splitContainer7";
+            // 
+            // splitContainer7.Panel1
+            // 
+            this.splitContainer7.Panel1.Controls.Add(this.BTN_One_D_Defuzzy);
+            // 
+            // splitContainer7.Panel2
+            // 
+            this.splitContainer7.Panel2.Controls.Add(this.Chart_Defuzzy);
+            this.splitContainer7.Size = new System.Drawing.Size(784, 303);
+            this.splitContainer7.SplitterDistance = 89;
+            this.splitContainer7.TabIndex = 2;
+            // 
+            // BTN_One_D_Defuzzy
+            // 
+            this.BTN_One_D_Defuzzy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BTN_One_D_Defuzzy.Location = new System.Drawing.Point(0, 0);
+            this.BTN_One_D_Defuzzy.Name = "BTN_One_D_Defuzzy";
+            this.BTN_One_D_Defuzzy.Size = new System.Drawing.Size(89, 303);
+            this.BTN_One_D_Defuzzy.TabIndex = 1;
+            this.BTN_One_D_Defuzzy.Text = "Inference Crisp All Input";
+            this.BTN_One_D_Defuzzy.UseVisualStyleBackColor = true;
+            this.BTN_One_D_Defuzzy.Click += new System.EventHandler(this.BTN_Defuzzy_Click);
+            // 
+            // Chart_Defuzzy
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.Chart_Defuzzy.ChartAreas.Add(chartArea2);
+            this.Chart_Defuzzy.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend2.Alignment = System.Drawing.StringAlignment.Center;
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend2.Name = "Legend1";
+            this.Chart_Defuzzy.Legends.Add(legend2);
+            this.Chart_Defuzzy.Location = new System.Drawing.Point(0, 0);
+            this.Chart_Defuzzy.Name = "Chart_Defuzzy";
+            this.Chart_Defuzzy.Size = new System.Drawing.Size(691, 303);
+            this.Chart_Defuzzy.TabIndex = 0;
+            this.Chart_Defuzzy.Text = "chart1";
+            // 
             // toolTip1
             // 
             this.toolTip1.AutoPopDelay = 5000;
             this.toolTip1.InitialDelay = 200;
             this.toolTip1.ReshowDelay = 100;
             // 
-            // BTN_Open
+            // splitContainer9
             // 
-            this.BTN_Open.Name = "BTN_Open";
-            this.BTN_Open.Size = new System.Drawing.Size(180, 22);
-            this.BTN_Open.Text = "Open";
-            this.BTN_Open.Click += new System.EventHandler(this.BTN_Open_Click);
+            this.splitContainer9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer9.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer9.Name = "splitContainer9";
+            this.splitContainer9.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer9.Panel1
+            // 
+            this.splitContainer9.Panel1.Controls.Add(this.listBox1);
+            // 
+            // splitContainer9.Panel2
+            // 
+            this.splitContainer9.Panel2.Controls.Add(this.BTN_add_equation);
+            this.splitContainer9.Size = new System.Drawing.Size(535, 313);
+            this.splitContainer9.SplitterDistance = 237;
+            this.splitContainer9.TabIndex = 2;
             // 
             // MainForm
             // 
@@ -979,7 +1134,7 @@ namespace r09546042_TerryYang_Assignment01
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "Fuzzy Inference System Modeler and Execution system";
+            this.Text = "Fuzzy Inferencing System";
             ((System.ComponentModel.ISupportInitialize)(this.Main_Chart)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -1023,9 +1178,25 @@ namespace r09546042_TerryYang_Assignment01
             this.TP_Sugeon_Conclusion.ResumeLayout(false);
             this.splitContainer5.Panel1.ResumeLayout(false);
             this.splitContainer5.Panel2.ResumeLayout(false);
-            this.splitContainer5.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
             this.splitContainer5.ResumeLayout(false);
+            this.TBC_Defuzzy.ResumeLayout(false);
+            this.TB_2D.ResumeLayout(false);
+            this.TB_2D.PerformLayout();
+            this.splitContainer8.Panel1.ResumeLayout(false);
+            this.splitContainer8.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).EndInit();
+            this.splitContainer8.ResumeLayout(false);
+            this.TB_1D.ResumeLayout(false);
+            this.splitContainer7.Panel1.ResumeLayout(false);
+            this.splitContainer7.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).EndInit();
+            this.splitContainer7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Chart_Defuzzy)).EndInit();
+            this.splitContainer9.Panel1.ResumeLayout(false);
+            this.splitContainer9.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer9)).EndInit();
+            this.splitContainer9.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1073,14 +1244,14 @@ namespace r09546042_TerryYang_Assignment01
         private System.Windows.Forms.GroupBox GB_Conditions;
         private System.Windows.Forms.RadioButton RDB_Scale;
         private System.Windows.Forms.RadioButton RDB_Cut;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BTN_Two_D_Defuzzy;
         private Steema.TeeChart.ChartController chartController1;
-        private Steema.TeeChart.TChart tChart1;
+        private Steema.TeeChart.TChart TChart;
         private Steema.TeeChart.Styles.Surface surface1;
         private System.Windows.Forms.TabPage TP_Sugeon_Conclusion;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button BTN_add_equation;
-        private System.Windows.Forms.PropertyGrid propertyGrid1;
+        private System.Windows.Forms.PropertyGrid PPGV_System;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton RB_TFS;
         private System.Windows.Forms.RadioButton RB_SFS;
@@ -1090,6 +1261,14 @@ namespace r09546042_TerryYang_Assignment01
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem BTN_save;
         private System.Windows.Forms.ToolStripMenuItem BTN_Open;
+        private System.Windows.Forms.TabControl TBC_Defuzzy;
+        private System.Windows.Forms.TabPage TB_2D;
+        private System.Windows.Forms.TabPage TB_1D;
+        private System.Windows.Forms.Button BTN_One_D_Defuzzy;
+        private System.Windows.Forms.DataVisualization.Charting.Chart Chart_Defuzzy;
+        private System.Windows.Forms.SplitContainer splitContainer7;
+        private System.Windows.Forms.SplitContainer splitContainer8;
+        private System.Windows.Forms.SplitContainer splitContainer9;
     }
 }
 

@@ -59,9 +59,9 @@ namespace Fuzzy_Graph_Library
         #endregion Parameters
         public LeftRight_function(Fuzzy_display_area FDA) : base(FDA)
         {
-            alpha = 10 + rnd.Next(-5, 5);
-            beta = 10 + rnd.Next(-5, 5);
-            center = 0 + rnd.Next(-5, 5);
+            alpha = Random_Value(2);
+            beta = Random_Value(2);
+            center = Random_Value(5);
             //fuzzy_series.Color = Color.Orange;
             //fuzzy_series.Name = $"LeftRight_Series_{count_Index++}";
             fuzzy_series.Name = "LeftRight_" + String.Format("{0:00}", count_Index++);

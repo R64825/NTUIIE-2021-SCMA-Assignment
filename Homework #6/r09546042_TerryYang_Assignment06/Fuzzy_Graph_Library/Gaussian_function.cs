@@ -51,8 +51,8 @@ namespace Fuzzy_Graph_Library
             parameters = new double[2];
             parameters[0] = 0;
             parameters[1] = 5;
-            mean = 0 + rnd.Next(-2, 2);
-            variance = 5 + rnd.Next(0, 3);
+            mean = Random_Value(5);
+            variance = Random_Value(2);
             //fuzzy_series.Color = Color.Red;
             fuzzy_series.Name = "Gaussian_" + String.Format("{0:00}", count_Index++);
             Color = fuzzy_series.Color;

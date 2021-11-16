@@ -67,9 +67,9 @@ namespace Fuzzy_Graph_Library
 
         public Triangular_function(Fuzzy_display_area FDA) : base(FDA)
         {
-            left = -5 + rnd.Next(-1,1);
-            center = 0 + rnd.Next(-1, 1);
-            right = 5 + rnd.Next(-1, 1);
+            left = Random_Value(0);
+            center = Random_Value(5);
+            right = Random_Value(10);
 
             //fuzzy_series.Color = Color.Green;
             fuzzy_series.Name = "Triangular_"+String.Format("{0:00}", count_Index++) ;

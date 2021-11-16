@@ -14,10 +14,11 @@ namespace Fuzzy_Graph_Library
     public class Fuzzy_display_area
     {
         static int current_Index = 1;
-        string name = "Area_";
+        string name = "Uni_";
         int resolution = 100;
-        double minimum = -10;
+        double minimum = 0;
         double maximum = 10;
+        double incensement;
         TreeNode parent_Node;
         ChartArea this_Chart_Area;
         Legend this_Legend;
@@ -87,6 +88,8 @@ namespace Fuzzy_Graph_Library
         [Browsable(false)]
         public TreeNode Parent_Node { get => parent_Node; set => parent_Node = value; }
 
+        public double Incensement { get => incensement; set => incensement = value; }
+
         public Fuzzy_display_area(Chart CT)
         {           
             name = name + String.Format("{0:00}", current_Index++);
@@ -104,10 +107,10 @@ namespace Fuzzy_Graph_Library
             this_Legend.Docking = Docking.Top;
             this_Legend.DockedToChartArea=CT.ChartAreas.Last().Name; 
             this_Legend.Alignment = System.Drawing.StringAlignment.Far;
-            //this_Legend.IsDockedInsideChartArea = false;
             this_Legend.BackColor = Color.Transparent;
             CT.Legends.Add(this_Legend);
-            
+
+            incensement = Math.Abs((minimum - maximum) / resolution);
         }
 
 

@@ -44,8 +44,8 @@ namespace Fuzzy_Graph_Library
 
         public Sigmoidal_function(Fuzzy_display_area FDA) : base(FDA)
         {
-             sharpness =1+rnd.Next(0,3);
-             center = 0 + rnd.Next(-5, 5); 
+             sharpness = Random_Value(3);
+            center = Random_Value(5);
             //fuzzy_series.Color = Color.Magenta;
             fuzzy_series.Name = "Sigmoidal_" + String.Format("{0:00}", count_Index++);
             Color = fuzzy_series.Color;

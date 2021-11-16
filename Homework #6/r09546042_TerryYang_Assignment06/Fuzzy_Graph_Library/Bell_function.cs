@@ -62,9 +62,9 @@ namespace Fuzzy_Graph_Library
         #endregion Parameters
         public Bell_function(Fuzzy_display_area FDA) : base(FDA)
         {
-            variation = 2 + rnd.Next(0, 5); 
-            flatness = 1 + rnd.Next(0, 5); 
-            center = 0 + rnd.Next(-2, 2); 
+            variation = Random_Value(2);
+            flatness = Random_Value(2);
+            center = Random_Value(5);
             //fuzzy_series.Color = Color.Blue;
             fuzzy_series.Name = "Bell_" + String.Format("{0:00}", count_Index++);
             //fuzzy_series.Name = $"Bell_Series_{count_Index++}";

@@ -76,10 +76,10 @@ namespace Fuzzy_Graph_Library
 
         public Trapzoidal_function(Fuzzy_display_area FDA) : base(FDA)
         {
-            left = -5 + rnd.Next(-1, 1);
-            left_point = -1 + rnd.Next(-1, 1);
-            right_point = 1 + rnd.Next(-1, 1);
-            right = 5 + rnd.Next(-1, 1);
+            left = Random_Value(0);
+            left_point = Random_Value(4);
+            right_point = Random_Value(7);
+            right = Random_Value(10);
 
             //fuzzy_series.Color = Color.Green;
             fuzzy_series.Name = "Trapzoidal_" + String.Format("{0:00}", count_Index++);
