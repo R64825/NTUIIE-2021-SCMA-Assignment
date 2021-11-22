@@ -1,0 +1,6 @@
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\TerryYang_GA_Library\obj\Debug\TerryYang_GA_Library.csprojAssemblyReference.cache
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\TerryYang_GA_Library\obj\Debug\TerryYang_GA_Library.csproj.CoreCompileInputs.cache
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\TerryYang_GA_Library\bin\Debug\TerryYang_GA_Library.dll
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\TerryYang_GA_Library\bin\Debug\TerryYang_GA_Library.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\TerryYang_GA_Library\obj\Debug\TerryYang_GA_Library.dll
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\TerryYang_GA_Library\obj\Debug\TerryYang_GA_Library.pdb

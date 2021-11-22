@@ -1,0 +1,13 @@
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\r09546042_TerryYang_Assignment07\bin\Debug\r09546042_TerryYang_Assignment07.exe.config
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\r09546042_TerryYang_Assignment07\bin\Debug\r09546042_TerryYang_Assignment07.exe
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\r09546042_TerryYang_Assignment07\bin\Debug\r09546042_TerryYang_Assignment07.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\r09546042_TerryYang_Assignment07\obj\Debug\r09546042_TerryYang_Assignment07.csprojAssemblyReference.cache
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\r09546042_TerryYang_Assignment07\obj\Debug\r09546042_TerryYang_Assignment07.Properties.Resources.resources
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\r09546042_TerryYang_Assignment07\obj\Debug\r09546042_TerryYang_Assignment07.csproj.GenerateResource.cache
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\r09546042_TerryYang_Assignment07\obj\Debug\r09546042_TerryYang_Assignment07.csproj.CoreCompileInputs.cache
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\r09546042_TerryYang_Assignment07\obj\Debug\r09546042_TerryYang_Assignment07.exe
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\r09546042_TerryYang_Assignment07\obj\Debug\r09546042_TerryYang_Assignment07.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\r09546042_TerryYang_Assignment07\obj\Debug\r09546042_TerryYang_Assignment07.Main_Form.resources
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\r09546042_TerryYang_Assignment07\bin\Debug\TerryYang_GA_Library.dll
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\r09546042_TerryYang_Assignment07\bin\Debug\TerryYang_GA_Library.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #7\r09546042_TerryYang_Assignment07\r09546042_TerryYang_Assignment07\obj\Debug\r09546042_TerryYang_Assignment07.csproj.CopyComplete
