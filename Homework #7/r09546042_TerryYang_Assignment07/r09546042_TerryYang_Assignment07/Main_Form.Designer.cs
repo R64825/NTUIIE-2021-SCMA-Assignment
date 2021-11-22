@@ -29,9 +29,9 @@ namespace r09546042_TerryYang_Assignment07
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -49,14 +49,14 @@ namespace r09546042_TerryYang_Assignment07
             this.BTN_proGenerate = new System.Windows.Forms.Button();
             this.TP_Settings = new System.Windows.Forms.TabPage();
             this.GB_Action = new System.Windows.Forms.GroupBox();
-            this.TB_Iteration = new System.Windows.Forms.TextBox();
+            this.NUD_Iteration = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
             this.BTN_Run_one = new System.Windows.Forms.Button();
             this.BTN_Run_to_end = new System.Windows.Forms.Button();
             this.BTN_Reset = new System.Windows.Forms.Button();
             this.GB_Animation = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.TKB_Animation = new System.Windows.Forms.TrackBar();
             this.CKB_Show_animation = new System.Windows.Forms.CheckBox();
             this.GB_Selection = new System.Windows.Forms.GroupBox();
             this.RDB_Deterministic = new System.Windows.Forms.RadioButton();
@@ -69,10 +69,9 @@ namespace r09546042_TerryYang_Assignment07
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.CB_Binary_Cross_Type = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -92,6 +91,11 @@ namespace r09546042_TerryYang_Assignment07
             this.RTB_Population = new System.Windows.Forms.RichTextBox();
             this.Chart_Main = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.TM_GA = new System.Windows.Forms.Timer(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.NUD_Penalty_Factor = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -105,8 +109,9 @@ namespace r09546042_TerryYang_Assignment07
             ((System.ComponentModel.ISupportInitialize)(this.NUD_minimum)).BeginInit();
             this.TP_Settings.SuspendLayout();
             this.GB_Action.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Iteration)).BeginInit();
             this.GB_Animation.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TKB_Animation)).BeginInit();
             this.GB_Selection.SuspendLayout();
             this.GB_Parameter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_mutaterate)).BeginInit();
@@ -126,13 +131,15 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Penalty_Factor)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1248, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1249, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -140,7 +147,7 @@ namespace r09546042_TerryYang_Assignment07
             // 
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1248, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1249, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -157,7 +164,7 @@ namespace r09546042_TerryYang_Assignment07
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1248, 729);
+            this.splitContainer1.Size = new System.Drawing.Size(1249, 762);
             this.splitContainer1.SplitterDistance = 402;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -170,7 +177,7 @@ namespace r09546042_TerryYang_Assignment07
             this.TBC_main.Location = new System.Drawing.Point(0, 0);
             this.TBC_main.Name = "TBC_main";
             this.TBC_main.SelectedIndex = 0;
-            this.TBC_main.Size = new System.Drawing.Size(402, 729);
+            this.TBC_main.Size = new System.Drawing.Size(402, 762);
             this.TBC_main.TabIndex = 0;
             // 
             // TP_Problem
@@ -328,6 +335,7 @@ namespace r09546042_TerryYang_Assignment07
             // 
             // TP_Settings
             // 
+            this.TP_Settings.Controls.Add(this.groupBox1);
             this.TP_Settings.Controls.Add(this.GB_Action);
             this.TP_Settings.Controls.Add(this.GB_Animation);
             this.TP_Settings.Controls.Add(this.GB_Selection);
@@ -336,7 +344,7 @@ namespace r09546042_TerryYang_Assignment07
             this.TP_Settings.Location = new System.Drawing.Point(4, 24);
             this.TP_Settings.Name = "TP_Settings";
             this.TP_Settings.Padding = new System.Windows.Forms.Padding(3);
-            this.TP_Settings.Size = new System.Drawing.Size(394, 701);
+            this.TP_Settings.Size = new System.Drawing.Size(394, 734);
             this.TP_Settings.TabIndex = 1;
             this.TP_Settings.Text = "GA settings";
             this.TP_Settings.UseVisualStyleBackColor = true;
@@ -345,25 +353,36 @@ namespace r09546042_TerryYang_Assignment07
             // 
             this.GB_Action.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.GB_Action.Controls.Add(this.TB_Iteration);
+            this.GB_Action.Controls.Add(this.NUD_Iteration);
             this.GB_Action.Controls.Add(this.label13);
             this.GB_Action.Controls.Add(this.BTN_Run_one);
             this.GB_Action.Controls.Add(this.BTN_Run_to_end);
             this.GB_Action.Controls.Add(this.BTN_Reset);
-            this.GB_Action.Location = new System.Drawing.Point(4, 468);
+            this.GB_Action.Location = new System.Drawing.Point(5, 510);
             this.GB_Action.Name = "GB_Action";
             this.GB_Action.Size = new System.Drawing.Size(383, 202);
             this.GB_Action.TabIndex = 4;
             this.GB_Action.TabStop = false;
             this.GB_Action.Text = "Action";
             // 
-            // TB_Iteration
+            // NUD_Iteration
             // 
-            this.TB_Iteration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TB_Iteration.Location = new System.Drawing.Point(117, 172);
-            this.TB_Iteration.Name = "TB_Iteration";
-            this.TB_Iteration.Size = new System.Drawing.Size(260, 23);
-            this.TB_Iteration.TabIndex = 4;
+            this.NUD_Iteration.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.NUD_Iteration.Location = new System.Drawing.Point(117, 170);
+            this.NUD_Iteration.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
+            this.NUD_Iteration.Name = "NUD_Iteration";
+            this.NUD_Iteration.Size = new System.Drawing.Size(260, 23);
+            this.NUD_Iteration.TabIndex = 1;
+            this.NUD_Iteration.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             // 
             // label13
             // 
@@ -379,6 +398,7 @@ namespace r09546042_TerryYang_Assignment07
             // 
             this.BTN_Run_one.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Run_one.Enabled = false;
             this.BTN_Run_one.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTN_Run_one.Location = new System.Drawing.Point(5, 70);
             this.BTN_Run_one.Name = "BTN_Run_one";
@@ -392,6 +412,7 @@ namespace r09546042_TerryYang_Assignment07
             // 
             this.BTN_Run_to_end.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Run_to_end.Enabled = false;
             this.BTN_Run_to_end.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTN_Run_to_end.Location = new System.Drawing.Point(5, 120);
             this.BTN_Run_to_end.Name = "BTN_Run_to_end";
@@ -399,6 +420,7 @@ namespace r09546042_TerryYang_Assignment07
             this.BTN_Run_to_end.TabIndex = 1;
             this.BTN_Run_to_end.Text = "Run to end";
             this.BTN_Run_to_end.UseVisualStyleBackColor = true;
+            this.BTN_Run_to_end.Click += new System.EventHandler(this.BTN_Run_to_end_Click);
             // 
             // BTN_Reset
             // 
@@ -418,9 +440,9 @@ namespace r09546042_TerryYang_Assignment07
             this.GB_Animation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GB_Animation.Controls.Add(this.label12);
-            this.GB_Animation.Controls.Add(this.trackBar1);
+            this.GB_Animation.Controls.Add(this.TKB_Animation);
             this.GB_Animation.Controls.Add(this.CKB_Show_animation);
-            this.GB_Animation.Location = new System.Drawing.Point(3, 371);
+            this.GB_Animation.Location = new System.Drawing.Point(5, 410);
             this.GB_Animation.Name = "GB_Animation";
             this.GB_Animation.Size = new System.Drawing.Size(384, 97);
             this.GB_Animation.TabIndex = 3;
@@ -437,14 +459,15 @@ namespace r09546042_TerryYang_Assignment07
             this.label12.TabIndex = 2;
             this.label12.Text = "Animation interval:";
             // 
-            // trackBar1
+            // TKB_Animation
             // 
-            this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TKB_Animation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBar1.Location = new System.Drawing.Point(9, 46);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(369, 45);
-            this.trackBar1.TabIndex = 1;
+            this.TKB_Animation.Location = new System.Drawing.Point(9, 46);
+            this.TKB_Animation.Name = "TKB_Animation";
+            this.TKB_Animation.Size = new System.Drawing.Size(369, 45);
+            this.TKB_Animation.TabIndex = 1;
+            this.TKB_Animation.Value = 1;
             // 
             // CKB_Show_animation
             // 
@@ -457,6 +480,7 @@ namespace r09546042_TerryYang_Assignment07
             this.CKB_Show_animation.TabIndex = 0;
             this.CKB_Show_animation.Text = "Show animation";
             this.CKB_Show_animation.UseVisualStyleBackColor = true;
+            this.CKB_Show_animation.CheckedChanged += new System.EventHandler(this.CKB_Show_animation_CheckedChanged);
             // 
             // GB_Selection
             // 
@@ -464,7 +488,7 @@ namespace r09546042_TerryYang_Assignment07
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GB_Selection.Controls.Add(this.RDB_Deterministic);
             this.GB_Selection.Controls.Add(this.RDB_Stochastic);
-            this.GB_Selection.Location = new System.Drawing.Point(3, 321);
+            this.GB_Selection.Location = new System.Drawing.Point(5, 310);
             this.GB_Selection.Name = "GB_Selection";
             this.GB_Selection.Size = new System.Drawing.Size(384, 44);
             this.GB_Selection.TabIndex = 2;
@@ -475,6 +499,7 @@ namespace r09546042_TerryYang_Assignment07
             // 
             this.RDB_Deterministic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.RDB_Deterministic.AutoSize = true;
+            this.RDB_Deterministic.Checked = true;
             this.RDB_Deterministic.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RDB_Deterministic.Location = new System.Drawing.Point(200, 15);
             this.RDB_Deterministic.Name = "RDB_Deterministic";
@@ -492,7 +517,6 @@ namespace r09546042_TerryYang_Assignment07
             this.RDB_Stochastic.Name = "RDB_Stochastic";
             this.RDB_Stochastic.Size = new System.Drawing.Size(98, 25);
             this.RDB_Stochastic.TabIndex = 0;
-            this.RDB_Stochastic.TabStop = true;
             this.RDB_Stochastic.Text = "Stochastic";
             this.RDB_Stochastic.UseVisualStyleBackColor = true;
             // 
@@ -506,7 +530,7 @@ namespace r09546042_TerryYang_Assignment07
             this.GB_Parameter.Controls.Add(this.label11);
             this.GB_Parameter.Controls.Add(this.label10);
             this.GB_Parameter.Controls.Add(this.label9);
-            this.GB_Parameter.Location = new System.Drawing.Point(4, 215);
+            this.GB_Parameter.Location = new System.Drawing.Point(5, 210);
             this.GB_Parameter.Name = "GB_Parameter";
             this.GB_Parameter.Size = new System.Drawing.Size(384, 100);
             this.GB_Parameter.TabIndex = 1;
@@ -591,30 +615,22 @@ namespace r09546042_TerryYang_Assignment07
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.textBox3);
+            this.groupBox3.Controls.Add(this.NUD_Penalty_Factor);
             this.groupBox3.Controls.Add(this.comboBox4);
             this.groupBox3.Controls.Add(this.comboBox3);
-            this.groupBox3.Controls.Add(this.comboBox2);
+            this.groupBox3.Controls.Add(this.CB_Binary_Cross_Type);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.RDB_Permutation);
             this.groupBox3.Controls.Add(this.RDB_Binary);
-            this.groupBox3.Location = new System.Drawing.Point(4, 7);
+            this.groupBox3.Location = new System.Drawing.Point(5, 5);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(384, 202);
+            this.groupBox3.Size = new System.Drawing.Size(381, 202);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "GA encoding";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(156, 80);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(222, 23);
-            this.textBox3.TabIndex = 9;
             // 
             // comboBox4
             // 
@@ -622,7 +638,7 @@ namespace r09546042_TerryYang_Assignment07
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Location = new System.Drawing.Point(129, 170);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(249, 23);
+            this.comboBox4.Size = new System.Drawing.Size(246, 23);
             this.comboBox4.TabIndex = 8;
             // 
             // comboBox3
@@ -631,17 +647,22 @@ namespace r09546042_TerryYang_Assignment07
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(129, 140);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(249, 23);
+            this.comboBox3.Size = new System.Drawing.Size(246, 23);
             this.comboBox3.TabIndex = 7;
             // 
-            // comboBox2
+            // CB_Binary_Cross_Type
             // 
-            this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(129, 50);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(249, 23);
-            this.comboBox2.TabIndex = 6;
+            this.CB_Binary_Cross_Type.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_Binary_Cross_Type.FormattingEnabled = true;
+            this.CB_Binary_Cross_Type.Items.AddRange(new object[] {
+            "One Point Cut",
+            "Two Points Cut",
+            "N Points Cut"});
+            this.CB_Binary_Cross_Type.Location = new System.Drawing.Point(129, 50);
+            this.CB_Binary_Cross_Type.Name = "CB_Binary_Cross_Type";
+            this.CB_Binary_Cross_Type.Size = new System.Drawing.Size(246, 23);
+            this.CB_Binary_Cross_Type.TabIndex = 6;
+            this.CB_Binary_Cross_Type.Text = "One Point Cut";
             // 
             // label8
             // 
@@ -722,8 +743,8 @@ namespace r09546042_TerryYang_Assignment07
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.Chart_Main);
-            this.splitContainer2.Size = new System.Drawing.Size(842, 729);
-            this.splitContainer2.SplitterDistance = 324;
+            this.splitContainer2.Size = new System.Drawing.Size(843, 762);
+            this.splitContainer2.SplitterDistance = 338;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
@@ -741,7 +762,7 @@ namespace r09546042_TerryYang_Assignment07
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.groupBox9);
-            this.splitContainer3.Size = new System.Drawing.Size(842, 324);
+            this.splitContainer3.Size = new System.Drawing.Size(843, 338);
             this.splitContainer3.SplitterDistance = 220;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -754,7 +775,7 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox11.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox11.Location = new System.Drawing.Point(3, 227);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(214, 94);
+            this.groupBox11.Size = new System.Drawing.Size(214, 108);
             this.groupBox11.TabIndex = 2;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Hard constrain vilolation";
@@ -767,7 +788,7 @@ namespace r09546042_TerryYang_Assignment07
             this.TB_HCV.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TB_HCV.Location = new System.Drawing.Point(5, 25);
             this.TB_HCV.Name = "TB_HCV";
-            this.TB_HCV.Size = new System.Drawing.Size(202, 63);
+            this.TB_HCV.Size = new System.Drawing.Size(202, 77);
             this.TB_HCV.TabIndex = 2;
             this.TB_HCV.Text = "";
             // 
@@ -836,7 +857,7 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox9.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox9.Location = new System.Drawing.Point(0, 0);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(618, 324);
+            this.groupBox9.Size = new System.Drawing.Size(619, 338);
             this.groupBox9.TabIndex = 1;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Population";
@@ -846,7 +867,7 @@ namespace r09546042_TerryYang_Assignment07
             this.RTB_Population.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RTB_Population.Location = new System.Drawing.Point(3, 25);
             this.RTB_Population.Name = "RTB_Population";
-            this.RTB_Population.Size = new System.Drawing.Size(612, 296);
+            this.RTB_Population.Size = new System.Drawing.Size(613, 310);
             this.RTB_Population.TabIndex = 1;
             this.RTB_Population.Text = "";
             // 
@@ -855,6 +876,7 @@ namespace r09546042_TerryYang_Assignment07
             this.Chart_Main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea1.AxisX.Minimum = 0D;
             chartArea1.Name = "ChartArea1";
             this.Chart_Main.ChartAreas.Add(chartArea1);
             legend1.Alignment = System.Drawing.StringAlignment.Center;
@@ -863,27 +885,81 @@ namespace r09546042_TerryYang_Assignment07
             this.Chart_Main.Legends.Add(legend1);
             this.Chart_Main.Location = new System.Drawing.Point(0, 0);
             this.Chart_Main.Name = "Chart_Main";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.Chart_Main.Series.Add(series1);
-            this.Chart_Main.Size = new System.Drawing.Size(842, 376);
+            this.Chart_Main.Size = new System.Drawing.Size(843, 395);
             this.Chart_Main.TabIndex = 0;
             this.Chart_Main.Text = "chart1";
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 756);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 789);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1248, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1249, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // TM_GA
+            // 
+            this.TM_GA.Tick += new System.EventHandler(this.TM_GA_Tick);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Location = new System.Drawing.Point(5, 355);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(385, 51);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Mutation base";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.Location = new System.Drawing.Point(15, 15);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(100, 25);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.Text = "Gene base";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
+            this.radioButton2.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton2.Location = new System.Drawing.Point(200, 15);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(159, 25);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Chromosome base";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // NUD_Penalty_Factor
+            // 
+            this.NUD_Penalty_Factor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.NUD_Penalty_Factor.Location = new System.Drawing.Point(156, 80);
+            this.NUD_Penalty_Factor.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.NUD_Penalty_Factor.Name = "NUD_Penalty_Factor";
+            this.NUD_Penalty_Factor.Size = new System.Drawing.Size(219, 23);
+            this.NUD_Penalty_Factor.TabIndex = 2;
+            this.NUD_Penalty_Factor.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
             // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1248, 778);
+            this.ClientSize = new System.Drawing.Size(1249, 811);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
@@ -906,9 +982,10 @@ namespace r09546042_TerryYang_Assignment07
             this.TP_Settings.ResumeLayout(false);
             this.GB_Action.ResumeLayout(false);
             this.GB_Action.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Iteration)).EndInit();
             this.GB_Animation.ResumeLayout(false);
             this.GB_Animation.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TKB_Animation)).EndInit();
             this.GB_Selection.ResumeLayout(false);
             this.GB_Selection.PerformLayout();
             this.GB_Parameter.ResumeLayout(false);
@@ -933,6 +1010,9 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox8.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Penalty_Factor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -960,10 +1040,9 @@ namespace r09546042_TerryYang_Assignment07
         private System.Windows.Forms.Button BTN_proGenerate;
         private System.Windows.Forms.GroupBox GB_GeneratedProblem;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox CB_Binary_Cross_Type;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -979,13 +1058,12 @@ namespace r09546042_TerryYang_Assignment07
         private System.Windows.Forms.RadioButton RDB_Deterministic;
         private System.Windows.Forms.RadioButton RDB_Stochastic;
         private System.Windows.Forms.GroupBox GB_Action;
-        private System.Windows.Forms.TextBox TB_Iteration;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button BTN_Run_one;
         private System.Windows.Forms.Button BTN_Run_to_end;
         private System.Windows.Forms.Button BTN_Reset;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar TKB_Animation;
         private System.Windows.Forms.CheckBox CKB_Show_animation;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.RichTextBox TB_HCV;
@@ -1000,6 +1078,12 @@ namespace r09546042_TerryYang_Assignment07
         private System.Windows.Forms.NumericUpDown NUD_population;
         private System.Windows.Forms.NumericUpDown NUD_mutaterate;
         private System.Windows.Forms.NumericUpDown NUD_crossrate;
+        private System.Windows.Forms.NumericUpDown NUD_Iteration;
+        private System.Windows.Forms.Timer TM_GA;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.NumericUpDown NUD_Penalty_Factor;
     }
 }
 

@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace TerryYang_GA_Library
 {
+    public enum Optimization_Type { Minimization, Maximization }
+    public enum Mutation_Type { Gene_Number_Based, Chromosomes_Number_Based }
+    public enum Selection_Type { Deterministic, Stochastic }
+
     // template class
     public class Generic_GA_Solver<T>
     {
@@ -23,31 +29,31 @@ namespace TerryYang_GA_Library
 
         protected T[][] selected_Chromosomes;
         protected double[] selected_Objectives;
-
         protected int number_Of_Genes;
-        protected Optimization_Type optimization_Type = Optimization_Type.Minimization;
+        
         protected Objective_Function<T> objective_Function = null;
         protected double less_Fitness_Fraction;
 
         protected int population_Size = 10;
         protected double crossover_Rate = 0.8;
         protected double mutation_Rate = 0.2;// Gene base, not population size
+        private double penatly_Factor = 50;
+
+        Optimization_Type optimization_Type = Optimization_Type.Minimization;
         Mutation_Type mutation_Type = Mutation_Type.Chromosomes_Number_Based;
         Selection_Type selection_Type = Selection_Type.Deterministic;
+        public delegate double Objective_Function<S>(S[] a_Solution);
 
         int iteration_Limit = 200;
         int number_Of_Crossovered_Children;
         int number_Of_Mutated_Children;
 
-
+        private Series series_SoFarTheBest;
+        private Series series_Average;
         // run time date
         int iteration_ID;
         #endregion
-        public enum Optimization_Type { Minimization, Maximization }
-        public enum Mutation_Type { Gene_Number_Based, Chromosomes_Number_Based }
-        public enum Selection_Type { Deterministic , Stochastic}
-        public delegate double Objective_Function<S>(S[] a_Solution);
-
+              
         #region Property
         public int Population_Size
         {
@@ -77,8 +83,11 @@ namespace TerryYang_GA_Library
         public int Iteration_ID { get => iteration_ID; set => iteration_ID = value; }
         public int Number_Of_Crossovered_Children { get => number_Of_Crossovered_Children; set => number_Of_Crossovered_Children = value; }
         public int Number_Of_Mutated_Children { get => number_Of_Mutated_Children; set => number_Of_Mutated_Children = value; }
+        public Series Series_SoFarTheBest { get => series_SoFarTheBest; set => series_SoFarTheBest = value; }
+        public Series Series_Average { get => series_Average; set => series_Average = value; }
+        public int Iteration_Limit { get => iteration_Limit; set => iteration_Limit = value; }
+        public double Penatly_Factor { get => penatly_Factor; set => penatly_Factor = value; }
         #endregion
-
 
         #region Constructor
         /// <summary>
@@ -94,47 +103,54 @@ namespace TerryYang_GA_Library
             this.objective_Function = objective_Function;
 
             chromosomes = new T[population_Size][];
-
             so_Far_The_Best_Soulution = new T[number_Of_Genes];
+
+            // construct series
+            series_SoFarTheBest = new Series("So far the best solution");
+            series_SoFarTheBest.ChartType = SeriesChartType.Line;
+            series_SoFarTheBest.Color = Color.Red;
+            series_SoFarTheBest.BorderWidth = 2;
+            series_Average = new Series("Solutions average");
+            series_Average.ChartType = SeriesChartType.Line;
+            series_Average.Color = Color.Lime;
+            series_Average.BorderWidth = 2;
         }
         #endregion
 
         #region Functions
         // helping function
-        
-        public void Perform_Selection_Operation()
+        public virtual void Set_Fitness_and_Objectives(int total)
         {
-            double least_Fitness_Fraction = 0.1;
-            double o_min, o_max;
+            throw new Exception();
+            
+        }
+        private void Perform_Series_Update()
+        {
+            series_Average.Points.AddXY(iteration_ID, objective_Value.Sum() / population_Size);
+            series_SoFarTheBest.Points.AddXY(Iteration_ID, so_Far_The_Best_Objective_Value);
+        }
+        public void Perform_Selection_Operation()
+        {           
             int total = population_Size + number_Of_Crossovered_Children + number_Of_Mutated_Children;
-            o_max = double.MinValue;
-            o_min = double.MaxValue;
-            for (int i = 0; i < total; i++)
-            {
-                fitness_Value[i] = objective_Value[i];
-                if (objective_Value[i] > o_max) o_max = objective_Value[i];
-                if (objective_Value[i] < o_min) o_min = objective_Value[i];
-            }
-
-            // compute fitness form objectives
-            double min = least_Fitness_Fraction * (o_max - o_min);
-            if (min < 1e-5) min = 1e-5;
-            // ...
-            for (int i = 0; i < total; i++)
-            {
-                fitness_Value[i] = objective_Value[i];
-            }
-            // ...
-
+            Set_Fitness_and_Objectives(total);
+            
             // sort fitness and indices
             indices = new int[total];
             for (int i = 0; i < total; i++)     indices[i] = i;
 
-            
+            // .sort ==> small to large
             Array.Sort(fitness_Value, indices, 0, total);
-            Array.Reverse(fitness_Value, 0, total);
-            Array.Reverse(indices, 0, total);
-
+            switch (optimization_Type)
+            {
+                case Optimization_Type.Minimization:
+                    break;
+                case Optimization_Type.Maximization:
+                    Array.Reverse(fitness_Value, 0, total);
+                    Array.Reverse(indices, 0, total);
+                    break;
+                default:
+                    break;
+            }
             // update so far the best solution and objectives
             // the iteration best is indices[0]
 
@@ -143,9 +159,10 @@ namespace TerryYang_GA_Library
             {
                //...
                // perform stochastic selection
+               // black jack wheel spinning
             }
 
-            // update selection
+            // update selection(at first place of the array)
             Fit_to_Selection_Then_Drop_Unfit();
         }
 
@@ -224,10 +241,7 @@ namespace TerryYang_GA_Library
                 child_b = crossover_ID_b;
 
                 // make crossover
-                Generate_Crossovered_Chromosomes(father, mother, child_a, child_b);
-                // compared objectives for crossoverd child
-                objective_Value[crossover_ID_a] = objective_Function(chromosomes[crossover_ID_a]);
-                objective_Value[crossover_ID_b] = objective_Function(chromosomes[crossover_ID_b]);
+                Generate_Crossovered_Chromosomes(father, mother, child_a, child_b);               
             }
         }
         private void Perform_Mutation_Operation()
@@ -235,7 +249,23 @@ namespace TerryYang_GA_Library
             if (mutation_Type == Mutation_Type.Gene_Number_Based)
             {
                 // Gene_Number_Based
+                int genes_pool = population_Size * number_Of_Genes;
+                int number_of_Mutated_Genes_pools = (int)(mutation_Rate * genes_pool);
+                List<int> pos = new List<int>();
+                // make mutate genes
+                for (int i = 0; i < number_of_Mutated_Genes_pools; i++)
+                {
+                    int gene_pool_position = rnd.Next(number_of_Mutated_Genes_pools);
+                    int row_ID = (int)(gene_pool_position/number_Of_Genes);
+                    int col_ID = (int)(gene_pool_position % number_Of_Genes);
+                    Generate_Mutated_Chromosomes(row_ID, population_Size + number_Of_Crossovered_Children + i, col_ID);
+                    if (pos.Contains(row_ID) == false)  
+                        pos.Add(row_ID);
+                }
 
+                // count mutated chromosomes
+                number_Of_Mutated_Children = pos.Count;
+                pos.Clear();
             }
             else
             {
@@ -247,7 +277,8 @@ namespace TerryYang_GA_Library
                 {
                     int mutated_ID = population_Size + number_Of_Crossovered_Children + i;
                     // make mutants
-                    Generate_Mutated_Chromosomes(indices[i], mutated_ID);
+                    int gene_position = rnd.Next(number_Of_Genes);
+                    Generate_Mutated_Chromosomes(indices[i], mutated_ID, gene_position);
                     // compute objectives for mutanted child
                     objective_Value[mutated_ID] = objective_Function(chromosomes[mutated_ID]);
                 }
@@ -257,7 +288,7 @@ namespace TerryYang_GA_Library
         {
             throw new NotImplementedException();
         }
-        public virtual void Generate_Mutated_Chromosomes(int before_mutation, int after_mutation)
+        public virtual void Generate_Mutated_Chromosomes(int before_mutation, int after_mutation, int gene_position)
         {
             throw new NotImplementedException();
         }
@@ -309,9 +340,10 @@ namespace TerryYang_GA_Library
             Perform_Crossover_Operation();
             Perform_Mutation_Operation();
             Perform_Selection_Operation();
-
+            Perform_Series_Update();
             iteration_ID++;
         }       
+
         public void Run_To_End(int Iteration)
         {
             for (int i = 0; i < Iteration; i++)

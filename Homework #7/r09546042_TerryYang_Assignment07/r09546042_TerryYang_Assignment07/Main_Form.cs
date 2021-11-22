@@ -22,6 +22,43 @@ namespace r09546042_TerryYang_Assignment07
             Setup_UI();
         }
         #region Helping Functions
+        public void Update_New_Solutions_on_UI()
+        {
+            TB_BOV.Text = GA_Solver.So_Far_The_Best_Objective_Value.ToString();
+            RTB_BOV.Text = GA_Solver.Flatten_Solution_to_String(GA_Solver.So_Far_The_Best_Soulution);
+
+            // print out chromosomes in rich text box
+            RTB_Population.Text += "Current Iteration: " + GA_Solver.Iteration_ID.ToString() + "\n";
+            RTB_Population.Text += "Parents: " + "\n";
+            for (int i = 0; i < NUD_population.Value; i++)
+            {
+                RTB_Population.Text += GA_Solver.Flatten_Solution_to_String(GA_Solver.Chromosomes[i]) + "\n";
+            }
+            RTB_Population.Text += "Crossovered: " + "\n";
+            for (int i = Convert.ToInt32(NUD_population.Value); i < NUD_population.Value + GA_Solver.Number_Of_Crossovered_Children; i++)
+            {
+                RTB_Population.Text += GA_Solver.Flatten_Solution_to_String(GA_Solver.Chromosomes[i]) + "\n";
+            }
+            RTB_Population.Text += "Mutated: " + "\n";
+            for (int i = Convert.ToInt32(NUD_population.Value + GA_Solver.Number_Of_Crossovered_Children); i < NUD_population.Value + GA_Solver.Number_Of_Crossovered_Children + GA_Solver.Number_Of_Mutated_Children; i++)
+            {
+                RTB_Population.Text += GA_Solver.Flatten_Solution_to_String(GA_Solver.Chromosomes[i]) + "\n";
+            }
+        }
+        public void Clear_Old_Solutions_on_UI()
+        {
+            TB_BOV.Text = "";
+            RTB_Population.Text = "";
+
+            // add series
+            Chart_Main.Series.Clear();
+            Chart_Main.Series.Add(GA_Solver.Series_Average);
+            Chart_Main.Series.Add(GA_Solver.Series_SoFarTheBest);
+
+            //enable BTN
+            BTN_Run_one.Enabled = true;
+            BTN_Run_to_end.Enabled = true;
+        }
         public void Setup_UI()
         {
             Generate_Problem_at_DGV();
@@ -71,7 +108,22 @@ namespace r09546042_TerryYang_Assignment07
                 sel_type = Selection_Type.Deterministic;
             return sel_type;
         }
-
+        private Binary_Crossover_Operator Get_Binary_Crossover_Type()
+        {
+            Binary_Crossover_Operator cross_type;
+            switch (CB_Binary_Cross_Type.SelectedItem.ToString())
+            {
+                case "One Point Cut":
+                    return Binary_Crossover_Operator.One_Point_Cut;
+                case "Two Points Cut":
+                    return Binary_Crossover_Operator.Two_Point_Cut;
+                case "N Points Cut":
+                    return Binary_Crossover_Operator.N_Point_Cut;
+                default:
+                    return Binary_Crossover_Operator.One_Point_Cut;
+                    break;
+            }
+        }
         public double Get_Setup_Time_Total(byte[] solution)
         {
             double objective_Value = 0 ;
@@ -98,38 +150,76 @@ namespace r09546042_TerryYang_Assignment07
         }
         private void BTN_Reset_Click(object sender, EventArgs e)
         {
+            // set GA function
             int population_Size = decimal.ToInt32(NUD_population.Value);
             double crossover_Rate = decimal.ToDouble(NUD_crossrate.Value);
             double mutate_Rate = decimal.ToDouble(NUD_mutaterate.Value);
+            int iteration_Limit = Convert.ToInt32(NUD_Iteration.Value);
+            double penalty_Factor = decimal.ToDouble(NUD_Penalty_Factor.Value);
             Selection_Type sel_type = Get_Selection_Type();
+            Binary_Crossover_Operator binary_cro_type = Get_Binary_Crossover_Type(); 
             if (RDB_Binary.Checked)
-                GA_Solver = new Binary_GA(number_of_Jobs*number_of_Jobs, Optimization_Type.Minimization,Get_Setup_Time_Total);
+            {
+                GA_Solver = new Binary_GA(number_of_Jobs * number_of_Jobs, Optimization_Type.Minimization, Get_Setup_Time_Total, binary_cro_type);
+            }
+               
             GA_Solver.Selection_Type1 = sel_type;
+            GA_Solver.Population_Size = population_Size;
+            GA_Solver.Iteration_Limit = iteration_Limit;
+            GA_Solver.Penatly_Factor = penalty_Factor;
             GA_Solver.Crossover_Rate = Convert.ToDouble(NUD_crossrate.Value);
             GA_Solver.Mutation_Rate = Convert.ToDouble(NUD_mutaterate.Value);
             GA_Solver.Reset();
+
+            Clear_Old_Solutions_on_UI();
+
         }
+
+        
+
         private void BTN_Run_one_Click(object sender, EventArgs e)
         {
             RTB_Population.Clear();
             GA_Solver.Run_One_Iteration();
-            TB_BOV.Text = GA_Solver.So_Far_The_Best_Objective_Value.ToString();
-            RTB_BOV.Text = GA_Solver.Flatten_Solution_to_String(GA_Solver.So_Far_The_Best_Soulution);
-
-            RTB_Population.Text += "Current Iteration: " + GA_Solver.Iteration_ID.ToString();
-            RTB_Population.Text += "Parents: " + "\n";
-            for (int i = 0; i < NUD_population.Value; i++)
-            {
-                RTB_Population.Text += GA_Solver.Flatten_Solution_to_String(GA_Solver.Chromosomes[i])+"\n";
-            }
-            RTB_Population.Text += "Crossovered: " + "\n";
-            //for (int i = 0; i < NUD_population.Value+GA_Solver; i++)
-            //{
-            //    RTB_Population.Text += GA_Solver.Flatten_Solution_to_String(GA_Solver.Chromosomes[i]) + "\n";
-            //}
+            Update_New_Solutions_on_UI();
         }
+
+        private void BTN_Run_to_end_Click(object sender, EventArgs e)
+        {
+            int iteration = decimal.ToInt32(NUD_Iteration.Value);
+            TM_GA.Interval = 100 * TKB_Animation.Value;
+            // run animation
+            if (CKB_Show_animation.Checked)
+            {
+                TM_GA.Enabled = true;
+            }
+            else
+            {
+                GA_Solver.Run_To_End(iteration);
+                Update_New_Solutions_on_UI();
+            }
+
+            BTN_Reset.Enabled = true;
+            BTN_Run_one.Enabled = true;
+            BTN_Run_to_end.Enabled = false;
+        }
+
         #endregion
 
+        private void TM_GA_Tick(object sender, EventArgs e)
+        {
+            GA_Solver.Run_One_Iteration();
+            if (GA_Solver.Iteration_ID == NUD_Iteration.Value)
+            {
+                TM_GA.Enabled = false;
+                Update_New_Solutions_on_UI();
+            }
+        }
 
+        private void CKB_Show_animation_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CKB_Show_animation.Checked == false)
+                TM_GA.Enabled = false;
+        }
     }
 }
