@@ -30,8 +30,8 @@ namespace r09546042_TerryYang_Assignment07
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -464,6 +464,7 @@ namespace r09546042_TerryYang_Assignment07
             this.TKB_Animation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TKB_Animation.Location = new System.Drawing.Point(9, 46);
+            this.TKB_Animation.Minimum = 1;
             this.TKB_Animation.Name = "TKB_Animation";
             this.TKB_Animation.Size = new System.Drawing.Size(369, 45);
             this.TKB_Animation.TabIndex = 1;
@@ -876,13 +877,13 @@ namespace r09546042_TerryYang_Assignment07
             this.Chart_Main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.AxisX.Minimum = 0D;
-            chartArea1.Name = "ChartArea1";
-            this.Chart_Main.ChartAreas.Add(chartArea1);
-            legend1.Alignment = System.Drawing.StringAlignment.Center;
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend1.Name = "Legend1";
-            this.Chart_Main.Legends.Add(legend1);
+            chartArea2.AxisX.Minimum = 0D;
+            chartArea2.Name = "ChartArea1";
+            this.Chart_Main.ChartAreas.Add(chartArea2);
+            legend2.Alignment = System.Drawing.StringAlignment.Center;
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend2.Name = "Legend1";
+            this.Chart_Main.Legends.Add(legend2);
             this.Chart_Main.Location = new System.Drawing.Point(0, 0);
             this.Chart_Main.Name = "Chart_Main";
             this.Chart_Main.Size = new System.Drawing.Size(843, 395);
