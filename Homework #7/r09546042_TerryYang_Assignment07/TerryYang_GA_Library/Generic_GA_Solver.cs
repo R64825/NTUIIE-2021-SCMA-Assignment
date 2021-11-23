@@ -8,9 +8,9 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace TerryYang_GA_Library
 {
-    public enum Optimization_Type { Minimization, Maximization }
-    public enum Mutation_Type { Gene_Number_Based, Chromosomes_Number_Based }
-    public enum Selection_Type { Deterministic, Stochastic }
+    public enum GA_Optimization_Type { Minimization, Maximization }
+    public enum GA_Mutation_Type { Gene_Number_Based, Chromosomes_Number_Based }
+    public enum GA_Selection_Type { Deterministic, Stochastic }
 
     // template class
     public class Generic_GA_Solver<T>
@@ -25,10 +25,13 @@ namespace TerryYang_GA_Library
 
         private T[] so_Far_The_Best_Soulution;
         private double so_Far_The_Best_Objective_Value;
+        double iteration_Best_Objective;
+        double iteration_Average_Objective;
+
         protected int[] indices;
 
         protected T[][] selected_Chromosomes;
-        protected double[] selected_Objectives;
+        protected double[] selected_Objective_Value;
         protected int number_Of_Genes;
         
         protected Objective_Function<T> objective_Function = null;
@@ -39,9 +42,9 @@ namespace TerryYang_GA_Library
         protected double mutation_Rate = 0.2;// Gene base, not population size
         private double penatly_Factor = 50;
 
-        Optimization_Type optimization_Type = Optimization_Type.Minimization;
-        Mutation_Type mutation_Type = Mutation_Type.Chromosomes_Number_Based;
-        Selection_Type selection_Type = Selection_Type.Deterministic;
+        GA_Optimization_Type optimization_Type = GA_Optimization_Type.Minimization;
+        GA_Mutation_Type mutation_Type = GA_Mutation_Type.Chromosomes_Number_Based;
+        GA_Selection_Type selection_Type = GA_Selection_Type.Deterministic;
         public delegate double Objective_Function<S>(S[] a_Solution);
 
         int iteration_Limit = 200;
@@ -50,6 +53,8 @@ namespace TerryYang_GA_Library
 
         private Series series_SoFarTheBest;
         private Series series_Average;
+        private Series series_IterationTheBest;
+
         // run time date
         int iteration_ID;
         #endregion
@@ -77,7 +82,7 @@ namespace TerryYang_GA_Library
         }
         public double Mutation_Rate { get => mutation_Rate; set => mutation_Rate = value; }
         public T[][] Chromosomes { get => chromosomes; set => chromosomes = value; }
-        public Selection_Type Selection_Type1 { get => selection_Type; set => selection_Type = value; }
+        public GA_Selection_Type Selection_Type1 { get => selection_Type; set => selection_Type = value; }
         public T[] So_Far_The_Best_Soulution { get => so_Far_The_Best_Soulution; set => so_Far_The_Best_Soulution = value; }
         public double So_Far_The_Best_Objective_Value { get => so_Far_The_Best_Objective_Value; set => so_Far_The_Best_Objective_Value = value; }
         public int Iteration_ID { get => iteration_ID; set => iteration_ID = value; }
@@ -85,8 +90,12 @@ namespace TerryYang_GA_Library
         public int Number_Of_Mutated_Children { get => number_Of_Mutated_Children; set => number_Of_Mutated_Children = value; }
         public Series Series_SoFarTheBest { get => series_SoFarTheBest; set => series_SoFarTheBest = value; }
         public Series Series_Average { get => series_Average; set => series_Average = value; }
+        public Series Series_IterationTheBest { get => series_IterationTheBest; set => series_IterationTheBest = value; }
         public int Iteration_Limit { get => iteration_Limit; set => iteration_Limit = value; }
         public double Penatly_Factor { get => penatly_Factor; set => penatly_Factor = value; }
+        public GA_Mutation_Type Mutation_Type { get => mutation_Type; set => mutation_Type = value; }
+        public GA_Optimization_Type Optimization_Type { get => optimization_Type; set => optimization_Type = value; }
+        public double[] Objective_Value { get => objective_Value; set => objective_Value = value; }
         #endregion
 
         #region Constructor
@@ -96,7 +105,7 @@ namespace TerryYang_GA_Library
         /// <param name="number_Of_Genes">number of genes</param>
         /// <param name="optimization_Type">optimization type</param>
         /// <param name="objective_Function">objective function</param>
-        public Generic_GA_Solver(int number_Of_Genes,Optimization_Type optimization_Type, Objective_Function<T> objective_Function)
+        public Generic_GA_Solver(int number_Of_Genes,GA_Optimization_Type optimization_Type, Objective_Function<T> objective_Function)
         {
             this.number_Of_Genes = number_Of_Genes;
             this.optimization_Type = optimization_Type;
@@ -114,73 +123,30 @@ namespace TerryYang_GA_Library
             series_Average.ChartType = SeriesChartType.Line;
             series_Average.Color = Color.Lime;
             series_Average.BorderWidth = 2;
+            series_IterationTheBest = new Series("Iteration the best solution");
+            series_IterationTheBest.ChartType = SeriesChartType.Line;
+            series_IterationTheBest.Color = Color.Magenta;
+            series_IterationTheBest.BorderWidth = 2;
         }
         #endregion
 
         #region Functions
         // helping function
-        public virtual void Set_Fitness_and_Objectives(int total)
+        public virtual void Set_Fitness_and_Objectives(int total, double penatly_Factor)
         {
-            throw new Exception();
-            
+            throw new Exception();          
         }
-        private void Perform_Series_Update()
+        private void Series_Update()
         {
-            series_Average.Points.AddXY(iteration_ID, objective_Value.Sum() / population_Size);
+            series_Average.Points.AddXY(iteration_ID, iteration_Average_Objective);
             series_SoFarTheBest.Points.AddXY(Iteration_ID, so_Far_The_Best_Objective_Value);
-        }
-        public void Perform_Selection_Operation()
-        {           
-            int total = population_Size + number_Of_Crossovered_Children + number_Of_Mutated_Children;
-            Set_Fitness_and_Objectives(total);
-            
-            // sort fitness and indices
-            indices = new int[total];
-            for (int i = 0; i < total; i++)     indices[i] = i;
-
-            // .sort ==> small to large
-            Array.Sort(fitness_Value, indices, 0, total);
-            switch (optimization_Type)
-            {
-                case Optimization_Type.Minimization:
-                    break;
-                case Optimization_Type.Maximization:
-                    Array.Reverse(fitness_Value, 0, total);
-                    Array.Reverse(indices, 0, total);
-                    break;
-                default:
-                    break;
-            }
-            // update so far the best solution and objectives
-            // the iteration best is indices[0]
-
-            // selection
-            if (selection_Type == Selection_Type.Stochastic)
-            {
-               //...
-               // perform stochastic selection
-               // black jack wheel spinning
-            }
-
-            // update selection(at first place of the array)
-            Fit_to_Selection_Then_Drop_Unfit();
+            series_IterationTheBest.Points.AddXY(iteration_ID, iteration_Best_Objective);
         }
 
-        public void Fit_to_Selection_Then_Drop_Unfit()
+        private void Copy_All_Selection_to_Chromosomes()
         {
-            // copy gene to selected buffer
-            for (int i = 0; i < population_Size; i++)
-            {
-                // gene-wise copy
-                for (int j = 0; j < number_Of_Genes; j++)
-                {
-                    selected_Chromosomes[i][j] = chromosomes[indices[i]][j];
-                }
-                selected_Objectives[i] = objective_Value[indices[i]];
-            }
-           
-            // copy back
-            Clear_Chromosomes_and_Objectives_Array();
+            // copy form selection to chromosome
+            //Clear_Chromosomes_and_Objectives_Array();
             for (int i = 0; i < population_Size; i++)
             {
                 // gene-wise copy
@@ -188,10 +154,123 @@ namespace TerryYang_GA_Library
                 {
                     chromosomes[i][j] = selected_Chromosomes[i][j];
                 }
-                objective_Value[i] = selected_Objectives[i];
+                objective_Value[i] = selected_Objective_Value[i];
             }
-            so_Far_The_Best_Objective_Value = objective_Value[0];
-            so_Far_The_Best_Soulution = chromosomes[0];
+        }
+        private void Copy_This_Chromosomes_to_a_Selection(int Chro_index,int Sel_index)
+        {
+            // gene-wise copy
+            for (int j = 0; j < number_Of_Genes; j++)
+            {
+                selected_Chromosomes[Sel_index][j] = chromosomes[Chro_index][j];
+            }
+            selected_Objective_Value[Sel_index] = objective_Function(selected_Chromosomes[Sel_index]);
+        }
+        public void Perform_Selection_Operation()
+        {           
+            int total = population_Size + number_Of_Crossovered_Children + number_Of_Mutated_Children;
+            Set_Fitness_and_Objectives(total , penatly_Factor);
+
+            // sort fitness and indices
+            indices = new int[total];
+            for (int i = 0; i < total; i++) indices[i] = i;
+            //// small to large
+            //Array.Sort(fitness_Value, indices, 0, total);
+            //switch (optimization_Type)
+            //{
+            //    case GA_Optimization_Type.Minimization:
+            //        break;
+            //    case GA_Optimization_Type.Maximization:
+            //        // large to small
+            //        Array.Reverse(fitness_Value, 0, total);
+            //        Array.Reverse(indices, 0, total);
+            //        break;
+            //    default:
+            //        break;
+            //}
+            Array.Sort(fitness_Value, indices, 0, total);
+            Array.Reverse(fitness_Value, 0, total);
+            Array.Reverse(indices, 0, total);
+
+            // selection
+            if (selection_Type == GA_Selection_Type.Stochastic)
+            {
+                #region Stochastic Happy Wheel
+                double Ratio = 1.0 / fitness_Value.Sum();
+                double[] dartboard = new double[total];
+                int[] locations = new int[population_Size];
+                double sum = 0;
+                int darts_counts = 0;
+                double dart = rnd.NextDouble();
+
+                // creating darting wheel
+                for (int i = 0; i < total; i++)
+                {
+                    sum += Ratio * fitness_Value[i] * population_Size;
+                    dartboard[i] = sum;
+                }
+
+                // shooting darts until popsize
+                for (int p = 0; p < total; p++)
+                {
+                    while (dartboard[p] > dart && darts_counts < population_Size) // hit
+                    {
+                        // select 
+                        //Copy_This_Chromosomes_to_a_Selection(p, darts_counts);
+                        locations[darts_counts] = p;
+                        darts_counts++;
+                        dart++;                       
+                    }
+                }
+
+                // copy
+                for (int l = 0; l < locations.Length; l++)
+                    Copy_This_Chromosomes_to_a_Selection(indices[locations[l]], l);              
+                #endregion 
+            }
+            else // deterministic
+            {              
+                // copy
+                for (int i = 0; i < population_Size; i++)               
+                    Copy_This_Chromosomes_to_a_Selection(indices[i], i);
+            }
+
+            Fit_to_Selection_Then_Drop_Unfit();
+        }
+
+        public void Fit_to_Selection_Then_Drop_Unfit()
+        {
+            double selected_Min = selected_Objective_Value.Min();
+            double selected_Max = selected_Objective_Value.Max();
+
+            // update so_far_the_best_solution
+            switch (optimization_Type)
+            {
+                case GA_Optimization_Type.Minimization: 
+                    if (so_Far_The_Best_Objective_Value > selected_Min)
+                    { 
+                        so_Far_The_Best_Objective_Value = selected_Min;
+                        so_Far_The_Best_Soulution = selected_Chromosomes[0];
+                    }
+                    break;
+                case GA_Optimization_Type.Maximization:
+                    if (so_Far_The_Best_Objective_Value < selected_Max)
+                    { 
+                        so_Far_The_Best_Objective_Value = selected_Max;
+                        so_Far_The_Best_Soulution = selected_Chromosomes[0];
+                    }
+                    break;
+                default:
+                    break;
+            }
+            Copy_All_Selection_to_Chromosomes();
+
+            // update iteration the best
+            if (optimization_Type == GA_Optimization_Type.Maximization)
+                iteration_Best_Objective = selected_Max;
+            else
+                iteration_Best_Objective = selected_Min;
+            iteration_Average_Objective = (selected_Objective_Value.Sum() / selected_Objective_Value.Length);
         }
         public int[] Shuffle_Indice_Array(int limit)
         {
@@ -246,7 +325,7 @@ namespace TerryYang_GA_Library
         }
         private void Perform_Mutation_Operation()
         {
-            if (mutation_Type == Mutation_Type.Gene_Number_Based)
+            if (mutation_Type == GA_Mutation_Type.Gene_Number_Based)
             {
                 // Gene_Number_Based
                 int genes_pool = population_Size * number_Of_Genes;
@@ -255,14 +334,13 @@ namespace TerryYang_GA_Library
                 // make mutate genes
                 for (int i = 0; i < number_of_Mutated_Genes_pools; i++)
                 {
-                    int gene_pool_position = rnd.Next(number_of_Mutated_Genes_pools);
+                    int gene_pool_position = rnd.Next(genes_pool);
                     int row_ID = (int)(gene_pool_position/number_Of_Genes);
                     int col_ID = (int)(gene_pool_position % number_Of_Genes);
                     Generate_Mutated_Chromosomes(row_ID, population_Size + number_Of_Crossovered_Children + i, col_ID);
                     if (pos.Contains(row_ID) == false)  
                         pos.Add(row_ID);
                 }
-
                 // count mutated chromosomes
                 number_Of_Mutated_Children = pos.Count;
                 pos.Clear();
@@ -271,16 +349,14 @@ namespace TerryYang_GA_Library
             {
                 // Chromosomes_Number_Based
                 indices = Shuffle_Indice_Array(Population_Size);
-                number_Of_Mutated_Children = (int)(population_Size * mutation_Rate);
-                
+                number_Of_Mutated_Children = (int)(population_Size * mutation_Rate);             
                 for (int i = 0; i < number_Of_Mutated_Children; i++)
                 {
-                    int mutated_ID = population_Size + number_Of_Crossovered_Children + i;
-                    // make mutants
+                    int mutated_ID = population_Size + number_Of_Crossovered_Children + i;                   
                     int gene_position = rnd.Next(number_Of_Genes);
+
+                    // make mutants
                     Generate_Mutated_Chromosomes(indices[i], mutated_ID, gene_position);
-                    // compute objectives for mutanted child
-                    objective_Value[mutated_ID] = objective_Function(chromosomes[mutated_ID]);
                 }
             }
         }
@@ -295,7 +371,6 @@ namespace TerryYang_GA_Library
         #endregion
 
         #region RUN-Time function
-        // run time function
         public void Reset()
         {
             // variable reset
@@ -303,12 +378,11 @@ namespace TerryYang_GA_Library
 
             // memory reallocation
             int Three_Time_Size = population_Size * 3;
-
             indices = new int[Three_Time_Size];
             objective_Value = new double[Three_Time_Size];
             fitness_Value = new double[Three_Time_Size];
             chromosomes = new T[Three_Time_Size][];
-            selected_Objectives = new double[population_Size];
+            selected_Objective_Value = new double[population_Size];
             selected_Chromosomes = new T[population_Size][];
             for (int r = 0; r < population_Size; r++)
                 selected_Chromosomes[r] = new T[number_Of_Genes];            
@@ -320,29 +394,30 @@ namespace TerryYang_GA_Library
 
             // compute fitness value
             for (int i = 0; i < Three_Time_Size; i++)
-            {
                 objective_Value[i] = objective_Function(chromosomes[i]);
-            }
             number_Of_Crossovered_Children = 0;
             number_Of_Mutated_Children = 0;
 
             // set so_fat_the_best to the worst
-            if (optimization_Type == Optimization_Type.Maximization)
+            if (optimization_Type == GA_Optimization_Type.Maximization)
                 so_Far_The_Best_Objective_Value = double.MinValue;
             else
-                so_Far_The_Best_Objective_Value = double.MaxValue;
-
-            
+                so_Far_The_Best_Objective_Value = double.MaxValue;           
         }
         public void Run_One_Iteration()
         {
             if (iteration_ID >= iteration_Limit) return;
+            if (iteration_ID != 0)
+                Copy_All_Selection_to_Chromosomes();
             Perform_Crossover_Operation();
             Perform_Mutation_Operation();
             Perform_Selection_Operation();
-            Perform_Series_Update();
+            
+            Series_Update();
             iteration_ID++;
-        }       
+        }
+
+       
 
         public void Run_To_End(int Iteration)
         {

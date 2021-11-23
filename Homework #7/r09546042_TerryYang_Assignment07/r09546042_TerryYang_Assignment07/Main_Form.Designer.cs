@@ -48,6 +48,9 @@ namespace r09546042_TerryYang_Assignment07
             this.label2 = new System.Windows.Forms.Label();
             this.BTN_proGenerate = new System.Windows.Forms.Button();
             this.TP_Settings = new System.Windows.Forms.TabPage();
+            this.GB_Mutation = new System.Windows.Forms.GroupBox();
+            this.RDB_Chrom_Base = new System.Windows.Forms.RadioButton();
+            this.RDB_Genes_Base = new System.Windows.Forms.RadioButton();
             this.GB_Action = new System.Windows.Forms.GroupBox();
             this.NUD_Iteration = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
@@ -68,7 +71,8 @@ namespace r09546042_TerryYang_Assignment07
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.GB_GA_encoding = new System.Windows.Forms.GroupBox();
+            this.NUD_Penalty_Factor = new System.Windows.Forms.NumericUpDown();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.CB_Binary_Cross_Type = new System.Windows.Forms.ComboBox();
@@ -88,14 +92,13 @@ namespace r09546042_TerryYang_Assignment07
             this.RTB_BOV = new System.Windows.Forms.RichTextBox();
             this.TB_BOV = new System.Windows.Forms.TextBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.RTB_Population = new System.Windows.Forms.RichTextBox();
             this.Chart_Main = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.TM_GA = new System.Windows.Forms.Timer(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.NUD_Penalty_Factor = new System.Windows.Forms.NumericUpDown();
+            this.GB_Optimization = new System.Windows.Forms.GroupBox();
+            this.RDB_Mini = new System.Windows.Forms.RadioButton();
+            this.RDB_Maxi = new System.Windows.Forms.RadioButton();
+            this.LTB_Population = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -108,6 +111,7 @@ namespace r09546042_TerryYang_Assignment07
             ((System.ComponentModel.ISupportInitialize)(this.NUD_maximum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_minimum)).BeginInit();
             this.TP_Settings.SuspendLayout();
+            this.GB_Mutation.SuspendLayout();
             this.GB_Action.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Iteration)).BeginInit();
             this.GB_Animation.SuspendLayout();
@@ -117,7 +121,8 @@ namespace r09546042_TerryYang_Assignment07
             ((System.ComponentModel.ISupportInitialize)(this.NUD_mutaterate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_crossrate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_population)).BeginInit();
-            this.groupBox3.SuspendLayout();
+            this.GB_GA_encoding.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Penalty_Factor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -131,8 +136,7 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NUD_Penalty_Factor)).BeginInit();
+            this.GB_Optimization.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -164,7 +168,7 @@ namespace r09546042_TerryYang_Assignment07
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1249, 762);
+            this.splitContainer1.Size = new System.Drawing.Size(1249, 814);
             this.splitContainer1.SplitterDistance = 402;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -177,7 +181,7 @@ namespace r09546042_TerryYang_Assignment07
             this.TBC_main.Location = new System.Drawing.Point(0, 0);
             this.TBC_main.Name = "TBC_main";
             this.TBC_main.SelectedIndex = 0;
-            this.TBC_main.Size = new System.Drawing.Size(402, 762);
+            this.TBC_main.Size = new System.Drawing.Size(402, 814);
             this.TBC_main.TabIndex = 0;
             // 
             // TP_Problem
@@ -188,7 +192,7 @@ namespace r09546042_TerryYang_Assignment07
             this.TP_Problem.Location = new System.Drawing.Point(4, 24);
             this.TP_Problem.Name = "TP_Problem";
             this.TP_Problem.Padding = new System.Windows.Forms.Padding(3);
-            this.TP_Problem.Size = new System.Drawing.Size(394, 701);
+            this.TP_Problem.Size = new System.Drawing.Size(394, 786);
             this.TP_Problem.TabIndex = 0;
             this.TP_Problem.Text = "Problem";
             this.TP_Problem.UseVisualStyleBackColor = true;
@@ -201,7 +205,7 @@ namespace r09546042_TerryYang_Assignment07
             this.GB_GeneratedProblem.Controls.Add(this.DGV_Problem);
             this.GB_GeneratedProblem.Location = new System.Drawing.Point(8, 128);
             this.GB_GeneratedProblem.Name = "GB_GeneratedProblem";
-            this.GB_GeneratedProblem.Size = new System.Drawing.Size(380, 552);
+            this.GB_GeneratedProblem.Size = new System.Drawing.Size(380, 637);
             this.GB_GeneratedProblem.TabIndex = 9;
             this.GB_GeneratedProblem.TabStop = false;
             this.GB_GeneratedProblem.Text = "Generated Problem";
@@ -214,7 +218,7 @@ namespace r09546042_TerryYang_Assignment07
             this.DGV_Problem.Location = new System.Drawing.Point(3, 19);
             this.DGV_Problem.Name = "DGV_Problem";
             this.DGV_Problem.RowTemplate.Height = 24;
-            this.DGV_Problem.Size = new System.Drawing.Size(374, 530);
+            this.DGV_Problem.Size = new System.Drawing.Size(374, 615);
             this.DGV_Problem.TabIndex = 0;
             // 
             // GB_ProblemSetting
@@ -335,19 +339,58 @@ namespace r09546042_TerryYang_Assignment07
             // 
             // TP_Settings
             // 
-            this.TP_Settings.Controls.Add(this.groupBox1);
+            this.TP_Settings.Controls.Add(this.GB_Optimization);
+            this.TP_Settings.Controls.Add(this.GB_Mutation);
             this.TP_Settings.Controls.Add(this.GB_Action);
             this.TP_Settings.Controls.Add(this.GB_Animation);
             this.TP_Settings.Controls.Add(this.GB_Selection);
             this.TP_Settings.Controls.Add(this.GB_Parameter);
-            this.TP_Settings.Controls.Add(this.groupBox3);
+            this.TP_Settings.Controls.Add(this.GB_GA_encoding);
             this.TP_Settings.Location = new System.Drawing.Point(4, 24);
             this.TP_Settings.Name = "TP_Settings";
             this.TP_Settings.Padding = new System.Windows.Forms.Padding(3);
-            this.TP_Settings.Size = new System.Drawing.Size(394, 734);
+            this.TP_Settings.Size = new System.Drawing.Size(394, 786);
             this.TP_Settings.TabIndex = 1;
             this.TP_Settings.Text = "GA settings";
             this.TP_Settings.UseVisualStyleBackColor = true;
+            // 
+            // GB_Mutation
+            // 
+            this.GB_Mutation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GB_Mutation.Controls.Add(this.RDB_Chrom_Base);
+            this.GB_Mutation.Controls.Add(this.RDB_Genes_Base);
+            this.GB_Mutation.Location = new System.Drawing.Point(5, 360);
+            this.GB_Mutation.Name = "GB_Mutation";
+            this.GB_Mutation.Size = new System.Drawing.Size(385, 50);
+            this.GB_Mutation.TabIndex = 5;
+            this.GB_Mutation.TabStop = false;
+            this.GB_Mutation.Text = "Mutation";
+            // 
+            // RDB_Chrom_Base
+            // 
+            this.RDB_Chrom_Base.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RDB_Chrom_Base.AutoSize = true;
+            this.RDB_Chrom_Base.Checked = true;
+            this.RDB_Chrom_Base.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RDB_Chrom_Base.Location = new System.Drawing.Point(200, 15);
+            this.RDB_Chrom_Base.Name = "RDB_Chrom_Base";
+            this.RDB_Chrom_Base.Size = new System.Drawing.Size(159, 25);
+            this.RDB_Chrom_Base.TabIndex = 1;
+            this.RDB_Chrom_Base.TabStop = true;
+            this.RDB_Chrom_Base.Text = "Chromosome base";
+            this.RDB_Chrom_Base.UseVisualStyleBackColor = true;
+            // 
+            // RDB_Genes_Base
+            // 
+            this.RDB_Genes_Base.AutoSize = true;
+            this.RDB_Genes_Base.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RDB_Genes_Base.Location = new System.Drawing.Point(15, 15);
+            this.RDB_Genes_Base.Name = "RDB_Genes_Base";
+            this.RDB_Genes_Base.Size = new System.Drawing.Size(100, 25);
+            this.RDB_Genes_Base.TabIndex = 0;
+            this.RDB_Genes_Base.Text = "Gene base";
+            this.RDB_Genes_Base.UseVisualStyleBackColor = true;
             // 
             // GB_Action
             // 
@@ -358,7 +401,7 @@ namespace r09546042_TerryYang_Assignment07
             this.GB_Action.Controls.Add(this.BTN_Run_one);
             this.GB_Action.Controls.Add(this.BTN_Run_to_end);
             this.GB_Action.Controls.Add(this.BTN_Reset);
-            this.GB_Action.Location = new System.Drawing.Point(5, 510);
+            this.GB_Action.Location = new System.Drawing.Point(5, 560);
             this.GB_Action.Name = "GB_Action";
             this.GB_Action.Size = new System.Drawing.Size(383, 202);
             this.GB_Action.TabIndex = 4;
@@ -442,7 +485,7 @@ namespace r09546042_TerryYang_Assignment07
             this.GB_Animation.Controls.Add(this.label12);
             this.GB_Animation.Controls.Add(this.TKB_Animation);
             this.GB_Animation.Controls.Add(this.CKB_Show_animation);
-            this.GB_Animation.Location = new System.Drawing.Point(5, 410);
+            this.GB_Animation.Location = new System.Drawing.Point(5, 460);
             this.GB_Animation.Name = "GB_Animation";
             this.GB_Animation.Size = new System.Drawing.Size(384, 97);
             this.GB_Animation.TabIndex = 3;
@@ -491,7 +534,7 @@ namespace r09546042_TerryYang_Assignment07
             this.GB_Selection.Controls.Add(this.RDB_Stochastic);
             this.GB_Selection.Location = new System.Drawing.Point(5, 310);
             this.GB_Selection.Name = "GB_Selection";
-            this.GB_Selection.Size = new System.Drawing.Size(384, 44);
+            this.GB_Selection.Size = new System.Drawing.Size(384, 50);
             this.GB_Selection.TabIndex = 2;
             this.GB_Selection.TabStop = false;
             this.GB_Selection.Text = "Selection";
@@ -612,26 +655,51 @@ namespace r09546042_TerryYang_Assignment07
             this.label9.TabIndex = 0;
             this.label9.Text = "Population Size:";
             // 
-            // groupBox3
+            // GB_GA_encoding
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.GB_GA_encoding.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.NUD_Penalty_Factor);
-            this.groupBox3.Controls.Add(this.comboBox4);
-            this.groupBox3.Controls.Add(this.comboBox3);
-            this.groupBox3.Controls.Add(this.CB_Binary_Cross_Type);
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.RDB_Permutation);
-            this.groupBox3.Controls.Add(this.RDB_Binary);
-            this.groupBox3.Location = new System.Drawing.Point(5, 5);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(381, 202);
-            this.groupBox3.TabIndex = 0;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "GA encoding";
+            this.GB_GA_encoding.Controls.Add(this.NUD_Penalty_Factor);
+            this.GB_GA_encoding.Controls.Add(this.comboBox4);
+            this.GB_GA_encoding.Controls.Add(this.comboBox3);
+            this.GB_GA_encoding.Controls.Add(this.CB_Binary_Cross_Type);
+            this.GB_GA_encoding.Controls.Add(this.label8);
+            this.GB_GA_encoding.Controls.Add(this.label7);
+            this.GB_GA_encoding.Controls.Add(this.label6);
+            this.GB_GA_encoding.Controls.Add(this.label5);
+            this.GB_GA_encoding.Controls.Add(this.RDB_Permutation);
+            this.GB_GA_encoding.Controls.Add(this.RDB_Binary);
+            this.GB_GA_encoding.Location = new System.Drawing.Point(5, 5);
+            this.GB_GA_encoding.Name = "GB_GA_encoding";
+            this.GB_GA_encoding.Size = new System.Drawing.Size(381, 202);
+            this.GB_GA_encoding.TabIndex = 0;
+            this.GB_GA_encoding.TabStop = false;
+            this.GB_GA_encoding.Text = "GA encoding";
+            // 
+            // NUD_Penalty_Factor
+            // 
+            this.NUD_Penalty_Factor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.NUD_Penalty_Factor.DecimalPlaces = 3;
+            this.NUD_Penalty_Factor.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.NUD_Penalty_Factor.Location = new System.Drawing.Point(156, 80);
+            this.NUD_Penalty_Factor.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.NUD_Penalty_Factor.Name = "NUD_Penalty_Factor";
+            this.NUD_Penalty_Factor.Size = new System.Drawing.Size(219, 23);
+            this.NUD_Penalty_Factor.TabIndex = 2;
+            this.NUD_Penalty_Factor.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             // 
             // comboBox4
             // 
@@ -744,8 +812,8 @@ namespace r09546042_TerryYang_Assignment07
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.Chart_Main);
-            this.splitContainer2.Size = new System.Drawing.Size(843, 762);
-            this.splitContainer2.SplitterDistance = 338;
+            this.splitContainer2.Size = new System.Drawing.Size(843, 814);
+            this.splitContainer2.SplitterDistance = 361;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
@@ -763,7 +831,7 @@ namespace r09546042_TerryYang_Assignment07
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.groupBox9);
-            this.splitContainer3.Size = new System.Drawing.Size(843, 338);
+            this.splitContainer3.Size = new System.Drawing.Size(843, 361);
             this.splitContainer3.SplitterDistance = 220;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -776,7 +844,7 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox11.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox11.Location = new System.Drawing.Point(3, 227);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(214, 108);
+            this.groupBox11.Size = new System.Drawing.Size(214, 131);
             this.groupBox11.TabIndex = 2;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Hard constrain vilolation";
@@ -789,7 +857,7 @@ namespace r09546042_TerryYang_Assignment07
             this.TB_HCV.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TB_HCV.Location = new System.Drawing.Point(5, 25);
             this.TB_HCV.Name = "TB_HCV";
-            this.TB_HCV.Size = new System.Drawing.Size(202, 77);
+            this.TB_HCV.Size = new System.Drawing.Size(202, 100);
             this.TB_HCV.TabIndex = 2;
             this.TB_HCV.Text = "";
             // 
@@ -853,24 +921,15 @@ namespace r09546042_TerryYang_Assignment07
             // 
             // groupBox9
             // 
-            this.groupBox9.Controls.Add(this.RTB_Population);
+            this.groupBox9.Controls.Add(this.LTB_Population);
             this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox9.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox9.Location = new System.Drawing.Point(0, 0);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(619, 338);
+            this.groupBox9.Size = new System.Drawing.Size(619, 361);
             this.groupBox9.TabIndex = 1;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Population";
-            // 
-            // RTB_Population
-            // 
-            this.RTB_Population.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RTB_Population.Location = new System.Drawing.Point(3, 25);
-            this.RTB_Population.Name = "RTB_Population";
-            this.RTB_Population.Size = new System.Drawing.Size(613, 310);
-            this.RTB_Population.TabIndex = 1;
-            this.RTB_Population.Text = "";
             // 
             // Chart_Main
             // 
@@ -886,13 +945,13 @@ namespace r09546042_TerryYang_Assignment07
             this.Chart_Main.Legends.Add(legend2);
             this.Chart_Main.Location = new System.Drawing.Point(0, 0);
             this.Chart_Main.Name = "Chart_Main";
-            this.Chart_Main.Size = new System.Drawing.Size(843, 395);
+            this.Chart_Main.Size = new System.Drawing.Size(843, 424);
             this.Chart_Main.TabIndex = 0;
             this.Chart_Main.Text = "chart1";
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 789);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 841);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1249, 22);
             this.statusStrip1.TabIndex = 3;
@@ -902,65 +961,62 @@ namespace r09546042_TerryYang_Assignment07
             // 
             this.TM_GA.Tick += new System.EventHandler(this.TM_GA_Tick);
             // 
-            // groupBox1
+            // GB_Optimization
             // 
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(5, 355);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(385, 51);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Mutation base";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(15, 15);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(100, 25);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.Text = "Gene base";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Checked = true;
-            this.radioButton2.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(200, 15);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(159, 25);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Chromosome base";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // NUD_Penalty_Factor
-            // 
-            this.NUD_Penalty_Factor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.GB_Optimization.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NUD_Penalty_Factor.Location = new System.Drawing.Point(156, 80);
-            this.NUD_Penalty_Factor.Maximum = new decimal(new int[] {
-            99999,
-            0,
-            0,
-            0});
-            this.NUD_Penalty_Factor.Name = "NUD_Penalty_Factor";
-            this.NUD_Penalty_Factor.Size = new System.Drawing.Size(219, 23);
-            this.NUD_Penalty_Factor.TabIndex = 2;
-            this.NUD_Penalty_Factor.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
+            this.GB_Optimization.Controls.Add(this.RDB_Mini);
+            this.GB_Optimization.Controls.Add(this.RDB_Maxi);
+            this.GB_Optimization.Location = new System.Drawing.Point(5, 410);
+            this.GB_Optimization.Name = "GB_Optimization";
+            this.GB_Optimization.Size = new System.Drawing.Size(385, 50);
+            this.GB_Optimization.TabIndex = 6;
+            this.GB_Optimization.TabStop = false;
+            this.GB_Optimization.Text = "Optimization";
+            // 
+            // RDB_Mini
+            // 
+            this.RDB_Mini.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RDB_Mini.AutoSize = true;
+            this.RDB_Mini.Checked = true;
+            this.RDB_Mini.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RDB_Mini.Location = new System.Drawing.Point(200, 15);
+            this.RDB_Mini.Name = "RDB_Mini";
+            this.RDB_Mini.Size = new System.Drawing.Size(96, 25);
+            this.RDB_Mini.TabIndex = 3;
+            this.RDB_Mini.TabStop = true;
+            this.RDB_Mini.Text = "Minimum";
+            this.RDB_Mini.UseVisualStyleBackColor = true;
+            // 
+            // RDB_Maxi
+            // 
+            this.RDB_Maxi.AutoSize = true;
+            this.RDB_Maxi.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RDB_Maxi.Location = new System.Drawing.Point(15, 15);
+            this.RDB_Maxi.Name = "RDB_Maxi";
+            this.RDB_Maxi.Size = new System.Drawing.Size(98, 25);
+            this.RDB_Maxi.TabIndex = 2;
+            this.RDB_Maxi.Text = "Maximum";
+            this.RDB_Maxi.UseVisualStyleBackColor = true;
+            // 
+            // LTB_Population
+            // 
+            this.LTB_Population.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LTB_Population.FormattingEnabled = true;
+            this.LTB_Population.HorizontalScrollbar = true;
+            this.LTB_Population.ItemHeight = 21;
+            this.LTB_Population.Location = new System.Drawing.Point(6, 29);
+            this.LTB_Population.Name = "LTB_Population";
+            this.LTB_Population.Size = new System.Drawing.Size(607, 319);
+            this.LTB_Population.TabIndex = 1;
             // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1249, 811);
+            this.ClientSize = new System.Drawing.Size(1249, 863);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
@@ -981,6 +1037,8 @@ namespace r09546042_TerryYang_Assignment07
             ((System.ComponentModel.ISupportInitialize)(this.NUD_maximum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_minimum)).EndInit();
             this.TP_Settings.ResumeLayout(false);
+            this.GB_Mutation.ResumeLayout(false);
+            this.GB_Mutation.PerformLayout();
             this.GB_Action.ResumeLayout(false);
             this.GB_Action.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Iteration)).EndInit();
@@ -994,8 +1052,9 @@ namespace r09546042_TerryYang_Assignment07
             ((System.ComponentModel.ISupportInitialize)(this.NUD_mutaterate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_crossrate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_population)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.GB_GA_encoding.ResumeLayout(false);
+            this.GB_GA_encoding.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Penalty_Factor)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -1011,9 +1070,8 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox8.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NUD_Penalty_Factor)).EndInit();
+            this.GB_Optimization.ResumeLayout(false);
+            this.GB_Optimization.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1035,12 +1093,11 @@ namespace r09546042_TerryYang_Assignment07
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView DGV_Problem;
         private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.RichTextBox RTB_Population;
         private System.Windows.Forms.GroupBox GB_ProblemSetting;
         private System.Windows.Forms.ComboBox CB_Number_of_Jobs;
         private System.Windows.Forms.Button BTN_proGenerate;
         private System.Windows.Forms.GroupBox GB_GeneratedProblem;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox GB_GA_encoding;
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox CB_Binary_Cross_Type;
@@ -1081,10 +1138,14 @@ namespace r09546042_TerryYang_Assignment07
         private System.Windows.Forms.NumericUpDown NUD_crossrate;
         private System.Windows.Forms.NumericUpDown NUD_Iteration;
         private System.Windows.Forms.Timer TM_GA;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.GroupBox GB_Mutation;
+        private System.Windows.Forms.RadioButton RDB_Chrom_Base;
+        private System.Windows.Forms.RadioButton RDB_Genes_Base;
         private System.Windows.Forms.NumericUpDown NUD_Penalty_Factor;
+        private System.Windows.Forms.GroupBox GB_Optimization;
+        private System.Windows.Forms.RadioButton RDB_Mini;
+        private System.Windows.Forms.RadioButton RDB_Maxi;
+        private System.Windows.Forms.ListBox LTB_Population;
     }
 }
 
