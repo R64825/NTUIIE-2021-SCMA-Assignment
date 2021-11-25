@@ -217,9 +217,7 @@ namespace r09546042_TerryYang_Assignment07
             Update_New_Solutions_on_UI();
             Ban_or_Enable_GB(true);
         }
-
-       
-
+      
         private void BTN_Run_one_Click(object sender, EventArgs e)
         {
             LTB_Population.Items.Clear();
@@ -246,7 +244,7 @@ namespace r09546042_TerryYang_Assignment07
                 GA_Solver.Run_To_End(iteration);
                 Update_New_Solutions_on_UI();
             }
-
+            Chart_Main.ChartAreas[0].RecalculateAxesScale();
             BTN_Reset.Enabled = true;
             BTN_Run_one.Enabled = true;  
             BTN_Run_to_end.Enabled = false;

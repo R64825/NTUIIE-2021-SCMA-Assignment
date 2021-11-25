@@ -48,6 +48,9 @@ namespace r09546042_TerryYang_Assignment07
             this.label2 = new System.Windows.Forms.Label();
             this.BTN_proGenerate = new System.Windows.Forms.Button();
             this.TP_Settings = new System.Windows.Forms.TabPage();
+            this.GB_Optimization = new System.Windows.Forms.GroupBox();
+            this.RDB_Mini = new System.Windows.Forms.RadioButton();
+            this.RDB_Maxi = new System.Windows.Forms.RadioButton();
             this.GB_Mutation = new System.Windows.Forms.GroupBox();
             this.RDB_Chrom_Base = new System.Windows.Forms.RadioButton();
             this.RDB_Genes_Base = new System.Windows.Forms.RadioButton();
@@ -92,13 +95,10 @@ namespace r09546042_TerryYang_Assignment07
             this.RTB_BOV = new System.Windows.Forms.RichTextBox();
             this.TB_BOV = new System.Windows.Forms.TextBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.LTB_Population = new System.Windows.Forms.ListBox();
             this.Chart_Main = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.TM_GA = new System.Windows.Forms.Timer(this.components);
-            this.GB_Optimization = new System.Windows.Forms.GroupBox();
-            this.RDB_Mini = new System.Windows.Forms.RadioButton();
-            this.RDB_Maxi = new System.Windows.Forms.RadioButton();
-            this.LTB_Population = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -111,6 +111,7 @@ namespace r09546042_TerryYang_Assignment07
             ((System.ComponentModel.ISupportInitialize)(this.NUD_maximum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_minimum)).BeginInit();
             this.TP_Settings.SuspendLayout();
+            this.GB_Optimization.SuspendLayout();
             this.GB_Mutation.SuspendLayout();
             this.GB_Action.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Iteration)).BeginInit();
@@ -136,7 +137,6 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).BeginInit();
-            this.GB_Optimization.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -353,6 +353,44 @@ namespace r09546042_TerryYang_Assignment07
             this.TP_Settings.TabIndex = 1;
             this.TP_Settings.Text = "GA settings";
             this.TP_Settings.UseVisualStyleBackColor = true;
+            // 
+            // GB_Optimization
+            // 
+            this.GB_Optimization.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GB_Optimization.Controls.Add(this.RDB_Mini);
+            this.GB_Optimization.Controls.Add(this.RDB_Maxi);
+            this.GB_Optimization.Location = new System.Drawing.Point(5, 410);
+            this.GB_Optimization.Name = "GB_Optimization";
+            this.GB_Optimization.Size = new System.Drawing.Size(385, 50);
+            this.GB_Optimization.TabIndex = 6;
+            this.GB_Optimization.TabStop = false;
+            this.GB_Optimization.Text = "Optimization";
+            // 
+            // RDB_Mini
+            // 
+            this.RDB_Mini.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RDB_Mini.AutoSize = true;
+            this.RDB_Mini.Checked = true;
+            this.RDB_Mini.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RDB_Mini.Location = new System.Drawing.Point(200, 15);
+            this.RDB_Mini.Name = "RDB_Mini";
+            this.RDB_Mini.Size = new System.Drawing.Size(96, 25);
+            this.RDB_Mini.TabIndex = 3;
+            this.RDB_Mini.TabStop = true;
+            this.RDB_Mini.Text = "Minimum";
+            this.RDB_Mini.UseVisualStyleBackColor = true;
+            // 
+            // RDB_Maxi
+            // 
+            this.RDB_Maxi.AutoSize = true;
+            this.RDB_Maxi.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RDB_Maxi.Location = new System.Drawing.Point(15, 15);
+            this.RDB_Maxi.Name = "RDB_Maxi";
+            this.RDB_Maxi.Size = new System.Drawing.Size(98, 25);
+            this.RDB_Maxi.TabIndex = 2;
+            this.RDB_Maxi.Text = "Maximum";
+            this.RDB_Maxi.UseVisualStyleBackColor = true;
             // 
             // GB_Mutation
             // 
@@ -688,15 +726,15 @@ namespace r09546042_TerryYang_Assignment07
             131072});
             this.NUD_Penalty_Factor.Location = new System.Drawing.Point(156, 80);
             this.NUD_Penalty_Factor.Maximum = new decimal(new int[] {
-            1000,
+            5,
             0,
             0,
-            0});
+            65536});
             this.NUD_Penalty_Factor.Name = "NUD_Penalty_Factor";
             this.NUD_Penalty_Factor.Size = new System.Drawing.Size(219, 23);
             this.NUD_Penalty_Factor.TabIndex = 2;
             this.NUD_Penalty_Factor.Value = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
             65536});
@@ -931,6 +969,19 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Population";
             // 
+            // LTB_Population
+            // 
+            this.LTB_Population.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LTB_Population.FormattingEnabled = true;
+            this.LTB_Population.HorizontalScrollbar = true;
+            this.LTB_Population.ItemHeight = 21;
+            this.LTB_Population.Location = new System.Drawing.Point(6, 29);
+            this.LTB_Population.Name = "LTB_Population";
+            this.LTB_Population.Size = new System.Drawing.Size(607, 319);
+            this.LTB_Population.TabIndex = 1;
+            // 
             // Chart_Main
             // 
             this.Chart_Main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -961,57 +1012,6 @@ namespace r09546042_TerryYang_Assignment07
             // 
             this.TM_GA.Tick += new System.EventHandler(this.TM_GA_Tick);
             // 
-            // GB_Optimization
-            // 
-            this.GB_Optimization.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.GB_Optimization.Controls.Add(this.RDB_Mini);
-            this.GB_Optimization.Controls.Add(this.RDB_Maxi);
-            this.GB_Optimization.Location = new System.Drawing.Point(5, 410);
-            this.GB_Optimization.Name = "GB_Optimization";
-            this.GB_Optimization.Size = new System.Drawing.Size(385, 50);
-            this.GB_Optimization.TabIndex = 6;
-            this.GB_Optimization.TabStop = false;
-            this.GB_Optimization.Text = "Optimization";
-            // 
-            // RDB_Mini
-            // 
-            this.RDB_Mini.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.RDB_Mini.AutoSize = true;
-            this.RDB_Mini.Checked = true;
-            this.RDB_Mini.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDB_Mini.Location = new System.Drawing.Point(200, 15);
-            this.RDB_Mini.Name = "RDB_Mini";
-            this.RDB_Mini.Size = new System.Drawing.Size(96, 25);
-            this.RDB_Mini.TabIndex = 3;
-            this.RDB_Mini.TabStop = true;
-            this.RDB_Mini.Text = "Minimum";
-            this.RDB_Mini.UseVisualStyleBackColor = true;
-            // 
-            // RDB_Maxi
-            // 
-            this.RDB_Maxi.AutoSize = true;
-            this.RDB_Maxi.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDB_Maxi.Location = new System.Drawing.Point(15, 15);
-            this.RDB_Maxi.Name = "RDB_Maxi";
-            this.RDB_Maxi.Size = new System.Drawing.Size(98, 25);
-            this.RDB_Maxi.TabIndex = 2;
-            this.RDB_Maxi.Text = "Maximum";
-            this.RDB_Maxi.UseVisualStyleBackColor = true;
-            // 
-            // LTB_Population
-            // 
-            this.LTB_Population.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LTB_Population.FormattingEnabled = true;
-            this.LTB_Population.HorizontalScrollbar = true;
-            this.LTB_Population.ItemHeight = 21;
-            this.LTB_Population.Location = new System.Drawing.Point(6, 29);
-            this.LTB_Population.Name = "LTB_Population";
-            this.LTB_Population.Size = new System.Drawing.Size(607, 319);
-            this.LTB_Population.TabIndex = 1;
-            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1037,6 +1037,8 @@ namespace r09546042_TerryYang_Assignment07
             ((System.ComponentModel.ISupportInitialize)(this.NUD_maximum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_minimum)).EndInit();
             this.TP_Settings.ResumeLayout(false);
+            this.GB_Optimization.ResumeLayout(false);
+            this.GB_Optimization.PerformLayout();
             this.GB_Mutation.ResumeLayout(false);
             this.GB_Mutation.PerformLayout();
             this.GB_Action.ResumeLayout(false);
@@ -1070,8 +1072,6 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox8.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).EndInit();
-            this.GB_Optimization.ResumeLayout(false);
-            this.GB_Optimization.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

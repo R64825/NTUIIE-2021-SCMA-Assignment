@@ -55,6 +55,7 @@ namespace TerryYang_GA_Library
         private Series series_Average;
         private Series series_IterationTheBest;
 
+        bool[][] mutated_Genes; // guide for gene base mutation
         // run time date
         int iteration_ID;
         #endregion
@@ -114,6 +115,11 @@ namespace TerryYang_GA_Library
             chromosomes = new T[population_Size][];
             so_Far_The_Best_Soulution = new T[number_Of_Genes];
 
+
+            mutated_Genes = new bool[population_Size][];
+            for (int i = 0; i < population_Size; i++)
+                mutated_Genes[i] = new bool[number_Of_Genes];
+
             // construct series
             series_SoFarTheBest = new Series("So far the best solution");
             series_SoFarTheBest.ChartType = SeriesChartType.Line;
@@ -165,29 +171,17 @@ namespace TerryYang_GA_Library
                 selected_Chromosomes[Sel_index][j] = chromosomes[Chro_index][j];
             }
             selected_Objective_Value[Sel_index] = objective_Function(selected_Chromosomes[Sel_index]);
-        }
+        }      
         public void Perform_Selection_Operation()
         {           
             int total = population_Size + number_Of_Crossovered_Children + number_Of_Mutated_Children;
             Set_Fitness_and_Objectives(total , penatly_Factor);
 
-            // sort fitness and indices
+            // rearrange indices
             indices = new int[total];
             for (int i = 0; i < total; i++) indices[i] = i;
-            //// small to large
-            //Array.Sort(fitness_Value, indices, 0, total);
-            //switch (optimization_Type)
-            //{
-            //    case GA_Optimization_Type.Minimization:
-            //        break;
-            //    case GA_Optimization_Type.Maximization:
-            //        // large to small
-            //        Array.Reverse(fitness_Value, 0, total);
-            //        Array.Reverse(indices, 0, total);
-            //        break;
-            //    default:
-            //        break;
-            //}
+
+            // sort fitness from large to small
             Array.Sort(fitness_Value, indices, 0, total);
             Array.Reverse(fitness_Value, 0, total);
             Array.Reverse(indices, 0, total);
@@ -225,13 +219,13 @@ namespace TerryYang_GA_Library
 
                 // copy
                 for (int l = 0; l < locations.Length; l++)
-                    Copy_This_Chromosomes_to_a_Selection(indices[locations[l]], l);              
+                    Copy_This_Chromosomes_to_a_Selection(indices[locations[l]], l);
                 #endregion 
             }
             else // deterministic
-            {              
+            {
                 // copy
-                for (int i = 0; i < population_Size; i++)               
+                for (int i = 0; i < population_Size; i++)
                     Copy_This_Chromosomes_to_a_Selection(indices[i], i);
             }
 
@@ -286,7 +280,6 @@ namespace TerryYang_GA_Library
             // initialize first population
             throw new NotImplementedException();
         }
-
         public virtual void Clear_Chromosomes_and_Objectives_Array()
         {
             throw new Exception("");           
@@ -325,46 +318,67 @@ namespace TerryYang_GA_Library
         }
         private void Perform_Mutation_Operation()
         {
+            // initial gene pool mutation guide
+            for (int i = 0; i < population_Size; i++)
+            {
+                indices[i] = i;
+                for (int g = 0; g < number_Of_Genes; g++)
+                    mutated_Genes[i][g] = false;
+            }
+
             if (mutation_Type == GA_Mutation_Type.Gene_Number_Based)
             {
-                // Gene_Number_Based
+                #region Gene_Number_Based
+
                 int genes_pool = population_Size * number_Of_Genes;
                 int number_of_Mutated_Genes_pools = (int)(mutation_Rate * genes_pool);
-                List<int> pos = new List<int>();
-                // make mutate genes
+
+                // store mutated gene info in guide
                 for (int i = 0; i < number_of_Mutated_Genes_pools; i++)
                 {
-                    int gene_pool_position = rnd.Next(genes_pool);
-                    int row_ID = (int)(gene_pool_position/number_Of_Genes);
-                    int col_ID = (int)(gene_pool_position % number_Of_Genes);
-                    Generate_Mutated_Chromosomes(row_ID, population_Size + number_Of_Crossovered_Children + i, col_ID);
-                    if (pos.Contains(row_ID) == false)  
-                        pos.Add(row_ID);
+                    int gene_Pool_Location = rnd.Next(genes_pool);
+                    int row_ID, col_ID;
+                    row_ID = gene_Pool_Location / number_Of_Genes;
+                    col_ID = gene_Pool_Location % number_Of_Genes;
+                    indices[row_ID] = int.MinValue;
+                    mutated_Genes[row_ID][col_ID] = true;
                 }
-                // count mutated chromosomes
-                number_Of_Mutated_Children = pos.Count;
-                pos.Clear();
+
+                number_Of_Mutated_Children = 0;
+                for (int i = 0; i < population_Size; i++)
+                {
+                    // select marked chromosome
+                    if (indices[i] == int.MinValue)
+                    {
+                        Generate_Mutated_Chromosomes(i, population_Size + Number_Of_Crossovered_Children + i, mutated_Genes[i]);
+                    }
+                    number_Of_Mutated_Children++;
+                }
+                #endregion
             }
             else
             {
-                // Chromosomes_Number_Based
+                #region Chromosomes_Number_Based
+
                 indices = Shuffle_Indice_Array(Population_Size);
                 number_Of_Mutated_Children = (int)(population_Size * mutation_Rate);             
                 for (int i = 0; i < number_Of_Mutated_Children; i++)
                 {
-                    int mutated_ID = population_Size + number_Of_Crossovered_Children + i;                   
-                    int gene_position = rnd.Next(number_Of_Genes);
+                    int mutated_ID = population_Size + number_Of_Crossovered_Children + i;                  
+                    int gene_position =  rnd.Next(number_Of_Genes);
+                    mutated_Genes[indices[i]][gene_position] = true;
 
-                    // make mutants
-                    Generate_Mutated_Chromosomes(indices[i], mutated_ID, gene_position);
+                   // make mutants
+                   Generate_Mutated_Chromosomes(indices[i], mutated_ID, mutated_Genes[indices[i]]);
                 }
+                #endregion
             }
         }
         public virtual void Generate_Crossovered_Chromosomes(int father, int mother, int child_a, int child_b)
         {
             throw new NotImplementedException();
         }
-        public virtual void Generate_Mutated_Chromosomes(int before_mutation, int after_mutation, int gene_position)
+        public virtual void Generate_Mutated_Chromosomes(int before_mutation, int after_mutation, bool[] mutated_Flag)
         {
             throw new NotImplementedException();
         }
@@ -416,9 +430,7 @@ namespace TerryYang_GA_Library
             Series_Update();
             iteration_ID++;
         }
-
        
-
         public void Run_To_End(int Iteration)
         {
             for (int i = 0; i < Iteration; i++)

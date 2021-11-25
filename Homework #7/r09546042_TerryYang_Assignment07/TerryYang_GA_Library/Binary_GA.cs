@@ -20,7 +20,7 @@ namespace TerryYang_GA_Library
 
         #region Property
         public Binary_Crossover_Type Crossover_Type { get => crossover_Type; set => crossover_Type = value; }
-        public int Number_Of_Cuts { get => number_Of_Cuts; set => number_Of_Cuts = value; }
+        //public int Number_Of_Cuts { get => number_Of_Cuts; set => number_Of_Cuts = value; }
         #endregion
 
 
@@ -41,9 +41,16 @@ namespace TerryYang_GA_Library
         {
             if (b == 1)
                 return 1;
-
             else
                 return 0;                   
+        }
+
+        private bool Return_Revered_Flag(bool flag)
+        {
+            if (flag)
+                return false;
+            else
+                return true;
         }
         #endregion
 
@@ -82,13 +89,13 @@ namespace TerryYang_GA_Library
                     break;
             }
         }
-        public override void Generate_Mutated_Chromosomes(int before_mutation, int after_mutation, int gene_position)
+        public override void Generate_Mutated_Chromosomes(int before_mutation, int after_mutation, bool [] mutated_Flag)
         {
             //int mutation_Point = rnd.Next(number_Of_Genes);
             for (int i = 0; i < number_Of_Genes; i++)
             {
                 chromosomes[after_mutation][i] = chromosomes[before_mutation][i];
-                if (i == gene_position)
+                if (mutated_Flag[i])
                 {
                     if (Get_Byte_Value_as_Double(chromosomes[before_mutation][i]) == 1)
                         chromosomes[after_mutation][i] = 0;
@@ -147,12 +154,31 @@ namespace TerryYang_GA_Library
                 case Binary_Crossover_Type.N_Point_Cut:
                     #region NPointCut
                     // n point cut
-                    int n = 1 + rnd.Next(number_Of_Cuts / 2);
-                    for (int i = 0; i < n; i++)
+                    int number_Of_Cuts = rnd.Next(number_Of_Genes);
+                    bool flag = false;
+
+                    // assign n cutpoints
+                    //cut_Points = new int[number_Of_Cuts];
+                    cut_Points = Enumerable.Range(0, number_Of_Genes-1).OrderBy(x => rnd.Next()).Take(number_Of_Cuts).ToList().ToArray();
+
+                    Array.Sort(cut_Points, 0, number_Of_Cuts);
+
+                    for (int j = 0; j < number_Of_Genes; j++)
                     {
-                        cut_Points[i] = rnd.Next(number_Of_Genes);
+                        if (cut_Points.Contains(j))
+                            flag = Return_Revered_Flag(flag);
+
+                        if (flag)
+                        {
+                            chromosomes[child_a][j] = chromosomes[father][j];
+                            chromosomes[child_b][j] = chromosomes[mother][j];
+                        }
+                        else
+                        {
+                            chromosomes[child_b][j] = chromosomes[father][j];
+                            chromosomes[child_a][j] = chromosomes[mother][j];
+                        }
                     }
-                    Array.Sort(cut_Points, 0, n);
                     #endregion
                     break;
                 default:
