@@ -23,10 +23,6 @@ namespace TerryYang_GA_Library
         //public int Number_Of_Cuts { get => number_Of_Cuts; set => number_Of_Cuts = value; }
         #endregion
 
-
-
-
-
         #region Constructor
         public Binary_GA(int number_Of_Genes, GA_Optimization_Type optimization_Type, Objective_Function<byte> objective_Function, Binary_Crossover_Type crossover_Type) 
             : base(number_Of_Genes, optimization_Type, objective_Function)
@@ -61,33 +57,37 @@ namespace TerryYang_GA_Library
             {
                 //chromosomes[row] = new byte[number_Of_Genes];
                 for (int column = 0; column < number_Of_Genes; column++)
-                {     
                     chromosomes[row][column] = (byte)rnd.Next(2);
-                }
-                objective_Value[row] = objective_Function(chromosomes[row]);
+                
+                objective_Value[row] = objective_Function(chromosomes[row]);               
             }
+            //Add_Hard_Violation(population_Size, Penatly_Factor);
         }
+        public override int[] Return_Chromosomes_Violations(byte[] chrom)
+        {         
+            int number_Of_Jobs = Convert.ToInt32( Math.Sqrt(number_Of_Genes));
+            int[] violations = new int[2* number_Of_Jobs];
+            int counts;
 
-        public override void Set_Fitness_and_Objectives(int total, double alpha)
-        {
-            double o_min, o_max;
-            o_max = objective_Value.Max();
-            o_min = objective_Value.Min();
-            double beta = Math.Max(alpha*(o_max-o_min), 1e-5);
-
-            switch (Optimization_Type)
+            // row wise
+            for (int r = 0; r < number_Of_Jobs; r++)
             {
-                case GA_Optimization_Type.Maximization:
-                    for (int i = 0; i < total; i++)
-                        fitness_Value[i] = beta +(objective_Value[i] - o_min);
-                    break;
-                case GA_Optimization_Type.Minimization:
-                    for (int i = 0; i < total; i++)
-                        fitness_Value[i] = beta + (o_max -objective_Value[i]);
-                    break;
-                default:
-                    break;
+                counts = 0;
+                for (int c = 0; c < number_Of_Jobs; c++)
+                    counts += chrom[r * number_Of_Jobs + c];
+
+                violations[r] = Math.Abs(counts - 1);
             }
+            // col wise
+            for (int c = 0; c < number_Of_Jobs; c++)
+            {
+                counts = 0;
+                for (int r = 0; r < number_Of_Jobs; r++)
+                    counts += chrom[r * number_Of_Jobs + c];
+
+                violations[number_Of_Jobs + c] = Math.Abs(counts - 1);
+            }         
+            return violations;
         }
         public override void Generate_Mutated_Chromosomes(int before_mutation, int after_mutation, bool [] mutated_Flag)
         {

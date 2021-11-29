@@ -45,7 +45,9 @@
   <ItemGroup>
     <Compile Include="Binary_GA.cs" />
     <Compile Include="Generic_GA_Solver.cs" />
+    <Compile Include="Permutation_GA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Real_Number_Encoded_GA.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

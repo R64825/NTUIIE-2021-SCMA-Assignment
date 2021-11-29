@@ -116,6 +116,7 @@ namespace r09546042_TerryYang_Assignment07
             NUD_Iteration.Enabled = set;
 
         }
+
         #region Get Type Functions
         public GA_Selection_Type Get_Selection_Type()
         {
@@ -163,10 +164,35 @@ namespace r09546042_TerryYang_Assignment07
         }
         #endregion
 
+        public int[] Return_Chromosomes_Violations(byte[] chrom)
+        {          
+            int[] violations = new int[2 * number_of_Jobs];
+            int counts;
 
-        public double Get_Setup_Time_Total(byte[] solution)
+            // row wise
+            for (int r = 0; r < number_of_Jobs; r++)
+            {
+                counts = 0;
+                for (int c = 0; c < number_of_Jobs; c++)
+                    counts += chrom[r * number_of_Jobs + c];
+
+                violations[r] = Math.Abs(counts - 1);
+            }
+            // col wise
+            for (int c = 0; c < number_of_Jobs; c++)
+            {
+                counts = 0;
+                for (int r = 0; r < number_of_Jobs; r++)
+                    counts += chrom[r * number_of_Jobs + c];
+
+                violations[number_of_Jobs + c] = Math.Abs(counts - 1);
+            }
+            return violations;
+        }
+        public double Get_Setup_Time_Total_Binary(byte[] solution)
         {
             double objective_Value = 0 ;
+            int[] violations = new int[number_of_Jobs * 2];
             int current_Job_ID = 0; // row count
 
             for (int row = 0; row < number_of_Jobs; row++)
@@ -177,10 +203,25 @@ namespace r09546042_TerryYang_Assignment07
                     current_Job_ID++;
                 }
             }
-        return objective_Value;
+            violations = Return_Chromosomes_Violations(solution);
+            if (RDB_Maxi.Checked)
+                objective_Value = objective_Value - violations.Sum() * GA_Solver.Penalty_Factor;
+            else
+                objective_Value = objective_Value + violations.Sum() * GA_Solver.Penalty_Factor;
+            return objective_Value;
+        }
+
+        // 
+        public int Permutation_Encoding_Objective_Function(int[] solution)
+        {
+            double total_Time = 0;
+            for (int i = 0; i < number_of_Jobs; i++)
+            {
+                total_Time += 0;
+            }
+            return 0;
         }
         #endregion
-
 
         #region ButtomEvents
         private void BTN_proGenerate_Click(object sender, EventArgs e)
@@ -194,19 +235,23 @@ namespace r09546042_TerryYang_Assignment07
             double crossover_Rate = decimal.ToDouble(NUD_crossrate.Value);
             double mutate_Rate = decimal.ToDouble(NUD_mutaterate.Value);
             int iteration_Limit = Convert.ToInt32(NUD_Iteration.Value);
-            double alpha = decimal.ToDouble(NUD_Penalty_Factor.Value);
+            double alpha = decimal.ToDouble(NUD_Least_Fitness_Fraction.Value);
             GA_Selection_Type sel_type = Get_Selection_Type();
             Binary_Crossover_Type binary_cro_type = Get_Binary_Crossover_Type();
             GA_Mutation_Type mut_type = Get_Mutation_Type();
             GA_Optimization_Type op_type = Get_Optimization_Type();
             if (RDB_Binary.Checked)
             {
-                GA_Solver = new Binary_GA(number_of_Jobs * number_of_Jobs, GA_Optimization_Type.Minimization, Get_Setup_Time_Total, binary_cro_type);
+                GA_Solver = new Binary_GA(number_of_Jobs * number_of_Jobs, GA_Optimization_Type.Minimization, Get_Setup_Time_Total_Binary, binary_cro_type);
+            }
+            else
+            {
+                //GA_Solver = new Permutation_GA(number_of_Jobs * number_of_Jobs,GA_Optimization_Type.Minimization,Permutation_Encoding_Objective_Function);
             }             
             GA_Solver.Selection_Type1 = sel_type;
             GA_Solver.Population_Size = population_Size;
             GA_Solver.Iteration_Limit = iteration_Limit;
-            GA_Solver.Penatly_Factor = alpha;
+            GA_Solver.Least_Fitness_Fraction = alpha;
             GA_Solver.Mutation_Type = mut_type;
             GA_Solver.Optimization_Type = op_type;
             GA_Solver.Crossover_Rate = Convert.ToDouble(NUD_crossrate.Value);
@@ -229,7 +274,6 @@ namespace r09546042_TerryYang_Assignment07
                 Ban_or_Enable_GB(true);
             Chart_Main.ChartAreas[0].RecalculateAxesScale();
         }
-
         private void BTN_Run_to_end_Click(object sender, EventArgs e)
         {
             int iteration = decimal.ToInt32(NUD_Iteration.Value);
@@ -250,7 +294,6 @@ namespace r09546042_TerryYang_Assignment07
             BTN_Run_to_end.Enabled = false;
             Ban_or_Enable_GB(true);
         }
-
         #endregion
 
         private void TM_GA_Tick(object sender, EventArgs e)

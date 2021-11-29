@@ -99,6 +99,8 @@ namespace r09546042_TerryYang_Assignment07
             this.Chart_Main = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.TM_GA = new System.Windows.Forms.Timer(this.components);
+            this.NUD_Least_Fitness_Fraction = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -137,6 +139,7 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Least_Fitness_Fraction)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -168,7 +171,7 @@ namespace r09546042_TerryYang_Assignment07
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1249, 814);
+            this.splitContainer1.Size = new System.Drawing.Size(1249, 845);
             this.splitContainer1.SplitterDistance = 402;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -181,7 +184,7 @@ namespace r09546042_TerryYang_Assignment07
             this.TBC_main.Location = new System.Drawing.Point(0, 0);
             this.TBC_main.Name = "TBC_main";
             this.TBC_main.SelectedIndex = 0;
-            this.TBC_main.Size = new System.Drawing.Size(402, 814);
+            this.TBC_main.Size = new System.Drawing.Size(402, 845);
             this.TBC_main.TabIndex = 0;
             // 
             // TP_Problem
@@ -349,7 +352,7 @@ namespace r09546042_TerryYang_Assignment07
             this.TP_Settings.Location = new System.Drawing.Point(4, 24);
             this.TP_Settings.Name = "TP_Settings";
             this.TP_Settings.Padding = new System.Windows.Forms.Padding(3);
-            this.TP_Settings.Size = new System.Drawing.Size(394, 786);
+            this.TP_Settings.Size = new System.Drawing.Size(394, 817);
             this.TP_Settings.TabIndex = 1;
             this.TP_Settings.Text = "GA settings";
             this.TP_Settings.UseVisualStyleBackColor = true;
@@ -360,7 +363,7 @@ namespace r09546042_TerryYang_Assignment07
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GB_Optimization.Controls.Add(this.RDB_Mini);
             this.GB_Optimization.Controls.Add(this.RDB_Maxi);
-            this.GB_Optimization.Location = new System.Drawing.Point(5, 410);
+            this.GB_Optimization.Location = new System.Drawing.Point(5, 439);
             this.GB_Optimization.Name = "GB_Optimization";
             this.GB_Optimization.Size = new System.Drawing.Size(385, 50);
             this.GB_Optimization.TabIndex = 6;
@@ -398,7 +401,7 @@ namespace r09546042_TerryYang_Assignment07
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GB_Mutation.Controls.Add(this.RDB_Chrom_Base);
             this.GB_Mutation.Controls.Add(this.RDB_Genes_Base);
-            this.GB_Mutation.Location = new System.Drawing.Point(5, 360);
+            this.GB_Mutation.Location = new System.Drawing.Point(5, 389);
             this.GB_Mutation.Name = "GB_Mutation";
             this.GB_Mutation.Size = new System.Drawing.Size(385, 50);
             this.GB_Mutation.TabIndex = 5;
@@ -439,7 +442,7 @@ namespace r09546042_TerryYang_Assignment07
             this.GB_Action.Controls.Add(this.BTN_Run_one);
             this.GB_Action.Controls.Add(this.BTN_Run_to_end);
             this.GB_Action.Controls.Add(this.BTN_Reset);
-            this.GB_Action.Location = new System.Drawing.Point(5, 560);
+            this.GB_Action.Location = new System.Drawing.Point(5, 589);
             this.GB_Action.Name = "GB_Action";
             this.GB_Action.Size = new System.Drawing.Size(383, 202);
             this.GB_Action.TabIndex = 4;
@@ -523,7 +526,7 @@ namespace r09546042_TerryYang_Assignment07
             this.GB_Animation.Controls.Add(this.label12);
             this.GB_Animation.Controls.Add(this.TKB_Animation);
             this.GB_Animation.Controls.Add(this.CKB_Show_animation);
-            this.GB_Animation.Location = new System.Drawing.Point(5, 460);
+            this.GB_Animation.Location = new System.Drawing.Point(5, 489);
             this.GB_Animation.Name = "GB_Animation";
             this.GB_Animation.Size = new System.Drawing.Size(384, 97);
             this.GB_Animation.TabIndex = 3;
@@ -570,7 +573,7 @@ namespace r09546042_TerryYang_Assignment07
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GB_Selection.Controls.Add(this.RDB_Deterministic);
             this.GB_Selection.Controls.Add(this.RDB_Stochastic);
-            this.GB_Selection.Location = new System.Drawing.Point(5, 310);
+            this.GB_Selection.Location = new System.Drawing.Point(5, 339);
             this.GB_Selection.Name = "GB_Selection";
             this.GB_Selection.Size = new System.Drawing.Size(384, 50);
             this.GB_Selection.TabIndex = 2;
@@ -606,6 +609,8 @@ namespace r09546042_TerryYang_Assignment07
             // 
             this.GB_Parameter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GB_Parameter.Controls.Add(this.NUD_Least_Fitness_Fraction);
+            this.GB_Parameter.Controls.Add(this.label1);
             this.GB_Parameter.Controls.Add(this.NUD_mutaterate);
             this.GB_Parameter.Controls.Add(this.NUD_crossrate);
             this.GB_Parameter.Controls.Add(this.NUD_population);
@@ -614,7 +619,7 @@ namespace r09546042_TerryYang_Assignment07
             this.GB_Parameter.Controls.Add(this.label9);
             this.GB_Parameter.Location = new System.Drawing.Point(5, 210);
             this.GB_Parameter.Name = "GB_Parameter";
-            this.GB_Parameter.Size = new System.Drawing.Size(384, 100);
+            this.GB_Parameter.Size = new System.Drawing.Size(384, 128);
             this.GB_Parameter.TabIndex = 1;
             this.GB_Parameter.TabStop = false;
             this.GB_Parameter.Text = "Parameters";
@@ -624,9 +629,9 @@ namespace r09546042_TerryYang_Assignment07
             this.NUD_mutaterate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NUD_mutaterate.DecimalPlaces = 3;
-            this.NUD_mutaterate.Location = new System.Drawing.Point(156, 70);
+            this.NUD_mutaterate.Location = new System.Drawing.Point(171, 70);
             this.NUD_mutaterate.Name = "NUD_mutaterate";
-            this.NUD_mutaterate.Size = new System.Drawing.Size(222, 23);
+            this.NUD_mutaterate.Size = new System.Drawing.Size(207, 23);
             this.NUD_mutaterate.TabIndex = 14;
             this.NUD_mutaterate.Value = new decimal(new int[] {
             2,
@@ -639,9 +644,9 @@ namespace r09546042_TerryYang_Assignment07
             this.NUD_crossrate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NUD_crossrate.DecimalPlaces = 3;
-            this.NUD_crossrate.Location = new System.Drawing.Point(156, 45);
+            this.NUD_crossrate.Location = new System.Drawing.Point(171, 45);
             this.NUD_crossrate.Name = "NUD_crossrate";
-            this.NUD_crossrate.Size = new System.Drawing.Size(222, 23);
+            this.NUD_crossrate.Size = new System.Drawing.Size(207, 23);
             this.NUD_crossrate.TabIndex = 13;
             this.NUD_crossrate.Value = new decimal(new int[] {
             8,
@@ -653,9 +658,9 @@ namespace r09546042_TerryYang_Assignment07
             // 
             this.NUD_population.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NUD_population.Location = new System.Drawing.Point(156, 20);
+            this.NUD_population.Location = new System.Drawing.Point(171, 20);
             this.NUD_population.Name = "NUD_population";
-            this.NUD_population.Size = new System.Drawing.Size(222, 23);
+            this.NUD_population.Size = new System.Drawing.Size(207, 23);
             this.NUD_population.TabIndex = 2;
             this.NUD_population.Value = new decimal(new int[] {
             10,
@@ -718,26 +723,20 @@ namespace r09546042_TerryYang_Assignment07
             // 
             this.NUD_Penalty_Factor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NUD_Penalty_Factor.DecimalPlaces = 3;
-            this.NUD_Penalty_Factor.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
             this.NUD_Penalty_Factor.Location = new System.Drawing.Point(156, 80);
             this.NUD_Penalty_Factor.Maximum = new decimal(new int[] {
-            5,
+            500,
             0,
             0,
-            65536});
+            0});
             this.NUD_Penalty_Factor.Name = "NUD_Penalty_Factor";
             this.NUD_Penalty_Factor.Size = new System.Drawing.Size(219, 23);
             this.NUD_Penalty_Factor.TabIndex = 2;
             this.NUD_Penalty_Factor.Value = new decimal(new int[] {
-            5,
+            100,
             0,
             0,
-            65536});
+            0});
             // 
             // comboBox4
             // 
@@ -850,8 +849,8 @@ namespace r09546042_TerryYang_Assignment07
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.Chart_Main);
-            this.splitContainer2.Size = new System.Drawing.Size(843, 814);
-            this.splitContainer2.SplitterDistance = 361;
+            this.splitContainer2.Size = new System.Drawing.Size(843, 845);
+            this.splitContainer2.SplitterDistance = 374;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
@@ -869,7 +868,7 @@ namespace r09546042_TerryYang_Assignment07
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.groupBox9);
-            this.splitContainer3.Size = new System.Drawing.Size(843, 361);
+            this.splitContainer3.Size = new System.Drawing.Size(843, 374);
             this.splitContainer3.SplitterDistance = 220;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -882,7 +881,7 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox11.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox11.Location = new System.Drawing.Point(3, 227);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(214, 131);
+            this.groupBox11.Size = new System.Drawing.Size(214, 144);
             this.groupBox11.TabIndex = 2;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Hard constrain vilolation";
@@ -895,7 +894,7 @@ namespace r09546042_TerryYang_Assignment07
             this.TB_HCV.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TB_HCV.Location = new System.Drawing.Point(5, 25);
             this.TB_HCV.Name = "TB_HCV";
-            this.TB_HCV.Size = new System.Drawing.Size(202, 100);
+            this.TB_HCV.Size = new System.Drawing.Size(202, 113);
             this.TB_HCV.TabIndex = 2;
             this.TB_HCV.Text = "";
             // 
@@ -964,7 +963,7 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox9.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox9.Location = new System.Drawing.Point(0, 0);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(619, 361);
+            this.groupBox9.Size = new System.Drawing.Size(619, 374);
             this.groupBox9.TabIndex = 1;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Population";
@@ -996,13 +995,13 @@ namespace r09546042_TerryYang_Assignment07
             this.Chart_Main.Legends.Add(legend2);
             this.Chart_Main.Location = new System.Drawing.Point(0, 0);
             this.Chart_Main.Name = "Chart_Main";
-            this.Chart_Main.Size = new System.Drawing.Size(843, 424);
+            this.Chart_Main.Size = new System.Drawing.Size(843, 442);
             this.Chart_Main.TabIndex = 0;
             this.Chart_Main.Text = "chart1";
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 841);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 872);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1249, 22);
             this.statusStrip1.TabIndex = 3;
@@ -1012,11 +1011,41 @@ namespace r09546042_TerryYang_Assignment07
             // 
             this.TM_GA.Tick += new System.EventHandler(this.TM_GA_Tick);
             // 
+            // NUD_Least_Fitness_Fraction
+            // 
+            this.NUD_Least_Fitness_Fraction.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.NUD_Least_Fitness_Fraction.DecimalPlaces = 3;
+            this.NUD_Least_Fitness_Fraction.Location = new System.Drawing.Point(171, 99);
+            this.NUD_Least_Fitness_Fraction.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.NUD_Least_Fitness_Fraction.Name = "NUD_Least_Fitness_Fraction";
+            this.NUD_Least_Fitness_Fraction.Size = new System.Drawing.Size(207, 23);
+            this.NUD_Least_Fitness_Fraction.TabIndex = 16;
+            this.NUD_Least_Fitness_Fraction.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(5, 95);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(160, 21);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Least Fitness Fraction:";
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1249, 863);
+            this.ClientSize = new System.Drawing.Size(1249, 894);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
@@ -1072,6 +1101,7 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox8.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Least_Fitness_Fraction)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1146,6 +1176,8 @@ namespace r09546042_TerryYang_Assignment07
         private System.Windows.Forms.RadioButton RDB_Mini;
         private System.Windows.Forms.RadioButton RDB_Maxi;
         private System.Windows.Forms.ListBox LTB_Population;
+        private System.Windows.Forms.NumericUpDown NUD_Least_Fitness_Fraction;
+        private System.Windows.Forms.Label label1;
     }
 }
 
