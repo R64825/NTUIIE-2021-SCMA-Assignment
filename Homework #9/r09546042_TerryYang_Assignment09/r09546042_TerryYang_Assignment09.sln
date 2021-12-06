@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "r09546042_TerryYang_Assignment09", "r09546042_TerryYang_Assignment09\r09546042_TerryYang_Assignment09.csproj", "{59584D73-6310-4AFB-9706-AC90BAD45887}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ant_Colony_System_Library", "Ant_Colony_System_Library\Ant_Colony_System_Library.csproj", "{2AD438BD-242A-41D5-B249-6EDE264DB29A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59584D73-6310-4AFB-9706-AC90BAD45887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59584D73-6310-4AFB-9706-AC90BAD45887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59584D73-6310-4AFB-9706-AC90BAD45887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59584D73-6310-4AFB-9706-AC90BAD45887}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AD438BD-242A-41D5-B249-6EDE264DB29A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AD438BD-242A-41D5-B249-6EDE264DB29A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AD438BD-242A-41D5-B249-6EDE264DB29A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AD438BD-242A-41D5-B249-6EDE264DB29A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7B7A671-211A-4AB7-8E30-CF648FADCD58}
+	EndGlobalSection
+EndGlobal

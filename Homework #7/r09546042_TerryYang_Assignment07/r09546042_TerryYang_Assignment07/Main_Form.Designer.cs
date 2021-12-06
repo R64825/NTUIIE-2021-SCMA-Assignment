@@ -30,10 +30,15 @@ namespace r09546042_TerryYang_Assignment07
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.TSDDBTN_File = new System.Windows.Forms.ToolStripDropDownButton();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.TBC_main = new System.Windows.Forms.TabControl();
             this.TP_Problem = new System.Windows.Forms.TabPage();
@@ -68,6 +73,8 @@ namespace r09546042_TerryYang_Assignment07
             this.RDB_Deterministic = new System.Windows.Forms.RadioButton();
             this.RDB_Stochastic = new System.Windows.Forms.RadioButton();
             this.GB_Parameter = new System.Windows.Forms.GroupBox();
+            this.NUD_Least_Fitness_Fraction = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.NUD_mutaterate = new System.Windows.Forms.NumericUpDown();
             this.NUD_crossrate = new System.Windows.Forms.NumericUpDown();
             this.NUD_population = new System.Windows.Forms.NumericUpDown();
@@ -77,7 +84,7 @@ namespace r09546042_TerryYang_Assignment07
             this.GB_GA_encoding = new System.Windows.Forms.GroupBox();
             this.NUD_Penalty_Factor = new System.Windows.Forms.NumericUpDown();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.CB_Permutation_Cross_Type = new System.Windows.Forms.ComboBox();
             this.CB_Binary_Cross_Type = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -88,19 +95,22 @@ namespace r09546042_TerryYang_Assignment07
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.TB_HCV = new System.Windows.Forms.RichTextBox();
+            this.LTB_HCV = new System.Windows.Forms.ListBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.TB_shortest_time = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.RTB_BOV = new System.Windows.Forms.RichTextBox();
+            this.LTB_BOV = new System.Windows.Forms.ListBox();
             this.TB_BOV = new System.Windows.Forms.TextBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.LTB_Population = new System.Windows.Forms.ListBox();
             this.Chart_Main = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.TSL_model_status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.TSL_Iteration = new System.Windows.Forms.ToolStripStatusLabel();
             this.TM_GA = new System.Windows.Forms.Timer(this.components);
-            this.NUD_Least_Fitness_Fraction = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
+            this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -121,6 +131,7 @@ namespace r09546042_TerryYang_Assignment07
             ((System.ComponentModel.ISupportInitialize)(this.TKB_Animation)).BeginInit();
             this.GB_Selection.SuspendLayout();
             this.GB_Parameter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Least_Fitness_Fraction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_mutaterate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_crossrate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_population)).BeginInit();
@@ -139,7 +150,7 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NUD_Least_Fitness_Fraction)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -152,11 +163,47 @@ namespace r09546042_TerryYang_Assignment07
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TSDDBTN_File});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1249, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // TSDDBTN_File
+            // 
+            this.TSDDBTN_File.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.TSDDBTN_File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.TSDDBTN_File.Image = ((System.Drawing.Image)(resources.GetObject("TSDDBTN_File.Image")));
+            this.TSDDBTN_File.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TSDDBTN_File.Name = "TSDDBTN_File";
+            this.TSDDBTN_File.Size = new System.Drawing.Size(39, 22);
+            this.TSDDBTN_File.Text = "File";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -195,7 +242,7 @@ namespace r09546042_TerryYang_Assignment07
             this.TP_Problem.Location = new System.Drawing.Point(4, 24);
             this.TP_Problem.Name = "TP_Problem";
             this.TP_Problem.Padding = new System.Windows.Forms.Padding(3);
-            this.TP_Problem.Size = new System.Drawing.Size(394, 786);
+            this.TP_Problem.Size = new System.Drawing.Size(394, 817);
             this.TP_Problem.TabIndex = 0;
             this.TP_Problem.Text = "Problem";
             this.TP_Problem.UseVisualStyleBackColor = true;
@@ -208,7 +255,7 @@ namespace r09546042_TerryYang_Assignment07
             this.GB_GeneratedProblem.Controls.Add(this.DGV_Problem);
             this.GB_GeneratedProblem.Location = new System.Drawing.Point(8, 128);
             this.GB_GeneratedProblem.Name = "GB_GeneratedProblem";
-            this.GB_GeneratedProblem.Size = new System.Drawing.Size(380, 637);
+            this.GB_GeneratedProblem.Size = new System.Drawing.Size(380, 668);
             this.GB_GeneratedProblem.TabIndex = 9;
             this.GB_GeneratedProblem.TabStop = false;
             this.GB_GeneratedProblem.Text = "Generated Problem";
@@ -221,7 +268,7 @@ namespace r09546042_TerryYang_Assignment07
             this.DGV_Problem.Location = new System.Drawing.Point(3, 19);
             this.DGV_Problem.Name = "DGV_Problem";
             this.DGV_Problem.RowTemplate.Height = 24;
-            this.DGV_Problem.Size = new System.Drawing.Size(374, 615);
+            this.DGV_Problem.Size = new System.Drawing.Size(374, 646);
             this.DGV_Problem.TabIndex = 0;
             // 
             // GB_ProblemSetting
@@ -624,6 +671,41 @@ namespace r09546042_TerryYang_Assignment07
             this.GB_Parameter.TabStop = false;
             this.GB_Parameter.Text = "Parameters";
             // 
+            // NUD_Least_Fitness_Fraction
+            // 
+            this.NUD_Least_Fitness_Fraction.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.NUD_Least_Fitness_Fraction.DecimalPlaces = 3;
+            this.NUD_Least_Fitness_Fraction.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.NUD_Least_Fitness_Fraction.Location = new System.Drawing.Point(171, 99);
+            this.NUD_Least_Fitness_Fraction.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.NUD_Least_Fitness_Fraction.Name = "NUD_Least_Fitness_Fraction";
+            this.NUD_Least_Fitness_Fraction.Size = new System.Drawing.Size(207, 23);
+            this.NUD_Least_Fitness_Fraction.TabIndex = 16;
+            this.NUD_Least_Fitness_Fraction.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(5, 95);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(160, 21);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Least Fitness Fraction:";
+            // 
             // NUD_mutaterate
             // 
             this.NUD_mutaterate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -704,7 +786,7 @@ namespace r09546042_TerryYang_Assignment07
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GB_GA_encoding.Controls.Add(this.NUD_Penalty_Factor);
             this.GB_GA_encoding.Controls.Add(this.comboBox4);
-            this.GB_GA_encoding.Controls.Add(this.comboBox3);
+            this.GB_GA_encoding.Controls.Add(this.CB_Permutation_Cross_Type);
             this.GB_GA_encoding.Controls.Add(this.CB_Binary_Cross_Type);
             this.GB_GA_encoding.Controls.Add(this.label8);
             this.GB_GA_encoding.Controls.Add(this.label7);
@@ -747,14 +829,22 @@ namespace r09546042_TerryYang_Assignment07
             this.comboBox4.Size = new System.Drawing.Size(246, 23);
             this.comboBox4.TabIndex = 8;
             // 
-            // comboBox3
+            // CB_Permutation_Cross_Type
             // 
-            this.comboBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(129, 140);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(246, 23);
-            this.comboBox3.TabIndex = 7;
+            this.CB_Permutation_Cross_Type.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_Permutation_Cross_Type.FormattingEnabled = true;
+            this.CB_Permutation_Cross_Type.Items.AddRange(new object[] {
+            "Partial-mapped Crossover",
+            "Order Crossover",
+            "Position-based Crossover",
+            "Order-based Crossover",
+            "Cycle Crossover",
+            "Subtour Exchange"});
+            this.CB_Permutation_Cross_Type.Location = new System.Drawing.Point(129, 140);
+            this.CB_Permutation_Cross_Type.Name = "CB_Permutation_Cross_Type";
+            this.CB_Permutation_Cross_Type.Size = new System.Drawing.Size(246, 23);
+            this.CB_Permutation_Cross_Type.TabIndex = 7;
+            this.CB_Permutation_Cross_Type.Text = "Partial-mapped Crossover";
             // 
             // CB_Binary_Cross_Type
             // 
@@ -877,7 +967,7 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox11.Controls.Add(this.TB_HCV);
+            this.groupBox11.Controls.Add(this.LTB_HCV);
             this.groupBox11.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox11.Location = new System.Drawing.Point(3, 227);
             this.groupBox11.Name = "groupBox11";
@@ -886,17 +976,16 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Hard constrain vilolation";
             // 
-            // TB_HCV
+            // LTB_HCV
             // 
-            this.TB_HCV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.LTB_HCV.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TB_HCV.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TB_HCV.Location = new System.Drawing.Point(5, 25);
-            this.TB_HCV.Name = "TB_HCV";
-            this.TB_HCV.Size = new System.Drawing.Size(202, 113);
-            this.TB_HCV.TabIndex = 2;
-            this.TB_HCV.Text = "";
+            this.LTB_HCV.FormattingEnabled = true;
+            this.LTB_HCV.ItemHeight = 21;
+            this.LTB_HCV.Location = new System.Drawing.Point(5, 28);
+            this.LTB_HCV.Name = "LTB_HCV";
+            this.LTB_HCV.Size = new System.Drawing.Size(202, 109);
+            this.LTB_HCV.TabIndex = 1;
             // 
             // groupBox10
             // 
@@ -925,7 +1014,7 @@ namespace r09546042_TerryYang_Assignment07
             // 
             this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox8.Controls.Add(this.RTB_BOV);
+            this.groupBox8.Controls.Add(this.LTB_BOV);
             this.groupBox8.Controls.Add(this.TB_BOV);
             this.groupBox8.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox8.Location = new System.Drawing.Point(3, 4);
@@ -935,16 +1024,16 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Best objective value";
             // 
-            // RTB_BOV
+            // LTB_BOV
             // 
-            this.RTB_BOV.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.LTB_BOV.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.RTB_BOV.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RTB_BOV.Location = new System.Drawing.Point(5, 55);
-            this.RTB_BOV.Name = "RTB_BOV";
-            this.RTB_BOV.Size = new System.Drawing.Size(202, 87);
-            this.RTB_BOV.TabIndex = 1;
-            this.RTB_BOV.Text = "";
+            this.LTB_BOV.FormattingEnabled = true;
+            this.LTB_BOV.ItemHeight = 21;
+            this.LTB_BOV.Location = new System.Drawing.Point(5, 52);
+            this.LTB_BOV.Name = "LTB_BOV";
+            this.LTB_BOV.Size = new System.Drawing.Size(202, 88);
+            this.LTB_BOV.TabIndex = 1;
             // 
             // TB_BOV
             // 
@@ -986,13 +1075,13 @@ namespace r09546042_TerryYang_Assignment07
             this.Chart_Main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.AxisX.Minimum = 0D;
-            chartArea2.Name = "ChartArea1";
-            this.Chart_Main.ChartAreas.Add(chartArea2);
-            legend2.Alignment = System.Drawing.StringAlignment.Center;
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend2.Name = "Legend1";
-            this.Chart_Main.Legends.Add(legend2);
+            chartArea1.AxisX.Minimum = 0D;
+            chartArea1.Name = "ChartArea1";
+            this.Chart_Main.ChartAreas.Add(chartArea1);
+            legend1.Alignment = System.Drawing.StringAlignment.Center;
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend1.Name = "Legend1";
+            this.Chart_Main.Legends.Add(legend1);
             this.Chart_Main.Location = new System.Drawing.Point(0, 0);
             this.Chart_Main.Name = "Chart_Main";
             this.Chart_Main.Size = new System.Drawing.Size(843, 442);
@@ -1001,45 +1090,36 @@ namespace r09546042_TerryYang_Assignment07
             // 
             // statusStrip1
             // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TSL_model_status,
+            this.TSL_Iteration});
             this.statusStrip1.Location = new System.Drawing.Point(0, 872);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1249, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // TSL_model_status
+            // 
+            this.TSL_model_status.AutoSize = false;
+            this.TSL_model_status.BackColor = System.Drawing.Color.MistyRose;
+            this.TSL_model_status.Name = "TSL_model_status";
+            this.TSL_model_status.Size = new System.Drawing.Size(250, 17);
+            // 
+            // TSL_Iteration
+            // 
+            this.TSL_Iteration.AutoSize = false;
+            this.TSL_Iteration.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.TSL_Iteration.Name = "TSL_Iteration";
+            this.TSL_Iteration.Size = new System.Drawing.Size(150, 17);
+            // 
             // TM_GA
             // 
             this.TM_GA.Tick += new System.EventHandler(this.TM_GA_Tick);
             // 
-            // NUD_Least_Fitness_Fraction
+            // OpenFileDialog
             // 
-            this.NUD_Least_Fitness_Fraction.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.NUD_Least_Fitness_Fraction.DecimalPlaces = 3;
-            this.NUD_Least_Fitness_Fraction.Location = new System.Drawing.Point(171, 99);
-            this.NUD_Least_Fitness_Fraction.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.NUD_Least_Fitness_Fraction.Name = "NUD_Least_Fitness_Fraction";
-            this.NUD_Least_Fitness_Fraction.Size = new System.Drawing.Size(207, 23);
-            this.NUD_Least_Fitness_Fraction.TabIndex = 16;
-            this.NUD_Least_Fitness_Fraction.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(5, 95);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 21);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Least Fitness Fraction:";
+            this.OpenFileDialog.FileName = "openFileDialog1";
             // 
             // Main_Form
             // 
@@ -1053,6 +1133,8 @@ namespace r09546042_TerryYang_Assignment07
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main_Form";
             this.Text = "Binary & Permutation Encoding GA for Job Assignment Problems";
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -1080,6 +1162,7 @@ namespace r09546042_TerryYang_Assignment07
             this.GB_Selection.PerformLayout();
             this.GB_Parameter.ResumeLayout(false);
             this.GB_Parameter.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Least_Fitness_Fraction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_mutaterate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_crossrate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_population)).EndInit();
@@ -1101,7 +1184,8 @@ namespace r09546042_TerryYang_Assignment07
             this.groupBox8.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NUD_Least_Fitness_Fraction)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1129,7 +1213,7 @@ namespace r09546042_TerryYang_Assignment07
         private System.Windows.Forms.GroupBox GB_GeneratedProblem;
         private System.Windows.Forms.GroupBox GB_GA_encoding;
         private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox CB_Permutation_Cross_Type;
         private System.Windows.Forms.ComboBox CB_Binary_Cross_Type;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -1154,11 +1238,9 @@ namespace r09546042_TerryYang_Assignment07
         private System.Windows.Forms.TrackBar TKB_Animation;
         private System.Windows.Forms.CheckBox CKB_Show_animation;
         private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.RichTextBox TB_HCV;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.TextBox TB_shortest_time;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.RichTextBox RTB_BOV;
         private System.Windows.Forms.TextBox TB_BOV;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.NumericUpDown NUD_maximum;
@@ -1178,6 +1260,16 @@ namespace r09546042_TerryYang_Assignment07
         private System.Windows.Forms.ListBox LTB_Population;
         private System.Windows.Forms.NumericUpDown NUD_Least_Fitness_Fraction;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox LTB_BOV;
+        private System.Windows.Forms.ListBox LTB_HCV;
+        private System.Windows.Forms.ToolStripStatusLabel TSL_model_status;
+        private System.Windows.Forms.ToolStripStatusLabel TSL_Iteration;
+        private System.Windows.Forms.ToolStripDropDownButton TSDDBTN_File;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog OpenFileDialog;
+        private System.Windows.Forms.SaveFileDialog SaveFileDialog;
     }
 }
 

@@ -47,7 +47,7 @@ namespace TerryYang_GA_Library
         GA_Mutation_Type mutation_Type = GA_Mutation_Type.Chromosomes_Number_Based;
         GA_Selection_Type selection_Type = GA_Selection_Type.Deterministic;
 
-        public delegate double Objective_Function<S>(S[] a_Solution);
+        public delegate double Objective_Function<S>(S[] a_Solution, bool violation);
 
         int iteration_Limit = 200;
         int number_Of_Crossovered_Children;
@@ -100,9 +100,7 @@ namespace TerryYang_GA_Library
         #endregion
         public GA_Mutation_Type Mutation_Type { get => mutation_Type; set => mutation_Type = value; }
         public GA_Optimization_Type Optimization_Type { get => optimization_Type; set => optimization_Type = value; }
-        public double[] Objective_Value { get => objective_Value; set => objective_Value = value; }
-        
-
+        public double[] Objective_Value { get => objective_Value; set => objective_Value = value; }       
         #region Constructor
         /// <summary>
         /// 
@@ -144,9 +142,15 @@ namespace TerryYang_GA_Library
         // helping function
         public void Set_Fitness_and_Objectives(int total, double least_Fitness_Fraction)
         {
-            double o_min, o_max;
-            o_max = objective_Value.Max();
-            o_min = objective_Value.Min();
+            double o_min = double.MaxValue;
+            double o_max = double.MinValue;
+            for (int i = 0; i < total; i++)
+            {
+                if (o_max < objective_Value[i])
+                    o_max = objective_Value[i];
+                if(o_min > objective_Value[i])
+                    o_min = objective_Value[i];
+            }
             double beta = Math.Max(least_Fitness_Fraction * (o_max - o_min), 1e-5);
 
             switch (Optimization_Type)
@@ -190,7 +194,7 @@ namespace TerryYang_GA_Library
             {
                 selected_Chromosomes[Sel_index][j] = chromosomes[Chro_index][j];
             }
-            selected_Objective_Value[Sel_index] =  objective_Function(selected_Chromosomes[Sel_index]);
+            selected_Objective_Value[Sel_index] =  objective_Function(selected_Chromosomes[Sel_index], true);
             //selected_Objective_Value[Sel_index] = Return_Chromosomes_Violations(selected_Chromosomes[Sel_index]).Sum() ;
         }      
         public void Perform_Selection_Operation()
@@ -252,28 +256,7 @@ namespace TerryYang_GA_Library
             }
 
             Fit_to_Selection_Then_Drop_Unfit();
-        }
-        public virtual void Add_Hard_Violation(int total, double penatly_Factor)
-        {
-            int[] violations = new int[number_Of_Genes];
-            for (int i = 0; i < total; i++)
-            {
-                violations = Return_Chromosomes_Violations(chromosomes[i]);
-                double penatly=0;
-                switch (optimization_Type)
-                {
-                    case GA_Optimization_Type.Minimization:
-                        penatly = violations.Sum() * penatly_Factor;
-                        break;
-                    case GA_Optimization_Type.Maximization:
-                        penatly = -1.0 * violations.Sum() * penatly_Factor;
-                        break;
-                    default:
-                        break;
-                }
-                objective_Value[i] = objective_Value[i] + penatly;
-            }
-        }
+        }       
         public virtual int[] Return_Chromosomes_Violations(T[] chrom)
         {
             throw new NotImplementedException();
@@ -282,7 +265,7 @@ namespace TerryYang_GA_Library
         {
             double selected_Min = selected_Objective_Value.Min();
             double selected_Max = selected_Objective_Value.Max();
-
+            int total = population_Size + number_Of_Crossovered_Children + number_Of_Mutated_Children;
             // update so_far_the_best_solution
             switch (optimization_Type)
             {
@@ -310,7 +293,7 @@ namespace TerryYang_GA_Library
                 iteration_Best_Objective = selected_Max;
             else
                 iteration_Best_Objective = selected_Min;
-            iteration_Average_Objective = (selected_Objective_Value.Sum() / selected_Objective_Value.Length);
+            iteration_Average_Objective = (objective_Value.Sum() / total);
         }
         public int[] Shuffle_Indice_Array(int limit)
         {
@@ -411,8 +394,7 @@ namespace TerryYang_GA_Library
             }
             else
             {
-                #region Chromosomes_Number_Based
-
+                #region Chromosomes_Number_Base
                 indices = Shuffle_Indice_Array(Population_Size);
                 number_Of_Mutated_Children = (int)(population_Size * mutation_Rate);             
                 for (int i = 0; i < number_Of_Mutated_Children; i++)
@@ -427,6 +409,8 @@ namespace TerryYang_GA_Library
                 #endregion
             }
         }
+
+        // overrided
         public virtual void Generate_Crossovered_Chromosomes(int father, int mother, int child_a, int child_b)
         {
             throw new NotImplementedException();
@@ -478,8 +462,7 @@ namespace TerryYang_GA_Library
                 Copy_All_Selection_to_Chromosomes();
             Perform_Crossover_Operation();
             Perform_Mutation_Operation();
-            Perform_Selection_Operation();
-            
+            Perform_Selection_Operation();            
             Series_Update();
             iteration_ID++;
         }     
