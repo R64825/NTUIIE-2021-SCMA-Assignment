@@ -34,7 +34,7 @@ namespace r09546042_TerryYang_Assignment07
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.Tool_Strip = new System.Windows.Forms.ToolStrip();
             this.TSDDBTN_File = new System.Windows.Forms.ToolStripDropDownButton();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,7 +83,7 @@ namespace r09546042_TerryYang_Assignment07
             this.label9 = new System.Windows.Forms.Label();
             this.GB_GA_encoding = new System.Windows.Forms.GroupBox();
             this.NUD_Penalty_Factor = new System.Windows.Forms.NumericUpDown();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.CB_Permutation_Mutat_Type = new System.Windows.Forms.ComboBox();
             this.CB_Permutation_Cross_Type = new System.Windows.Forms.ComboBox();
             this.CB_Binary_Cross_Type = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -110,7 +110,7 @@ namespace r09546042_TerryYang_Assignment07
             this.TM_GA = new System.Windows.Forms.Timer(this.components);
             this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.toolStrip1.SuspendLayout();
+            this.Tool_Strip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -161,15 +161,15 @@ namespace r09546042_TerryYang_Assignment07
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // toolStrip1
+            // Tool_Strip
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Tool_Strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TSDDBTN_File});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1249, 25);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
+            this.Tool_Strip.Location = new System.Drawing.Point(0, 24);
+            this.Tool_Strip.Name = "Tool_Strip";
+            this.Tool_Strip.Size = new System.Drawing.Size(1249, 25);
+            this.Tool_Strip.TabIndex = 1;
+            this.Tool_Strip.Text = "toolStrip1";
             // 
             // TSDDBTN_File
             // 
@@ -785,7 +785,7 @@ namespace r09546042_TerryYang_Assignment07
             this.GB_GA_encoding.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GB_GA_encoding.Controls.Add(this.NUD_Penalty_Factor);
-            this.GB_GA_encoding.Controls.Add(this.comboBox4);
+            this.GB_GA_encoding.Controls.Add(this.CB_Permutation_Mutat_Type);
             this.GB_GA_encoding.Controls.Add(this.CB_Permutation_Cross_Type);
             this.GB_GA_encoding.Controls.Add(this.CB_Binary_Cross_Type);
             this.GB_GA_encoding.Controls.Add(this.label8);
@@ -820,14 +820,21 @@ namespace r09546042_TerryYang_Assignment07
             0,
             0});
             // 
-            // comboBox4
+            // CB_Permutation_Mutat_Type
             // 
-            this.comboBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(129, 170);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(246, 23);
-            this.comboBox4.TabIndex = 8;
+            this.CB_Permutation_Mutat_Type.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_Permutation_Mutat_Type.FormattingEnabled = true;
+            this.CB_Permutation_Mutat_Type.Items.AddRange(new object[] {
+            "Inversion Mutation",
+            "Insertion Mutation",
+            "Displacement Mutation",
+            "Reciprocla Exchange Mutation",
+            "Heuristic"});
+            this.CB_Permutation_Mutat_Type.Location = new System.Drawing.Point(129, 170);
+            this.CB_Permutation_Mutat_Type.Name = "CB_Permutation_Mutat_Type";
+            this.CB_Permutation_Mutat_Type.Size = new System.Drawing.Size(246, 23);
+            this.CB_Permutation_Mutat_Type.TabIndex = 8;
+            this.CB_Permutation_Mutat_Type.Text = "Inversion Mutation";
             // 
             // CB_Permutation_Cross_Type
             // 
@@ -1128,13 +1135,13 @@ namespace r09546042_TerryYang_Assignment07
             this.ClientSize = new System.Drawing.Size(1249, 894);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.Tool_Strip);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main_Form";
             this.Text = "Binary & Permutation Encoding GA for Job Assignment Problems";
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.Tool_Strip.ResumeLayout(false);
+            this.Tool_Strip.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -1194,7 +1201,7 @@ namespace r09546042_TerryYang_Assignment07
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip Tool_Strip;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TabControl TBC_main;
         private System.Windows.Forms.TabPage TP_Problem;
@@ -1212,7 +1219,7 @@ namespace r09546042_TerryYang_Assignment07
         private System.Windows.Forms.Button BTN_proGenerate;
         private System.Windows.Forms.GroupBox GB_GeneratedProblem;
         private System.Windows.Forms.GroupBox GB_GA_encoding;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox CB_Permutation_Mutat_Type;
         private System.Windows.Forms.ComboBox CB_Permutation_Cross_Type;
         private System.Windows.Forms.ComboBox CB_Binary_Cross_Type;
         private System.Windows.Forms.Label label8;

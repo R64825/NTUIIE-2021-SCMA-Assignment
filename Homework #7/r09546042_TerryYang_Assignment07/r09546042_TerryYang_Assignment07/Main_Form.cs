@@ -107,6 +107,7 @@ namespace r09546042_TerryYang_Assignment07
 
                 // show model status
                 TSL_Iteration.Text = $"Iteration: {GA_Per_Solver.Iteration_ID}";
+
             }
         }      
         public void Clear_Old_Solutions_on_UI()
@@ -186,70 +187,6 @@ namespace r09546042_TerryYang_Assignment07
 
         }
 
-        #region Get Type Functions
-        public GA_Selection_Type Get_Selection_Type()
-        {
-            GA_Selection_Type sel_type;
-            if (RDB_Stochastic.Checked)
-                sel_type = GA_Selection_Type.Stochastic;
-            else
-                sel_type = GA_Selection_Type.Deterministic;
-            return sel_type;
-        }
-        private Binary_Crossover_Type Get_Binary_Crossover_Type()
-        {
-                switch (CB_Binary_Cross_Type.SelectedItem.ToString())
-                {
-                    case "One Point Cut":
-                        return Binary_Crossover_Type.One_Point_Cut;
-                    case "Two Points Cut":
-                        return Binary_Crossover_Type.Two_Point_Cut;
-                    case "N Points Cut":
-                        return Binary_Crossover_Type.N_Point_Cut;
-                    default:
-                        return Binary_Crossover_Type.One_Point_Cut;
-                }                    
-        }
-        private Permutation_Crossover_Type Get_Permutation_Crossover_Type()
-        {
-            switch (CB_Permutation_Cross_Type.SelectedItem.ToString())
-            {
-                case "Partial-mapped Crossover":
-                    return Permutation_Crossover_Type.Parial_Mapped_X;
-                case "Order Crossover":
-                    return Permutation_Crossover_Type.Order_X;
-                case "Position-based Crossover":
-                    return Permutation_Crossover_Type.Postition_Base_X;
-                case "Order-based Crossover":
-                    return Permutation_Crossover_Type.Order_Based_X;
-                case "Cycle Crossover":
-                    return Permutation_Crossover_Type.Cycle_X;
-                case "Subtour Exchange":
-                    return Permutation_Crossover_Type.Subtour_Exchange;
-                default:
-                    return Permutation_Crossover_Type.Parial_Mapped_X;
-            }
-        }
-        private GA_Mutation_Type Get_Bin_Mutation_Type()
-        {
-            GA_Mutation_Type mut_type;
-            if (RDB_Chrom_Base.Checked)
-                mut_type = GA_Mutation_Type.Chromosomes_Number_Based;
-            else
-                mut_type = GA_Mutation_Type.Gene_Number_Based;
-            return mut_type;
-        }
-        private GA_Optimization_Type Get_Optimization_Type()
-        {
-            GA_Optimization_Type op_type;
-            if (RDB_Maxi.Checked)
-                op_type = GA_Optimization_Type.Maximization;
-            else
-                op_type = GA_Optimization_Type.Minimization;
-            return op_type;
-        }
-        #endregion
-
         public int[] Return_Chromosomes_Violations(byte[] chrom)
         {          
             int[] violations = new int[2 * number_of_Jobs];
@@ -311,6 +248,95 @@ namespace r09546042_TerryYang_Assignment07
         }
         #endregion
 
+        #region Get Type Functions
+        public GA_Selection_Type Get_Selection_Type()
+        {
+            GA_Selection_Type sel_type;
+            if (RDB_Stochastic.Checked)
+                sel_type = GA_Selection_Type.Stochastic;
+            else
+                sel_type = GA_Selection_Type.Deterministic;
+            return sel_type;
+        }
+        private Binary_Crossover_Type Get_Binary_Crossover_Type()
+        {
+            switch (CB_Binary_Cross_Type.SelectedItem.ToString())
+            {
+                case "One Point Cut":
+                    return Binary_Crossover_Type.One_Point_Cut;
+                case "Two Points Cut":
+                    return Binary_Crossover_Type.Two_Point_Cut;
+                case "N Points Cut":
+                    return Binary_Crossover_Type.N_Point_Cut;
+                default:
+                    return Binary_Crossover_Type.One_Point_Cut;
+            }
+        }
+        private Permutation_Crossover_Type Get_Permutation_Crossover_Type()
+        {
+            switch (CB_Permutation_Cross_Type.SelectedItem.ToString())
+            {
+                case "Partial-mapped Crossover":
+                    return Permutation_Crossover_Type.Parial_Mapped_X;
+                case "Order Crossover":
+                    return Permutation_Crossover_Type.Order_X;
+                case "Position-based Crossover":
+                    return Permutation_Crossover_Type.Postition_Base_X;
+                case "Order-based Crossover":
+                    return Permutation_Crossover_Type.Order_Based_X;
+                case "Cycle Crossover":
+                    return Permutation_Crossover_Type.Cycle_X;
+                case "Subtour Exchange":
+                    return Permutation_Crossover_Type.Subtour_Exchange;
+                default:
+                    return Permutation_Crossover_Type.Parial_Mapped_X;
+            }
+        }
+        private GA_Mutation_Type Get_Bin_Mutation_Type()
+        {
+            GA_Mutation_Type mut_type;
+            if (RDB_Chrom_Base.Checked)
+                mut_type = GA_Mutation_Type.Chromosomes_Number_Based;
+            else
+                mut_type = GA_Mutation_Type.Gene_Number_Based;
+            return mut_type;
+        }
+        private GA_Optimization_Type Get_Optimization_Type()
+        {
+            GA_Optimization_Type op_type;
+            if (RDB_Maxi.Checked)
+                op_type = GA_Optimization_Type.Maximization;
+            else
+                op_type = GA_Optimization_Type.Minimization;
+            return op_type;
+        }
+        private Permutation_Mutation_Type Get_Per_Mutation_Type()
+        {            
+            Permutation_Mutation_Type pm_Type = Permutation_Mutation_Type.Inversion;
+            switch (CB_Permutation_Mutat_Type.Text)
+            {
+                case "Inversion Mutation":
+                    pm_Type = Permutation_Mutation_Type.Inversion;
+                    break;
+                case "Insertion Mutation":
+                    pm_Type = Permutation_Mutation_Type.Insertion;
+                    break;
+                case "Displacement Mutation":
+                    pm_Type = Permutation_Mutation_Type.Displacement;
+                    break;
+                case "Reciprocla Exchange Mutation":
+                    pm_Type = Permutation_Mutation_Type.Reciprocal_Exchange;
+                    break;
+                case "Heuristic":
+                    pm_Type = Permutation_Mutation_Type.Heuristic;
+                    break;
+                default:
+                    break;
+            }
+            return pm_Type;
+        }
+        #endregion
+
         #region ButtomEvents
         private void BTN_proGenerate_Click(object sender, EventArgs e)
         {
@@ -335,7 +361,7 @@ namespace r09546042_TerryYang_Assignment07
             GA_Bin_Solver.Population_Size = population_Size;
             GA_Bin_Solver.Iteration_Limit = iteration_Limit;
             GA_Bin_Solver.Least_Fitness_Fraction = alpha;
-                GA_Bin_Solver.Mutation_Type = mut_type;
+            GA_Bin_Solver.Mutation_Type = mut_type;
             GA_Bin_Solver.Optimization_Type = op_type;
             GA_Bin_Solver.Penalty_Factor = penalty_Factor;
             GA_Bin_Solver.Crossover_Rate = Convert.ToDouble(NUD_crossrate.Value);
@@ -344,7 +370,7 @@ namespace r09546042_TerryYang_Assignment07
             }
             else
             {
-                GA_Per_Solver = new Permutation_GA(number_of_Jobs, GA_Optimization_Type.Minimization, Get_Setup_Time_Total_Permutation, Get_Permutation_Crossover_Type());
+                GA_Per_Solver = new Permutation_GA(number_of_Jobs, GA_Optimization_Type.Minimization, Get_Setup_Time_Total_Permutation, Get_Permutation_Crossover_Type(), Get_Per_Mutation_Type());
                 GA_Per_Solver.Selection_Type1 = sel_type;
                 GA_Per_Solver.Population_Size = population_Size;
                 GA_Per_Solver.Iteration_Limit = iteration_Limit;
