@@ -46,20 +46,169 @@ namespace TerryYang_GA_Library
             }
         }
         #region Crossover Methods
+        private void Parial_Mapped_Crossover(int father, int mother, int child_a, int child_b)
+        {
+            #region Teacher's
+            int[] two_Points = Shuffle_A_Array(number_Of_Genes, 2);
+            Array.Sort(two_Points);
+            int p_min = two_Points[0];
+            int p_max = two_Points[1];
+            int[] Dad = chromosomes[father];
+            int[] Mom = chromosomes[mother];
+            int swapping_Length = Math.Abs(p_max - p_min);
+            int[] Map = new int[number_Of_Genes];
+            for (int i = 0; i < number_Of_Genes; i++)
+                Map[i] = -1;
+
+            // construct partial map
+            for (int i = p_min; i < p_max + 1; i++)
+            {
+                if (Dad[i] == Mom[i]) // no mapping
+                    continue;
+                if (Map[Dad[i]] == -1 && Map[Mom[i]] == -1)
+                {
+                    // new int found ==> map 
+                    Map[Dad[i]] = Mom[i];
+                    Map[Mom[i]] = Dad[i];
+                }
+                else if (Map[Dad[i]] == -1)
+                {
+                    // this int exist in parent_M
+                    Map[Dad[i]] = Map[Mom[i]];
+                    Map[Map[Mom[i]]] = Dad[i];
+                    Map[Mom[i]] = -2;
+                }
+                else if (Map[Mom[i]] == -1)
+                {
+                    // this int exist in parent_M
+                    Map[Mom[i]] = Map[Dad[i]];
+                    Map[Map[Dad[i]]] = Mom[i];
+                    Map[Dad[i]] = -2;
+                }
+                else
+                {
+                    // -2 or -3 
+                    Map[Map[Mom[i]]] = Map[Dad[i]];
+                    Map[Map[Dad[i]]] = Map[Mom[i]];
+                    Map[Dad[i]] = -3;
+                    Map[Mom[i]] = -3;
+                }
+            }
+
+            // fill in child
+            for (int i = 0; i < number_Of_Genes; i++)
+            {
+                if (i <= p_max  && i >= p_min)
+                {
+                    // at swapping area
+                    chromosomes[child_b][i] = Dad[i];
+                    chromosomes[child_a][i] = Mom[i];
+                }
+                else
+                {
+                    // mapping
+                    if (Map[Dad[i]] < 0)
+                        chromosomes[child_a][i] = Dad[i];
+
+                    else
+                        chromosomes[child_a][i] = Map[Dad[i]];
+
+
+                    if (Map[Mom[i]] < 0)
+                        chromosomes[child_b][i] = Mom[i];
+
+                    else
+                        chromosomes[child_b][i] = Map[Mom[i]];
+
+                }
+            }
+            #endregion
+
+            #region Home Made
+            //int[] two_Points = Shuffle_A_Array(number_Of_Genes, 2);
+            //Array.Sort(two_Points);
+            //int p_min = two_Points[0];
+            //int p_max = two_Points[1];
+            //int swapping_Length = Math.Abs(p_max - p_min) + 1;
+
+            //// record swapping parts
+
+            //int[] swapping_Part_from_F;
+            //int[] swapping_Part_from_M;
+            //swapping_Part_from_F = new int[swapping_Length];
+            //swapping_Part_from_M = new int[swapping_Length];
+            //for (int i = 0; i < swapping_Length; i++)
+            //{
+            //    swapping_Part_from_F[i] = chromosomes[father][p_min + i];
+            //    swapping_Part_from_M[i] = chromosomes[mother][p_min + i];
+            //}
+
+            //// records partial map
+            //int element = swapping_Part_from_F[0];
+            //List<int> path = new List<int>();
+            //path.Add(element);
+            //while (element != -1)
+            //{
+            //    if (swapping_Part_from_F.Contains(element) == false)
+            //    {
+            //        element = -1;
+            //    }
+
+            //    if (swapping_Part_from_M.Contains(element))
+            //    {
+            //        path.Add(swapping_Part_from_M.ToList()[].IndexOf(element));
+            //    }
+            //}
+
+            //List<int> sp_F = swapping_Part_from_F.ToList();
+            //List<int> sp_M = swapping_Part_from_M.ToList();
+
+            //for (int i = 0; i < number_Of_Genes; i++)
+            //{
+            //    if (sp_F.Contains(i) && sp_M.Contains(i))
+            //    {
+            //        sp_F.Add(sp_M[sp_F.IndexOf(i)]);
+            //        sp_M.Add(sp_F[sp_F.IndexOf(i)]);
+
+            //        sp_F.Remove(i);
+            //        sp_M.Remove(i);
+            //    }
+            //}
+
+            //// finding crossover remaining parts
+            //int r_F;
+            //int r_M;
+            //int[] remain_part_for_A;
+            //int[] remain_part_for_B;
+            //remain_part_for_A = new int[number_Of_Genes - swapping_Length];
+            //remain_part_for_B = new int[number_Of_Genes - swapping_Length];
+            //r_F = 0;
+            //r_M = 0;
+            //for (int i = 0; i < number_Of_Genes; i++)
+            //{
+            //    if (swapping_Part_from_F.Contains(chromosomes[mother][i]) == false)
+            //    {
+            //        remain_part_for_A[r_F] = chromosomes[mother][i];
+            //        r_F++;
+            //    }
+            //    if (swapping_Part_from_M.Contains(chromosomes[father][i]) == false)
+            //    {
+            //        remain_part_for_B[r_M] = chromosomes[father][i];
+            //        r_M++;
+            //    }
+            //}
+            #endregion
+
+        }
         private void Order_Crossover(int father, int mother, int child_a, int child_b)
         {
             // rnd 2 cut points
             int[] two_Points = Shuffle_A_Array(number_Of_Genes, 2);
+            Array.Sort(two_Points);
             int p_min = two_Points[0];
-            int p_max = two_Points[1] + 1;
+            int p_max = two_Points[1];
             int swapping_Length = Math.Abs(p_max - p_min);
-            if (p_min > p_max)
-            {
-                // swap P_min & P_max
-                p_max = p_min + p_max;
-                p_min = p_max - p_min;
-                p_max = p_max - p_min;
-            }
+
             int[] swapping_Part_from_F;
             int[] swapping_Part_from_M;
             int[] remain_part_for_A;
@@ -521,12 +670,11 @@ namespace TerryYang_GA_Library
             switch (Crossover_Type)
             {
                 case Permutation_Crossover_Type.Parial_Mapped_X:
-
+                    Parial_Mapped_Crossover(father, mother, child_a, child_b);
                     break;
                 case Permutation_Crossover_Type.Order_X:
                     Order_Crossover(father, mother, child_a, child_b);
                     break;
-
                 case Permutation_Crossover_Type.Postition_Base_X:
                     Postition_Base_Crossover(father, mother, child_a, child_b);
                     break;

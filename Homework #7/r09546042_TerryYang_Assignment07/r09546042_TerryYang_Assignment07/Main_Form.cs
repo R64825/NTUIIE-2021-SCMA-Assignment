@@ -356,7 +356,7 @@ namespace r09546042_TerryYang_Assignment07
             GA_Mutation_Type mut_type = Get_Bin_Mutation_Type();
             if (RDB_Binary.Checked)
             {
-                GA_Bin_Solver = new Binary_GA(number_of_Jobs * number_of_Jobs, GA_Optimization_Type.Minimization, Get_Setup_Time_Total_Binary, Get_Binary_Crossover_Type());
+            GA_Bin_Solver = new Binary_GA(number_of_Jobs * number_of_Jobs, GA_Optimization_Type.Minimization, Get_Setup_Time_Total_Binary, Get_Binary_Crossover_Type());
             GA_Bin_Solver.Selection_Type1 = sel_type;
             GA_Bin_Solver.Population_Size = population_Size;
             GA_Bin_Solver.Iteration_Limit = iteration_Limit;
