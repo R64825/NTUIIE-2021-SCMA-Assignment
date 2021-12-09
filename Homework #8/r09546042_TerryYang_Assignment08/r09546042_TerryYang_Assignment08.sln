@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "r09546042_TerryYang_Assignment08", "r09546042_TerryYang_Assignment08\r09546042_TerryYang_Assignment08.csproj", "{282A9118-CE45-4C49-9A5A-C461FD80B592}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerryYang_GA_Library", "TerryYang_GA_Library\TerryYang_GA_Library.csproj", "{7F754805-740B-47B4-83C4-BC2179C095D3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{282A9118-CE45-4C49-9A5A-C461FD80B592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{282A9118-CE45-4C49-9A5A-C461FD80B592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{282A9118-CE45-4C49-9A5A-C461FD80B592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{282A9118-CE45-4C49-9A5A-C461FD80B592}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F754805-740B-47B4-83C4-BC2179C095D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F754805-740B-47B4-83C4-BC2179C095D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F754805-740B-47B4-83C4-BC2179C095D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F754805-740B-47B4-83C4-BC2179C095D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4A33C0A7-B59A-4C91-A598-2C8F72218D75}
+	EndGlobalSection
+EndGlobal
