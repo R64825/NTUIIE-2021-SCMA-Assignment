@@ -1,5 +1,13 @@
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #9\r09546042_TerryYang_Assignment09\r09546042_TerryYang_Assignment09\obj\Debug\r09546042_TerryYang_Assignment09.csprojAssemblyReference.cache
-C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #9\r09546042_TerryYang_Assignment09\r09546042_TerryYang_Assignment09\obj\Debug\r09546042_TerryYang_Assignment09.Form1.resources
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #9\r09546042_TerryYang_Assignment09\r09546042_TerryYang_Assignment09\obj\Debug\r09546042_TerryYang_Assignment09.Properties.Resources.resources
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #9\r09546042_TerryYang_Assignment09\r09546042_TerryYang_Assignment09\obj\Debug\r09546042_TerryYang_Assignment09.csproj.GenerateResource.cache
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #9\r09546042_TerryYang_Assignment09\r09546042_TerryYang_Assignment09\obj\Debug\r09546042_TerryYang_Assignment09.csproj.CoreCompileInputs.cache
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #9\r09546042_TerryYang_Assignment09\r09546042_TerryYang_Assignment09\bin\Debug\r09546042_TerryYang_Assignment09.exe.config
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #9\r09546042_TerryYang_Assignment09\r09546042_TerryYang_Assignment09\bin\Debug\r09546042_TerryYang_Assignment09.exe
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #9\r09546042_TerryYang_Assignment09\r09546042_TerryYang_Assignment09\bin\Debug\r09546042_TerryYang_Assignment09.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #9\r09546042_TerryYang_Assignment09\r09546042_TerryYang_Assignment09\bin\Debug\Ant_Colony_System_Library.dll
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #9\r09546042_TerryYang_Assignment09\r09546042_TerryYang_Assignment09\bin\Debug\Ant_Colony_System_Library.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #9\r09546042_TerryYang_Assignment09\r09546042_TerryYang_Assignment09\obj\Debug\r09546042_TerryYang_Assignment09.csproj.CopyComplete
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #9\r09546042_TerryYang_Assignment09\r09546042_TerryYang_Assignment09\obj\Debug\r09546042_TerryYang_Assignment09.exe
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #9\r09546042_TerryYang_Assignment09\r09546042_TerryYang_Assignment09\obj\Debug\r09546042_TerryYang_Assignment09.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #9\r09546042_TerryYang_Assignment09\r09546042_TerryYang_Assignment09\obj\Debug\r09546042_TerryYang_Assignment09.Main_Form.resources
