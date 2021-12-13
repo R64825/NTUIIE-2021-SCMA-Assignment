@@ -15,10 +15,9 @@ namespace TerryYang_GA_Library
     // template class
     public class Generic_GA_Solver<T>
     {
-        protected Random rnd = new Random();
-
         #region Data Field
         // data field
+        protected Random rnd = new Random();
         protected T[][] chromosomes;
         protected double[] objective_Value;
         protected double[] fitness_Value;
@@ -97,10 +96,11 @@ namespace TerryYang_GA_Library
         public int Iteration_Limit { get => iteration_Limit; set => iteration_Limit = value; }
         public double Penalty_Factor { get => penalty_Factor; set => penalty_Factor = value; }               
         public double Least_Fitness_Fraction { get => least_Fitness_Fraction; set => least_Fitness_Fraction = value; }
-        #endregion
+        public double[] Objective_Value { get => objective_Value; set => objective_Value = value; }
         public GA_Mutation_Type Mutation_Type { get => mutation_Type; set => mutation_Type = value; }
         public GA_Optimization_Type Optimization_Type { get => optimization_Type; set => optimization_Type = value; }
-        public double[] Objective_Value { get => objective_Value; set => objective_Value = value; }       
+        #endregion
+
         #region Constructor
         /// <summary>
         /// 
@@ -215,7 +215,7 @@ namespace TerryYang_GA_Library
             // selection
             if (selection_Type == GA_Selection_Type.Stochastic)
             {
-                #region Stochastic Happy Wheel
+                #region Stochastic Wheel
                 double Ratio = 1.0 / fitness_Value.Sum();
                 double[] dartboard = new double[total];
                 int[] locations = new int[population_Size];
@@ -255,7 +255,7 @@ namespace TerryYang_GA_Library
                     Copy_This_Chromosomes_to_a_Selection(indices[i], i);
             }
 
-            Fit_to_Selection_Then_Drop_Unfit();
+            //Fit_to_Selection_Then_Drop_Unfit();
         }       
         public virtual int[] Return_Chromosomes_Violations(T[] chrom)
         {
@@ -288,11 +288,54 @@ namespace TerryYang_GA_Library
             }
             Copy_All_Selection_to_Chromosomes();
 
+            //// update iteration the best
+            //if (optimization_Type == GA_Optimization_Type.Maximization)
+            //    iteration_Best_Objective = selected_Max;
+            //else
+            //    iteration_Best_Objective = selected_Min;
+            //iteration_Average_Objective = (objective_Value.Sum() / total);
+        }
+
+        private void Update_So_Far_the_Best_and_Iteration_the_Best()
+        {
+            int total = population_Size + number_Of_Crossovered_Children + number_Of_Mutated_Children;
+            int the_Best_Index = 0;
+            if (optimization_Type == GA_Optimization_Type.Maximization)
+            {
+                for (int i = 0; i < total; i++)
+                {
+                    if (objective_Value[i]> so_Far_The_Best_Objective_Value)
+                    {
+                        // change so far the best 
+                        so_Far_The_Best_Objective_Value = objective_Value[i];
+                        the_Best_Index = i;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < total; i++)
+                {
+                    if (objective_Value[i] < so_Far_The_Best_Objective_Value)
+                    {
+                        // change so far the best 
+                        so_Far_The_Best_Objective_Value = objective_Value[i];
+                        the_Best_Index = i;
+                    }
+                }
+            }
+
+            // copy the solution
+            for (int i = 0; i < number_Of_Genes; i++)
+            {
+                so_Far_The_Best_Soulution[i] = chromosomes[the_Best_Index][i];
+            }
+
             // update iteration the best
             if (optimization_Type == GA_Optimization_Type.Maximization)
-                iteration_Best_Objective = selected_Max;
+                iteration_Best_Objective = objective_Value[the_Best_Index];
             else
-                iteration_Best_Objective = selected_Min;
+                iteration_Best_Objective = objective_Value[the_Best_Index];
             iteration_Average_Objective = (objective_Value.Sum() / total);
         }
         public int[] Shuffle_Indice_Array(int limit)
@@ -462,10 +505,14 @@ namespace TerryYang_GA_Library
                 Copy_All_Selection_to_Chromosomes();
             Perform_Crossover_Operation();
             Perform_Mutation_Operation();
+            Update_So_Far_the_Best_and_Iteration_the_Best();
             Perform_Selection_Operation();            
             Series_Update();
             iteration_ID++;
-        }     
+        }
+
+
+
         public void Run_To_End(int Iteration)
         {
             for (int i = 0; i < Iteration; i++)

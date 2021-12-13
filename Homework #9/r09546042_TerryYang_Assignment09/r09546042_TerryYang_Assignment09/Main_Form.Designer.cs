@@ -29,12 +29,12 @@ namespace r09546042_TerryYang_Assignment09
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
@@ -54,6 +54,9 @@ namespace r09546042_TerryYang_Assignment09
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.TS_BTN_Openfile = new System.Windows.Forms.ToolStripButton();
+            this.BTN_Run_One = new System.Windows.Forms.Button();
+            this.LSB_Solution = new System.Windows.Forms.ListBox();
+            this.LSB_Phromone = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -71,6 +74,7 @@ namespace r09546042_TerryYang_Assignment09
             this.TBC_Show_result.SuspendLayout();
             this.TP_Route.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CT_Route)).BeginInit();
+            this.TB_Phrom_and_Sol.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,6 +104,7 @@ namespace r09546042_TerryYang_Assignment09
             // 
             // splitContainer3.Panel1
             // 
+            this.splitContainer3.Panel1.Controls.Add(this.BTN_Run_One);
             this.splitContainer3.Panel1.Controls.Add(this.LST_Problem);
             this.splitContainer3.Panel1.Controls.Add(this.tabControl1);
             this.splitContainer3.Panel1.Controls.Add(this.BTN_Reset);
@@ -199,26 +204,26 @@ namespace r09546042_TerryYang_Assignment09
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series5.Color = System.Drawing.Color.Green;
-            series5.MarkerSize = 10;
-            series5.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Diamond;
-            series5.Name = "Cites";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series6.Name = "Shortest_Route";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series7.Name = "So_Far_The_Best_Route";
-            this.chart1.Series.Add(series5);
-            this.chart1.Series.Add(series6);
-            this.chart1.Series.Add(series7);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.Color = System.Drawing.Color.Green;
+            series1.MarkerSize = 10;
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Diamond;
+            series1.Name = "Cites";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Name = "Shortest_Route";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Name = "So_Far_The_Best_Route";
+            this.chart1.Series.Add(series1);
+            this.chart1.Series.Add(series2);
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(827, 411);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -247,26 +252,28 @@ namespace r09546042_TerryYang_Assignment09
             // 
             // CT_Route
             // 
-            chartArea4.AxisX.MajorGrid.Enabled = false;
-            chartArea4.AxisX2.MajorGrid.Enabled = false;
-            chartArea4.AxisY.MajorGrid.Enabled = false;
-            chartArea4.AxisY2.MajorGrid.Enabled = false;
-            chartArea4.Name = "ChartArea1";
-            this.CT_Route.ChartAreas.Add(chartArea4);
+            chartArea2.AxisX.MajorGrid.Enabled = false;
+            chartArea2.AxisX2.MajorGrid.Enabled = false;
+            chartArea2.AxisY.MajorGrid.Enabled = false;
+            chartArea2.AxisY2.MajorGrid.Enabled = false;
+            chartArea2.Name = "ChartArea1";
+            this.CT_Route.ChartAreas.Add(chartArea2);
             this.CT_Route.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CT_Route.Location = new System.Drawing.Point(3, 3);
             this.CT_Route.Name = "CT_Route";
             this.CT_Route.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series8.Name = "Series1";
-            this.CT_Route.Series.Add(series8);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Name = "Series1";
+            this.CT_Route.Series.Add(series4);
             this.CT_Route.Size = new System.Drawing.Size(813, 181);
             this.CT_Route.TabIndex = 0;
             this.CT_Route.Text = "chart2";
             // 
             // TB_Phrom_and_Sol
             // 
+            this.TB_Phrom_and_Sol.Controls.Add(this.LSB_Phromone);
+            this.TB_Phrom_and_Sol.Controls.Add(this.LSB_Solution);
             this.TB_Phrom_and_Sol.Location = new System.Drawing.Point(4, 22);
             this.TB_Phrom_and_Sol.Name = "TB_Phrom_and_Sol";
             this.TB_Phrom_and_Sol.Padding = new System.Windows.Forms.Padding(3);
@@ -303,6 +310,34 @@ namespace r09546042_TerryYang_Assignment09
             this.TS_BTN_Openfile.Text = "Open TSP...";
             this.TS_BTN_Openfile.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // BTN_Run_One
+            // 
+            this.BTN_Run_One.Location = new System.Drawing.Point(129, 153);
+            this.BTN_Run_One.Name = "BTN_Run_One";
+            this.BTN_Run_One.Size = new System.Drawing.Size(120, 32);
+            this.BTN_Run_One.TabIndex = 4;
+            this.BTN_Run_One.Text = "Run one";
+            this.BTN_Run_One.UseVisualStyleBackColor = true;
+            this.BTN_Run_One.Click += new System.EventHandler(this.BTN_Run_One_Click);
+            // 
+            // LSB_Solution
+            // 
+            this.LSB_Solution.FormattingEnabled = true;
+            this.LSB_Solution.ItemHeight = 12;
+            this.LSB_Solution.Location = new System.Drawing.Point(408, 3);
+            this.LSB_Solution.Name = "LSB_Solution";
+            this.LSB_Solution.Size = new System.Drawing.Size(403, 184);
+            this.LSB_Solution.TabIndex = 0;
+            // 
+            // LSB_Phromone
+            // 
+            this.LSB_Phromone.FormattingEnabled = true;
+            this.LSB_Phromone.ItemHeight = 12;
+            this.LSB_Phromone.Location = new System.Drawing.Point(3, 4);
+            this.LSB_Phromone.Name = "LSB_Phromone";
+            this.LSB_Phromone.Size = new System.Drawing.Size(403, 184);
+            this.LSB_Phromone.TabIndex = 1;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -330,6 +365,7 @@ namespace r09546042_TerryYang_Assignment09
             this.TBC_Show_result.ResumeLayout(false);
             this.TP_Route.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CT_Route)).EndInit();
+            this.TB_Phrom_and_Sol.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -357,6 +393,9 @@ namespace r09546042_TerryYang_Assignment09
         private System.Windows.Forms.TabPage TP_Route;
         private System.Windows.Forms.TabPage TB_Phrom_and_Sol;
         private System.Windows.Forms.ListBox LST_Problem;
+        private System.Windows.Forms.Button BTN_Run_One;
+        private System.Windows.Forms.ListBox LSB_Solution;
+        private System.Windows.Forms.ListBox LSB_Phromone;
     }
 }
 

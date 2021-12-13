@@ -1,0 +1,12 @@
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\Particle_Swamp_Optimizer\bin\Debug\Particle_Swamp_Optimizer.dll
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\Particle_Swamp_Optimizer\bin\Debug\Particle_Swamp_Optimizer.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\Particle_Swamp_Optimizer\bin\Debug\COPBenchmark.dll
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\Particle_Swamp_Optimizer\bin\Debug\TeeChart.dll
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\Particle_Swamp_Optimizer\bin\Debug\COPBenchmark.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\Particle_Swamp_Optimizer\bin\Debug\COPBenchmark.xml
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\Particle_Swamp_Optimizer\bin\Debug\TeeChart.xml
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\Particle_Swamp_Optimizer\obj\Debug\Particle_Swamp_Optimizer.csprojAssemblyReference.cache
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\Particle_Swamp_Optimizer\obj\Debug\Particle_Swamp_Optimizer.csproj.CoreCompileInputs.cache
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\Particle_Swamp_Optimizer\obj\Debug\Particle_Swamp_Optimizer.csproj.CopyComplete
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\Particle_Swamp_Optimizer\obj\Debug\Particle_Swamp_Optimizer.dll
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\Particle_Swamp_Optimizer\obj\Debug\Particle_Swamp_Optimizer.pdb

@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ant_Colony_System_Library">
-      <HintPath>..\Ant_Colony_System_Library\bin\Debug\Ant_Colony_System_Library.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -82,6 +79,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ant_Colony_System_Library\Ant_Colony_System_Library.csproj">
+      <Project>{2ad438bd-242a-41d5-b249-6ede264db29a}</Project>
+      <Name>Ant_Colony_System_Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

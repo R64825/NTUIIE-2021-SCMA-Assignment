@@ -31,6 +31,24 @@ namespace r09546042_TerryYang_Assignment09
             InitializeComponent();
         }
 
+        public void Update_UI_Element()
+        {
+            LSB_Solution.Items.Clear();
+            LSB_Phromone.Items.Clear();
+
+            for (int i = 0; i < ACS.Population_Size; i++)           
+                LSB_Solution.Items.Add(ACS.Soultions[i].ToString());
+
+            for (int i = 0; i < number_Of_Cites; i++)
+            { 
+                string str = string.Empty;
+                for (int j = 0; j < number_Of_Cites; j++)
+                    str += ACS.Pheromone_Matrix[i, j].ToString();
+                LSB_Phromone.Items.Add(str);
+            }
+                
+        }
+
         #region Helping Functions
         public double Objective_Function(int[] solution)
         {
@@ -118,7 +136,7 @@ namespace r09546042_TerryYang_Assignment09
                 dp.MarkerSize = 5;
                 dp.MarkerColor = Color.White;
                 dp.MarkerBorderColor = Color.Black;
-                //dp.Label = (i + 1).ToString();
+                dp.Label = (i + 1).ToString();
 
                 CT_Route.Series[0].Points.Add(dp);
             }
@@ -164,6 +182,13 @@ namespace r09546042_TerryYang_Assignment09
         private void BTN_Create_ACS_Model_Click(object sender, EventArgs e)
         {
             ACS = new Ant_Colony_System_For_Sequencing_Problems(number_Of_Cites, distance_Inversed, Optimization_Type.Minimization, Objective_Function);
+            
+        }
+
+        private void BTN_Run_One_Click(object sender, EventArgs e)
+        {
+            ACS.Run_One_Iteration();
+            
         }
     }
 }
