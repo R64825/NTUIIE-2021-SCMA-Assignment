@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -6,6 +8,7 @@ namespace Ant_Colony_System_Library
 {
     public delegate double Objective_Function(int[] a_Solution);
     public enum Optimization_Type { Minimization, Maximization}
+    public enum Pheromone_Update_Type {All_Ants, Only_The_Best }
     public class Ant_Colony_System_For_Sequencing_Problems
     {
         #region Data Field
@@ -13,36 +16,77 @@ namespace Ant_Colony_System_Library
         int number_Of_Cites;
         double[,] pheromone_Matrix;
         double[,] heuristic_Matrix;
-        double pheromone_Square_Factor = 2.0;
-        double heuristic_Square_Factor = 1.0;
+        double pheromone_Square_Factor = 1;
+        double heuristic_Square_Factor = 3;
         int population_Size = 30;
-        double threshold = 0.7;
+        double threshold = 0.8;
         int[] candidate_Cites;
         double[] objectives;
         double[] fitness;
         int[][] soultions;
-        int[] So_Far_The_Best_Solution;
-        double So_Far_The_Best_Objective;
+        int[] so_Far_The_Best_Solution;
+        double so_Far_The_Best_Objective;
         double iteration_Average_Objective;
+        double iteration_the_Best_Objective;
         int iteration_Count;
-        int iteration_Limit;
-        double initial_Pheromone_Value = 0.1;
-        double pheromone_Evaperation_Rate = 0.01;
-        double pheromone_Drop_Rate = 0.3;
-
-        public event EventHandler So_Far_The_Best_Update;
+        int iteration_Limit = 500;
+        double initial_Pheromone_Value = 0.001;
+        double pheromone_Evaperation_Amount = 0.01;
+        double pheromone_Drop_Mulitplier = 0.3;      
 
         Objective_Function objective_Function;
         Optimization_Type optimization_Type;
+        Pheromone_Update_Type pheromone_Update_Type = Pheromone_Update_Type.All_Ants;
 
+        Series series_so_Far_The_Best_Objective;
+        Series series_iteration_Average_Objective;
+        Series series_iteration_The_Best_Objective;
+        #endregion
+        #region Properties
 
-        Series Series_so_Far_The_Best_Objective;
-        Series Series_iteration_Average_Objective;
+        [Browsable(false)]
         public int[][] Soultions { get => soultions; set => soultions = value; }
-        public int Population_Size { get => population_Size; set => population_Size = value; }
+        [Browsable(false)]
         public double[,] Pheromone_Matrix { get => pheromone_Matrix; set => pheromone_Matrix = value; }
-        public Series Series_So_Far_The_Best_Objective { get => Series_so_Far_The_Best_Objective; set => Series_so_Far_The_Best_Objective = value; }
-        public Series Series_Iteration_Average_Objective { get => Series_iteration_Average_Objective; set => Series_iteration_Average_Objective = value; }
+        [Browsable(false)]
+        public Series Series_So_Far_The_Best_Objective { get => series_so_Far_The_Best_Objective; set => series_so_Far_The_Best_Objective = value; }
+        [Browsable(false)]
+        public Series Series_Iteration_Average_Objective { get => series_iteration_Average_Objective; set => series_iteration_Average_Objective = value; }
+        [Browsable(false)]
+        public Series Series_iteration_The_Best_Objective { get => series_iteration_The_Best_Objective; set => series_iteration_The_Best_Objective = value; }
+        [Browsable(false)]
+        public int[] So_Far_The_Best_Solution { get => so_Far_The_Best_Solution; set => so_Far_The_Best_Solution = value; }
+        [Browsable(false)]
+        public double So_Far_The_Best_Objective { get => so_Far_The_Best_Objective; set => so_Far_The_Best_Objective = value; }
+
+
+        [Category("Model Parameters")]
+        public Optimization_Type Optimization_Type { get => optimization_Type; set => optimization_Type = value; }
+        [Category("Model Parameters")]
+        public int Population { get => population_Size; set => population_Size = value; }
+        [Category("Model Parameters")]
+        public double Pheromone_Factor { get => pheromone_Square_Factor; set => pheromone_Square_Factor = value; }
+        [Category("Model Parameters")]
+        public double Heuristic_Factor { get => heuristic_Square_Factor; set => heuristic_Square_Factor = value; }
+        [Category("Model Parameters")]
+        public double Deterministic_Percentage { get => threshold; set => threshold = value; }
+
+
+        [Category("Iteration")]
+        public int Current_Iteration { get => iteration_Count; set => iteration_Count = value; }
+        [Category("Iteration")]
+        public int Iteration_Limit { get => iteration_Limit; set => iteration_Limit = value; }
+
+
+        [Category("Pheromone Matrix")]
+        public double Initial_Value { get => initial_Pheromone_Value; set => initial_Pheromone_Value = value; }
+        [Category("Pheromone Matrix")]
+        public Pheromone_Update_Type Update_Type { get => pheromone_Update_Type; set => pheromone_Update_Type = value; }
+        [Category("Pheromone Matrix")]
+        public double Drop_Multiplier { get => pheromone_Drop_Mulitplier; set => pheromone_Drop_Mulitplier = value; }
+        [Category("Pheromone Matrix")]
+        public double Evaperation_Amount { get => pheromone_Evaperation_Amount; set => pheromone_Evaperation_Amount = value; }
+        
         #endregion
 
 
@@ -64,8 +108,18 @@ namespace Ant_Colony_System_Library
             fitness = new double[number_Of_Variable];            
             soultions = new int[population_Size][];
             objectives = new double[population_Size];
+            so_Far_The_Best_Solution = new int[number_Of_Variable];
             for (int ant_ID = 0; ant_ID < population_Size; ant_ID++)            
                 soultions[ant_ID] = new int[number_Of_Variable];
+
+
+            // series
+            series_iteration_Average_Objective = new Series();
+            series_so_Far_The_Best_Objective = new Series();
+            series_iteration_The_Best_Objective = new Series();
+            Series_Iteration_Average_Objective.ChartType = SeriesChartType.Line;
+            Series_So_Far_The_Best_Objective.ChartType = SeriesChartType.Line;
+            series_iteration_The_Best_Objective.ChartType = SeriesChartType.Line;
         }
         #endregion
 
@@ -87,18 +141,26 @@ namespace Ant_Colony_System_Library
 
             // reset so far the best
             if (optimization_Type == Optimization_Type.Maximization)
-                So_Far_The_Best_Objective = double.MinValue;
+                so_Far_The_Best_Objective = double.MinValue;
             else
-                So_Far_The_Best_Objective = double.MaxValue;
-
-            // clear series
-            Series_iteration_Average_Objective = new Series();
-            Series_so_Far_The_Best_Objective = new Series();
-            Series_iteration_Average_Objective.Points.Clear();
-            Series_So_Far_The_Best_Objective.Points.Clear();
+                so_Far_The_Best_Objective = double.MaxValue;          
 
             // reset iteration count
-            iteration_Count = 0;            
+            iteration_Count = 0;
+
+            // series
+            series_iteration_Average_Objective.Points.Clear();
+            Series_So_Far_The_Best_Objective.Points.Clear();
+            series_iteration_The_Best_Objective.Points.Clear();
+            series_iteration_Average_Objective.Name = "Iteration_Average";
+            Series_So_Far_The_Best_Objective.Name = "So_Far_The_Best";
+            series_iteration_The_Best_Objective.Name = "Iteration_The_Best";
+            series_iteration_Average_Objective.Color = Color.Green;
+            Series_So_Far_The_Best_Objective.Color = Color.Red;
+            series_iteration_The_Best_Objective.Color = Color.Blue;
+            series_iteration_The_Best_Objective.BorderWidth = 2;
+            series_iteration_Average_Objective.BorderWidth = 2;
+            Series_So_Far_The_Best_Objective.BorderWidth = 2;
         }
         public void Run_One_Iteration()
         {
@@ -114,8 +176,6 @@ namespace Ant_Colony_System_Library
             // fire so far the best update event
             // Drop pheromone value on pheromone matrix following the ACS rule
         }
-
-
 
         public void Run_To_End()
         {
@@ -148,50 +208,109 @@ namespace Ant_Colony_System_Library
             int index_Of_the_Best;
             if (optimization_Type == Optimization_Type.Maximization)
             {
-                if (So_Far_The_Best_Objective < objecive_Max)
+                if (so_Far_The_Best_Objective < objecive_Max)
                 { 
-                    So_Far_The_Best_Objective = objecive_Max;
+                    so_Far_The_Best_Objective = objecive_Max;
                     index_Of_the_Best = Array.IndexOf(objectives, objecive_Max);
                     for (int i = 0; i < number_Of_Cites; i++)
-                        So_Far_The_Best_Solution[i] = soultions[index_Of_the_Best][i];
-                } 
+                        so_Far_The_Best_Solution[i] = soultions[index_Of_the_Best][i];
+                }
+                iteration_the_Best_Objective = objecive_Max;
             }
             else
             {
-                if (So_Far_The_Best_Objective > objective_Min)
+                if (so_Far_The_Best_Objective > objective_Min)
                 {
                     index_Of_the_Best = Array.IndexOf(objectives, objective_Min);
-                    So_Far_The_Best_Objective = objective_Min;
+                    so_Far_The_Best_Objective = objective_Min;
                     for (int i = 0; i < number_Of_Cites; i++)
-                        So_Far_The_Best_Solution[i] = soultions[index_Of_the_Best][i];
-                }                   
+                        so_Far_The_Best_Solution[i] = soultions[index_Of_the_Best][i];
+                }
+                iteration_the_Best_Objective = objective_Min;
             }
 
-            iteration_Average_Objective = objectives.Sum() / (double)population_Size;
+            iteration_Average_Objective = objectives.Sum() / (double)population_Size;         
         }
         private void Perform_pheromone_Matrix_Update()
         {
-            throw new NotImplementedException();
+            // dropping pheromone
+            int p1;
+            int p2;
+            if (pheromone_Update_Type == Pheromone_Update_Type.All_Ants)
+            {
+                // all ants drops 
+                for (int ant_ID = 0; ant_ID < population_Size; ant_ID++)
+                {
+                    for (int i = 0; i < number_Of_Cites; i++)
+                    {
+                        p1 = soultions[ant_ID][i];                       
+                        if (i == number_Of_Cites - 1 )
+                            p2 = soultions[ant_ID][0];
+                        else
+                             p2 = soultions[ant_ID][i + 1];
+                        pheromone_Matrix[p1, p2] += pheromone_Drop_Mulitplier;
+                        pheromone_Matrix[p2, p1] += pheromone_Drop_Mulitplier;
+                    }                    
+                }
+            }
+            else
+            {
+                // the best ants drops
+
+                // selecting best ants
+                double smallest = double.MaxValue;
+                double largest = double.MinValue;
+                for (int i = 0; i < population_Size; i++)
+                {
+                    if (smallest > objectives[i])                   
+                        smallest = objectives[i];
+                    if (largest < objectives[i])
+                        largest = objectives[i];
+                }
+                int index_The_Best;
+                if (optimization_Type == Optimization_Type.Maximization)
+                    index_The_Best = Array.IndexOf(objectives, largest);
+                else
+                    index_The_Best = Array.IndexOf(objectives, smallest);
+
+                // dropping
+                for (int j = 0; j < number_Of_Cites; j++)
+                {
+                    p1 = soultions[index_The_Best][j];
+                    if (j == number_Of_Cites - 1)
+                        p2 = soultions[index_The_Best][0];
+                    else
+                        p2 = soultions[index_The_Best][j + 1];
+                    pheromone_Matrix[p1, p2] += pheromone_Drop_Mulitplier;
+                    pheromone_Matrix[p2, p1] += pheromone_Drop_Mulitplier;
+                }
+            }
+
+            // evaperate pheromone
+            for (int i = 0; i < number_Of_Cites; i++)
+            {
+                for (int j = 0; j < number_Of_Cites; j++)
+                {
+                    pheromone_Matrix[i, j] -= pheromone_Evaperation_Amount;
+                    if (pheromone_Matrix[i, j] < 0)
+                        pheromone_Matrix[i, j] = 0;
+                }
+            }
         }
-        private void Series_Update()
-        {
-            Series_iteration_Average_Objective.Points.AddXY(iteration_Count, iteration_Average_Objective);
-            Series_so_Far_The_Best_Objective.Points.AddXY(iteration_Count, So_Far_The_Best_Objective);
-        }
+        
         private void Construct_A_Soultion(int ant_ID, int n_th_Step)
         {
             if (n_th_Step == number_Of_Cites) // last step, record and return
             {
                 // record candidate cities to solution
                 for (int i = 0; i < number_Of_Cites; i++)                
-                    soultions[ant_ID][i] = candidate_Cites[number_Of_Cites - i-1];
+                    soultions[ant_ID][i] = candidate_Cites[number_Of_Cites - i - 1 ];
                 return;
             }
             if (n_th_Step == 0) // first step, reset candidate cities, and rnd starting point, 
             {
                 // reset candidate cities
-                for (int i = 0; i < number_Of_Cites; i++)                
-                    candidate_Cites[i] = soultions[ant_ID][i];
+                candidate_Cites = Shuffle_A_Array(number_Of_Cites, number_Of_Cites);
 
                 // swap first city with last candidate
                 int first_City = rnd.Next(0, number_Of_Cites);
@@ -207,7 +326,7 @@ namespace Ant_Colony_System_Library
             int city_From = candidate_Cites[number_Of_Cites - n_th_Step];
             int city_to_Index = 0;
             int city_To;
-            double distance;
+            double distance_invese;
             double pheromone_density;
             if (rnd.NextDouble() >= threshold)
             {
@@ -218,20 +337,18 @@ namespace Ant_Colony_System_Library
                 // fill in fitness
                 for (int i = 0; i < number_Of_Cites - n_th_Step; i++)
                 {
-                    distance = 1.0 / heuristic_Matrix[city_From, candidate_Cites[i]];
+                    distance_invese = heuristic_Matrix[city_From, candidate_Cites[i]];
                     pheromone_density = pheromone_Matrix[city_From, candidate_Cites[i]];
-                    fitness[i] = Math.Pow(distance, heuristic_Square_Factor) 
+                    fitness[i] = Math.Pow(distance_invese, heuristic_Square_Factor) 
                         * Math.Pow(pheromone_density, pheromone_Square_Factor)
                         + fitness_Sum_so_far;
-                    fitness_Sum_so_far += fitness[i];
+                    fitness_Sum_so_far = fitness[i];
                 }
 
                 // randomly select
                 destination = rnd.NextDouble() * fitness_Sum_so_far;
                 while (fitness[city_to_Index] <= destination)               
-                    city_to_Index++;
-                
-                                    
+                    city_to_Index++;                                                  
                 #endregion
             }
             else
@@ -241,9 +358,9 @@ namespace Ant_Colony_System_Library
                 // fill in fitness
                 for (int i = 0; i < number_Of_Cites - n_th_Step; i++)
                 {
-                    distance = 1.0 / heuristic_Matrix[city_From, candidate_Cites[i]];
+                    distance_invese = heuristic_Matrix[city_From, candidate_Cites[i]];
                     pheromone_density = pheromone_Matrix[city_From, candidate_Cites[i]];
-                    fitness[i] = Math.Pow(distance, heuristic_Square_Factor)
+                    fitness[i] = Math.Pow(distance_invese, heuristic_Square_Factor)
                         * Math.Pow(pheromone_density, pheromone_Square_Factor);
                 }
 
@@ -252,7 +369,6 @@ namespace Ant_Colony_System_Library
                 for (int i = 0; i < number_Of_Cites - n_th_Step; i++)                
                     if (largest_Fitness < fitness[i])                    
                         largest_Fitness = fitness[i];
-
 
                 city_to_Index = Array.IndexOf(fitness, largest_Fitness);
                 #endregion
@@ -275,6 +391,34 @@ namespace Ant_Colony_System_Library
         {
             int[] arr = Enumerable.Range(0, n).OrderBy(x => rnd.Next()).Take(take).ToList().ToArray();
             return arr;
+        }
+        private void Series_Update()
+        {
+            series_iteration_Average_Objective.Points.AddXY(iteration_Count, iteration_Average_Objective);
+            series_so_Far_The_Best_Objective.Points.AddXY(iteration_Count, so_Far_The_Best_Objective);
+            Series_iteration_The_Best_Objective.Points.AddXY(iteration_Count, iteration_the_Best_Objective);
+        }
+        public string Return_A_Solution(int ant_ID)
+        {           
+            string str = string.Format("Ant {0:00 }:  ", ant_ID);
+            for (int i = 0; i < number_Of_Cites; i++)
+            {
+                str += soultions[ant_ID][i].ToString();
+                str += " ";
+            }
+            //str += string.Format("    Obj: {0:0.000}", objectives[ant_ID]);
+            return str;
+        }
+        public string Return_Pheromone_Matrix(int row_ID, int deicimal_Count)
+        {
+            string str = string.Empty;
+            double value;
+            for (int i = 0; i < number_Of_Cites; i++)
+            {
+                value = Math.Round(pheromone_Matrix[row_ID, i], deicimal_Count);
+                str += string.Format("  {0:0000.000}  ", value);
+            }
+            return str;
         }
         #endregion
     }

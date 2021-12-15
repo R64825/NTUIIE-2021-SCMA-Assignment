@@ -31,40 +31,18 @@ namespace r09546042_TerryYang_Assignment09
             InitializeComponent();
         }
 
-        public void Update_UI_Element()
-        {
-            LSB_Solution.Items.Clear();
-            LSB_Phromone.Items.Clear();
-
-            for (int i = 0; i < ACS.Population_Size; i++)           
-                LSB_Solution.Items.Add(ACS.Soultions[i].ToString());
-
-            for (int i = 0; i < number_Of_Cites; i++)
-            { 
-                string str = string.Empty;
-                for (int j = 0; j < number_Of_Cites; j++)
-                    str += ACS.Pheromone_Matrix[i, j].ToString();
-                LSB_Phromone.Items.Add(str);
-            }
-                
-        }
+        
 
         #region Helping Functions
         public double Objective_Function(int[] solution)
         {
             double distance = 0;
-            for (int i = 0; i < solution.Length; i++)           
-                distance += Calculate_Distance(i, i + 1);
-            distance += Calculate_Distance(0,solution.Length);
+            for (int i = 0; i < solution.Length-1; i++)           
+                distance += Calculate_Distance(solution[ i], solution[i + 1]);
+            distance += Calculate_Distance(solution[ 0], solution[ solution.Length-1]);
             return distance;
         }
-        public double[] Return_Array(double[,] Arr, int index)
-        {
-            double[] d = new double[2];
-            d[0] = Arr[index, 0];
-            d[1] = Arr[index, 1];
-            return d;
-        }
+        
         //public double Get_The_Routh_Length(int[] route)
         //{
         //    // use from-to matrix to calculate length
@@ -82,9 +60,11 @@ namespace r09546042_TerryYang_Assignment09
             p2[0] = coordinates[p_index_2, 0];
             p2[1] = coordinates[p_index_2, 1];
 
+            // 歐式距離
             double x_squre = Math.Pow((p1[0] - p2[0]), 2);
-            double y_squre = Math.Pow((p1[1] - p2[1]), 2); ;
-            distance = Math.Sqrt(x_squre+y_squre);
+            double y_squre = Math.Pow((p1[1] - p2[1]), 2);
+            distance = Math.Sqrt(x_squre + y_squre);
+
             return distance;
         }
         private void Show_Problem_Description(string name, string comment, string type, string edge_Weight_Type)
@@ -95,6 +75,26 @@ namespace r09546042_TerryYang_Assignment09
             //LST_Problem.Items.Add("Type: " + type);
             LST_Problem.Items.Add("Dimension: " + number_Of_Cites);
             //LST_Problem.Items.Add("Edge: " + edge_Weight_Type);
+        }
+        public void Update_UI_Element()
+        {
+            LSB_Solution.Items.Clear();
+            LSB_Phromone.Items.Clear();
+
+            for (int i = 0; i < ACS.Population; i++)            
+                LSB_Solution.Items.Add(ACS.Return_A_Solution(i));
+                
+            
+            for (int i = 0; i < number_Of_Cites; i++)            
+                LSB_Phromone.Items.Add(ACS.Return_Pheromone_Matrix(i, 3));
+            
+            PPTG_model.Update();
+            CT_Model.Update();
+            string str = string.Empty;
+            for (int i = 0; i < number_Of_Cites; i++)
+                str += ACS.So_Far_The_Best_Solution[i]+" ";
+            LB_SFTBS.Text = "So Far The Best Solution: "+ str;
+            LB_SFTSL.Text = "So Far The Shorest Length: " + Math.Round( ACS.So_Far_The_Best_Objective, 3).ToString();
         }
         #endregion
 
@@ -175,20 +175,52 @@ namespace r09546042_TerryYang_Assignment09
         private void BTN_Reset_Click(object sender, EventArgs e)
         {
             ACS.Reset();
-            //event_ += ACS.So_Far_The_Best_Update;
+            CT_Model.Series.Clear();
+            CT_Model.Series.Add(ACS.Series_Iteration_Average_Objective);
+            CT_Model.Series.Add(ACS.Series_iteration_The_Best_Objective);
+            CT_Model.Series.Add(ACS.Series_So_Far_The_Best_Objective);           
         }
         #endregion
 
         private void BTN_Create_ACS_Model_Click(object sender, EventArgs e)
         {
             ACS = new Ant_Colony_System_For_Sequencing_Problems(number_Of_Cites, distance_Inversed, Optimization_Type.Minimization, Objective_Function);
-            
+            PPTG_model.SelectedObject = ACS;
         }
 
         private void BTN_Run_One_Click(object sender, EventArgs e)
         {
             ACS.Run_One_Iteration();
-            
+            Update_UI_Element();
+        }
+
+        private void BTN_Run_To_End_Click(object sender, EventArgs e)
+        {
+            if (CB_Animation.Checked)          
+                Timer.Enabled = true;         
+            else
+                ACS.Run_To_End();
+            Update_UI_Element();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (CB_Animation.Checked && ACS.Iteration_Limit>ACS.Current_Iteration)
+            {
+                ACS.Run_One_Iteration();
+                Update_UI_Element();
+            }
+        }
+
+        private void CB_Animation_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CB_Animation.Checked == false)
+                Timer.Enabled = false;
+        }
+
+        private void BTN_GA_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
