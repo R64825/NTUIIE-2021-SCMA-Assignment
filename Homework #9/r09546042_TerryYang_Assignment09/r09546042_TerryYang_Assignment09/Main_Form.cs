@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Ant_Colony_System_Library;
+using TerryYang_GA_Library;
 
 
 namespace r09546042_TerryYang_Assignment09
@@ -18,6 +19,7 @@ namespace r09546042_TerryYang_Assignment09
     {
         #region Data Field
         Ant_Colony_System_For_Sequencing_Problems ACS = null;
+        Permutation_GA GA = null;
         int number_Of_Cites;
         double[,] from_To_Distances;
         double[,] coordinates;
@@ -101,9 +103,15 @@ namespace r09546042_TerryYang_Assignment09
         #region BTN Functions
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            GB_Model.Enabled = false;
+            BTN_Reset.Enabled = false;
+            BTN_Run_To_End.Enabled = false;
+            BTN_Run_One.Enabled = false;
+
             OpenFileDialog dlg = new OpenFileDialog();
             if (dlg.ShowDialog() != DialogResult.OK) return;
 
+            GB_Model.Enabled = true;
             // read model discription
             StreamReader sr = new StreamReader(dlg.FileName);
             string str = string.Empty;
@@ -141,17 +149,6 @@ namespace r09546042_TerryYang_Assignment09
                 CT_Route.Series[0].Points.Add(dp);
             }
 
-            //double min = double.MaxValue;
-            //double max = double.MinValue;
-            //double ct_Min = Math.Min(CT_Route.ChartAreas[0].AxisX.Minimum, CT_Route.ChartAreas[0].AxisY.Minimum);
-            //double ct_Max = Math.Max(CT_Route.ChartAreas[0].AxisX.Maximum, CT_Route.ChartAreas[0].AxisY.Maximum);
-
-            //CT_Route.ChartAreas[0].AxisX.Minimum = ct_Min;
-            //CT_Route.ChartAreas[0].AxisY.Minimum = ct_Min;
-            //CT_Route.ChartAreas[0].AxisX.Maximum = ct_Max;
-            //CT_Route.ChartAreas[0].AxisY.Maximum = ct_Max;
-
-
             // calculate distance inverse matrix
             distance_Inversed = new double[number_Of_Cites, number_Of_Cites];
             for (int s = 0; s < number_Of_Cites; s++)
@@ -170,6 +167,8 @@ namespace r09546042_TerryYang_Assignment09
             // show
             Show_Problem_Description(problem_Name, problem_Comment, problem_Type, edge_Weight_Type);
             sr.Close();
+
+            // enable 
         }
 
         private void BTN_Reset_Click(object sender, EventArgs e)
@@ -178,7 +177,11 @@ namespace r09546042_TerryYang_Assignment09
             CT_Model.Series.Clear();
             CT_Model.Series.Add(ACS.Series_Iteration_Average_Objective);
             CT_Model.Series.Add(ACS.Series_iteration_The_Best_Objective);
-            CT_Model.Series.Add(ACS.Series_So_Far_The_Best_Objective);           
+            CT_Model.Series.Add(ACS.Series_So_Far_The_Best_Objective);
+
+            // enable
+            BTN_Run_One.Enabled = true ;
+            BTN_Run_To_End.Enabled = true;
         }
         #endregion
 
@@ -186,6 +189,8 @@ namespace r09546042_TerryYang_Assignment09
         {
             ACS = new Ant_Colony_System_For_Sequencing_Problems(number_Of_Cites, distance_Inversed, Optimization_Type.Minimization, Objective_Function);
             PPTG_model.SelectedObject = ACS;
+
+            BTN_Reset.Enabled = true;
         }
 
         private void BTN_Run_One_Click(object sender, EventArgs e)
@@ -220,7 +225,7 @@ namespace r09546042_TerryYang_Assignment09
 
         private void BTN_GA_Click(object sender, EventArgs e)
         {
-
+            //GA = new Permutation_GA(number_Of_Cites, GA_Optimization_Type.Minimization, Objective_Function, Permutation_Crossover_Type.Parial_Mapped_X, Permutation_Mutation_Type.Displacement);
         }
     }
 }

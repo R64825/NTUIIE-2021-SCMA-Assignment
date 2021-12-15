@@ -41,7 +41,7 @@ namespace r09546042_TerryYang_Assignment09
             this.BTN_Run_To_End = new System.Windows.Forms.Button();
             this.BTN_Run_One = new System.Windows.Forms.Button();
             this.LST_Problem = new System.Windows.Forms.ListBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.TC_Model = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.BTN_Create_ACS_Model = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -62,7 +62,7 @@ namespace r09546042_TerryYang_Assignment09
             this.TS_BTN_Openfile = new System.Windows.Forms.ToolStripButton();
             this.Timer = new System.Windows.Forms.Timer(this.components);
             this.LB_SFTSL = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.GB_Model = new System.Windows.Forms.GroupBox();
             this.LB_SFTBS = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -72,7 +72,7 @@ namespace r09546042_TerryYang_Assignment09
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.TC_Model.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -89,7 +89,7 @@ namespace r09546042_TerryYang_Assignment09
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.GB_Model.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -121,7 +121,7 @@ namespace r09546042_TerryYang_Assignment09
             // splitContainer3.Panel1
             // 
             this.splitContainer3.Panel1.Controls.Add(this.LB_SFTBS);
-            this.splitContainer3.Panel1.Controls.Add(this.groupBox1);
+            this.splitContainer3.Panel1.Controls.Add(this.GB_Model);
             this.splitContainer3.Panel1.Controls.Add(this.LB_SFTSL);
             this.splitContainer3.Panel1.Controls.Add(this.LST_Problem);
             // 
@@ -148,6 +148,7 @@ namespace r09546042_TerryYang_Assignment09
             // 
             this.BTN_Run_To_End.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Run_To_End.Enabled = false;
             this.BTN_Run_To_End.Location = new System.Drawing.Point(168, 110);
             this.BTN_Run_To_End.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.BTN_Run_To_End.Name = "BTN_Run_To_End";
@@ -161,6 +162,7 @@ namespace r09546042_TerryYang_Assignment09
             // 
             this.BTN_Run_One.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Run_One.Enabled = false;
             this.BTN_Run_One.Location = new System.Drawing.Point(168, 64);
             this.BTN_Run_One.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.BTN_Run_One.Name = "BTN_Run_One";
@@ -183,16 +185,16 @@ namespace r09546042_TerryYang_Assignment09
             this.LST_Problem.Size = new System.Drawing.Size(388, 82);
             this.LST_Problem.TabIndex = 3;
             // 
-            // tabControl1
+            // TC_Model
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(5, 18);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(140, 80);
-            this.tabControl1.TabIndex = 2;
+            this.TC_Model.Controls.Add(this.tabPage1);
+            this.TC_Model.Controls.Add(this.tabPage2);
+            this.TC_Model.Location = new System.Drawing.Point(5, 18);
+            this.TC_Model.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.TC_Model.Name = "TC_Model";
+            this.TC_Model.SelectedIndex = 0;
+            this.TC_Model.Size = new System.Drawing.Size(140, 80);
+            this.TC_Model.TabIndex = 2;
             // 
             // tabPage1
             // 
@@ -244,6 +246,7 @@ namespace r09546042_TerryYang_Assignment09
             // 
             this.BTN_Reset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Reset.Enabled = false;
             this.BTN_Reset.Location = new System.Drawing.Point(168, 18);
             this.BTN_Reset.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.BTN_Reset.Name = "BTN_Reset";
@@ -442,21 +445,22 @@ namespace r09546042_TerryYang_Assignment09
             this.LB_SFTSL.TabIndex = 8;
             this.LB_SFTSL.Text = "So Far The Shorest Length: ";
             // 
-            // groupBox1
+            // GB_Model
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.GB_Model.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.CB_Animation);
-            this.groupBox1.Controls.Add(this.BTN_Reset);
-            this.groupBox1.Controls.Add(this.BTN_Run_To_End);
-            this.groupBox1.Controls.Add(this.BTN_Run_One);
-            this.groupBox1.Controls.Add(this.tabControl1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 124);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(389, 165);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Solver";
+            this.GB_Model.Controls.Add(this.CB_Animation);
+            this.GB_Model.Controls.Add(this.BTN_Reset);
+            this.GB_Model.Controls.Add(this.BTN_Run_To_End);
+            this.GB_Model.Controls.Add(this.BTN_Run_One);
+            this.GB_Model.Controls.Add(this.TC_Model);
+            this.GB_Model.Enabled = false;
+            this.GB_Model.Location = new System.Drawing.Point(12, 124);
+            this.GB_Model.Name = "GB_Model";
+            this.GB_Model.Size = new System.Drawing.Size(389, 165);
+            this.GB_Model.TabIndex = 9;
+            this.GB_Model.TabStop = false;
+            this.GB_Model.Text = "Solver";
             // 
             // LB_SFTBS
             // 
@@ -488,7 +492,7 @@ namespace r09546042_TerryYang_Assignment09
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
+            this.TC_Model.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
@@ -506,8 +510,8 @@ namespace r09546042_TerryYang_Assignment09
             this.splitContainer4.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.GB_Model.ResumeLayout(false);
+            this.GB_Model.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -526,7 +530,7 @@ namespace r09546042_TerryYang_Assignment09
         private System.Windows.Forms.ToolStripButton TS_BTN_Openfile;
         private System.Windows.Forms.Button BTN_Reset;
         private System.Windows.Forms.Button BTN_Create_ACS_Model;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl TC_Model;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabControl TBC_Show_result;
@@ -543,7 +547,7 @@ namespace r09546042_TerryYang_Assignment09
         private System.Windows.Forms.Button BTN_GA;
         private System.Windows.Forms.Label LB_SFTSL;
         private System.Windows.Forms.Label LB_SFTBS;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox GB_Model;
     }
 }
 
