@@ -42,7 +42,7 @@ namespace r09546042_TerryYang_Assignment07
 
                 // print out chromosomes in rich text box
                 LTB_Population.Items.Clear();
-                LTB_Population.Items.Add("Current Iteration: " + GA_Bin_Solver.Iteration_ID.ToString() + "\n");
+                LTB_Population.Items.Add("Current Iteration: " + GA_Bin_Solver.Current_Iteration.ToString() + "\n");
                 LTB_Population.Items.Add("Parents: " + "\n");
                 for (int i = 0; i < NUD_population.Value; i++)
                 {
@@ -75,7 +75,7 @@ namespace r09546042_TerryYang_Assignment07
                 TB_shortest_time.Text = Get_Setup_Time_Total_Binary(GA_Bin_Solver.So_Far_The_Best_Soulution, false).ToString();
 
                 // show model status
-                TSL_Iteration.Text = $"Iteration: {GA_Bin_Solver.Iteration_ID}";
+                TSL_Iteration.Text = $"Iteration: {GA_Bin_Solver.Current_Iteration}";
             }
             else
             {
@@ -88,7 +88,7 @@ namespace r09546042_TerryYang_Assignment07
 
                 // print out chromosomes in rich text box
                 LTB_Population.Items.Clear();
-                LTB_Population.Items.Add("Current Iteration: " + GA_Per_Solver.Iteration_ID.ToString() + "\n");
+                LTB_Population.Items.Add("Current Iteration: " + GA_Per_Solver.Current_Iteration.ToString() + "\n");
                 LTB_Population.Items.Add("Parents: " + "\n");
                 for (int i = 0; i < NUD_population.Value; i++)
                 {
@@ -106,7 +106,7 @@ namespace r09546042_TerryYang_Assignment07
                 }
 
                 // show model status
-                TSL_Iteration.Text = $"Iteration: {GA_Per_Solver.Iteration_ID}";
+                TSL_Iteration.Text = $"Iteration: {GA_Per_Solver.Current_Iteration}";
 
             }
         }      
@@ -255,9 +255,9 @@ namespace r09546042_TerryYang_Assignment07
             {
                 violations = Return_Chromosomes_Violations(solution);
                 if (RDB_Maxi.Checked)
-                    objective_Value = objective_Value - violations.Sum() * GA_Bin_Solver.Penalty_Factor;
+                    objective_Value = objective_Value - violations.Sum() * GA_Bin_Solver.Penalty;
                 else
-                    objective_Value = objective_Value + violations.Sum() * GA_Bin_Solver.Penalty_Factor;                
+                    objective_Value = objective_Value + violations.Sum() * GA_Bin_Solver.Penalty;                
             }
             return objective_Value;
         }
@@ -381,13 +381,13 @@ namespace r09546042_TerryYang_Assignment07
             if (RDB_Binary.Checked)
             {
                 GA_Bin_Solver = new Binary_GA(number_of_Jobs * number_of_Jobs, GA_Optimization_Type.Minimization, Get_Setup_Time_Total_Binary, Get_Binary_Crossover_Type());
-                GA_Bin_Solver.Selection_Type1 = sel_type;
-                GA_Bin_Solver.Population_Size = population_Size;
+                GA_Bin_Solver.Selection = sel_type;
+                GA_Bin_Solver.Population = population_Size;
                 GA_Bin_Solver.Iteration_Limit = iteration_Limit;
                 GA_Bin_Solver.Least_Fitness_Fraction = alpha;
-                GA_Bin_Solver.Mutation_Type = mut_type;
-                GA_Bin_Solver.Optimization_Type = op_type;
-                GA_Bin_Solver.Penalty_Factor = penalty_Factor;
+                GA_Bin_Solver.Mutation = mut_type;
+                GA_Bin_Solver.Optimization = op_type;
+                GA_Bin_Solver.Penalty = penalty_Factor;
                 GA_Bin_Solver.Crossover_Rate = Convert.ToDouble(NUD_crossrate.Value);
                 GA_Bin_Solver.Mutation_Rate = Convert.ToDouble(NUD_mutaterate.Value);
                 GA_Bin_Solver.Reset();
@@ -395,13 +395,13 @@ namespace r09546042_TerryYang_Assignment07
             else
             {
                 GA_Per_Solver = new Permutation_GA(number_of_Jobs, GA_Optimization_Type.Minimization, Get_Setup_Time_Total_Permutation, Get_Permutation_Crossover_Type(), Get_Per_Mutation_Type());
-                GA_Per_Solver.Selection_Type1 = sel_type;
-                GA_Per_Solver.Population_Size = population_Size;
+                GA_Per_Solver.Selection = sel_type;
+                GA_Per_Solver.Population = population_Size;
                 GA_Per_Solver.Iteration_Limit = iteration_Limit;
                 GA_Per_Solver.Least_Fitness_Fraction = alpha;
-                GA_Per_Solver.Mutation_Type = GA_Mutation_Type.Chromosomes_Number_Based;
-                GA_Per_Solver.Optimization_Type = op_type;
-                GA_Per_Solver.Penalty_Factor = penalty_Factor;
+                GA_Per_Solver.Mutation = GA_Mutation_Type.Chromosomes_Number_Based;
+                GA_Per_Solver.Optimization = op_type;
+                GA_Per_Solver.Penalty = penalty_Factor;
                 GA_Per_Solver.Crossover_Rate = Convert.ToDouble(NUD_crossrate.Value);
                 GA_Per_Solver.Mutation_Rate = Convert.ToDouble(NUD_mutaterate.Value);
                 GA_Per_Solver.Reset();
@@ -423,7 +423,7 @@ namespace r09546042_TerryYang_Assignment07
             {              
                 GA_Bin_Solver.Run_One_Iteration();
                 
-                if (GA_Bin_Solver.Iteration_ID != GA_Bin_Solver.Iteration_Limit)
+                if (GA_Bin_Solver.Current_Iteration != GA_Bin_Solver.Iteration_Limit)
                     Ban_or_Enable_GB(false);
                 else
                     Ban_or_Enable_GB(true);
@@ -431,7 +431,7 @@ namespace r09546042_TerryYang_Assignment07
             else
             {               
                 GA_Per_Solver.Run_One_Iteration();
-                if (GA_Per_Solver.Iteration_ID != GA_Per_Solver.Iteration_Limit)
+                if (GA_Per_Solver.Current_Iteration != GA_Per_Solver.Iteration_Limit)
                     Ban_or_Enable_GB(false);
                 else
                     Ban_or_Enable_GB(true);
@@ -526,7 +526,7 @@ namespace r09546042_TerryYang_Assignment07
             {
                 GA_Bin_Solver.Run_One_Iteration();
                 Update_New_Solutions_on_UI();
-                if (GA_Bin_Solver.Iteration_ID == NUD_Iteration.Value)
+                if (GA_Bin_Solver.Current_Iteration == NUD_Iteration.Value)
                 {
                     TM_GA.Enabled = false;
                     Chart_Main.ChartAreas[0].RecalculateAxesScale();
@@ -536,7 +536,7 @@ namespace r09546042_TerryYang_Assignment07
             {
                 GA_Per_Solver.Run_One_Iteration();
                 Update_New_Solutions_on_UI();
-                if (GA_Per_Solver.Iteration_ID == NUD_Iteration.Value)
+                if (GA_Per_Solver.Current_Iteration == NUD_Iteration.Value)
                 {
                     TM_GA.Enabled = false;
                     Chart_Main.ChartAreas[0].RecalculateAxesScale();

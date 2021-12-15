@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -60,9 +61,28 @@ namespace TerryYang_GA_Library
         // run time date
         int iteration_ID;
         #endregion
-              
+
         #region Property
-        public int Population_Size
+        [Browsable(false)]
+        public T[] So_Far_The_Best_Soulution { get => so_Far_The_Best_Soulution; set => so_Far_The_Best_Soulution = value; }
+        [Browsable(false)]
+        public double So_Far_The_Best_Objective_Value { get => so_Far_The_Best_Objective_Value; set => so_Far_The_Best_Objective_Value = value; }
+        [Browsable(false)]
+        public T[][] Chromosomes { get => chromosomes; set => chromosomes = value; }
+        [Browsable(false)]
+        public int Number_Of_Crossovered_Children { get => number_Of_Crossovered_Children; set => number_Of_Crossovered_Children = value; }
+        [Browsable(false)]
+        public int Number_Of_Mutated_Children { get => number_Of_Mutated_Children; set => number_Of_Mutated_Children = value; }
+        [Browsable(false)]
+        public Series Series_SoFarTheBest { get => series_SoFarTheBest; set => series_SoFarTheBest = value; }
+        [Browsable(false)]
+        public Series Series_Average { get => series_Average; set => series_Average = value; }
+        [Browsable(false)]
+        public Series Series_IterationTheBest { get => series_IterationTheBest; set => series_IterationTheBest = value; }
+        [Browsable(false)]
+        public double[] Objective_Value { get => objective_Value; set => objective_Value = value; }
+        [Category("Model Parameters")]
+        public int Population
         {
             get => population_Size; set
             {
@@ -72,6 +92,22 @@ namespace TerryYang_GA_Library
                 }
             }
         }
+        [Category("Model Parameters")]
+        public double Penalty { get => penalty_Factor; set => penalty_Factor = value; }
+        [Category("Model Parameters")]
+        public double Least_Fitness_Fraction { get => least_Fitness_Fraction; set => least_Fitness_Fraction = value; }
+        [Category("Model Parameters")]
+        public GA_Optimization_Type Optimization { get => optimization_Type; set => optimization_Type = value; }
+        [Category("Model Parameters")]
+        public GA_Selection_Type Selection { get => selection_Type; set => selection_Type = value; }
+
+
+        [Category("Mutation")]
+        public GA_Mutation_Type Mutation { get => mutation_Type; set => mutation_Type = value; }
+        [Category("Mutation")]
+        public double Mutation_Rate { get => mutation_Rate; set => mutation_Rate = value; }
+
+        [Category("Crossover")]
         public double Crossover_Rate
         {
             get => crossover_Rate; set
@@ -82,23 +118,13 @@ namespace TerryYang_GA_Library
                 }
             }
         }
-        public double Mutation_Rate { get => mutation_Rate; set => mutation_Rate = value; }
-        public T[][] Chromosomes { get => chromosomes; set => chromosomes = value; }
-        public GA_Selection_Type Selection_Type1 { get => selection_Type; set => selection_Type = value; }
-        public T[] So_Far_The_Best_Soulution { get => so_Far_The_Best_Soulution; set => so_Far_The_Best_Soulution = value; }
-        public double So_Far_The_Best_Objective_Value { get => so_Far_The_Best_Objective_Value; set => so_Far_The_Best_Objective_Value = value; }
-        public int Iteration_ID { get => iteration_ID; set => iteration_ID = value; }
-        public int Number_Of_Crossovered_Children { get => number_Of_Crossovered_Children; set => number_Of_Crossovered_Children = value; }
-        public int Number_Of_Mutated_Children { get => number_Of_Mutated_Children; set => number_Of_Mutated_Children = value; }
-        public Series Series_SoFarTheBest { get => series_SoFarTheBest; set => series_SoFarTheBest = value; }
-        public Series Series_Average { get => series_Average; set => series_Average = value; }
-        public Series Series_IterationTheBest { get => series_IterationTheBest; set => series_IterationTheBest = value; }
+
+        
+        [Category("Iteration")]
+        public int Current_Iteration { get => iteration_ID; set => iteration_ID = value; }
+        [Category("Iteration")]
         public int Iteration_Limit { get => iteration_Limit; set => iteration_Limit = value; }
-        public double Penalty_Factor { get => penalty_Factor; set => penalty_Factor = value; }               
-        public double Least_Fitness_Fraction { get => least_Fitness_Fraction; set => least_Fitness_Fraction = value; }
-        public double[] Objective_Value { get => objective_Value; set => objective_Value = value; }
-        public GA_Mutation_Type Mutation_Type { get => mutation_Type; set => mutation_Type = value; }
-        public GA_Optimization_Type Optimization_Type { get => optimization_Type; set => optimization_Type = value; }
+        
         #endregion
 
         #region Constructor
@@ -133,7 +159,7 @@ namespace TerryYang_GA_Library
             series_Average.BorderWidth = 2;
             series_IterationTheBest = new Series("Iteration the best solution");
             series_IterationTheBest.ChartType = SeriesChartType.Line;
-            series_IterationTheBest.Color = Color.Magenta;
+            series_IterationTheBest.Color = Color.Blue;
             series_IterationTheBest.BorderWidth = 2;
         }
         #endregion
@@ -153,7 +179,7 @@ namespace TerryYang_GA_Library
             }
             double beta = Math.Max(least_Fitness_Fraction * (o_max - o_min), 1e-5);
 
-            switch (Optimization_Type)
+            switch (Optimization)
             {
                 case GA_Optimization_Type.Maximization:
                     for (int i = 0; i < total; i++)
@@ -170,7 +196,7 @@ namespace TerryYang_GA_Library
         private void Series_Update()
         {
             series_Average.Points.AddXY(iteration_ID, iteration_Average_Objective);
-            series_SoFarTheBest.Points.AddXY(Iteration_ID, so_Far_The_Best_Objective_Value);
+            series_SoFarTheBest.Points.AddXY(Current_Iteration, so_Far_The_Best_Objective_Value);
             series_IterationTheBest.Points.AddXY(iteration_ID, iteration_Best_Objective);
         }
         private void Copy_All_Selection_to_Chromosomes()
@@ -375,7 +401,7 @@ namespace TerryYang_GA_Library
         #region Crossover & Mutation
         protected void Perform_Crossover_Operation()
         {
-            indices = Shuffle_Indice_Array(Population_Size);
+            indices = Shuffle_Indice_Array(Population);
             number_Of_Crossovered_Children = (int)(population_Size * crossover_Rate) / 2 * 2;
             if (number_Of_Crossovered_Children % 2 == 1) number_Of_Crossovered_Children--;
             int pair = number_Of_Crossovered_Children / 2;
@@ -438,7 +464,7 @@ namespace TerryYang_GA_Library
             else
             {
                 #region Chromosomes_Number_Base
-                indices = Shuffle_Indice_Array(Population_Size);
+                indices = Shuffle_Indice_Array(Population);
                 number_Of_Mutated_Children = (int)(population_Size * mutation_Rate);             
                 for (int i = 0; i < number_Of_Mutated_Children; i++)
                 {
@@ -496,7 +522,12 @@ namespace TerryYang_GA_Library
             if (optimization_Type == GA_Optimization_Type.Maximization)
                 so_Far_The_Best_Objective_Value = double.MinValue;
             else
-                so_Far_The_Best_Objective_Value = double.MaxValue;           
+                so_Far_The_Best_Objective_Value = double.MaxValue;
+
+            // series clear
+            series_Average.Points.Clear();
+            series_IterationTheBest.Points.Clear();
+            series_SoFarTheBest.Points.Clear();
         }
         public void Run_One_Iteration()
         {
@@ -510,8 +541,6 @@ namespace TerryYang_GA_Library
             Series_Update();
             iteration_ID++;
         }
-
-
 
         public void Run_To_End(int Iteration)
         {

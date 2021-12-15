@@ -31,8 +31,9 @@ namespace Ant_Colony_System_Library
         int iteration_Count;
         int iteration_Limit = 500;
         double initial_Pheromone_Value = 0.001;
-        double pheromone_Evaperation_Amount = 0.01;
-        double pheromone_Drop_Mulitplier = 0.3;      
+        double pheromone_Evaperation_Rate = 0.01;
+        double pheromone_Drop_Mulitplier = 100;
+        double pheromone_Drop_Amount = 0.3;
 
         Objective_Function objective_Function;
         Optimization_Type optimization_Type;
@@ -85,8 +86,10 @@ namespace Ant_Colony_System_Library
         [Category("Pheromone Matrix")]
         public double Drop_Multiplier { get => pheromone_Drop_Mulitplier; set => pheromone_Drop_Mulitplier = value; }
         [Category("Pheromone Matrix")]
-        public double Evaperation_Amount { get => pheromone_Evaperation_Amount; set => pheromone_Evaperation_Amount = value; }
-        
+        public double Evaperation_Rate { get => pheromone_Evaperation_Rate; set => pheromone_Evaperation_Rate = value; }
+        [Category("Pheromone Matrix")]
+        public double Drop_Amount { get => pheromone_Drop_Amount; set => pheromone_Drop_Amount = value; }
+
         #endregion
 
 
@@ -100,19 +103,7 @@ namespace Ant_Colony_System_Library
             this.heuristic_Matrix = heuristic_Matrix;
             this.optimization_Type = optimization_Type;
             this.objective_Function = objective_Function;
-
-            // reallocate memory
-            rnd = new Random();
-            pheromone_Matrix = new double[number_Of_Variable, number_Of_Variable];
-            candidate_Cites = new int[number_Of_Variable];
-            fitness = new double[number_Of_Variable];            
-            soultions = new int[population_Size][];
-            objectives = new double[population_Size];
-            so_Far_The_Best_Solution = new int[number_Of_Variable];
-            for (int ant_ID = 0; ant_ID < population_Size; ant_ID++)            
-                soultions[ant_ID] = new int[number_Of_Variable];
-
-
+         
             // series
             series_iteration_Average_Objective = new Series();
             series_so_Far_The_Best_Objective = new Series();
@@ -120,12 +111,38 @@ namespace Ant_Colony_System_Library
             Series_Iteration_Average_Objective.ChartType = SeriesChartType.Line;
             Series_So_Far_The_Best_Objective.ChartType = SeriesChartType.Line;
             series_iteration_The_Best_Objective.ChartType = SeriesChartType.Line;
+
+            // calculate drop muliper
+            double max;
+            double total_Min = 0;
+            for (int i = 0; i < number_Of_Cites; i++)
+            {
+                max = double.MinValue;
+                for (int j = 0; j < number_Of_Cites; j++)
+                {
+                    if (max < heuristic_Matrix[i, j] && heuristic_Matrix[i, j]!=0)
+                        max = heuristic_Matrix[i, j];
+                }
+                total_Min += 1.0/ max;
+            }
+            pheromone_Drop_Mulitplier = total_Min/2.0;
         }
         #endregion
 
         #region Run-Time Functions
         public void Reset()
         {
+            // reallocate memory
+            rnd = new Random();
+            pheromone_Matrix = new double[number_Of_Cites, number_Of_Cites];
+            candidate_Cites = new int[number_Of_Cites];
+            fitness = new double[number_Of_Cites];
+            soultions = new int[population_Size][];
+            objectives = new double[population_Size];
+            so_Far_The_Best_Solution = new int[number_Of_Cites];
+            for (int ant_ID = 0; ant_ID < population_Size; ant_ID++)
+                soultions[ant_ID] = new int[number_Of_Cites];
+
             // Create initial pheromone matrix
             for (int i = 0; i < number_Of_Cites; i++)            
                 for (int j = 0; j < number_Of_Cites; j++)                
@@ -233,9 +250,20 @@ namespace Ant_Colony_System_Library
         }
         private void Perform_pheromone_Matrix_Update()
         {
+            // evapetate
+            for (int i = 0; i < number_Of_Cites; i++)
+            {
+                for (int j = 0; j < number_Of_Cites; j++)
+                {
+                    double tow = pheromone_Matrix[i, j];
+                    pheromone_Matrix[i, j] = tow * (1.0 - pheromone_Evaperation_Rate);
+                }
+            }
+
             // dropping pheromone
             int p1;
             int p2;
+
             if (pheromone_Update_Type == Pheromone_Update_Type.All_Ants)
             {
                 // all ants drops 
@@ -248,8 +276,9 @@ namespace Ant_Colony_System_Library
                             p2 = soultions[ant_ID][0];
                         else
                              p2 = soultions[ant_ID][i + 1];
-                        pheromone_Matrix[p1, p2] += pheromone_Drop_Mulitplier;
-                        pheromone_Matrix[p2, p1] += pheromone_Drop_Mulitplier;
+                        double amount = pheromone_Evaperation_Rate * pheromone_Drop_Amount;
+                        pheromone_Matrix[p1, p2] += amount;
+                        //pheromone_Matrix[p2, p1] = amount;
                     }                    
                 }
             }
@@ -281,21 +310,12 @@ namespace Ant_Colony_System_Library
                         p2 = soultions[index_The_Best][0];
                     else
                         p2 = soultions[index_The_Best][j + 1];
-                    pheromone_Matrix[p1, p2] += pheromone_Drop_Mulitplier;
-                    pheromone_Matrix[p2, p1] += pheromone_Drop_Mulitplier;
+                    double amount = pheromone_Evaperation_Rate * pheromone_Drop_Amount;
+                    pheromone_Matrix[p1, p2] += amount;
+                    //pheromone_Matrix[p2, p1] = amount;
                 }
             }
 
-            // evaperate pheromone
-            for (int i = 0; i < number_Of_Cites; i++)
-            {
-                for (int j = 0; j < number_Of_Cites; j++)
-                {
-                    pheromone_Matrix[i, j] -= pheromone_Evaperation_Amount;
-                    if (pheromone_Matrix[i, j] < 0)
-                        pheromone_Matrix[i, j] = 0;
-                }
-            }
         }
         
         private void Construct_A_Soultion(int ant_ID, int n_th_Step)
@@ -416,7 +436,7 @@ namespace Ant_Colony_System_Library
             for (int i = 0; i < number_Of_Cites; i++)
             {
                 value = Math.Round(pheromone_Matrix[row_ID, i], deicimal_Count);
-                str += string.Format("  {0:0000.000}  ", value);
+                str += string.Format("  {0:00.000}  ", value);
             }
             return str;
         }

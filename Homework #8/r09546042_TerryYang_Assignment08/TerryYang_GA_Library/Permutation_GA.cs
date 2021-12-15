@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace TerryYang_GA_Library
@@ -12,8 +13,10 @@ namespace TerryYang_GA_Library
     public class Permutation_GA: Generic_GA_Solver<int>
     {
         #region Datafield
+        [Category("Crossover")]
         public Permutation_Crossover_Type Crossover_Type { set; get; } = Permutation_Crossover_Type.Parial_Mapped_X;
-        public Permutation_Mutation_Type Permu_Mutation_Type { set; get; } = Permutation_Mutation_Type.Inversion;
+        [Category("Mutation")]
+        public Permutation_Mutation_Type Mutation_Type { set; get; } = Permutation_Mutation_Type.Inversion;
         #endregion
 
         #region Contructor
@@ -21,7 +24,7 @@ namespace TerryYang_GA_Library
             : base( number_Of_Genes,  optimization_Type, objective_Function)
         {
             this.Crossover_Type = Crossover_Type;
-            this.Permu_Mutation_Type = mutation_Type;
+            this.Mutation_Type = mutation_Type;
         }
         #endregion
 
@@ -710,7 +713,7 @@ namespace TerryYang_GA_Library
         
         public override void Generate_Mutated_Chromosomes(int before_mutation, int after_mutation, bool[] mutated_Flag)
         {
-            switch (Permu_Mutation_Type)
+            switch (Mutation_Type)
             {
                 case Permutation_Mutation_Type.Inversion:
                     Inversion_Mutation(before_mutation, after_mutation, mutated_Flag);

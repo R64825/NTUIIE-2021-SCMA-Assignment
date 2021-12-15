@@ -34,19 +34,23 @@ namespace r09546042_TerryYang_Assignment09
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.LB_SFTBS = new System.Windows.Forms.Label();
+            this.GB_Model = new System.Windows.Forms.GroupBox();
             this.CB_Animation = new System.Windows.Forms.CheckBox();
+            this.BTN_Reset = new System.Windows.Forms.Button();
             this.BTN_Run_To_End = new System.Windows.Forms.Button();
             this.BTN_Run_One = new System.Windows.Forms.Button();
-            this.LST_Problem = new System.Windows.Forms.ListBox();
             this.TC_Model = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.BTN_Create_ACS_Model = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.BTN_GA = new System.Windows.Forms.Button();
-            this.BTN_Reset = new System.Windows.Forms.Button();
+            this.LB_SFTSL = new System.Windows.Forms.Label();
+            this.LST_Problem = new System.Windows.Forms.ListBox();
             this.PPTG_model = new System.Windows.Forms.PropertyGrid();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.CT_Model = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -61,9 +65,7 @@ namespace r09546042_TerryYang_Assignment09
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.TS_BTN_Openfile = new System.Windows.Forms.ToolStripButton();
             this.Timer = new System.Windows.Forms.Timer(this.components);
-            this.LB_SFTSL = new System.Windows.Forms.Label();
-            this.GB_Model = new System.Windows.Forms.GroupBox();
-            this.LB_SFTBS = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -72,6 +74,7 @@ namespace r09546042_TerryYang_Assignment09
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            this.GB_Model.SuspendLayout();
             this.TC_Model.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -89,7 +92,7 @@ namespace r09546042_TerryYang_Assignment09
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.GB_Model.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -129,13 +132,43 @@ namespace r09546042_TerryYang_Assignment09
             // 
             this.splitContainer3.Panel2.Controls.Add(this.PPTG_model);
             this.splitContainer3.Size = new System.Drawing.Size(411, 736);
-            this.splitContainer3.SplitterDistance = 387;
+            this.splitContainer3.SplitterDistance = 417;
             this.splitContainer3.TabIndex = 0;
+            // 
+            // LB_SFTBS
+            // 
+            this.LB_SFTBS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LB_SFTBS.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LB_SFTBS.ForeColor = System.Drawing.Color.DarkRed;
+            this.LB_SFTBS.Location = new System.Drawing.Point(14, 324);
+            this.LB_SFTBS.Name = "LB_SFTBS";
+            this.LB_SFTBS.Size = new System.Drawing.Size(378, 118);
+            this.LB_SFTBS.TabIndex = 10;
+            this.LB_SFTBS.Text = "So Far The Best Solution: ";
+            // 
+            // GB_Model
+            // 
+            this.GB_Model.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GB_Model.Controls.Add(this.numericUpDown1);
+            this.GB_Model.Controls.Add(this.CB_Animation);
+            this.GB_Model.Controls.Add(this.BTN_Reset);
+            this.GB_Model.Controls.Add(this.BTN_Run_To_End);
+            this.GB_Model.Controls.Add(this.BTN_Run_One);
+            this.GB_Model.Controls.Add(this.TC_Model);
+            this.GB_Model.Enabled = false;
+            this.GB_Model.Location = new System.Drawing.Point(12, 124);
+            this.GB_Model.Name = "GB_Model";
+            this.GB_Model.Size = new System.Drawing.Size(389, 165);
+            this.GB_Model.TabIndex = 9;
+            this.GB_Model.TabStop = false;
+            this.GB_Model.Text = "Solver";
             // 
             // CB_Animation
             // 
             this.CB_Animation.AutoSize = true;
-            this.CB_Animation.Location = new System.Drawing.Point(9, 130);
+            this.CB_Animation.Location = new System.Drawing.Point(9, 106);
             this.CB_Animation.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.CB_Animation.Name = "CB_Animation";
             this.CB_Animation.Size = new System.Drawing.Size(82, 18);
@@ -143,6 +176,20 @@ namespace r09546042_TerryYang_Assignment09
             this.CB_Animation.Text = "Animation";
             this.CB_Animation.UseVisualStyleBackColor = true;
             this.CB_Animation.CheckedChanged += new System.EventHandler(this.CB_Animation_CheckedChanged);
+            // 
+            // BTN_Reset
+            // 
+            this.BTN_Reset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Reset.Enabled = false;
+            this.BTN_Reset.Location = new System.Drawing.Point(168, 18);
+            this.BTN_Reset.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.BTN_Reset.Name = "BTN_Reset";
+            this.BTN_Reset.Size = new System.Drawing.Size(216, 38);
+            this.BTN_Reset.TabIndex = 1;
+            this.BTN_Reset.Text = "Reset";
+            this.BTN_Reset.UseVisualStyleBackColor = true;
+            this.BTN_Reset.Click += new System.EventHandler(this.BTN_Reset_Click);
             // 
             // BTN_Run_To_End
             // 
@@ -171,19 +218,6 @@ namespace r09546042_TerryYang_Assignment09
             this.BTN_Run_One.Text = "Run one";
             this.BTN_Run_One.UseVisualStyleBackColor = true;
             this.BTN_Run_One.Click += new System.EventHandler(this.BTN_Run_One_Click);
-            // 
-            // LST_Problem
-            // 
-            this.LST_Problem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LST_Problem.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LST_Problem.FormattingEnabled = true;
-            this.LST_Problem.ItemHeight = 26;
-            this.LST_Problem.Location = new System.Drawing.Point(13, 34);
-            this.LST_Problem.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.LST_Problem.Name = "LST_Problem";
-            this.LST_Problem.Size = new System.Drawing.Size(388, 82);
-            this.LST_Problem.TabIndex = 3;
             // 
             // TC_Model
             // 
@@ -222,11 +256,11 @@ namespace r09546042_TerryYang_Assignment09
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.BTN_GA);
-            this.tabPage2.Location = new System.Drawing.Point(4, 23);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.tabPage2.Size = new System.Drawing.Size(132, 53);
+            this.tabPage2.Size = new System.Drawing.Size(132, 54);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "GA";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -242,19 +276,33 @@ namespace r09546042_TerryYang_Assignment09
             this.BTN_GA.UseVisualStyleBackColor = true;
             this.BTN_GA.Click += new System.EventHandler(this.BTN_GA_Click);
             // 
-            // BTN_Reset
+            // LB_SFTSL
             // 
-            this.BTN_Reset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.LB_SFTSL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_Reset.Enabled = false;
-            this.BTN_Reset.Location = new System.Drawing.Point(168, 18);
-            this.BTN_Reset.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.BTN_Reset.Name = "BTN_Reset";
-            this.BTN_Reset.Size = new System.Drawing.Size(216, 38);
-            this.BTN_Reset.TabIndex = 1;
-            this.BTN_Reset.Text = "Reset";
-            this.BTN_Reset.UseVisualStyleBackColor = true;
-            this.BTN_Reset.Click += new System.EventHandler(this.BTN_Reset_Click);
+            this.LB_SFTSL.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LB_SFTSL.ForeColor = System.Drawing.Color.ForestGreen;
+            this.LB_SFTSL.Location = new System.Drawing.Point(14, 295);
+            this.LB_SFTSL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LB_SFTSL.Name = "LB_SFTSL";
+            this.LB_SFTSL.Size = new System.Drawing.Size(382, 24);
+            this.LB_SFTSL.TabIndex = 8;
+            this.LB_SFTSL.Text = "So Far The Shorest Length: ";
+            // 
+            // LST_Problem
+            // 
+            this.LST_Problem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LST_Problem.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LST_Problem.FormattingEnabled = true;
+            this.LST_Problem.HorizontalScrollbar = true;
+            this.LST_Problem.ItemHeight = 19;
+            this.LST_Problem.Location = new System.Drawing.Point(13, 34);
+            this.LST_Problem.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.LST_Problem.Name = "LST_Problem";
+            this.LST_Problem.ScrollAlwaysVisible = true;
+            this.LST_Problem.Size = new System.Drawing.Size(388, 80);
+            this.LST_Problem.TabIndex = 3;
             // 
             // PPTG_model
             // 
@@ -262,7 +310,7 @@ namespace r09546042_TerryYang_Assignment09
             this.PPTG_model.Location = new System.Drawing.Point(0, 0);
             this.PPTG_model.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.PPTG_model.Name = "PPTG_model";
-            this.PPTG_model.Size = new System.Drawing.Size(411, 345);
+            this.PPTG_model.Size = new System.Drawing.Size(411, 315);
             this.PPTG_model.TabIndex = 0;
             // 
             // splitContainer2
@@ -281,7 +329,7 @@ namespace r09546042_TerryYang_Assignment09
             // 
             this.splitContainer2.Panel2.Controls.Add(this.TBC_Show_result);
             this.splitContainer2.Size = new System.Drawing.Size(827, 736);
-            this.splitContainer2.SplitterDistance = 481;
+            this.splitContainer2.SplitterDistance = 287;
             this.splitContainer2.TabIndex = 0;
             // 
             // CT_Model
@@ -298,7 +346,7 @@ namespace r09546042_TerryYang_Assignment09
             this.CT_Model.Location = new System.Drawing.Point(0, 34);
             this.CT_Model.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.CT_Model.Name = "CT_Model";
-            this.CT_Model.Size = new System.Drawing.Size(827, 447);
+            this.CT_Model.Size = new System.Drawing.Size(827, 253);
             this.CT_Model.TabIndex = 0;
             this.CT_Model.Text = "chart1";
             // 
@@ -311,8 +359,9 @@ namespace r09546042_TerryYang_Assignment09
             this.TBC_Show_result.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.TBC_Show_result.Name = "TBC_Show_result";
             this.TBC_Show_result.SelectedIndex = 0;
-            this.TBC_Show_result.Size = new System.Drawing.Size(827, 251);
+            this.TBC_Show_result.Size = new System.Drawing.Size(827, 445);
             this.TBC_Show_result.TabIndex = 1;
+            this.TBC_Show_result.SizeChanged += new System.EventHandler(this.TBC_Show_result_SizeChanged);
             // 
             // TP_Route
             // 
@@ -321,29 +370,37 @@ namespace r09546042_TerryYang_Assignment09
             this.TP_Route.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.TP_Route.Name = "TP_Route";
             this.TP_Route.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.TP_Route.Size = new System.Drawing.Size(820, 224);
+            this.TP_Route.Size = new System.Drawing.Size(819, 418);
             this.TP_Route.TabIndex = 0;
             this.TP_Route.Text = "Cites & Routes";
             this.TP_Route.UseVisualStyleBackColor = true;
             // 
             // CT_Route
             // 
+            this.CT_Route.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             chartArea2.AxisX.MajorGrid.Enabled = false;
+            chartArea2.AxisX.MajorTickMark.Enabled = false;
             chartArea2.AxisX2.MajorGrid.Enabled = false;
+            chartArea2.AxisX2.MajorTickMark.Enabled = false;
             chartArea2.AxisY.MajorGrid.Enabled = false;
             chartArea2.AxisY2.MajorGrid.Enabled = false;
             chartArea2.Name = "ChartArea1";
             this.CT_Route.ChartAreas.Add(chartArea2);
-            this.CT_Route.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CT_Route.Location = new System.Drawing.Point(2, 4);
             this.CT_Route.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.CT_Route.Name = "CT_Route";
             this.CT_Route.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Name = "Series1";
+            series1.Color = System.Drawing.Color.Silver;
+            series1.Name = "Best_Route";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Color = System.Drawing.Color.Red;
+            series2.Name = "So_Far_the_Best_Route";
             this.CT_Route.Series.Add(series1);
-            this.CT_Route.Size = new System.Drawing.Size(816, 216);
+            this.CT_Route.Series.Add(series2);
+            this.CT_Route.Size = new System.Drawing.Size(815, 410);
             this.CT_Route.TabIndex = 0;
             this.CT_Route.Text = "chart2";
             // 
@@ -382,10 +439,12 @@ namespace r09546042_TerryYang_Assignment09
             this.LSB_Phromone.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LSB_Phromone.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LSB_Phromone.FormattingEnabled = true;
+            this.LSB_Phromone.HorizontalScrollbar = true;
             this.LSB_Phromone.ItemHeight = 19;
             this.LSB_Phromone.Location = new System.Drawing.Point(0, 0);
             this.LSB_Phromone.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.LSB_Phromone.Name = "LSB_Phromone";
+            this.LSB_Phromone.ScrollAlwaysVisible = true;
             this.LSB_Phromone.Size = new System.Drawing.Size(268, 216);
             this.LSB_Phromone.TabIndex = 1;
             // 
@@ -394,10 +453,12 @@ namespace r09546042_TerryYang_Assignment09
             this.LSB_Solution.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LSB_Solution.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LSB_Solution.FormattingEnabled = true;
+            this.LSB_Solution.HorizontalScrollbar = true;
             this.LSB_Solution.ItemHeight = 19;
             this.LSB_Solution.Location = new System.Drawing.Point(0, 0);
             this.LSB_Solution.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.LSB_Solution.Name = "LSB_Solution";
+            this.LSB_Solution.ScrollAlwaysVisible = true;
             this.LSB_Solution.Size = new System.Drawing.Size(543, 216);
             this.LSB_Solution.TabIndex = 0;
             // 
@@ -432,45 +493,36 @@ namespace r09546042_TerryYang_Assignment09
             // 
             // Timer
             // 
+            this.Timer.Interval = 10;
             this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
-            // LB_SFTSL
+            // numericUpDown1
             // 
-            this.LB_SFTSL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LB_SFTSL.Location = new System.Drawing.Point(14, 302);
-            this.LB_SFTSL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LB_SFTSL.Name = "LB_SFTSL";
-            this.LB_SFTSL.Size = new System.Drawing.Size(382, 14);
-            this.LB_SFTSL.TabIndex = 8;
-            this.LB_SFTSL.Text = "So Far The Shorest Length: ";
-            // 
-            // GB_Model
-            // 
-            this.GB_Model.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.GB_Model.Controls.Add(this.CB_Animation);
-            this.GB_Model.Controls.Add(this.BTN_Reset);
-            this.GB_Model.Controls.Add(this.BTN_Run_To_End);
-            this.GB_Model.Controls.Add(this.BTN_Run_One);
-            this.GB_Model.Controls.Add(this.TC_Model);
-            this.GB_Model.Enabled = false;
-            this.GB_Model.Location = new System.Drawing.Point(12, 124);
-            this.GB_Model.Name = "GB_Model";
-            this.GB_Model.Size = new System.Drawing.Size(389, 165);
-            this.GB_Model.TabIndex = 9;
-            this.GB_Model.TabStop = false;
-            this.GB_Model.Text = "Solver";
-            // 
-            // LB_SFTBS
-            // 
-            this.LB_SFTBS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LB_SFTBS.Location = new System.Drawing.Point(15, 325);
-            this.LB_SFTBS.Name = "LB_SFTBS";
-            this.LB_SFTBS.Size = new System.Drawing.Size(378, 50);
-            this.LB_SFTBS.TabIndex = 10;
-            this.LB_SFTBS.Text = "So Far The Best Solution: ";
+            this.numericUpDown1.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Location = new System.Drawing.Point(9, 126);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDown1.TabIndex = 7;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // Main_Form
             // 
@@ -492,6 +544,8 @@ namespace r09546042_TerryYang_Assignment09
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
+            this.GB_Model.ResumeLayout(false);
+            this.GB_Model.PerformLayout();
             this.TC_Model.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -510,8 +564,7 @@ namespace r09546042_TerryYang_Assignment09
             this.splitContainer4.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.GB_Model.ResumeLayout(false);
-            this.GB_Model.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -548,6 +601,7 @@ namespace r09546042_TerryYang_Assignment09
         private System.Windows.Forms.Label LB_SFTSL;
         private System.Windows.Forms.Label LB_SFTBS;
         private System.Windows.Forms.GroupBox GB_Model;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }
 

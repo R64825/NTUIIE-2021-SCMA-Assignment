@@ -21,11 +21,9 @@ namespace r09546042_TerryYang_Assignment09
         Ant_Colony_System_For_Sequencing_Problems ACS = null;
         Permutation_GA GA = null;
         int number_Of_Cites;
-        double[,] from_To_Distances;
         double[,] coordinates;
         double[,] distance_Inversed;
         int[] so_Far_The_Best_Routh;
-        public event EventHandler event_;
         #endregion
 
         public Main_Form()
@@ -44,13 +42,15 @@ namespace r09546042_TerryYang_Assignment09
             distance += Calculate_Distance(solution[ 0], solution[ solution.Length-1]);
             return distance;
         }
-        
-        //public double Get_The_Routh_Length(int[] route)
-        //{
-        //    // use from-to matrix to calculate length
+        public double Objective_Function_Per(int[] solution, bool f)
+        {
+            double distance = 0;
+            for (int i = 0; i < solution.Length - 1; i++)
+                distance += Calculate_Distance(solution[i], solution[i + 1]);
+            distance += Calculate_Distance(solution[0], solution[solution.Length - 1]);
+            return distance;
+        }
 
-        //    return 0.0;
-        //}
         private double Calculate_Distance(int p_index_1, int p_index_2)
         {
             double distance;
@@ -83,20 +83,50 @@ namespace r09546042_TerryYang_Assignment09
             LSB_Solution.Items.Clear();
             LSB_Phromone.Items.Clear();
 
-            for (int i = 0; i < ACS.Population; i++)            
-                LSB_Solution.Items.Add(ACS.Return_A_Solution(i));
-                
-            
-            for (int i = 0; i < number_Of_Cites; i++)            
-                LSB_Phromone.Items.Add(ACS.Return_Pheromone_Matrix(i, 3));
-            
+            // update so far the best solution
+            CT_Route.Series[1].Points.Clear();
+            if (ACS == null)
+            {
+                string str = string.Empty;
+                for (int i = 0; i < number_Of_Cites; i++)
+                    str += GA.So_Far_The_Best_Soulution[i] + " ";
+                LB_SFTBS.Text = "So Far The Best Solution: \n" + str;
+                LB_SFTSL.Text = "So Far The Shorest Length: " + Math.Round(GA.So_Far_The_Best_Objective_Value, 3).ToString();
+
+                // update route map
+                for (int i = 0; i < number_Of_Cites; i++)
+                {
+                    int index = GA.So_Far_The_Best_Soulution[i];
+                    CT_Route.Series[1].Points.AddXY(coordinates[index, 0], coordinates[index, 1]);
+                }
+                CT_Route.Series[1].Points.AddXY(coordinates[GA.So_Far_The_Best_Soulution[0], 0], coordinates[GA.So_Far_The_Best_Soulution[number_Of_Cites-1], 1]);
+            }
+            else
+            {
+                for (int i = 0; i < ACS.Population; i++)
+                    LSB_Solution.Items.Add(ACS.Return_A_Solution(i));
+
+                for (int i = 0; i < number_Of_Cites; i++)
+                    LSB_Phromone.Items.Add(ACS.Return_Pheromone_Matrix(i, 3));
+
+                string str = string.Empty;
+                for (int i = 0; i < number_Of_Cites; i++)
+                    str += ACS.So_Far_The_Best_Solution[i] + " ";
+                LB_SFTBS.Text = "So Far The Best Solution: \n" + str;
+                LB_SFTSL.Text = "So Far The Shorest Length: " + Math.Round(ACS.So_Far_The_Best_Objective, 3).ToString();
+
+                // update route map
+                for (int i = 0; i < number_Of_Cites; i++)
+                {
+                    int index = ACS.So_Far_The_Best_Solution[i];
+                    CT_Route.Series[1].Points.AddXY(coordinates[index, 0], coordinates[index, 1]);
+                }
+                CT_Route.Series[1].Points.AddXY(coordinates[ACS.So_Far_The_Best_Solution[0], 0], coordinates[ACS.So_Far_The_Best_Solution[number_Of_Cites-1], 1]);
+            }
+
             PPTG_model.Update();
             CT_Model.Update();
-            string str = string.Empty;
-            for (int i = 0; i < number_Of_Cites; i++)
-                str += ACS.So_Far_The_Best_Solution[i]+" ";
-            LB_SFTBS.Text = "So Far The Best Solution: "+ str;
-            LB_SFTSL.Text = "So Far The Shorest Length: " + Math.Round( ACS.So_Far_The_Best_Objective, 3).ToString();
+            CT_Route.Update();
         }
         #endregion
 
@@ -129,7 +159,8 @@ namespace r09546042_TerryYang_Assignment09
             // read coordinates
 
             CT_Route.Series[0].Points.Clear();
-            CT_Route.Series[0].Color = Color.Red;
+            CT_Route.Series[1].Points.Clear();
+
             str = sr.ReadLine();
             coordinates = new double[number_Of_Cites, 2];
             char[] seps = { ' ', ',' };
@@ -144,8 +175,7 @@ namespace r09546042_TerryYang_Assignment09
                 dp.MarkerSize = 5;
                 dp.MarkerColor = Color.White;
                 dp.MarkerBorderColor = Color.Black;
-                dp.Label = (i + 1).ToString();
-
+                dp.Label = (i).ToString();
                 CT_Route.Series[0].Points.Add(dp);
             }
 
@@ -168,17 +198,32 @@ namespace r09546042_TerryYang_Assignment09
             Show_Problem_Description(problem_Name, problem_Comment, problem_Type, edge_Weight_Type);
             sr.Close();
 
-            // enable 
+
+            // make route chart square
+            int min_Size = Math.Min(CT_Route.Parent.Size.Width, CT_Route.Parent.Size.Height);
+            CT_Route.Size= new Size(min_Size,min_Size);
+            CT_Route.Location = new Point((int)((CT_Route.Parent.Width / 2.0) - (CT_Route.Size.Width / 2.0)), 0);
         }
 
         private void BTN_Reset_Click(object sender, EventArgs e)
         {
-            ACS.Reset();
             CT_Model.Series.Clear();
-            CT_Model.Series.Add(ACS.Series_Iteration_Average_Objective);
-            CT_Model.Series.Add(ACS.Series_iteration_The_Best_Objective);
-            CT_Model.Series.Add(ACS.Series_So_Far_The_Best_Objective);
+            if (ACS == null)
+            {
+                GA.Reset();               
+                CT_Model.Series.Add(GA.Series_Average);
+                CT_Model.Series.Add(GA.Series_IterationTheBest);
+                CT_Model.Series.Add(GA.Series_SoFarTheBest);
+            }
+            else
+            {
+                ACS.Reset();
+                CT_Model.Series.Add(ACS.Series_Iteration_Average_Objective);
+                CT_Model.Series.Add(ACS.Series_iteration_The_Best_Objective);
+                CT_Model.Series.Add(ACS.Series_So_Far_The_Best_Objective);
+            }
 
+            Update_UI_Element();
             // enable
             BTN_Run_One.Enabled = true ;
             BTN_Run_To_End.Enabled = true;
@@ -189,30 +234,45 @@ namespace r09546042_TerryYang_Assignment09
         {
             ACS = new Ant_Colony_System_For_Sequencing_Problems(number_Of_Cites, distance_Inversed, Optimization_Type.Minimization, Objective_Function);
             PPTG_model.SelectedObject = ACS;
-
             BTN_Reset.Enabled = true;
+
+            GA = null;
         }
 
         private void BTN_Run_One_Click(object sender, EventArgs e)
         {
-            ACS.Run_One_Iteration();
+            if (ACS == null)
+                GA.Run_One_Iteration();
+            else
+                ACS.Run_One_Iteration();
             Update_UI_Element();
         }
 
         private void BTN_Run_To_End_Click(object sender, EventArgs e)
         {
-            if (CB_Animation.Checked)          
-                Timer.Enabled = true;         
+            if (CB_Animation.Checked)
+                Timer.Enabled = true;
             else
-                ACS.Run_To_End();
+            {
+                if (ACS == null)
+                    GA.Run_To_End(GA.Iteration_Limit);
+                else
+                    ACS.Run_To_End();
+            }
+                
             Update_UI_Element();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (CB_Animation.Checked && ACS.Iteration_Limit>ACS.Current_Iteration)
+            if (CB_Animation.Checked)
             {
-                ACS.Run_One_Iteration();
+                if (ACS == null && GA.Current_Iteration <= GA.Iteration_Limit)
+                    GA.Run_One_Iteration();
+                else if (ACS.Current_Iteration <= ACS.Iteration_Limit)
+                    ACS.Run_One_Iteration();
+                else
+                    CB_Animation.Checked = false;
                 Update_UI_Element();
             }
         }
@@ -220,12 +280,37 @@ namespace r09546042_TerryYang_Assignment09
         private void CB_Animation_CheckedChanged(object sender, EventArgs e)
         {
             if (CB_Animation.Checked == false)
+            {
                 Timer.Enabled = false;
+                Update_UI_Element();
+            }
+                
         }
 
         private void BTN_GA_Click(object sender, EventArgs e)
         {
-            //GA = new Permutation_GA(number_Of_Cites, GA_Optimization_Type.Minimization, Objective_Function, Permutation_Crossover_Type.Parial_Mapped_X, Permutation_Mutation_Type.Displacement);
+            GA = new Permutation_GA(number_Of_Cites, GA_Optimization_Type.Minimization, Objective_Function_Per, Permutation_Crossover_Type.Parial_Mapped_X, Permutation_Mutation_Type.Displacement);
+            PPTG_model.SelectedObject = GA;
+            BTN_Reset.Enabled = true;
+
+            ACS = null;
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            if (numericUpDown1.Value <= 0) return;
+            int interval = (int)(Convert.ToDouble(numericUpDown1.Value) / 100.0);
+            if (interval <= 0) return;
+
+            Timer.Interval = interval;
+        }
+
+        private void TBC_Show_result_SizeChanged(object sender, EventArgs e)
+        {
+            // make route chart square
+            int min_Size = Math.Min(CT_Route.Parent.Size.Width, CT_Route.Parent.Size.Height);
+            CT_Route.Size = new Size(min_Size, min_Size);
+            CT_Route.Location = new Point( (int)((CT_Route.Parent.Width / 2.0) - (CT_Route.Size.Width / 2.0)) , 0);
         }
     }
 }
