@@ -523,6 +523,7 @@ namespace TerryYang_GA_Library
                 so_Far_The_Best_Objective_Value = double.MinValue;
             else
                 so_Far_The_Best_Objective_Value = double.MaxValue;
+            so_Far_The_Best_Soulution = new T[number_Of_Genes];
 
             // series clear
             series_Average.Points.Clear();

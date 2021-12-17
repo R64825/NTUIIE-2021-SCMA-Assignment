@@ -137,7 +137,9 @@ namespace r09546042_TerryYang_Assignment09
             BTN_Reset.Enabled = false;
             BTN_Run_To_End.Enabled = false;
             BTN_Run_One.Enabled = false;
-
+            CB_Animation.Enabled = false;
+            CB_Animation.Checked = false;
+            numericUpDown1.Enabled = false;
             OpenFileDialog dlg = new OpenFileDialog();
             if (dlg.ShowDialog() != DialogResult.OK) return;
 
@@ -157,7 +159,6 @@ namespace r09546042_TerryYang_Assignment09
             string edge_Weight_Type = str.Split(':')[1].Replace(" ", string.Empty); ;
 
             // read coordinates
-
             CT_Route.Series[0].Points.Clear();
             CT_Route.Series[1].Points.Clear();
 
@@ -203,6 +204,13 @@ namespace r09546042_TerryYang_Assignment09
             int min_Size = Math.Min(CT_Route.Parent.Size.Width, CT_Route.Parent.Size.Height);
             CT_Route.Size= new Size(min_Size,min_Size);
             CT_Route.Location = new Point((int)((CT_Route.Parent.Width / 2.0) - (CT_Route.Size.Width / 2.0)), 0);
+
+            LB_SFTBS.Text = "So Far The Best Solution: ";
+            LB_SFTSL.Text = "So Far The Shorest Length: ";
+
+            // null model
+            ACS = null;
+            GA = null;
         }
 
         private void BTN_Reset_Click(object sender, EventArgs e)
@@ -227,6 +235,8 @@ namespace r09546042_TerryYang_Assignment09
             // enable
             BTN_Run_One.Enabled = true ;
             BTN_Run_To_End.Enabled = true;
+            CB_Animation.Enabled = true;
+            numericUpDown1.Enabled = true;
         }
         #endregion
 
@@ -234,11 +244,18 @@ namespace r09546042_TerryYang_Assignment09
         {
             ACS = new Ant_Colony_System_For_Sequencing_Problems(number_Of_Cites, distance_Inversed, Optimization_Type.Minimization, Objective_Function);
             PPTG_model.SelectedObject = ACS;
-            BTN_Reset.Enabled = true;
+            BTN_Reset.Enabled = true;         
 
             GA = null;
         }
+        private void BTN_GA_Click(object sender, EventArgs e)
+        {
+            GA = new Permutation_GA(number_Of_Cites, GA_Optimization_Type.Minimization, Objective_Function_Per, Permutation_Crossover_Type.Parial_Mapped_X, Permutation_Mutation_Type.Displacement);
+            PPTG_model.SelectedObject = GA;
+            BTN_Reset.Enabled = true;
 
+            ACS = null;
+        }
         private void BTN_Run_One_Click(object sender, EventArgs e)
         {
             if (ACS == null)
@@ -265,6 +282,8 @@ namespace r09546042_TerryYang_Assignment09
 
         private void Timer_Tick(object sender, EventArgs e)
         {
+            if (ACS == null && GA == null) return;
+
             if (CB_Animation.Checked)
             {
                 if (ACS == null && GA.Current_Iteration <= GA.Iteration_Limit)
@@ -287,14 +306,7 @@ namespace r09546042_TerryYang_Assignment09
                 
         }
 
-        private void BTN_GA_Click(object sender, EventArgs e)
-        {
-            GA = new Permutation_GA(number_Of_Cites, GA_Optimization_Type.Minimization, Objective_Function_Per, Permutation_Crossover_Type.Parial_Mapped_X, Permutation_Mutation_Type.Displacement);
-            PPTG_model.SelectedObject = GA;
-            BTN_Reset.Enabled = true;
-
-            ACS = null;
-        }
+        
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
