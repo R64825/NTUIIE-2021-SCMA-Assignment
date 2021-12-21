@@ -287,41 +287,7 @@ namespace TerryYang_GA_Library
         {
             throw new NotImplementedException();
         }
-        public void Fit_to_Selection_Then_Drop_Unfit()
-        {
-            double selected_Min = selected_Objective_Value.Min();
-            double selected_Max = selected_Objective_Value.Max();
-            int total = population_Size + number_Of_Crossovered_Children + number_Of_Mutated_Children;
-            // update so_far_the_best_solution
-            switch (optimization_Type)
-            {
-                case GA_Optimization_Type.Minimization: 
-                    if (so_Far_The_Best_Objective_Value > selected_Min)
-                    { 
-                        so_Far_The_Best_Objective_Value = selected_Min;
-                        so_Far_The_Best_Soulution = selected_Chromosomes[0];
-                    }
-                    break;
-                case GA_Optimization_Type.Maximization:
-                    if (so_Far_The_Best_Objective_Value < selected_Max)
-                    { 
-                        so_Far_The_Best_Objective_Value = selected_Max;
-                        so_Far_The_Best_Soulution = selected_Chromosomes[0];
-                    }
-                    break;
-                default:
-                    break;
-            }
-            Copy_All_Selection_to_Chromosomes();
-
-            //// update iteration the best
-            //if (optimization_Type == GA_Optimization_Type.Maximization)
-            //    iteration_Best_Objective = selected_Max;
-            //else
-            //    iteration_Best_Objective = selected_Min;
-            //iteration_Average_Objective = (objective_Value.Sum() / total);
-        }
-
+       
         private void Update_So_Far_the_Best_and_Iteration_the_Best()
         {
             int total = population_Size + number_Of_Crossovered_Children + number_Of_Mutated_Children;

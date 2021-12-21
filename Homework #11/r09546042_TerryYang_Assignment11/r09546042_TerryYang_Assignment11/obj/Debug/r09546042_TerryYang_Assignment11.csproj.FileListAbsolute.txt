@@ -1,0 +1,10 @@
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #11\r09546042_TerryYang_Assignment11\r09546042_TerryYang_Assignment11\obj\Debug\r09546042_TerryYang_Assignment11.csprojAssemblyReference.cache
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #11\r09546042_TerryYang_Assignment11\r09546042_TerryYang_Assignment11\obj\Debug\r09546042_TerryYang_Assignment11.Main_Form.resources
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #11\r09546042_TerryYang_Assignment11\r09546042_TerryYang_Assignment11\obj\Debug\r09546042_TerryYang_Assignment11.Properties.Resources.resources
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #11\r09546042_TerryYang_Assignment11\r09546042_TerryYang_Assignment11\obj\Debug\r09546042_TerryYang_Assignment11.csproj.GenerateResource.cache
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #11\r09546042_TerryYang_Assignment11\r09546042_TerryYang_Assignment11\obj\Debug\r09546042_TerryYang_Assignment11.csproj.CoreCompileInputs.cache
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #11\r09546042_TerryYang_Assignment11\r09546042_TerryYang_Assignment11\bin\Debug\r09546042_TerryYang_Assignment11.exe.config
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #11\r09546042_TerryYang_Assignment11\r09546042_TerryYang_Assignment11\bin\Debug\r09546042_TerryYang_Assignment11.exe
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #11\r09546042_TerryYang_Assignment11\r09546042_TerryYang_Assignment11\bin\Debug\r09546042_TerryYang_Assignment11.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #11\r09546042_TerryYang_Assignment11\r09546042_TerryYang_Assignment11\obj\Debug\r09546042_TerryYang_Assignment11.exe
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #11\r09546042_TerryYang_Assignment11\r09546042_TerryYang_Assignment11\obj\Debug\r09546042_TerryYang_Assignment11.pdb
