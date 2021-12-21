@@ -21,11 +21,11 @@ namespace Particle_Swamp_Optimizer
         int number_Of_Variables;
         int number_Of_Particles = 10;
         int iteration = 0;
-        int iteration_Limit = 300;
+        int iteration_Limit = 100;
         double[][] positions;
-        double []objectives;
+        double[] objectives;
         double[][] self_Best_Position;
-        double []self_Best_Objectives;
+        double[] self_Best_Objectives;
 
         double[] so_Far_the_Best_Position;
         double so_Far_the_Best_Objective;
@@ -38,7 +38,7 @@ namespace Particle_Swamp_Optimizer
         COPBenchmark the_CP = null;
         double iteration_Average;
         double iteration_Best;
-        
+
         Series series_so_Far_The_Best_Objective;
         Series series_iteration_Average_Objective;
         Series series_iteration_The_Best_Objective;
@@ -65,6 +65,10 @@ namespace Particle_Swamp_Optimizer
         public Series Series_iteration_Average_Objective { get => series_iteration_Average_Objective; set => series_iteration_Average_Objective = value; }
         [Browsable(false)]
         public Series Series_iteration_The_Best_Objective { get => series_iteration_The_Best_Objective; set => series_iteration_The_Best_Objective = value; }
+        [Browsable(false)]
+        public double[] So_Far_the_Best_Position { get => so_Far_the_Best_Position; set => so_Far_the_Best_Position = value; }
+        [Browsable(false)]
+        public double So_Far_the_Best_Objective { get => so_Far_the_Best_Objective; set => so_Far_the_Best_Objective = value; }
         #endregion
 
         #region Constructor
@@ -91,7 +95,7 @@ namespace Particle_Swamp_Optimizer
         #endregion
 
         #region PSO Fucntions     
-        
+
         private void Move_All_Particles_to_New_Positions()
         {
             double alpha;
@@ -99,6 +103,7 @@ namespace Particle_Swamp_Optimizer
             double diff_self;
             double diff_group;
             double velocity;
+            double new_Pos;
             for (int p = 0; p < Number_Of_Particles; p++)
             {
                 for (int i = 0; i < number_Of_Variables; i++)
@@ -106,11 +111,18 @@ namespace Particle_Swamp_Optimizer
                     alpha = social_Factor * rnd.NextDouble();
                     beta = self_Factor * rnd.NextDouble();
                     diff_self = self_Best_Position[p][i] - positions[p][i];
-                    diff_group = so_Far_the_Best_Position[i] - positions[p][i];                    
+                    diff_group = so_Far_the_Best_Position[i] - positions[p][i];
                     velocity = alpha * (diff_group) + beta * (diff_self);
+                    new_Pos = positions[p][i] + velocity;
+
+                    // check constrains
+                    if (new_Pos > upper_Bound[i])
+                        new_Pos = upper_Bound[i];
+                    else if(new_Pos < lower_Bound[i])
+                        new_Pos = lower_Bound[i];
 
                     // move point
-                    positions[p][i] += velocity;
+                    positions[p][i] = new_Pos;
                 }
 
                 // update objective
@@ -169,11 +181,11 @@ namespace Particle_Swamp_Optimizer
             {
                 sum += objectives[p];
                 //bool update = false;
-                if (optimization_Type == OptimizationType.Minimization)                
+                if (optimization_Type == OptimizationType.Minimization)
                     if (min > objectives[p])
                         min = objectives[p];
 
-                else                
+                    else
                     if (max < objectives[p])
                         max = objectives[p];
             }
@@ -193,6 +205,15 @@ namespace Particle_Swamp_Optimizer
             series_iteration_Average_Objective.Points.AddXY(iteration, iteration_Average);
             series_so_Far_The_Best_Objective.Points.AddXY(iteration, so_Far_the_Best_Objective);
             series_iteration_The_Best_Objective.Points.AddXY(iteration, iteration_Best);
+        }
+        public string Flatten_Position(double[] pos)
+        {
+            string str = string.Empty;
+            for (int d = 0; d < number_Of_Variables; d++)
+            {
+                str += Math.Round( pos[d],3).ToString() + ", ";
+            }
+            return str;
         }
         #endregion
 
@@ -246,9 +267,6 @@ namespace Particle_Swamp_Optimizer
             Update_Series();
             
         }
-
-       
-
         public void Run_To_End()
         {
             for (int i = iteration; i < iteration_Limit; i++)

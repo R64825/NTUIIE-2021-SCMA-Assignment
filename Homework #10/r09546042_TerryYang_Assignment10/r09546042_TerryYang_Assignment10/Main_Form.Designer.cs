@@ -30,8 +30,8 @@ namespace r09546042_TerryYang_Assignment10
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -53,9 +53,11 @@ namespace r09546042_TerryYang_Assignment10
             this.label1 = new System.Windows.Forms.Label();
             this.Timer = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Pro_Bar = new System.Windows.Forms.ToolStripProgressBar();
+            this.GB_SFTB = new System.Windows.Forms.GroupBox();
             this.NUD_Interval = new System.Windows.Forms.NumericUpDown();
+            this.LB_SFTBV = new System.Windows.Forms.Label();
+            this.LB_SFTBS = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -71,6 +73,7 @@ namespace r09546042_TerryYang_Assignment10
             this.GB_Action.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.GB_SFTB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Interval)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,7 +104,7 @@ namespace r09546042_TerryYang_Assignment10
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.groupBox1);
+            this.splitContainer2.Panel2.Controls.Add(this.GB_SFTB);
             this.splitContainer2.Panel2.Controls.Add(this.GB_Model);
             this.splitContainer2.Panel2.Controls.Add(this.GB_Action);
             this.splitContainer2.Panel2.Controls.Add(this.PPTG_Solver);
@@ -126,13 +129,13 @@ namespace r09546042_TerryYang_Assignment10
             // 
             // CT_Main
             // 
-            chartArea4.Name = "ChartArea1";
-            this.CT_Main.ChartAreas.Add(chartArea4);
+            chartArea3.Name = "ChartArea1";
+            this.CT_Main.ChartAreas.Add(chartArea3);
             this.CT_Main.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend4.Alignment = System.Drawing.StringAlignment.Center;
-            legend4.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend4.Name = "Legend1";
-            this.CT_Main.Legends.Add(legend4);
+            legend3.Alignment = System.Drawing.StringAlignment.Center;
+            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend3.Name = "Legend1";
+            this.CT_Main.Legends.Add(legend3);
             this.CT_Main.Location = new System.Drawing.Point(0, 0);
             this.CT_Main.Name = "CT_Main";
             this.CT_Main.Size = new System.Drawing.Size(702, 235);
@@ -187,6 +190,7 @@ namespace r09546042_TerryYang_Assignment10
             this.GB_Action.Controls.Add(this.BTN_Run_One);
             this.GB_Action.Controls.Add(this.BTN_Run_to_End);
             this.GB_Action.Controls.Add(this.BTN_Create_PSO_Solver);
+            this.GB_Action.Enabled = false;
             this.GB_Action.Location = new System.Drawing.Point(11, 69);
             this.GB_Action.Name = "GB_Action";
             this.GB_Action.Size = new System.Drawing.Size(367, 217);
@@ -198,6 +202,7 @@ namespace r09546042_TerryYang_Assignment10
             // 
             this.BTN_Reset_Solver.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Reset_Solver.Enabled = false;
             this.BTN_Reset_Solver.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTN_Reset_Solver.Location = new System.Drawing.Point(6, 61);
             this.BTN_Reset_Solver.Name = "BTN_Reset_Solver";
@@ -211,6 +216,7 @@ namespace r09546042_TerryYang_Assignment10
             // 
             this.BTN_Run_One.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Run_One.Enabled = false;
             this.BTN_Run_One.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTN_Run_One.Location = new System.Drawing.Point(7, 102);
             this.BTN_Run_One.Name = "BTN_Run_One";
@@ -224,6 +230,7 @@ namespace r09546042_TerryYang_Assignment10
             // 
             this.BTN_Run_to_End.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Run_to_End.Enabled = false;
             this.BTN_Run_to_End.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTN_Run_to_End.Location = new System.Drawing.Point(7, 143);
             this.BTN_Run_to_End.Name = "BTN_Run_to_End";
@@ -248,7 +255,8 @@ namespace r09546042_TerryYang_Assignment10
             // 
             // PPTG_Solver
             // 
-            this.PPTG_Solver.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.PPTG_Solver.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PPTG_Solver.Location = new System.Drawing.Point(11, 411);
             this.PPTG_Solver.Name = "PPTG_Solver";
@@ -312,26 +320,30 @@ namespace r09546042_TerryYang_Assignment10
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripProgressBar1});
+            this.Pro_Bar});
             this.statusStrip1.Location = new System.Drawing.Point(0, 790);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1494, 26);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripProgressBar1
+            // Pro_Bar
             // 
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(200, 20);
+            this.Pro_Bar.Name = "Pro_Bar";
+            this.Pro_Bar.Size = new System.Drawing.Size(300, 20);
             // 
-            // groupBox1
+            // GB_SFTB
             // 
-            this.groupBox1.Location = new System.Drawing.Point(11, 293);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(364, 99);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.GB_SFTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GB_SFTB.Controls.Add(this.LB_SFTBS);
+            this.GB_SFTB.Controls.Add(this.LB_SFTBV);
+            this.GB_SFTB.Location = new System.Drawing.Point(11, 293);
+            this.GB_SFTB.Name = "GB_SFTB";
+            this.GB_SFTB.Size = new System.Drawing.Size(364, 112);
+            this.GB_SFTB.TabIndex = 9;
+            this.GB_SFTB.TabStop = false;
+            this.GB_SFTB.Text = "So Far The Best";
             // 
             // NUD_Interval
             // 
@@ -360,6 +372,28 @@ namespace r09546042_TerryYang_Assignment10
             0,
             0});
             this.NUD_Interval.ValueChanged += new System.EventHandler(this.NUD_Interval_ValueChanged);
+            // 
+            // LB_SFTBV
+            // 
+            this.LB_SFTBV.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LB_SFTBV.ForeColor = System.Drawing.Color.Brown;
+            this.LB_SFTBV.Location = new System.Drawing.Point(5, 25);
+            this.LB_SFTBV.Name = "LB_SFTBV";
+            this.LB_SFTBV.Size = new System.Drawing.Size(351, 25);
+            this.LB_SFTBV.TabIndex = 0;
+            this.LB_SFTBV.Text = "Objective: ";
+            // 
+            // LB_SFTBS
+            // 
+            this.LB_SFTBS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LB_SFTBS.ForeColor = System.Drawing.Color.ForestGreen;
+            this.LB_SFTBS.Location = new System.Drawing.Point(5, 50);
+            this.LB_SFTBS.Name = "LB_SFTBS";
+            this.LB_SFTBS.Size = new System.Drawing.Size(351, 40);
+            this.LB_SFTBS.TabIndex = 1;
+            this.LB_SFTBS.Text = "Solution:";
             // 
             // Main_Form
             // 
@@ -393,6 +427,7 @@ namespace r09546042_TerryYang_Assignment10
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.GB_SFTB.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Interval)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -417,13 +452,15 @@ namespace r09546042_TerryYang_Assignment10
         private System.Windows.Forms.RadioButton RDB_GA;
         private System.Windows.Forms.RadioButton RDB_PSO;
         private System.Windows.Forms.GroupBox GB_Model;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox GB_SFTB;
         private System.Windows.Forms.NumericUpDown NUD_Interval;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox CB_Animation;
         private System.Windows.Forms.Timer Timer;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.ToolStripProgressBar Pro_Bar;
+        private System.Windows.Forms.Label LB_SFTBS;
+        private System.Windows.Forms.Label LB_SFTBV;
     }
 }
 
