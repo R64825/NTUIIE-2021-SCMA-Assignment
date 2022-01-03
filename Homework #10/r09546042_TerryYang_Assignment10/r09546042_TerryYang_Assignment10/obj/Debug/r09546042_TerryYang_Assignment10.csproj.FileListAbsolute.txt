@@ -16,3 +16,5 @@ C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r0954
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\r09546042_TerryYang_Assignment10\obj\Debug\r09546042_TerryYang_Assignment10.pdb
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\r09546042_TerryYang_Assignment10\bin\Debug\Particle_Swamp_Optimizer.dll
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\r09546042_TerryYang_Assignment10\bin\Debug\Particle_Swamp_Optimizer.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\r09546042_TerryYang_Assignment10\bin\Debug\TerryYang_GA_Library.dll
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #10\r09546042_TerryYang_Assignment10\r09546042_TerryYang_Assignment10\bin\Debug\TerryYang_GA_Library.pdb

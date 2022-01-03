@@ -30,17 +30,23 @@ namespace r09546042_TerryYang_Assignment10
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.CT_Main = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.GB_SFTB = new System.Windows.Forms.GroupBox();
+            this.LB_SFTBS = new System.Windows.Forms.Label();
+            this.LB_SFTBV = new System.Windows.Forms.Label();
             this.GB_Model = new System.Windows.Forms.GroupBox();
             this.RDB_GA = new System.Windows.Forms.RadioButton();
             this.RDB_PSO = new System.Windows.Forms.RadioButton();
             this.GB_Action = new System.Windows.Forms.GroupBox();
+            this.NUD_Interval = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.CB_Animation = new System.Windows.Forms.CheckBox();
             this.BTN_Reset_Solver = new System.Windows.Forms.Button();
             this.BTN_Run_One = new System.Windows.Forms.Button();
             this.BTN_Run_to_End = new System.Windows.Forms.Button();
@@ -49,15 +55,9 @@ namespace r09546042_TerryYang_Assignment10
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.TS_BTN_Open_file = new System.Windows.Forms.ToolStripButton();
-            this.CB_Animation = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.Timer = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.Pro_Bar = new System.Windows.Forms.ToolStripProgressBar();
-            this.GB_SFTB = new System.Windows.Forms.GroupBox();
-            this.NUD_Interval = new System.Windows.Forms.NumericUpDown();
-            this.LB_SFTBV = new System.Windows.Forms.Label();
-            this.LB_SFTBS = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -69,12 +69,12 @@ namespace r09546042_TerryYang_Assignment10
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CT_Main)).BeginInit();
+            this.GB_SFTB.SuspendLayout();
             this.GB_Model.SuspendLayout();
             this.GB_Action.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Interval)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.GB_SFTB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NUD_Interval)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -123,24 +123,59 @@ namespace r09546042_TerryYang_Assignment10
             // 
             this.splitContainer3.Panel1.Controls.Add(this.CT_Main);
             this.splitContainer3.Size = new System.Drawing.Size(702, 756);
-            this.splitContainer3.SplitterDistance = 235;
+            this.splitContainer3.SplitterDistance = 234;
             this.splitContainer3.SplitterWidth = 5;
             this.splitContainer3.TabIndex = 0;
             // 
             // CT_Main
             // 
-            chartArea3.Name = "ChartArea1";
-            this.CT_Main.ChartAreas.Add(chartArea3);
+            chartArea1.Name = "ChartArea1";
+            this.CT_Main.ChartAreas.Add(chartArea1);
             this.CT_Main.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend3.Alignment = System.Drawing.StringAlignment.Center;
-            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend3.Name = "Legend1";
-            this.CT_Main.Legends.Add(legend3);
+            legend1.Alignment = System.Drawing.StringAlignment.Center;
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend1.Name = "Legend1";
+            this.CT_Main.Legends.Add(legend1);
             this.CT_Main.Location = new System.Drawing.Point(0, 0);
             this.CT_Main.Name = "CT_Main";
-            this.CT_Main.Size = new System.Drawing.Size(702, 235);
+            this.CT_Main.Size = new System.Drawing.Size(702, 234);
             this.CT_Main.TabIndex = 0;
             this.CT_Main.Text = "chart1";
+            // 
+            // GB_SFTB
+            // 
+            this.GB_SFTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GB_SFTB.Controls.Add(this.LB_SFTBS);
+            this.GB_SFTB.Controls.Add(this.LB_SFTBV);
+            this.GB_SFTB.Location = new System.Drawing.Point(11, 293);
+            this.GB_SFTB.Name = "GB_SFTB";
+            this.GB_SFTB.Size = new System.Drawing.Size(364, 112);
+            this.GB_SFTB.TabIndex = 9;
+            this.GB_SFTB.TabStop = false;
+            this.GB_SFTB.Text = "So Far The Best";
+            // 
+            // LB_SFTBS
+            // 
+            this.LB_SFTBS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LB_SFTBS.ForeColor = System.Drawing.Color.ForestGreen;
+            this.LB_SFTBS.Location = new System.Drawing.Point(5, 50);
+            this.LB_SFTBS.Name = "LB_SFTBS";
+            this.LB_SFTBS.Size = new System.Drawing.Size(351, 40);
+            this.LB_SFTBS.TabIndex = 1;
+            this.LB_SFTBS.Text = "Solution:";
+            // 
+            // LB_SFTBV
+            // 
+            this.LB_SFTBV.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LB_SFTBV.ForeColor = System.Drawing.Color.Brown;
+            this.LB_SFTBV.Location = new System.Drawing.Point(5, 25);
+            this.LB_SFTBV.Name = "LB_SFTBV";
+            this.LB_SFTBV.Size = new System.Drawing.Size(351, 25);
+            this.LB_SFTBV.TabIndex = 0;
+            this.LB_SFTBV.Text = "Objective: ";
             // 
             // GB_Model
             // 
@@ -197,6 +232,56 @@ namespace r09546042_TerryYang_Assignment10
             this.GB_Action.TabIndex = 7;
             this.GB_Action.TabStop = false;
             this.GB_Action.Text = "Action";
+            // 
+            // NUD_Interval
+            // 
+            this.NUD_Interval.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.NUD_Interval.Location = new System.Drawing.Point(201, 185);
+            this.NUD_Interval.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.NUD_Interval.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NUD_Interval.Name = "NUD_Interval";
+            this.NUD_Interval.Size = new System.Drawing.Size(160, 22);
+            this.NUD_Interval.TabIndex = 12;
+            this.NUD_Interval.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.NUD_Interval.ValueChanged += new System.EventHandler(this.NUD_Interval_ValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(136, 185);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 19);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Interval: ";
+            // 
+            // CB_Animation
+            // 
+            this.CB_Animation.AutoSize = true;
+            this.CB_Animation.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CB_Animation.Location = new System.Drawing.Point(10, 184);
+            this.CB_Animation.Name = "CB_Animation";
+            this.CB_Animation.Size = new System.Drawing.Size(94, 23);
+            this.CB_Animation.TabIndex = 9;
+            this.CB_Animation.Text = "Animation";
+            this.CB_Animation.UseVisualStyleBackColor = true;
+            this.CB_Animation.CheckedChanged += new System.EventHandler(this.CB_Animation_CheckedChanged);
             // 
             // BTN_Reset_Solver
             // 
@@ -291,28 +376,6 @@ namespace r09546042_TerryYang_Assignment10
             this.TS_BTN_Open_file.Text = "Open...";
             this.TS_BTN_Open_file.Click += new System.EventHandler(this.TS_BTN_Open_file_Click);
             // 
-            // CB_Animation
-            // 
-            this.CB_Animation.AutoSize = true;
-            this.CB_Animation.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CB_Animation.Location = new System.Drawing.Point(10, 184);
-            this.CB_Animation.Name = "CB_Animation";
-            this.CB_Animation.Size = new System.Drawing.Size(94, 23);
-            this.CB_Animation.TabIndex = 9;
-            this.CB_Animation.Text = "Animation";
-            this.CB_Animation.UseVisualStyleBackColor = true;
-            this.CB_Animation.CheckedChanged += new System.EventHandler(this.CB_Animation_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(136, 185);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 19);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Interval: ";
-            // 
             // Timer
             // 
             this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
@@ -332,69 +395,6 @@ namespace r09546042_TerryYang_Assignment10
             this.Pro_Bar.Name = "Pro_Bar";
             this.Pro_Bar.Size = new System.Drawing.Size(300, 20);
             // 
-            // GB_SFTB
-            // 
-            this.GB_SFTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.GB_SFTB.Controls.Add(this.LB_SFTBS);
-            this.GB_SFTB.Controls.Add(this.LB_SFTBV);
-            this.GB_SFTB.Location = new System.Drawing.Point(11, 293);
-            this.GB_SFTB.Name = "GB_SFTB";
-            this.GB_SFTB.Size = new System.Drawing.Size(364, 112);
-            this.GB_SFTB.TabIndex = 9;
-            this.GB_SFTB.TabStop = false;
-            this.GB_SFTB.Text = "So Far The Best";
-            // 
-            // NUD_Interval
-            // 
-            this.NUD_Interval.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.NUD_Interval.Location = new System.Drawing.Point(201, 185);
-            this.NUD_Interval.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.NUD_Interval.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.NUD_Interval.Name = "NUD_Interval";
-            this.NUD_Interval.Size = new System.Drawing.Size(160, 22);
-            this.NUD_Interval.TabIndex = 12;
-            this.NUD_Interval.Value = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.NUD_Interval.ValueChanged += new System.EventHandler(this.NUD_Interval_ValueChanged);
-            // 
-            // LB_SFTBV
-            // 
-            this.LB_SFTBV.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LB_SFTBV.ForeColor = System.Drawing.Color.Brown;
-            this.LB_SFTBV.Location = new System.Drawing.Point(5, 25);
-            this.LB_SFTBV.Name = "LB_SFTBV";
-            this.LB_SFTBV.Size = new System.Drawing.Size(351, 25);
-            this.LB_SFTBV.TabIndex = 0;
-            this.LB_SFTBV.Text = "Objective: ";
-            // 
-            // LB_SFTBS
-            // 
-            this.LB_SFTBS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LB_SFTBS.ForeColor = System.Drawing.Color.ForestGreen;
-            this.LB_SFTBS.Location = new System.Drawing.Point(5, 50);
-            this.LB_SFTBS.Name = "LB_SFTBS";
-            this.LB_SFTBS.Size = new System.Drawing.Size(351, 40);
-            this.LB_SFTBS.TabIndex = 1;
-            this.LB_SFTBS.Text = "Solution:";
-            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -407,7 +407,7 @@ namespace r09546042_TerryYang_Assignment10
             this.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main_Form";
-            this.Text = "Form1";
+            this.Text = "Particle Swam Optimization for Continuous Optimization Problems";
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -419,16 +419,16 @@ namespace r09546042_TerryYang_Assignment10
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CT_Main)).EndInit();
+            this.GB_SFTB.ResumeLayout(false);
             this.GB_Model.ResumeLayout(false);
             this.GB_Model.PerformLayout();
             this.GB_Action.ResumeLayout(false);
             this.GB_Action.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Interval)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.GB_SFTB.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.NUD_Interval)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

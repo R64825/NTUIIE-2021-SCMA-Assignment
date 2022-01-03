@@ -59,7 +59,7 @@ namespace TerryYang_GA_Library
                 for (int column = 0; column < number_Of_Genes; column++)
                     chromosomes[row][column] = (byte)rnd.Next(2);
                 
-                objective_Value[row] = objective_Function(chromosomes[row], true);               
+                objective_Value[row] = objective_Function(chromosomes[row]);               
             }
             //Add_Hard_Violation(population_Size, Penatly_Factor);
         }
@@ -104,7 +104,7 @@ namespace TerryYang_GA_Library
                 }
             }
             // compared objectives for crossoverd child
-            objective_Value[after_mutation] = objective_Function(chromosomes[after_mutation], true);
+            objective_Value[after_mutation] = objective_Function(chromosomes[after_mutation]);
         }
         public override void Generate_Crossovered_Chromosomes(int father, int mother, int child_a, int child_b)
         {
@@ -185,8 +185,8 @@ namespace TerryYang_GA_Library
                     break;
             }
             // compared objectives for crossoverd child
-            objective_Value[child_a] = objective_Function(chromosomes[child_a], true);
-            objective_Value[child_b] = objective_Function(chromosomes[child_b], true);
+            objective_Value[child_a] = objective_Function(chromosomes[child_a]);
+            objective_Value[child_b] = objective_Function(chromosomes[child_b]);
         }
         public override void Clear_Chromosomes_and_Objectives_Array()
         {

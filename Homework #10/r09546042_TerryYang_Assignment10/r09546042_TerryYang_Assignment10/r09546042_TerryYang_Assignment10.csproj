@@ -48,6 +48,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="TerryYang_GA_Library">
+      <HintPath>..\..\..\Homework #8\r09546042_TerryYang_Assignment08\TerryYang_GA_Library\bin\Debug\TerryYang_GA_Library.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main_Form.cs">

@@ -45,7 +45,7 @@ namespace TerryYang_GA_Library
                 for (int column = 0; column < number_Of_Genes; column++)
                     chromosomes[row] = Shuffle_A_Array(number_Of_Genes, number_Of_Genes);
 
-                objective_Value[row] = objective_Function(chromosomes[row], false);
+                objective_Value[row] = objective_Function(chromosomes[row]);
             }
         }
         #region Crossover Methods
@@ -707,10 +707,9 @@ namespace TerryYang_GA_Library
                 default:
                     break;
             }
-            objective_Value[child_a] = objective_Function(chromosomes[child_a], false);
-            objective_Value[child_b] = objective_Function(chromosomes[child_b], false);
-        }
-        
+            objective_Value[child_a] = objective_Function(chromosomes[child_a]);
+            objective_Value[child_b] = objective_Function(chromosomes[child_b]);
+        }        
         public override void Generate_Mutated_Chromosomes(int before_mutation, int after_mutation, bool[] mutated_Flag)
         {
             switch (Mutation_Type)
@@ -733,7 +732,7 @@ namespace TerryYang_GA_Library
                 default:
                     break;
             }
-            objective_Value[after_mutation] = objective_Function(chromosomes[after_mutation], false);
+            objective_Value[after_mutation] = objective_Function(chromosomes[after_mutation]);
         }
         #endregion
     }

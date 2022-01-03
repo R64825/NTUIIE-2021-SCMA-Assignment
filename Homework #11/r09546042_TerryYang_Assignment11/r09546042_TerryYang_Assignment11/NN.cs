@@ -217,6 +217,6 @@ namespace r09546042_TerryYang_Assignment11
             out_confusingTable = out_confusingTable;
         return (float)successedCount / (float)(number_of_Data - number_of_Trainning_Data);
         }
-
+        
     }
 }

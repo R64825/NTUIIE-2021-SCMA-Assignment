@@ -72,7 +72,7 @@ namespace r09546042_TerryYang_Assignment07
                 }
 
                 // print shorst time
-                TB_shortest_time.Text = Get_Setup_Time_Total_Binary(GA_Bin_Solver.So_Far_The_Best_Soulution, false).ToString();
+                TB_shortest_time.Text = Get_Setup_Time_Total_Binary(GA_Bin_Solver.So_Far_The_Best_Soulution).ToString();
 
                 // show model status
                 TSL_Iteration.Text = $"Iteration: {GA_Bin_Solver.Current_Iteration}";
@@ -236,7 +236,7 @@ namespace r09546042_TerryYang_Assignment07
             }
             return violations;
         }
-        public double Get_Setup_Time_Total_Binary(byte[] solution, bool violation)
+        public double Get_Setup_Time_Total_Binary(byte[] solution)
         {
             double objective_Value = 0 ;
             int[] violations = new int[number_of_Jobs * 2];
@@ -251,17 +251,17 @@ namespace r09546042_TerryYang_Assignment07
                 }
             }
 
-            if (violation)
-            {
-                violations = Return_Chromosomes_Violations(solution);
-                if (RDB_Maxi.Checked)
-                    objective_Value = objective_Value - violations.Sum() * GA_Bin_Solver.Penalty;
-                else
-                    objective_Value = objective_Value + violations.Sum() * GA_Bin_Solver.Penalty;                
-            }
+            //if (violation)
+            //{
+            //    violations = Return_Chromosomes_Violations(solution);
+            //    if (RDB_Maxi.Checked)
+            //        objective_Value = objective_Value - violations.Sum() * GA_Bin_Solver.Penalty;
+            //    else
+            //        objective_Value = objective_Value + violations.Sum() * GA_Bin_Solver.Penalty;                
+            //}
             return objective_Value;
         }
-        public double Get_Setup_Time_Total_Permutation(int[] solution, bool violation)
+        public double Get_Setup_Time_Total_Permutation(int[] solution)
         {
             double total_Time = 0;
             for (int i = 0; i < solution.Length; i++)
@@ -451,9 +451,9 @@ namespace r09546042_TerryYang_Assignment07
             else
             {
                 if (RDB_Binary.Checked)
-                    GA_Bin_Solver.Run_To_End(iteration);
+                    GA_Bin_Solver.Run_To_End();
                 else
-                    GA_Per_Solver.Run_To_End(iteration);
+                    GA_Per_Solver.Run_To_End();
                 Update_New_Solutions_on_UI();
             }
             Chart_Main.ChartAreas[0].RecalculateAxesScale();

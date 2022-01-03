@@ -30,7 +30,7 @@ namespace TerryYang_GA_Library
 
         protected int[] indices;
 
-        protected T[][] selected_Chromosomes;
+        private T[][] selected_Chromosomes;
         protected double[] selected_Objective_Value;
         protected int number_Of_Genes;
         
@@ -47,7 +47,7 @@ namespace TerryYang_GA_Library
         GA_Mutation_Type mutation_Type = GA_Mutation_Type.Chromosomes_Number_Based;
         GA_Selection_Type selection_Type = GA_Selection_Type.Deterministic;
 
-        public delegate double Objective_Function<S>(S[] a_Solution, bool violation);
+        public delegate double Objective_Function<S>(S[] a_Solution);
 
         int iteration_Limit = 200;
         int number_Of_Crossovered_Children;
@@ -124,7 +124,9 @@ namespace TerryYang_GA_Library
         public int Current_Iteration { get => iteration_ID; set => iteration_ID = value; }
         [Category("Iteration")]
         public int Iteration_Limit { get => iteration_Limit; set => iteration_Limit = value; }
-        
+        [Browsable(false)]
+        public T[][] Selected_Chromosomes { get => selected_Chromosomes; set => selected_Chromosomes = value; }
+
         #endregion
 
         #region Constructor
@@ -220,7 +222,7 @@ namespace TerryYang_GA_Library
             {
                 selected_Chromosomes[Sel_index][j] = chromosomes[Chro_index][j];
             }
-            selected_Objective_Value[Sel_index] =  objective_Function(selected_Chromosomes[Sel_index], true);
+            selected_Objective_Value[Sel_index] =  objective_Function(selected_Chromosomes[Sel_index]);
             //selected_Objective_Value[Sel_index] = Return_Chromosomes_Violations(selected_Chromosomes[Sel_index]).Sum() ;
         }      
         public void Perform_Selection_Operation()
@@ -509,9 +511,9 @@ namespace TerryYang_GA_Library
             iteration_ID++;
         }
 
-        public void Run_To_End(int Iteration)
+        public void Run_To_End()
         {
-            for (int i = 0; i < Iteration; i++)
+            for (int i = 0; i < iteration_Limit; i++)
                 Run_One_Iteration();
         }
         #endregion
