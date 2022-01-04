@@ -30,9 +30,9 @@ namespace r09546042_TerryYang_Assignment11
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -43,9 +43,10 @@ namespace r09546042_TerryYang_Assignment11
             this.BTN_Reset_NN = new System.Windows.Forms.Button();
             this.LSB_Layers = new System.Windows.Forms.ListBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.Main_Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button1 = new System.Windows.Forms.Button();
+            this.NUD_Layer = new System.Windows.Forms.NumericUpDown();
+            this.NUD_Node = new System.Windows.Forms.NumericUpDown();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -53,9 +54,10 @@ namespace r09546042_TerryYang_Assignment11
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Main_Chart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Layer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Node)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -78,12 +80,12 @@ namespace r09546042_TerryYang_Assignment11
             // 
             // toolStripButton1
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(52, 22);
+            this.toolStripButton1.Text = "Open...";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // splitContainer1
@@ -94,6 +96,8 @@ namespace r09546042_TerryYang_Assignment11
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.NUD_Node);
+            this.splitContainer1.Panel1.Controls.Add(this.NUD_Layer);
             this.splitContainer1.Panel1.Controls.Add(this.PPTG);
             this.splitContainer1.Panel1.Controls.Add(this.BTN_Run_To_End);
             this.splitContainer1.Panel1.Controls.Add(this.BTN_Train_One);
@@ -149,13 +153,12 @@ namespace r09546042_TerryYang_Assignment11
             this.LSB_Layers.FormattingEnabled = true;
             this.LSB_Layers.ItemHeight = 12;
             this.LSB_Layers.Items.AddRange(new object[] {
-            "3",
-            "4",
-            "5"});
+            "3"});
             this.LSB_Layers.Location = new System.Drawing.Point(12, 16);
             this.LSB_Layers.Name = "LSB_Layers";
-            this.LSB_Layers.Size = new System.Drawing.Size(239, 136);
+            this.LSB_Layers.Size = new System.Drawing.Size(137, 136);
             this.LSB_Layers.TabIndex = 0;
+            this.LSB_Layers.SelectedIndexChanged += new System.EventHandler(this.LSB_Layers_SelectedIndexChanged);
             // 
             // splitContainer2
             // 
@@ -166,45 +169,71 @@ namespace r09546042_TerryYang_Assignment11
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.chart1);
+            this.splitContainer2.Panel1.Controls.Add(this.Main_Chart);
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.button1);
             this.splitContainer2.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer2_Panel2_Paint);
             this.splitContainer2.Size = new System.Drawing.Size(586, 543);
             this.splitContainer2.SplitterDistance = 195;
             this.splitContainer2.TabIndex = 0;
             // 
-            // chart1
+            // Main_Chart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
-            this.chart1.Location = new System.Drawing.Point(34, 27);
-            this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(540, 145);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            chartArea3.Name = "ChartArea1";
+            this.Main_Chart.ChartAreas.Add(chartArea3);
+            this.Main_Chart.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend3.Name = "Legend1";
+            this.Main_Chart.Legends.Add(legend3);
+            this.Main_Chart.Location = new System.Drawing.Point(0, 0);
+            this.Main_Chart.Name = "Main_Chart";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.Main_Chart.Series.Add(series3);
+            this.Main_Chart.Size = new System.Drawing.Size(586, 195);
+            this.Main_Chart.TabIndex = 0;
+            this.Main_Chart.Text = "chart1";
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // button1
+            // NUD_Layer
             // 
-            this.button1.Location = new System.Drawing.Point(474, 280);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.NUD_Layer.Location = new System.Drawing.Point(155, 101);
+            this.NUD_Layer.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NUD_Layer.Name = "NUD_Layer";
+            this.NUD_Layer.Size = new System.Drawing.Size(120, 22);
+            this.NUD_Layer.TabIndex = 5;
+            this.NUD_Layer.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NUD_Layer.ValueChanged += new System.EventHandler(this.NUD_Layer_ValueChanged);
+            // 
+            // NUD_Node
+            // 
+            this.NUD_Node.Location = new System.Drawing.Point(155, 130);
+            this.NUD_Node.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NUD_Node.Name = "NUD_Node";
+            this.NUD_Node.Size = new System.Drawing.Size(120, 22);
+            this.NUD_Node.TabIndex = 6;
+            this.NUD_Node.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NUD_Node.ValueChanged += new System.EventHandler(this.NUD_Node_ValueChanged);
             // 
             // Main_Form
             // 
@@ -224,10 +253,11 @@ namespace r09546042_TerryYang_Assignment11
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Main_Chart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Layer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Node)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,8 +276,9 @@ namespace r09546042_TerryYang_Assignment11
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart Main_Chart;
+        private System.Windows.Forms.NumericUpDown NUD_Node;
+        private System.Windows.Forms.NumericUpDown NUD_Layer;
     }
 }
 

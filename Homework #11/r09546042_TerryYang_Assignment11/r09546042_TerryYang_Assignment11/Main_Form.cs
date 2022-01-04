@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace r09546042_TerryYang_Assignment11
 {
     public partial class Main_Form : Form
     {
         BbackPropagationMLP the_MLP;
+        Series series_RMSE;
         int[] n;
         public Main_Form()
         {
@@ -21,12 +23,13 @@ namespace r09546042_TerryYang_Assignment11
 
         private void BTN_Reset_NN_Click(object sender, EventArgs e)
         {
-            int[] hidden_Neurons = new int[LSB_Layers.Items.Count];
-            for (int i = 0; i < hidden_Neurons.Length; i++)
-                hidden_Neurons[i] = int.Parse(LSB_Layers.Items[i].ToString());
-            the_MLP = new BbackPropagationMLP();
-            the_MLP.ResetWeightsAndInitialCondition(hidden_Neurons);
+            int[] number_of_Layer = new int[LSB_Layers.Items.Count];
+            for (int i = 0; i < LSB_Layers.Items.Count; i++)
+                number_of_Layer[i] = int.Parse(LSB_Layers.Items[i].ToString());
+            the_MLP.Reset_Weights_And_Initial_Condition(number_of_Layer);
 
+            series_RMSE = the_MLP.Series_RMSE;
+            Main_Chart.Series.Add(series_RMSE);
             PPTG.SelectedObject = the_MLP;
         }
 
@@ -34,7 +37,10 @@ namespace r09546042_TerryYang_Assignment11
         {
             OpenFileDialog dlg = new OpenFileDialog();
             if (dlg.ShowDialog() != DialogResult.OK) return;
-            
+            the_MLP = new BbackPropagationMLP();
+            the_MLP.Read_Data(dlg.FileName);
+
+            PPTG.SelectedObject = the_MLP;
         }
 
         private void BTN_Train_One_Click(object sender, EventArgs e)
@@ -46,6 +52,7 @@ namespace r09546042_TerryYang_Assignment11
         private void BTN_Run_To_End_Click(object sender, EventArgs e)
         {
             the_MLP.Train_To_End();
+            
             int[,] confusing_Table;
             float correctneww = the_MLP.TestingClassification(out confusing_Table);
 
@@ -101,6 +108,31 @@ namespace r09546042_TerryYang_Assignment11
         {
             if (the_MLP == null) return;
             //the_MLP.DrawMLP(e);
+        }
+
+        private void NUD_Layer_ValueChanged(object sender, EventArgs e)
+        {
+            if (NUD_Layer.Value>LSB_Layers.Items.Count)
+            {
+                LSB_Layers.Items.Add("4");
+            }
+            else if(NUD_Layer.Value < LSB_Layers.Items.Count)
+            {
+                LSB_Layers.Items.RemoveAt(LSB_Layers.Items.Count-1);
+            }
+            
+        }
+
+        private void NUD_Node_ValueChanged(object sender, EventArgs e)
+        {
+            if (LSB_Layers.SelectedItem == null) return;
+            LSB_Layers.Items[ LSB_Layers.SelectedIndex] = NUD_Node.Value.ToString();
+        }
+
+        private void LSB_Layers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (LSB_Layers.SelectedItem == null) return;
+            NUD_Node.Value = decimal.Parse( LSB_Layers.SelectedItem.ToString());
         }
     }
 }
