@@ -29,8 +29,10 @@ namespace r09546042_TerryYang_Assignment11
             the_MLP.Reset_Weights_And_Initial_Condition(number_of_Layer);
 
             series_RMSE = the_MLP.Series_RMSE;
+            Main_Chart.Series.Clear();
             Main_Chart.Series.Add(series_RMSE);
             PPTG.SelectedObject = the_MLP;
+            splitContainer2.Panel2.Refresh();
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -46,6 +48,8 @@ namespace r09546042_TerryYang_Assignment11
         private void BTN_Train_One_Click(object sender, EventArgs e)
         {
             the_MLP.TrainAnEpoch();
+            splitContainer2.Panel2.Refresh();
+            Main_Chart.ChartAreas[0].RecalculateAxesScale();
             // update the RMSE progress line
         }
 
@@ -56,21 +60,11 @@ namespace r09546042_TerryYang_Assignment11
             int[,] confusing_Table;
             float correctneww = the_MLP.TestingClassification(out confusing_Table);
 
+            splitContainer2.Panel2.Refresh();
+            Main_Chart.ChartAreas[0].RecalculateAxesScale();
             // display results on the form
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Graphics g = splitContainer2.Panel2.CreateGraphics();
-            Rectangle r = new Rectangle(10, 10, 80, 60);
-            Point p1 = new Point(10, 10);
-            Point p2 = new Point(100, 50);
-            g.FillEllipse(Brushes.Gold, r);
-            g.DrawEllipse(Pens.Red, r);
-            g.DrawRectangle(Pens.Blue, r);
-            g.DrawLine(Pens.Maroon, p1, p2);
-            g.DrawString("NTUIE", this.Font, Brushes.Gold, 10, 10);
-        }
 
         public void Draw_MLP(Graphics g, Rectangle bounds)
         {
@@ -107,7 +101,7 @@ namespace r09546042_TerryYang_Assignment11
         private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
         {
             if (the_MLP == null) return;
-            //the_MLP.DrawMLP(e);
+            the_MLP.Draw_MLP(e.Graphics,e.ClipRectangle);
         }
 
         private void NUD_Layer_ValueChanged(object sender, EventArgs e)
@@ -133,6 +127,19 @@ namespace r09546042_TerryYang_Assignment11
         {
             if (LSB_Layers.SelectedItem == null) return;
             NUD_Node.Value = decimal.Parse( LSB_Layers.SelectedItem.ToString());
+        }
+
+        private void MLP_Print_DOC_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            the_MLP.Draw_MLP(e.Graphics, e.PageBounds);
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            PrintPreviewDialog dlg = new PrintPreviewDialog();
+            dlg.Document = MLP_Print_DOC;
+            if (dlg.ShowDialog() != DialogResult.OK) return;
+
         }
     }
 }

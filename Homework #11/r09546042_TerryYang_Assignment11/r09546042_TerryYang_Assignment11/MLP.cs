@@ -12,8 +12,9 @@ namespace r09546042_TerryYang_Assignment11
 {
     class BbackPropagationMLP
     {
-        Random rnd = new Random();
+
         #region Data Field
+        Random rnd = new Random();
         float[][] x; // neuron values
         float[][][] w; // weights
         float[][][] dw;
@@ -99,10 +100,115 @@ namespace r09546042_TerryYang_Assignment11
                     training_Ratio = value;
             }
         }
-
+        [Browsable(false)]
         public Series Series_RMSE { get => series_RMSE; set => series_RMSE = value; }
 
         #endregion
+
+        #region Helping Function
+        
+        /// <summary>
+        /// Randomly shuffle the orders of the data in the data set.
+        /// </summary>
+        private void Shuffle_Indices_Array(int n, int take)
+        {
+            // shuffle current indices from 0 up to limit-1
+            data_Indices = Enumerable.Range(0, n).OrderBy(x => rnd.Next()).Take(take).ToList().ToArray();
+        }
+
+        public float Activation_Function(float v)
+        {
+            return (float)(1.0 / (Math.Exp(-v) + 1.0));
+        }
+
+        public void Draw_MLP(Graphics g, Rectangle bounds)
+        {
+            if (n == null) return;
+            
+            Font font = new Font("Arial", 10.0f);
+            StringFormat sf = new StringFormat();
+            sf.Alignment = StringAlignment.Center;
+            sf.LineAlignment = StringAlignment.Center;
+            Point p1 = new Point(0, 0);
+            Point p2 = new Point(0, 0);
+            int box_width = bounds.Height / 10;
+            if (box_width < 10) box_width = 10;
+            Rectangle dot = new Rectangle(0, 0, 5, 5);
+            dot.Width = 5;
+            Rectangle box = new Rectangle(0, 0, box_width, box_width);
+            box_width /= 2;
+            
+
+            int width = bounds.Width / n.Length;
+            int x_off = width / 2;
+            for (int l = 0; l < n.Length; l++)
+            {
+                int h = bounds.Height / n[l];
+                int y_off = h / 2;
+                int x1 = x_off + width * l;
+                int next_x;
+                int next_y;
+                int next_h;
+                int w_gap =0;
+                if (l!=n.Length-1)   w_gap= w[l+1][0].Length;
+                for (int r = 0; r < n[l]; r++)
+                {
+                    int y = y_off + r * h;
+
+                    if (r == 0)
+                    {
+                        dot.X = x1 - 2;
+                        dot.Y = y - 2;
+                        
+
+                        // draw line
+                        if (l != n.Length - 1)
+                        {
+                            for (int i = 1; i < n[l + 1]; i++)
+                            {
+                                next_x = (width / 2) + width * (l + 1);
+                                next_h = bounds.Height / n[l+1];
+                                next_y = (next_h / 2) + i * next_h;
+                                g.DrawLine(Pens.Maroon, dot.X, dot.Y, next_x, next_y);
+                                g.DrawString( Math.Round(w[l+1][r][i-1],2).ToString(), font, Brushes.Black, next_x - 3*box_width, next_y - w_gap * (font.Size+2));
+                            }
+                        }
+
+                        // draw dot 
+                        g.FillRectangle(Brushes.Red, dot);
+                    }
+                    else 
+                    {
+                        box.X = x1 - box_width;
+                        box.Y = y - box_width;
+
+                        // draw line
+                        if (l != n.Length - 1)
+                        {
+                            for (int i = 1; i < n[l + 1]; i++)
+                            {
+                                next_x = (width / 2) + width * (l + 1);
+                                next_h = bounds.Height / n[l + 1];
+                                next_y = (next_h / 2) + i * next_h;
+                                g.DrawLine(Pens.Maroon, box.X+box_width, box.Y + box_width, next_x, next_y);
+                                g.DrawString(Math.Round(w[l + 1][i - 1][r], 2).ToString(), font, Brushes.Black, next_x - 3 * box_width, next_y - w_gap * (font.Size + 2) + r* (font.Size + 2));
+                            }
+                        }                     
+
+                        // draw circle
+                        g.FillEllipse(Brushes.White, box);
+                        g.DrawEllipse(Pens.Black, box);
+                        g.DrawString(Math.Round(x[l][r-1], 2).ToString(), font, Brushes.Maroon, box, sf);
+                    }
+                   
+                }
+
+
+            }
+        }
+        #endregion
+
+        #region Run Time Function
         /// <summary>
         /// Read in the data set from the given file stream. Configure the portions of training 
         /// and testing data subsets. Original data are stored, bounds on each component of 
@@ -126,7 +232,7 @@ namespace r09546042_TerryYang_Assignment11
             input_Max = new float[dimension_inupt];
             input_Min = new float[dimension_inupt];
 
-            data_Indices = new int[number_of_Data] ;
+            data_Indices = new int[number_of_Data];
             for (int r = 0; r < dimension_inupt; r++)
             {
                 input_Max[r] = float.MinValue;
@@ -152,7 +258,7 @@ namespace r09546042_TerryYang_Assignment11
             series_RMSE = new Series("RMSE");
             series_RMSE.ChartType = SeriesChartType.Line;
             series_RMSE.Color = Color.Red;
-            series_RMSE.BorderWidth = 2;           
+            series_RMSE.BorderWidth = 2;
         }
         /// <summary>
         /// Configure the topology of the NN with the user specified numbers of hidden 
@@ -167,7 +273,7 @@ namespace r09546042_TerryYang_Assignment11
             n = new int[layerNumber];
             n[0] = dimension_inupt + 1;
             for (int i = 0; i < hiddenNeuronNumbers.Length; i++)
-                n[i + 1] = hiddenNeuronNumbers[i]+1;
+                n[i + 1] = hiddenNeuronNumbers[i] + 1;
             n[layerNumber - 1] = dimension_Target + 1;
 
             x = new float[layerNumber][];
@@ -177,7 +283,7 @@ namespace r09546042_TerryYang_Assignment11
             w = new float[layerNumber][][];
             for (int l = 0; l < layerNumber; l++)
             {
-                x[l] = new float[n[l]-1];
+                x[l] = new float[n[l] - 1];
                 if (l > 0)
                 {
                     e[l] = new float[n[l] - 1];
@@ -193,25 +299,19 @@ namespace r09546042_TerryYang_Assignment11
                             // initialize weight value
                             w[l][p][q] = (float)(2 * (rnd.NextDouble() - 0.5));
                         }
-                    }                                              
+                    }
                 }
 
             }
         }
-        /// <summary>
-        /// Randomly shuffle the orders of the data in the data set.
-        /// </summary>
-        private void Shuffle_Indices_Array(int n, int take)
-        {
-            // shuffle current indices from 0 up to limit-1
-            data_Indices = Enumerable.Range(0, n).OrderBy(x => rnd.Next()).Take(take).ToList().ToArray();
-        }
+
         /// <summary>
         /// Randomly set values of weights between [-1,1] and randomly shuffle the orders of all
         /// the datum in the data set. Reset value of initial eta and root mean square to 0.0.
         /// </summary>
-        public void Reset_Weights_And_Initial_Condition(int [] hiddenNeuronNumbers)
+        public void Reset_Weights_And_Initial_Condition(int[] hiddenNeuronNumbers)
         {
+            //series_RMSE.Points.Clear();
             Configure_NeuralNetwork(hiddenNeuronNumbers);
             number_of_Trainning_Data = (int)(training_Ratio * number_of_Data);
             for (int i = 0; i < number_of_Data; i++) data_Indices[i] = i;
@@ -219,16 +319,15 @@ namespace r09546042_TerryYang_Assignment11
 
             eta = initialEta;
         }
+
         /// <summary>
         /// Sequentially loop through each training datum of the training data whose indices are
         /// randomly shuffled in vectorIndices[] array, to perform on-line training of the NN.
         /// </summary>
         public void TrainAnEpoch()
         {
-            float errorSquareSum = 0.0f;
-            float sumation = 0.0f;
             int layerNumberMinusOne = layerNumber - 1;
-
+            double error_sumation = 0.0;
             float xw;
             float ew;
 
@@ -236,7 +335,7 @@ namespace r09546042_TerryYang_Assignment11
             for (int data = 0; data < number_of_Trainning_Data; data++)
             {
                 // read input data
-                for (int i = 0; i < inputWidth; i++)
+                for (int i = 0; i < dimension_inupt; i++)
                     x[0][i] = original_Inputs[data_Indices[data], i];
                 // update v, x
                 for (int l = 1; l < v.Length; l++)
@@ -245,50 +344,43 @@ namespace r09546042_TerryYang_Assignment11
                     {
                         xw = 0;
                         for (int q = 1; q < w[l][j].Length; q++)
-                            xw += x[l - 1][q-1] * w[l][j][q];
+                            xw += x[l - 1][q - 1] * w[l][j][q];
                         v[l][j] = xw + w[l][j][0];
                         x[l][j] = Activation_Function(v[l][j]);
                     }
                 }
 
                 // read target data
-                int end_index = n.Length-1;
+                int end_index = n.Length - 1;
                 for (int i = 0; i < dimension_Target; i++)
-                    e[end_index][i] = -eta * 
-                        (original_Targets[data_Indices[data], i] - x[end_index - 1][i]) *
-                        (x[end_index][i])*
-                        (1- x[end_index][i]);
+                    e[end_index][i] = -eta *
+                        (original_Targets[data_Indices[data], i] - x[end_index][i]) *
+                        (x[end_index][i]) *
+                        (1 - x[end_index][i]);
 
                 // update e
-                for (int l = end_index-1; l >= 1 ; l--)
+                for (int l = end_index - 1; l >= 1; l--)
                 {
-                    for (int j = 0; j < e[l].Length; j++)
+                    for (int r = 0; r < e[l].Length; r++)
                     {
                         ew = 0;
-                        for (int i = 0; i < e[l+1].Length; i++)
-                            ew = e[l + 1][i] * w[l + 1][j][i + 1];                       
-                        e[l][j] = x[l][j] * (1 - x[l][j]) * ew;
+                        for (int s = 0; s < e[l + 1].Length; s++) // last layer e number
+                            ew += e[l + 1][s] * w[l + 1][s][r + 1];
+                        e[l][r] = x[l][r] * (1 - x[l][r]) * ew;
                     }
                 }
 
                 // update w
                 for (int l = 1; l < w.Length; l++)
                 {
-
                     for (int i = 0; i < w[l].Length; i++)
                     {
-                        w[l][i][0] = -eta * e[l][i];
+                        w[l][i][0] = w[l][i][0] + (-eta * e[l][i]);
                         for (int j = 1; j < w[l][i].Length; j++)
-                            w[l][i][j] = -eta * x[l - 1][j - 1] * e[l][i];                       
+                            w[l][i][j] = w[l][i][j] + (-eta * e[l][i] * x[l - 1][j - 1]);
                     }
                 }
 
-                // calcualte error term (fix)
-                errorSquareSum = 0;
-                for (int i = 0; i < e[e.Length-1].Length; i++)                
-                    errorSquareSum += e[e.Length-1][i];
-                sumation += errorSquareSum;
-                
             }
             /// forward computing for all neuro values.
 
@@ -299,11 +391,16 @@ namespace r09546042_TerryYang_Assignment11
             /// update weights for all weights by using epsilon and neuron values.
 
             /// At the end of the epoch,  update step size(learning rate) of the updating amount
+
+            // calculate RMSE
+            for (int data = number_of_Trainning_Data; data < number_of_Data; data++)
+                error_sumation += ComputeResults(data_Indices[data]).Sum();
+            error_sumation = error_sumation / (float)(number_of_Data - number_of_Trainning_Data);
+            error_sumation = Math.Sqrt(((double)error_sumation));
+            series_RMSE.Points.AddXY(current_Epoch, error_sumation);
             eta = eta * learning_Rate;
-            series_RMSE.Points.AddXY(current_Epoch, sumation);
             current_Epoch++;
         }
-
         public void Train_To_End()
         {
             for (int i = current_Epoch; i < epoch_Limit; i++)
@@ -311,12 +408,9 @@ namespace r09546042_TerryYang_Assignment11
                 TrainAnEpoch();
             }
         }
+        #endregion
 
-        public float Activation_Function(float v)
-        {
-            return (float) (1.0 / (Math.Exp(-v) + 1.0));
-        }
-
+        #region Measuring Result
         /// <summary>
         /// Compute the output vector for an input vector. Both vectors are in the raw
         /// format. The input vector is subject to scaling first before forward computing.
@@ -324,14 +418,40 @@ namespace r09546042_TerryYang_Assignment11
         /// </summary>
         /// <param name="input">input vector in raw format</param>
         /// <returns>output vector in raw format</returns>
-        public float[] ComputeResults(float[] input)
+        public float[] ComputeResults(int data)
         {
-            float[] results = null;
-            float v;
-            results = new float[dimension_Target];
+            float[] error_term = new float[dimension_Target];
+            float xw;
 
-        return results;
+            // read input data
+            for (int i = 0; i < dimension_inupt; i++)
+                x[0][i] = original_Inputs[data_Indices[data], i];
+            // update v, x
+            for (int l = 1; l < v.Length; l++)
+            {
+                for (int j = 0; j < v[l].Length; j++)
+                {
+                    xw = 0;
+                    for (int q = 1; q < w[l][j].Length; q++)
+                        xw += x[l - 1][q - 1] * w[l][j][q];
+                    v[l][j] = xw + w[l][j][0];
+                    x[l][j] = Activation_Function(v[l][j]);
+                }
+            }
+
+            // calculate e
+            int end_index = n.Length - 1;
+            for (int i = 0; i < dimension_Target; i++)
+            {
+                error_term[i] =
+                        (original_Targets[data_Indices[data], i] - x[end_index][i]);
+                error_term[i] = error_term[i] * error_term[i];
+            }
+
+
+            return error_term;
         }
+
         /// <summary>
         /// If the data set is a classification data set, test the data to generate confusing table.
         /// The index of the largest component of the target vector is the targeted class id.
@@ -346,10 +466,32 @@ namespace r09546042_TerryYang_Assignment11
         {
             out_confusingTable = new int[dimension_Target, dimension_Target];
             int successedCount = 0;
-            float v;
-            out_confusingTable = out_confusingTable;
-        return (float)successedCount / (float)(number_of_Data - number_of_Trainning_Data);
+            float xw;
+
+            for (int data = number_of_Trainning_Data; data < number_of_Data; data++)
+            {
+                // read input data
+                for (int i = 0; i < dimension_inupt; i++)
+                    x[0][i] = original_Inputs[data_Indices[data], i];
+
+                // update v, x
+                for (int l = 1; l < v.Length; l++)
+                {
+                    for (int j = 0; j < v[l].Length; j++)
+                    {
+                        xw = 0;
+                        for (int q = 1; q < w[l][j].Length; q++)
+                            xw += x[l - 1][q - 1] * w[l][j][q];
+                        v[l][j] = xw + w[l][j][0];
+                        x[l][j] = Activation_Function(v[l][j]);
+                    }
+                }
+
+                //out_confusingTable
+            }
+
+            return (float)successedCount / (float)(number_of_Data - number_of_Trainning_Data);
         }
-        
+        #endregion
     }
 }
