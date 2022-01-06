@@ -238,17 +238,17 @@ namespace r09546042_TerryYang_Assignment11
                 input_Max[r] = float.MinValue;
                 input_Min[r] = float.MaxValue;
             }
-            for (int data = 0; data < number_of_Data; data++)
-            {
-                for (int input = 0; input < dimension_inupt; input++)
-                {
-                    if (original_Inputs[data, input] > input_Max[input])
-                        input_Max[input] = original_Inputs[data, input];
-                    if (original_Inputs[data, input] < input_Min[input])
-                        input_Min[input] = original_Inputs[data, input];
-                }
+            //for (int data = 0; data < number_of_Data; data++)
+            //{
+            //    for (int input = 0; input < dimension_inupt; input++)
+            //    {
+            //        if (original_Inputs[data, input] > input_Max[input])
+            //            input_Max[input] = original_Inputs[data, input];
+            //        if (original_Inputs[data, input] < input_Min[input])
+            //            input_Min[input] = original_Inputs[data, input];
+            //    }
                 
-            }
+            //}
 
             original_Targets = new float[number_of_Data, dimension_Target];
             for (int r = 0; r < number_of_Data; r++)
