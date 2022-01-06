@@ -170,7 +170,7 @@ namespace r09546042_TerryYang_Assignment11
                                 next_h = bounds.Height / n[l+1];
                                 next_y = (next_h / 2) + i * next_h;
                                 g.DrawLine(Pens.Maroon, dot.X, dot.Y, next_x, next_y);
-                                g.DrawString( Math.Round(w[l+1][r][i-1],2).ToString(), font, Brushes.Black, next_x - 3*box_width, next_y - w_gap * (font.Size+2));
+                                g.DrawString( Math.Round(w[l+1][i-1][r],2).ToString(), font, Brushes.Black, next_x - 3*box_width, next_y - w_gap * (font.Size+2));
                             }
                         }
 
@@ -311,13 +311,14 @@ namespace r09546042_TerryYang_Assignment11
         /// </summary>
         public void Reset_Weights_And_Initial_Condition(int[] hiddenNeuronNumbers)
         {
-            //series_RMSE.Points.Clear();
+            series_RMSE.Points.Clear();
             Configure_NeuralNetwork(hiddenNeuronNumbers);
             number_of_Trainning_Data = (int)(training_Ratio * number_of_Data);
             for (int i = 0; i < number_of_Data; i++) data_Indices[i] = i;
             Shuffle_Indices_Array(number_of_Data, number_of_Data);
 
             eta = initialEta;
+            current_Epoch = 0;
         }
 
         /// <summary>
