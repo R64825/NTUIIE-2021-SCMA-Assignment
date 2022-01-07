@@ -33,19 +33,20 @@ namespace r09546042_TerryYang_Assignment11
         public void Update_Test_Classification_UI()
         {
             float correctneww = the_MLP.TestingClassification();
+            StringFormat sm ;
             string str = string.Empty;
 
             for (int i = 0; i < the_MLP.Dimension_Target; i++)
             {
                 for (int j = 0; j < the_MLP.Dimension_Target; j++)
                 {
-                    str += the_MLP.ConfusingTable[i, j].ToString() + " ";
+                    str += string.Format("{000 }" ,the_MLP.ConfusingTable[i, j])  + "    ";
                 }
                 str += "\n ";
             }
 
             LB_Test.Text = "Correctness: " + Math.Round((correctneww / the_MLP.Number_of_Testing_Data), 3).ToString() + "\n"
-                + $"({correctneww}/{the_MLP.Number_of_Testing_Data})" + "\n" + "\n"
+                + $" ( {correctneww} / {the_MLP.Number_of_Testing_Data} )" + "\n" + "\n"
                 + "Confusion matrix:" + "\n" + str;
         }
         #endregion
