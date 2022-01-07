@@ -29,6 +29,7 @@ namespace r09546042_TerryYang_Assignment11
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
@@ -57,6 +58,8 @@ namespace r09546042_TerryYang_Assignment11
             this.LB_RMSE = new System.Windows.Forms.Label();
             this.LB_Test = new System.Windows.Forms.Label();
             this.BTN_Classification = new System.Windows.Forms.Button();
+            this.Timer = new System.Windows.Forms.Timer(this.components);
+            this.CB_Animation = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -263,6 +266,7 @@ namespace r09546042_TerryYang_Assignment11
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.CB_Animation);
             this.groupBox2.Controls.Add(this.BTN_Classification);
             this.groupBox2.Controls.Add(this.LB_Test);
             this.groupBox2.Controls.Add(this.LB_RMSE);
@@ -360,7 +364,7 @@ namespace r09546042_TerryYang_Assignment11
             // LB_RMSE
             // 
             this.LB_RMSE.AutoSize = true;
-            this.LB_RMSE.Location = new System.Drawing.Point(168, 21);
+            this.LB_RMSE.Location = new System.Drawing.Point(153, 56);
             this.LB_RMSE.Name = "LB_RMSE";
             this.LB_RMSE.Size = new System.Drawing.Size(42, 12);
             this.LB_RMSE.TabIndex = 4;
@@ -369,7 +373,7 @@ namespace r09546042_TerryYang_Assignment11
             // LB_Test
             // 
             this.LB_Test.AutoSize = true;
-            this.LB_Test.Location = new System.Drawing.Point(170, 91);
+            this.LB_Test.Location = new System.Drawing.Point(153, 91);
             this.LB_Test.Name = "LB_Test";
             this.LB_Test.Size = new System.Drawing.Size(90, 36);
             this.LB_Test.TabIndex = 5;
@@ -377,13 +381,31 @@ namespace r09546042_TerryYang_Assignment11
             // 
             // BTN_Classification
             // 
-            this.BTN_Classification.Location = new System.Drawing.Point(7, 126);
+            this.BTN_Classification.Location = new System.Drawing.Point(148, 21);
             this.BTN_Classification.Name = "BTN_Classification";
-            this.BTN_Classification.Size = new System.Drawing.Size(136, 29);
+            this.BTN_Classification.Size = new System.Drawing.Size(124, 29);
             this.BTN_Classification.TabIndex = 6;
             this.BTN_Classification.Text = "Classification test";
             this.BTN_Classification.UseVisualStyleBackColor = true;
             this.BTN_Classification.Click += new System.EventHandler(this.BTN_Classification_Click);
+            // 
+            // Timer
+            // 
+            this.Timer.Interval = 1;
+            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
+            // 
+            // CB_Animation
+            // 
+            this.CB_Animation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_Animation.AutoSize = true;
+            this.CB_Animation.Location = new System.Drawing.Point(9, 125);
+            this.CB_Animation.Name = "CB_Animation";
+            this.CB_Animation.Size = new System.Drawing.Size(73, 16);
+            this.CB_Animation.TabIndex = 7;
+            this.CB_Animation.Text = "Animation";
+            this.CB_Animation.UseVisualStyleBackColor = true;
+            this.CB_Animation.CheckedChanged += new System.EventHandler(this.CB_Animation_CheckedChanged);
             // 
             // Main_Form
             // 
@@ -452,6 +474,8 @@ namespace r09546042_TerryYang_Assignment11
         private System.Windows.Forms.Button BTN_Classification;
         private System.Windows.Forms.Label LB_Test;
         private System.Windows.Forms.Label LB_RMSE;
+        private System.Windows.Forms.CheckBox CB_Animation;
+        private System.Windows.Forms.Timer Timer;
     }
 }
 

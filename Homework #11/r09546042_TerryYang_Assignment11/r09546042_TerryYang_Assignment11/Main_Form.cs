@@ -20,14 +20,37 @@ namespace r09546042_TerryYang_Assignment11
         {
             InitializeComponent();
         }
+        #region Update UI
 
         public void Update_UI()
         {
             splitContainer2.Panel2.Refresh();
             Main_Chart.ChartAreas[0].RecalculateAxesScale();
 
-            LB_RMSE.Text = "RMSE: " + Math.Round( the_MLP.RMSE, 3).ToString();
+            LB_RMSE.Text = "RMSE: " + Math.Round(the_MLP.RMSE, 3).ToString();
         }
+
+        public void Update_Test_Classification_UI()
+        {
+            float correctneww = the_MLP.TestingClassification();
+            string str = string.Empty;
+
+            for (int i = 0; i < the_MLP.Dimension_Target; i++)
+            {
+                for (int j = 0; j < the_MLP.Dimension_Target; j++)
+                {
+                    str += the_MLP.ConfusingTable[i, j].ToString() + " ";
+                }
+                str += "\n ";
+            }
+
+            LB_Test.Text = "Correctness: " + Math.Round((correctneww / the_MLP.Number_of_Testing_Data), 3).ToString() + "\n"
+                + $"({correctneww}/{the_MLP.Number_of_Testing_Data})" + "\n" + "\n"
+                + "Confusion matrix:" + "\n" + str;
+        }
+        #endregion
+
+        #region BTN Event
         private void BTN_Reset_NN_Click(object sender, EventArgs e)
         {
             int[] number_of_Layer = new int[LSB_Layers.Items.Count];
@@ -40,6 +63,9 @@ namespace r09546042_TerryYang_Assignment11
             Main_Chart.Series.Add(series_RMSE);
             PPTG.SelectedObject = the_MLP;
             splitContainer2.Panel2.Refresh();
+
+            Update_UI();
+            Update_Test_Classification_UI();
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -56,52 +82,40 @@ namespace r09546042_TerryYang_Assignment11
         {
             the_MLP.TrainAnEpoch();
             Update_UI();
+            //Test_Classification_UI()
             // update the RMSE progress line
         }
 
         private void BTN_Run_To_End_Click(object sender, EventArgs e)
         {
-            the_MLP.Train_To_End();
             
-            int[,] confusing_Table;
-            float correctneww = the_MLP.TestingClassification();
-
+            if (CB_Animation.Checked && the_MLP.Nn_Finished == false)
+            {
+                Timer.Enabled = true;
+            }
+            else
+            {
+                the_MLP.Train_To_End();
+            }
             Update_UI();
+            Update_Test_Classification_UI();
             // display results on the form
         }
-
-
-        public void Draw_MLP(Graphics g, Rectangle bounds)
+        private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            Font my_Font = new Font("Arial", 10.0f);
-            Point p1 = new Point(0, 0);
-            Point p2 = new Point(0, 0);
-            int box_width = bounds.Height / 10;
-            if (box_width < 10) box_width = 10;
-            Rectangle box = new Rectangle(0, 0, box_width, box_width);
-            box_width /= 2;
+            PrintPreviewDialog dlg = new PrintPreviewDialog();
+            dlg.Document = MLP_Print_DOC;
+            if (dlg.ShowDialog() != DialogResult.OK) return;
 
-            if (n == null) return;
-            int w = bounds.Width / n.Length;
-            int x_off = w / 2;
-            for (int l = 0; l < n.Length; l++)
-            {
-                int h = n[l] / n[l];
-                int y_off = h / 2;
-                int x = x_off + w * l;
-
-                for (int r = 0; r < n[l]; r++)
-                {
-                    int y = y_off + r * h;
-                    box.X = x - box_width;
-                    box.Y = y - box_width;
-                    g.FillEllipse(Brushes.White, box);
-                    g.DrawEllipse(Pens.Black, box);
-                }
-            }
-
-            
         }
+        private void BTN_Classification_Click(object sender, EventArgs e)
+        {
+            Update_Test_Classification_UI();
+        }
+        #endregion
+
+
+
 
         private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
         {
@@ -140,31 +154,33 @@ namespace r09546042_TerryYang_Assignment11
             the_MLP.Draw_MLP(e.Graphics, e.PageBounds);
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            PrintPreviewDialog dlg = new PrintPreviewDialog();
-            dlg.Document = MLP_Print_DOC;
-            if (dlg.ShowDialog() != DialogResult.OK) return;
+        
 
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (the_MLP.Nn_Finished == false)
+            {
+                the_MLP.TrainAnEpoch();
+
+                Main_Chart.ChartAreas[0].RecalculateAxesScale();
+                LB_RMSE.Text = "RMSE: " + Math.Round(the_MLP.RMSE, 3).ToString();
+                //Update_UI();
+            }
+            else
+            {
+                Timer.Enabled = false;
+                CB_Animation.Checked = false;
+                Update_UI();
+                Update_Test_Classification_UI();
+            }
         }
 
-        private void BTN_Classification_Click(object sender, EventArgs e)
-        {          
-            float correctneww = the_MLP.TestingClassification();
-            string str = string.Empty;
-
-            for (int i = 0; i < the_MLP.Dimension_Target; i++)
+        private void CB_Animation_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CB_Animation.Checked == false)
             {
-                for (int j = 0; j < the_MLP.Dimension_Target; j++)
-                {
-                    str += the_MLP.ConfusingTable[i, j].ToString()+" ";
-                }
-                str +="\n ";
+                Timer.Enabled = false;
             }
-
-            LB_Test.Text = "Correctness: " + Math.Round( (correctneww/the_MLP.Number_of_Testing_Data),3).ToString() + "\n" 
-                + $"({correctneww}/{the_MLP.Number_of_Testing_Data})"+ "\n"+"\n"              
-                + "Confusion matrix:" + "\n" + str;
         }
     }
 }

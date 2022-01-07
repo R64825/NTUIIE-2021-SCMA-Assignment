@@ -50,6 +50,7 @@ namespace r09546042_TerryYang_Assignment11
 
         double rmse = 0;
         Series series_RMSE;
+        bool nn_Finished = false;
         #endregion
 
         #region Properties
@@ -107,6 +108,8 @@ namespace r09546042_TerryYang_Assignment11
         public int Dimension_Target { get => dimension_Target; set => dimension_Target = value; }
         [Browsable(false)]
         public int[,] ConfusingTable { get => confusing_Table; set => confusing_Table = value; }
+        [Browsable(false)]
+        public bool Nn_Finished { get => nn_Finished; set => nn_Finished = value; }
 
         #endregion
 
@@ -336,6 +339,7 @@ namespace r09546042_TerryYang_Assignment11
 
             eta = initialEta;
             current_Epoch = 0;
+            nn_Finished = false;
         }
 
         /// <summary>
@@ -418,7 +422,12 @@ namespace r09546042_TerryYang_Assignment11
             rmse = error_sumation;
             series_RMSE.Points.AddXY(current_Epoch, error_sumation);
             eta = eta * learning_Rate;
-            current_Epoch++;
+
+            if (current_Epoch < epoch_Limit)
+                current_Epoch++;
+            else
+                nn_Finished = true;
+
         }
         public void Train_To_End()
         {
