@@ -24,6 +24,7 @@ namespace r09546042_TerryYang_Assignment11
         int dimension_inupt; // dimension of input vector
         int number_of_Data; // number of instances on the data set
         int number_of_Trainning_Data; // number of instances that are serving as training data
+        int number_of_Testing_Data;
         float[,] original_Inputs; // original instances of input vectors (without normalization)
         float[,] inputs; // normalized input vectors
         float[] input_Max; // upper bounds on all components of input vectors
@@ -47,20 +48,12 @@ namespace r09546042_TerryYang_Assignment11
         float eta; // step size that specify the update amount on each weight
         float initialEta = 0.7f; // initial step size, specified by the user
 
+        double rmse = 0;
         Series series_RMSE;
         #endregion
 
         #region Properties
-        [Category("Traing Setting")]
-        /// <summary>
-        /// The factor of reducing the eta epoch by epoch. That is
-        /// eta <-- LearningRate * eta
-        /// </summary>
-        public float LearningRate
-        {
-            get { return learning_Rate; }
-            set { learning_Rate = value; }
-        }
+
 
         [Category("Traing Setting")]
         /// <summary>
@@ -81,6 +74,10 @@ namespace r09546042_TerryYang_Assignment11
         }
 
         [Category("Traing Setting")]
+        /// <summary>
+        /// The factor of reducing the eta epoch by epoch. That is
+        /// eta <-- LearningRate * eta
+        /// </summary>
         public float Learning_Rate { get => learning_Rate; set => learning_Rate = value; }
         [Category("Traing Setting")]
         public int Epoch_Limit
@@ -102,11 +99,19 @@ namespace r09546042_TerryYang_Assignment11
         }
         [Browsable(false)]
         public Series Series_RMSE { get => series_RMSE; set => series_RMSE = value; }
+        [Browsable(false)]
+        public double RMSE { get => rmse; set => rmse = value; }
+        [Browsable(false)]
+        public int Number_of_Testing_Data { get => number_of_Testing_Data; set => number_of_Testing_Data = value; }
+        [Browsable(false)]
+        public int Dimension_Target { get => dimension_Target; set => dimension_Target = value; }
+        [Browsable(false)]
+        public int[,] ConfusingTable { get => confusing_Table; set => confusing_Table = value; }
 
         #endregion
 
         #region Helping Function
-        
+
         /// <summary>
         /// Randomly shuffle the orders of the data in the data set.
         /// </summary>
@@ -325,6 +330,7 @@ namespace r09546042_TerryYang_Assignment11
             series_RMSE.Points.Clear();
             Configure_NeuralNetwork(hiddenNeuronNumbers);
             number_of_Trainning_Data = (int)(training_Ratio * number_of_Data);
+            number_of_Testing_Data = number_of_Data - number_of_Trainning_Data;
             for (int i = 0; i < number_of_Data; i++) data_Indices[i] = i;
             Shuffle_Indices_Array(number_of_Data, number_of_Data);
 
@@ -409,6 +415,7 @@ namespace r09546042_TerryYang_Assignment11
                 error_sumation += ComputeResults(data_Indices[data]).Sum();
             error_sumation = error_sumation / (float)(number_of_Data - number_of_Trainning_Data);
             error_sumation = Math.Sqrt(((double)error_sumation));
+            rmse = error_sumation;
             series_RMSE.Points.AddXY(current_Epoch, error_sumation);
             eta = eta * learning_Rate;
             current_Epoch++;
@@ -474,11 +481,22 @@ namespace r09546042_TerryYang_Assignment11
         /// <param name="out_confusingTable">generated confusing table</param>
         /// <returns>the ratio between the number of correctly classified testing data and the total number of testing 
         //data.</returns>
-        public float TestingClassification(out int[,] out_confusingTable)
+        public float TestingClassification()
         {
-            out_confusingTable = new int[dimension_Target, dimension_Target];
-            int successedCount = 0;
+            confusing_Table = new int[dimension_Target, dimension_Target];
+            int successed_Count = 0;
+            float x_max = float.MinValue;
+            int guess_Type=-1;
+            int real_Type=-1;
             float xw;
+
+            for (int i = 0; i < dimension_Target; i++)
+            {
+                for (int j = 0; j < dimension_Target; j++)
+                {
+                    confusing_Table[i, j] = 0;
+                }
+            }
 
             for (int data = number_of_Trainning_Data; data < number_of_Data; data++)
             {
@@ -497,12 +515,31 @@ namespace r09546042_TerryYang_Assignment11
                         v[l][j] = xw + w[l][j][0];
                         x[l][j] = Activation_Function(v[l][j]);
                     }
+
+                    
+                    if (l == v.Length-1) // define classification type
+                    {
+                        x_max = float.MinValue;
+                        for (int i = 0; i < x[l].Length; i++)                       
+                            if (x_max < x[l][i]) x_max = x[l][i];
+
+                        for (int i = 0; i < x[l].Length; i++)
+                        {
+                            if (x[l][i] == x_max) guess_Type = i;
+                        }
+                    }
                 }
 
+                // check classification
+                for (int i = 0; i < dimension_Target; i++)               
+                    if (original_Targets[data_Indices[data],i] == 1) real_Type = i;
+                if (guess_Type == real_Type) successed_Count++;
+
+                confusing_Table[guess_Type, real_Type] += 1;
                 //out_confusingTable
             }
 
-            return (float)successedCount / (float)(number_of_Data - number_of_Trainning_Data);
+            return (float)successed_Count;
         }
         #endregion
     }

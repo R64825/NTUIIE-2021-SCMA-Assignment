@@ -21,6 +21,13 @@ namespace r09546042_TerryYang_Assignment11
             InitializeComponent();
         }
 
+        public void Update_UI()
+        {
+            splitContainer2.Panel2.Refresh();
+            Main_Chart.ChartAreas[0].RecalculateAxesScale();
+
+            LB_RMSE.Text = "RMSE: " + Math.Round( the_MLP.RMSE, 3).ToString();
+        }
         private void BTN_Reset_NN_Click(object sender, EventArgs e)
         {
             int[] number_of_Layer = new int[LSB_Layers.Items.Count];
@@ -48,8 +55,7 @@ namespace r09546042_TerryYang_Assignment11
         private void BTN_Train_One_Click(object sender, EventArgs e)
         {
             the_MLP.TrainAnEpoch();
-            splitContainer2.Panel2.Refresh();
-            Main_Chart.ChartAreas[0].RecalculateAxesScale();
+            Update_UI();
             // update the RMSE progress line
         }
 
@@ -58,10 +64,9 @@ namespace r09546042_TerryYang_Assignment11
             the_MLP.Train_To_End();
             
             int[,] confusing_Table;
-            float correctneww = the_MLP.TestingClassification(out confusing_Table);
+            float correctneww = the_MLP.TestingClassification();
 
-            splitContainer2.Panel2.Refresh();
-            Main_Chart.ChartAreas[0].RecalculateAxesScale();
+            Update_UI();
             // display results on the form
         }
 
@@ -131,6 +136,7 @@ namespace r09546042_TerryYang_Assignment11
 
         private void MLP_Print_DOC_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
+            if (the_MLP == null) return;
             the_MLP.Draw_MLP(e.Graphics, e.PageBounds);
         }
 
@@ -140,6 +146,25 @@ namespace r09546042_TerryYang_Assignment11
             dlg.Document = MLP_Print_DOC;
             if (dlg.ShowDialog() != DialogResult.OK) return;
 
+        }
+
+        private void BTN_Classification_Click(object sender, EventArgs e)
+        {          
+            float correctneww = the_MLP.TestingClassification();
+            string str = string.Empty;
+
+            for (int i = 0; i < the_MLP.Dimension_Target; i++)
+            {
+                for (int j = 0; j < the_MLP.Dimension_Target; j++)
+                {
+                    str += the_MLP.ConfusingTable[i, j].ToString()+" ";
+                }
+                str +="\n ";
+            }
+
+            LB_Test.Text = "Correctness: " + Math.Round( (correctneww/the_MLP.Number_of_Testing_Data),3).ToString() + "\n" 
+                + $"({correctneww}/{the_MLP.Number_of_Testing_Data})"+ "\n"+"\n"              
+                + "Confusion matrix:" + "\n" + str;
         }
     }
 }
