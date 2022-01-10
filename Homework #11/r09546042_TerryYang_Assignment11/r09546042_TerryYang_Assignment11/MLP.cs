@@ -453,7 +453,7 @@ namespace r09546042_TerryYang_Assignment11
 
             // read input data
             for (int i = 0; i < dimension_inupt; i++)
-                x[0][i] = (original_Inputs[data_Indices[data], i] - input_Min[i]) / (input_Max[i] - input_Min[i]);
+                x[0][i] = (original_Inputs[data, i] - input_Min[i]) / (input_Max[i] - input_Min[i]);
             // update v, x
             for (int l = 1; l < v.Length; l++)
             {
@@ -472,7 +472,7 @@ namespace r09546042_TerryYang_Assignment11
             for (int i = 0; i < dimension_Target; i++)
             {
                 error_term[i] =
-                        (original_Targets[data_Indices[data], i] - x[end_index][i]);
+                        (original_Targets[data, i] - x[end_index][i]);
                 error_term[i] = error_term[i] * error_term[i];
             }
 

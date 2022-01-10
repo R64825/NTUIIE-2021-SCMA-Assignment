@@ -47,6 +47,10 @@ namespace r09546042_TerryYang_Assignment11
             this.label1 = new System.Windows.Forms.Label();
             this.NUD_Layer = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.CB_Animation = new System.Windows.Forms.CheckBox();
+            this.BTN_Classification = new System.Windows.Forms.Button();
+            this.LB_Test = new System.Windows.Forms.Label();
+            this.LB_RMSE = new System.Windows.Forms.Label();
             this.BTN_Reset_NN = new System.Windows.Forms.Button();
             this.BTN_Run_To_End = new System.Windows.Forms.Button();
             this.BTN_Train_One = new System.Windows.Forms.Button();
@@ -55,11 +59,7 @@ namespace r09546042_TerryYang_Assignment11
             this.Main_Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.MLP_Print_DOC = new System.Drawing.Printing.PrintDocument();
-            this.LB_RMSE = new System.Windows.Forms.Label();
-            this.LB_Test = new System.Windows.Forms.Label();
-            this.BTN_Classification = new System.Windows.Forms.Button();
             this.Timer = new System.Windows.Forms.Timer(this.components);
-            this.CB_Animation = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -281,6 +281,47 @@ namespace r09546042_TerryYang_Assignment11
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Action";
             // 
+            // CB_Animation
+            // 
+            this.CB_Animation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_Animation.AutoSize = true;
+            this.CB_Animation.Location = new System.Drawing.Point(9, 125);
+            this.CB_Animation.Name = "CB_Animation";
+            this.CB_Animation.Size = new System.Drawing.Size(73, 16);
+            this.CB_Animation.TabIndex = 7;
+            this.CB_Animation.Text = "Animation";
+            this.CB_Animation.UseVisualStyleBackColor = true;
+            this.CB_Animation.CheckedChanged += new System.EventHandler(this.CB_Animation_CheckedChanged);
+            // 
+            // BTN_Classification
+            // 
+            this.BTN_Classification.Location = new System.Drawing.Point(148, 21);
+            this.BTN_Classification.Name = "BTN_Classification";
+            this.BTN_Classification.Size = new System.Drawing.Size(124, 29);
+            this.BTN_Classification.TabIndex = 6;
+            this.BTN_Classification.Text = "Classification test";
+            this.BTN_Classification.UseVisualStyleBackColor = true;
+            this.BTN_Classification.Click += new System.EventHandler(this.BTN_Classification_Click);
+            // 
+            // LB_Test
+            // 
+            this.LB_Test.AutoSize = true;
+            this.LB_Test.Location = new System.Drawing.Point(153, 91);
+            this.LB_Test.Name = "LB_Test";
+            this.LB_Test.Size = new System.Drawing.Size(90, 36);
+            this.LB_Test.TabIndex = 5;
+            this.LB_Test.Text = "Correctness:\r\n\r\nConfusion matrix:";
+            // 
+            // LB_RMSE
+            // 
+            this.LB_RMSE.AutoSize = true;
+            this.LB_RMSE.Location = new System.Drawing.Point(153, 56);
+            this.LB_RMSE.Name = "LB_RMSE";
+            this.LB_RMSE.Size = new System.Drawing.Size(42, 12);
+            this.LB_RMSE.TabIndex = 4;
+            this.LB_RMSE.Text = "RMSE: ";
+            // 
             // BTN_Reset_NN
             // 
             this.BTN_Reset_NN.Location = new System.Drawing.Point(6, 21);
@@ -361,51 +402,10 @@ namespace r09546042_TerryYang_Assignment11
             // 
             this.MLP_Print_DOC.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.MLP_Print_DOC_PrintPage);
             // 
-            // LB_RMSE
-            // 
-            this.LB_RMSE.AutoSize = true;
-            this.LB_RMSE.Location = new System.Drawing.Point(153, 56);
-            this.LB_RMSE.Name = "LB_RMSE";
-            this.LB_RMSE.Size = new System.Drawing.Size(42, 12);
-            this.LB_RMSE.TabIndex = 4;
-            this.LB_RMSE.Text = "RMSE: ";
-            // 
-            // LB_Test
-            // 
-            this.LB_Test.AutoSize = true;
-            this.LB_Test.Location = new System.Drawing.Point(153, 91);
-            this.LB_Test.Name = "LB_Test";
-            this.LB_Test.Size = new System.Drawing.Size(90, 36);
-            this.LB_Test.TabIndex = 5;
-            this.LB_Test.Text = "Correctness:\r\n\r\nConfusion matrix:";
-            // 
-            // BTN_Classification
-            // 
-            this.BTN_Classification.Location = new System.Drawing.Point(148, 21);
-            this.BTN_Classification.Name = "BTN_Classification";
-            this.BTN_Classification.Size = new System.Drawing.Size(124, 29);
-            this.BTN_Classification.TabIndex = 6;
-            this.BTN_Classification.Text = "Classification test";
-            this.BTN_Classification.UseVisualStyleBackColor = true;
-            this.BTN_Classification.Click += new System.EventHandler(this.BTN_Classification_Click);
-            // 
             // Timer
             // 
             this.Timer.Interval = 1;
             this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
-            // 
-            // CB_Animation
-            // 
-            this.CB_Animation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CB_Animation.AutoSize = true;
-            this.CB_Animation.Location = new System.Drawing.Point(9, 125);
-            this.CB_Animation.Name = "CB_Animation";
-            this.CB_Animation.Size = new System.Drawing.Size(73, 16);
-            this.CB_Animation.TabIndex = 7;
-            this.CB_Animation.Text = "Animation";
-            this.CB_Animation.UseVisualStyleBackColor = true;
-            this.CB_Animation.CheckedChanged += new System.EventHandler(this.CB_Animation_CheckedChanged);
             // 
             // Main_Form
             // 
@@ -417,7 +417,7 @@ namespace r09546042_TerryYang_Assignment11
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main_Form";
-            this.Text = "Main Form";
+            this.Text = "Back Propagation NN System";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
