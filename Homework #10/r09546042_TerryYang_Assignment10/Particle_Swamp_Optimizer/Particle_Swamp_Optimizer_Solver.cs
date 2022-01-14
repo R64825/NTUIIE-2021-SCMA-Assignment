@@ -19,9 +19,9 @@ namespace Particle_Swamp_Optimizer
         Random rnd = new Random();
         COP.OptimizationType optimization_Type = OptimizationType.Minimization;
         int number_Of_Variables;
-        int number_Of_Particles = 10;
+        int number_Of_Particles = 20;
         int iteration = 0;
-        int iteration_Limit = 100;
+        int iteration_Limit = 300;
         double[][] positions;
         double[] objectives;
         double[][] self_Best_Position;
@@ -220,6 +220,9 @@ namespace Particle_Swamp_Optimizer
         #region Run Time Function
         public void Reset()
         {
+            so_Far_the_Best_Position = new double[number_Of_Variables];
+            self_Best_Objectives = new double[number_Of_Particles];
+
             // optimization type
             if (optimization_Type == OptimizationType.Maximization) so_Far_the_Best_Objective = double.MinValue;
             else so_Far_the_Best_Objective = double.MaxValue;
@@ -259,13 +262,14 @@ namespace Particle_Swamp_Optimizer
             series_iteration_The_Best_Objective.BorderWidth = 2;
             series_iteration_Average_Objective.BorderWidth = 2;
             series_so_Far_The_Best_Objective.BorderWidth = 2;
+
+            Update_so_Far_the_Best_Position();
         }
         public void Run_One_Iteration()
         {
             Move_All_Particles_to_New_Positions();
             Update_so_Far_the_Best_Position();
-            Update_Series();
-            
+            Update_Series();            
         }
         public void Run_To_End()
         {

@@ -70,7 +70,7 @@ namespace r09546042_TerryYang_Assignment10
             GB_Action.Enabled = true;
         }
 
-        private void BTN_Create_PSO_Solver_Click(object sender, EventArgs e)
+        private void BTN_Create_Solver_Click(object sender, EventArgs e)
         {
             if (RDB_PSO.Checked)
             {

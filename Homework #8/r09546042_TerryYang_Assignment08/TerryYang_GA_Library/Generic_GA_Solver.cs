@@ -157,7 +157,7 @@ namespace TerryYang_GA_Library
             series_SoFarTheBest.BorderWidth = 2;
             series_Average = new Series("Solutions average");
             series_Average.ChartType = SeriesChartType.Line;
-            series_Average.Color = Color.Lime;
+            series_Average.Color = Color.Green;
             series_Average.BorderWidth = 2;
             series_IterationTheBest = new Series("Iteration the best solution");
             series_IterationTheBest.ChartType = SeriesChartType.Line;
@@ -274,7 +274,7 @@ namespace TerryYang_GA_Library
                 // copy
                 for (int l = 0; l < locations.Length; l++)
                     Copy_This_Chromosomes_to_a_Selection(indices[locations[l]], l);
-                #endregion 
+                #endregion
             }
             else // deterministic
             {

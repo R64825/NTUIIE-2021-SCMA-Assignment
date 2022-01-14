@@ -336,7 +336,7 @@ namespace r09546042_TerryYang_Assignment10
             this.BTN_Create_PSO_Solver.TabIndex = 0;
             this.BTN_Create_PSO_Solver.Text = "Create solver";
             this.BTN_Create_PSO_Solver.UseVisualStyleBackColor = true;
-            this.BTN_Create_PSO_Solver.Click += new System.EventHandler(this.BTN_Create_PSO_Solver_Click);
+            this.BTN_Create_PSO_Solver.Click += new System.EventHandler(this.BTN_Create_Solver_Click);
             // 
             // PPTG_Solver
             // 
