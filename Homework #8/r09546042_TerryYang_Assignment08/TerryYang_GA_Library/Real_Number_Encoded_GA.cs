@@ -221,7 +221,7 @@ namespace TerryYang_GA_Library
             switch (Mutation_Type)
             {
                 case Real_Number_Mutation_Type.Dynamic_Mutation:
-
+                    Dynamin_Mutation(before_mutation, after_mutation,mutated_Flag);
                     break;
                 default:
                     break;

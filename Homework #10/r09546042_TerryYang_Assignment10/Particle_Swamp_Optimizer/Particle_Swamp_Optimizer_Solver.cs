@@ -29,6 +29,7 @@ namespace Particle_Swamp_Optimizer
 
         double[] so_Far_the_Best_Position;
         double so_Far_the_Best_Objective;
+        double initial_Best_OBJ;
 
         double self_Factor = 0.5;
         double social_Factor = 0.5;
@@ -47,6 +48,8 @@ namespace Particle_Swamp_Optimizer
         // define public properties for those modifiable parameters
 
         #region Properties
+        [Browsable(false)]
+        public double Initial_Best_OBJ { get => initial_Best_OBJ; set => initial_Best_OBJ = value; }
         [Browsable(false)]
         public double[][] Positions { get => positions; set => positions = value; }
         [Category("Parameters")]
@@ -200,21 +203,7 @@ namespace Particle_Swamp_Optimizer
             // self best position and objective, if new position is better
             // calculate so for the best solution and objectives if iteration best is better than so far the best 
         }
-        private void Update_Series()
-        {
-            series_iteration_Average_Objective.Points.AddXY(iteration, iteration_Average);
-            series_so_Far_The_Best_Objective.Points.AddXY(iteration, so_Far_the_Best_Objective);
-            series_iteration_The_Best_Objective.Points.AddXY(iteration, iteration_Best);
-        }
-        public string Flatten_Position(double[] pos)
-        {
-            string str = string.Empty;
-            for (int d = 0; d < number_Of_Variables; d++)
-            {
-                str += Math.Round( pos[d],3).ToString() + ", ";
-            }
-            return str;
-        }
+        
         #endregion
 
         #region Run Time Function
@@ -247,6 +236,7 @@ namespace Particle_Swamp_Optimizer
                 objectives[p] = the_Objective_Function(positions[p]);
             }
 
+            iteration = 0;
 
 
             // series
@@ -264,6 +254,7 @@ namespace Particle_Swamp_Optimizer
             series_so_Far_The_Best_Objective.BorderWidth = 2;
 
             Update_so_Far_the_Best_Position();
+            initial_Best_OBJ = so_Far_the_Best_Objective;
         }
         public void Run_One_Iteration()
         {
@@ -275,6 +266,30 @@ namespace Particle_Swamp_Optimizer
         {
             for (int i = iteration; i < iteration_Limit; i++)
                 Run_One_Iteration();           
+        }
+        #endregion
+
+        #region Helping Function
+        public void Set_Chart_Area(ChartArea ca)
+        {
+            series_iteration_Average_Objective.ChartArea = ca.Name;
+            series_iteration_The_Best_Objective.ChartArea = ca.Name;
+            series_so_Far_The_Best_Objective.ChartArea = ca.Name;
+        }
+        private void Update_Series()
+        {
+            series_iteration_Average_Objective.Points.AddXY(iteration, iteration_Average);
+            series_so_Far_The_Best_Objective.Points.AddXY(iteration, so_Far_the_Best_Objective);
+            series_iteration_The_Best_Objective.Points.AddXY(iteration, iteration_Best);
+        }
+        public string Flatten_Position(double[] pos)
+        {
+            string str = string.Empty;
+            for (int d = 0; d < number_Of_Variables; d++)
+            {
+                str += Math.Round(pos[d], 3).ToString() + ", ";
+            }
+            return str;
         }
         #endregion
     }

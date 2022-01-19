@@ -21,7 +21,7 @@ namespace ABC_library
 
         Random rnd;
         int[] indices;
-        int[][] direct;
+        int[,] direct;
         double[][] source_Loc;
         double[][] source_Loc_OL;
         double[][] bees;
@@ -45,6 +45,7 @@ namespace ABC_library
         // indication
         double iter_Average;
         double iter_Best_Obj;
+        double initial_Best_OBJ;
         double so_Far_Best_OBJ;
         double[] so_Far_Best_Sol;
 
@@ -115,6 +116,8 @@ namespace ABC_library
         public double So_Far_Best_OBJ { get => so_Far_Best_OBJ; set => so_Far_Best_OBJ = value; }
         [Browsable(false)]
         public double[] So_Far_Best_Sol { get => so_Far_Best_Sol; set => so_Far_Best_Sol = value; }
+        [Browsable(false)]
+        public double Initial_Best_OBJ { get => initial_Best_OBJ; set => initial_Best_OBJ = value; }
 
         #endregion
 
@@ -176,13 +179,22 @@ namespace ABC_library
             bees = new double[num_Of_Pop][];
             for (int p = 0; p < num_Of_Pop; p++)
                 bees[p] = new double[num_Of_Dim];
+
             source_Loc = new double[num_Of_Food][];
             for (int f = 0; f < num_Of_Food; f++)
                 source_Loc[f] = new double[num_Of_Dim];
+
             source_Loc_OL = new double[num_Of_Onlooker][];
             for (int ol = 0; ol < num_Of_Onlooker; ol++)
                 source_Loc_OL[ol] = new double[num_Of_Dim];
 
+            direct = new int[num_Of_Food, num_Of_Food];
+            for (int i = 0; i < num_Of_Food; i++)
+                for (int j = 0; j < num_Of_Food; j++)
+                    direct[i, j] = 0;
+
+                
+            
             obj_Bee = new double[num_Of_Pop];
             obj_Source = new double[num_Of_Food];
             obj_Source_OL = new double[num_Of_Onlooker];
@@ -218,6 +230,7 @@ namespace ABC_library
             series_IterationTheBest.Points.Clear();
 
             Update_The_Best_Source();
+            initial_Best_OBJ = so_Far_Best_OBJ;
             iteration_Count = 0;
         }
         public void Run_One_Iteration()
@@ -248,6 +261,7 @@ namespace ABC_library
             // Send Employed Bees
             double v;
             double phi;
+            double r;
             int mut_pos;
             int neib;
             bool get_Better;
@@ -257,9 +271,23 @@ namespace ABC_library
                 mut_pos = Shuffle_Indices_Array(num_Of_Dim, 1)[0]; // rnd dimension
                 neib = Shuffle_Indices_Array(num_Of_Food, 1)[0]; // rnd food source
                 phi = 2 * rnd.NextDouble() - 1.0; // [-1, 1]
-
+                r = rnd.NextDouble();
                 // calculate v
-                v = source_Loc[EB_id][mut_pos] + (source_Loc[EB_id][mut_pos] - source_Loc[neib][mut_pos]) * phi;
+                switch (direct[EB_id, neib])
+                {
+                    case -1:
+                        v = source_Loc[EB_id][mut_pos] - r * Math.Abs(source_Loc[EB_id][mut_pos] - source_Loc[neib][mut_pos]);
+                        break;
+                    case 0:                        
+                        v = source_Loc[EB_id][mut_pos] + (source_Loc[EB_id][mut_pos] - source_Loc[neib][mut_pos]) * phi;
+                        break;
+                    case 1:
+                        v = source_Loc[EB_id][mut_pos] + r * Math.Abs(source_Loc[EB_id][mut_pos] - source_Loc[neib][mut_pos]);
+                        break;
+                    default:
+                        v = 0;
+                        break;
+                }
                 if (v > upper_Bound[mut_pos]) v = upper_Bound[mut_pos];
                 if (v < lower_Bound[mut_pos]) v = lower_Bound[mut_pos];
 
@@ -291,6 +319,9 @@ namespace ABC_library
 
                     // update trial counter
                     trial_Counter[EB_id] = 0;
+
+                    // update direction
+                    direct[EB_id, neib] = 1;
                 }
                 else
                 {
@@ -301,6 +332,9 @@ namespace ABC_library
 
                     // update trial counter
                     trial_Counter[EB_id] += 1;
+
+                    // update direction
+                    direct[EB_id, neib] = -1;
                 }
             }
         }
@@ -310,6 +344,7 @@ namespace ABC_library
             Set_Fitness();
             int[] locations = Sthocastic_Wheel();
             double v;
+            double r;
             double phi;
             int mut_pos;
             int neib;
@@ -323,6 +358,7 @@ namespace ABC_library
                 mut_pos = Shuffle_Indices_Array(num_Of_Dim, 1)[0]; // rnd dimension               
                 neib = Shuffle_Indices_Array(num_Of_Food, 1)[0]; // rnd food source
                 phi = 2 * rnd.NextDouble() - 1.0; // [-1, 1]
+                r = rnd.NextDouble(); // [0, 1]
 
                 // send onlooker bee
                 for (int d = 0; d < num_Of_Dim; d++)
@@ -330,8 +366,24 @@ namespace ABC_library
 
                 obj_Source_OL[loc_Id] = the_Objective_Function(bees[OB_id]);
 
+                
                 // calculate v
-                v = source_Loc[locations[loc_Id]][mut_pos] + (source_Loc[locations[loc_Id]][mut_pos] - source_Loc[neib][mut_pos]) * phi;
+                switch (direct[locations[loc_Id], neib])
+                {
+                    case -1:
+                        v = source_Loc[locations[loc_Id]][mut_pos] - r * Math.Abs(source_Loc[locations[loc_Id]][mut_pos] - source_Loc[neib][mut_pos]);
+                        break;
+                    case 0:
+                        v = source_Loc[locations[loc_Id]][mut_pos] + (source_Loc[locations[loc_Id]][mut_pos] - source_Loc[neib][mut_pos]) * phi;
+                        break;
+                    case 1:
+                        v = source_Loc[locations[loc_Id]][mut_pos] + r * Math.Abs(source_Loc[locations[loc_Id]][mut_pos] - source_Loc[neib][mut_pos]);
+                        break;
+                    default:
+                        v = 0;
+                        break;
+                }             
+                //v = source_Loc[locations[loc_Id]][mut_pos] + (source_Loc[locations[loc_Id]][mut_pos] - source_Loc[neib][mut_pos]) * phi;
                 if (v > upper_Bound[mut_pos]) v = upper_Bound[mut_pos];
                 if (v < lower_Bound[mut_pos]) v = lower_Bound[mut_pos];
                 bees[OB_id][mut_pos] = v;
@@ -359,6 +411,9 @@ namespace ABC_library
 
                     // update trial counter
                     trial_Counter[locations[loc_Id]] = 0;
+
+                    // update direction
+                    direct[locations[loc_Id], neib] = 1;
                 }
                 else
                 {
@@ -368,6 +423,9 @@ namespace ABC_library
 
                     // update trial counter
                     trial_Counter[locations[loc_Id]] += 1;
+
+                    // update direction
+                    direct[locations[loc_Id], neib] = -1;
                 }
             }
         }
@@ -394,6 +452,12 @@ namespace ABC_library
 
 
         #region Helping Function
+        public void Set_Chart_Area(ChartArea ca)
+        {
+            series_Average.ChartArea = ca.Name;
+            series_IterationTheBest.ChartArea = ca.Name;
+            series_SoFarTheBest.ChartArea = ca.Name;
+        }
         private int[] Shuffle_Indices_Array(int n, int take)
         {
             int[] arr = new int[n];

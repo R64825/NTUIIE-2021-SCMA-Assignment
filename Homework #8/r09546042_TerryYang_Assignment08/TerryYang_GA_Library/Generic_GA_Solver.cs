@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.DataVisualization.Charting;
+using COP;
 
 namespace TerryYang_GA_Library
 {
@@ -13,6 +14,7 @@ namespace TerryYang_GA_Library
     public enum GA_Mutation_Type { Gene_Number_Based, Chromosomes_Number_Based }
     public enum GA_Selection_Type { Deterministic, Stochastic }
 
+    public delegate double COP_Objective_Function(double[] solution);
     // template class
     public class Generic_GA_Solver<T>
     {
@@ -25,6 +27,7 @@ namespace TerryYang_GA_Library
 
         private T[] so_Far_The_Best_Soulution;
         private double so_Far_The_Best_Objective_Value;
+        double initial_Best_OBJ;
         double iteration_Best_Objective;
         double iteration_Average_Objective;
 
@@ -57,12 +60,17 @@ namespace TerryYang_GA_Library
         private Series series_Average;
         private Series series_IterationTheBest;
 
+        COP.OptimizationType op_Type = OptimizationType.Minimization;
+        COP_Objective_Function the_Objective_Function;
+
         bool[][] mutated_Genes; // guide for gene base mutation
         // run time date
         int iteration_ID;
         #endregion
 
         #region Property
+        [Browsable(false)]
+        public double Initial_Best_OBJ { get => initial_Best_OBJ; set => initial_Best_OBJ = value; }
         [Browsable(false)]
         public T[] So_Far_The_Best_Soulution { get => so_Far_The_Best_Soulution; set => so_Far_The_Best_Soulution = value; }
         [Browsable(false)]
@@ -142,13 +150,7 @@ namespace TerryYang_GA_Library
             this.optimization_Type = optimization_Type;
             this.objective_Function = objective_Function;
 
-            chromosomes = new T[population_Size][];
-            so_Far_The_Best_Soulution = new T[number_Of_Genes];
-
-
-            mutated_Genes = new bool[population_Size][];
-            for (int i = 0; i < population_Size; i++)
-                mutated_Genes[i] = new bool[number_Of_Genes];
+            
 
             // construct series
             series_SoFarTheBest = new Series("So far the best solution");
@@ -164,6 +166,7 @@ namespace TerryYang_GA_Library
             series_IterationTheBest.Color = Color.Blue;
             series_IterationTheBest.BorderWidth = 2;
         }
+
         #endregion
 
         #region Functions
@@ -195,12 +198,7 @@ namespace TerryYang_GA_Library
                     break;
             }         
         }
-        private void Series_Update()
-        {
-            series_Average.Points.AddXY(iteration_ID, iteration_Average_Objective);
-            series_SoFarTheBest.Points.AddXY(Current_Iteration, so_Far_The_Best_Objective_Value);
-            series_IterationTheBest.Points.AddXY(iteration_ID, iteration_Best_Objective);
-        }
+        
         private void Copy_All_Selection_to_Chromosomes()
         {
             // copy form selection to chromosome
@@ -332,15 +330,7 @@ namespace TerryYang_GA_Library
                 iteration_Best_Objective = objective_Value[the_Best_Index];
             iteration_Average_Objective = (objective_Value.Sum() / total);
         }
-        public int[] Shuffle_Indice_Array(int limit)
-        {
-            int[] arr = new int[limit];
-            Random random = new Random();
-            for (int i = 0; i < limit; i++)
-                arr[i] = i;
-            arr = arr.OrderBy(x => random.Next()).ToArray();
-            return arr;
-        }
+        
         public virtual void Initialize_Population()
         {
             // initialize first population
@@ -350,20 +340,7 @@ namespace TerryYang_GA_Library
         {
             throw new Exception("");           
         }
-        public virtual string Flatten_Solution_to_String(T[] sol)
-        {
-            string str = " ";
-            double row_End;
-            for (int i = 0; i < sol.Length; i++)
-            {
-                row_End = i % Math.Sqrt(number_Of_Genes);
-                if (row_End ==0)
-                    str += " ";
-                str += sol[i].ToString() + " ";                
-            }
-            str += " ";
-            return str;
-        }
+        
         #endregion
 
         #region Crossover & Mutation
@@ -476,7 +453,9 @@ namespace TerryYang_GA_Library
                 selected_Chromosomes[r] = new T[number_Of_Genes];            
             for (int r = 0; r < Three_Time_Size; r++)
                 chromosomes[r] = new T[number_Of_Genes];
-
+            mutated_Genes = new bool[population_Size][];
+            for (int i = 0; i < population_Size; i++)
+                mutated_Genes[i] = new bool[number_Of_Genes];
             // set initial solution
             Initialize_Population();
 
@@ -493,6 +472,9 @@ namespace TerryYang_GA_Library
                 so_Far_The_Best_Objective_Value = double.MaxValue;
             so_Far_The_Best_Soulution = new T[number_Of_Genes];
 
+            Update_So_Far_the_Best_and_Iteration_the_Best();
+            Perform_Selection_Operation();
+            Initial_Best_OBJ = so_Far_The_Best_Objective_Value;
             // series clear
             series_Average.Points.Clear();
             series_IterationTheBest.Points.Clear();
@@ -515,6 +497,44 @@ namespace TerryYang_GA_Library
         {
             for (int i = 0; i < iteration_Limit; i++)
                 Run_One_Iteration();
+        }
+        #endregion
+
+        #region Helping Function
+        public int[] Shuffle_Indice_Array(int limit)
+        {
+            int[] arr = new int[limit];
+            Random random = new Random();
+            for (int i = 0; i < limit; i++)
+                arr[i] = i;
+            arr = arr.OrderBy(x => random.Next()).ToArray();
+            return arr;
+        }
+        public void Set_Chart_Area(ChartArea ca)
+        {
+            series_Average.ChartArea = ca.Name;
+            series_IterationTheBest.ChartArea = ca.Name;
+            series_SoFarTheBest.ChartArea = ca.Name;
+        }
+        private void Series_Update()
+        {
+            series_Average.Points.AddXY(iteration_ID, iteration_Average_Objective);
+            series_SoFarTheBest.Points.AddXY(Current_Iteration, so_Far_The_Best_Objective_Value);
+            series_IterationTheBest.Points.AddXY(iteration_ID, iteration_Best_Objective);
+        }
+        public virtual string Flatten_Solution_to_String(T[] sol)
+        {
+            string str = " ";
+            double row_End;
+            for (int i = 0; i < sol.Length; i++)
+            {
+                row_End = i % Math.Sqrt(number_Of_Genes);
+                if (row_End == 0)
+                    str += " ";
+                str += sol[i].ToString() + " ";
+            }
+            str += " ";
+            return str;
         }
         #endregion
     }

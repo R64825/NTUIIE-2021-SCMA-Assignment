@@ -5,7 +5,6 @@ C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\FinalProject\r0954
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\FinalProject\r09546042_TerryYang_FinalProject\ABC_library\bin\Debug\COPBenchmark.pdb
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\FinalProject\r09546042_TerryYang_FinalProject\ABC_library\bin\Debug\COPBenchmark.xml
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\FinalProject\r09546042_TerryYang_FinalProject\ABC_library\bin\Debug\TeeChart.xml
-C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\FinalProject\r09546042_TerryYang_FinalProject\ABC_library\obj\Debug\ABC_library.csprojAssemblyReference.cache
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\FinalProject\r09546042_TerryYang_FinalProject\ABC_library\obj\Debug\ABC_library.csproj.CoreCompileInputs.cache
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\FinalProject\r09546042_TerryYang_FinalProject\ABC_library\obj\Debug\ABC_library.csproj.CopyComplete
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\FinalProject\r09546042_TerryYang_FinalProject\ABC_library\obj\Debug\ABC_library.dll

@@ -16,7 +16,7 @@ namespace r09546042_TerryYang_FinalProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Mainform());
+            Application.Run(new Form_Main());
         }
     }
 }

@@ -24,3 +24,8 @@ C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #8\r09546
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #8\r09546042_TerryYang_Assignment08\r09546042_TerryYang_Assignment08\obj\Debug\r09546042_TerryYang_Assignment08.csproj.CopyComplete
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #8\r09546042_TerryYang_Assignment08\r09546042_TerryYang_Assignment08\obj\Debug\r09546042_TerryYang_Assignment08.exe
 C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #8\r09546042_TerryYang_Assignment08\r09546042_TerryYang_Assignment08\obj\Debug\r09546042_TerryYang_Assignment08.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #8\r09546042_TerryYang_Assignment08\r09546042_TerryYang_Assignment08\bin\Debug\COPBenchmark.dll
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #8\r09546042_TerryYang_Assignment08\r09546042_TerryYang_Assignment08\bin\Debug\TeeChart.dll
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #8\r09546042_TerryYang_Assignment08\r09546042_TerryYang_Assignment08\bin\Debug\COPBenchmark.pdb
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #8\r09546042_TerryYang_Assignment08\r09546042_TerryYang_Assignment08\bin\Debug\COPBenchmark.xml
+C:\Users\TerryYang\Desktop\Github\NTUIIE-2021-SCMA-Assignment\Homework #8\r09546042_TerryYang_Assignment08\r09546042_TerryYang_Assignment08\bin\Debug\TeeChart.xml

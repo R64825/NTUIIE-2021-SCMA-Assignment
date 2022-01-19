@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="COPBenchmark">
+      <HintPath>..\..\..\Homework #10\r09546042_TerryYang_Assignment10\Particle_Swamp_Optimizer\bin\Debug\COPBenchmark.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />

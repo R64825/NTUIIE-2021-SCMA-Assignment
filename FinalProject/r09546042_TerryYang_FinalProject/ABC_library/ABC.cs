@@ -44,6 +44,7 @@ namespace ABC_library
         // indication
         double iter_Average;
         double iter_Best_Obj;
+        double initial_Best_OBJ;
         double so_Far_Best_OBJ;
         double[] so_Far_Best_Sol;
 
@@ -113,7 +114,8 @@ namespace ABC_library
         public double So_Far_Best_OBJ { get => so_Far_Best_OBJ; set => so_Far_Best_OBJ = value; }
         [Browsable(false)]
         public double[] So_Far_Best_Sol { get => so_Far_Best_Sol; set => so_Far_Best_Sol = value; }
-
+        [Browsable(false)]
+        public double Initial_Best_OBJ { get => initial_Best_OBJ; set => initial_Best_OBJ = value; }
         #endregion
 
         #region Constructor
@@ -216,6 +218,7 @@ namespace ABC_library
             series_IterationTheBest.Points.Clear();
 
             Update_The_Best_Source();
+            initial_Best_OBJ = so_Far_Best_OBJ;
             iteration_Count = 0;
         }
         public void Run_One_Iteration()
@@ -248,7 +251,7 @@ namespace ABC_library
             double phi;
             int mut_pos;
             int neib;
-            bool get_Better;
+            bool better;
             for (int EB_id = 0; EB_id < num_Of_Employed; EB_id++)
             {
                 // random value
@@ -265,24 +268,22 @@ namespace ABC_library
                 bees[EB_id][mut_pos] = v;
                 obj_Bee[EB_id] = the_Objective_Function(bees[EB_id]);
 
-
-
                 //update food source or not
-                get_Better = false;
+                better = false;
                 if (optimization_Type == OptimizationType.Maximization)
                 {
                     if (obj_Bee[EB_id] > obj_Source[EB_id])
-                        get_Better = true;
+                        better = true;
                 }
                 else
                 {
                     if (obj_Bee[EB_id] < obj_Source[EB_id])
-                        get_Better = true;
+                        better = true;
                 }
 
-                if (get_Better)
+                if (better)
                 {
-                    // bee override food
+                    // bee override source
                     source_Loc[EB_id][mut_pos] = bees[EB_id][mut_pos];
 
                     obj_Source[EB_id] = obj_Bee[EB_id];
@@ -339,7 +340,7 @@ namespace ABC_library
             double phi;
             int mut_pos;
             int neib;
-            bool get_Better;
+            bool better;
             int loc_Id;
 
             for (int OB_id = num_Of_Employed; OB_id < num_Of_Employed+ locations.Length; OB_id++)
@@ -364,20 +365,20 @@ namespace ABC_library
                 obj_Bee[OB_id] = the_Objective_Function(bees[OB_id]);
 
                 //update food source or not
-                get_Better = false;
+                better = false;
                 if (optimization_Type == OptimizationType.Maximization)
                 {
                     if (obj_Bee[OB_id] > obj_Source_OL[loc_Id])
-                        get_Better = true;
+                        better = true;
                 }
                 else
                 {
                     if (obj_Bee[OB_id] < obj_Source_OL[loc_Id])
-                        get_Better = true;
+                        better = true;
                 }
 
 
-                if (get_Better)
+                if (better)
                 {
                     // bee override food
                     source_Loc[locations[loc_Id]][mut_pos] = bees[OB_id][mut_pos];
@@ -418,8 +419,13 @@ namespace ABC_library
         }
         #endregion
 
-
         #region Helping Function
+        public void Set_Chart_Area(ChartArea ca)
+        {
+            series_Average.ChartArea = ca.Name;
+            series_IterationTheBest.ChartArea = ca.Name;
+            series_SoFarTheBest.ChartArea = ca.Name;
+        }
         private int[] Shuffle_Indices_Array(int n, int take)
         {
             int[] arr = new int[n];
